@@ -13,7 +13,7 @@ const StatsSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section ref={ref} className="py-20 px-6 lg:px-12 border-t border-b border-border/30">
+    <section ref={ref} className="py-20 px-6 lg:px-12 bg-white border-t border-b border-gray-200">
       <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-8">
         {stats.map((stat, i) => (
           <motion.div
@@ -23,8 +23,8 @@ const StatsSection = () => {
             transition={{ duration: 0.5, delay: i * 0.1, ease: [0.2, 0, 0, 1] }}
             className="text-center"
           >
-            <p className="text-4xl lg:text-5xl font-bold text-foreground tracking-tight">{stat.value}</p>
-            <p className="text-sm text-muted-foreground mt-2">{stat.label}</p>
+            <p className="text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight">{stat.value}</p>
+            <p className="text-sm text-gray-500 mt-2">{stat.label}</p>
           </motion.div>
         ))}
       </div>
