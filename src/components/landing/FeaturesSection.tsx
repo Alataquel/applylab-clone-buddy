@@ -5,7 +5,7 @@ const studentFeatures = [
   {
     num: "01",
     title: "Job Board",
-    desc: "Our model reads your whole profile and surfaces roles where you're genuinely a top candidate—ranked by real fit, not keyword overlap.",
+    desc: "Intelligent matching surfaces roles where students are genuinely competitive — improving application quality and reducing wasted effort across your cohort.",
     items: [
       { letter: "L", color: "bg-blue-500", role: "Product Designer", company: "Linear", score: "98% Match" },
       { letter: "V", color: "bg-foreground", role: "Frontend Engineer", company: "Vercel", score: "95% Match" },
