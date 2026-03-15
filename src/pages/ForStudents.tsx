@@ -306,8 +306,8 @@ const ForStudents = () => {
             className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center"
           >
             <div>
-              <div className="w-12 h-12 rounded-xl bg-rose-500 flex items-center justify-center mb-6">
-                <UserCheck className="w-5 h-5 text-white" />
+              <div className="w-12 h-12 rounded-xl bg-primary/15 flex items-center justify-center mb-6">
+                <UserCheck className="w-5 h-5 text-primary" />
               </div>
               <p className="text-xs uppercase tracking-widest text-primary font-semibold mb-3">Feature 05</p>
               <h2 className="text-3xl lg:text-4xl font-bold text-foreground tracking-tight mb-4">Book an Advisor</h2>
