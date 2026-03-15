@@ -25,7 +25,7 @@ const studentFeatures = [
   {
     num: "03",
     title: "Application Tracker",
-    desc: "A visual pipeline that automatically updates your status across every process, with reminders and follow-up prompts built in.",
+    desc: "A visual pipeline that automatically tracks every student's application status — giving career teams and students a shared, real-time view.",
     pipeline: ["Applied", "Interview", "Offer", "Accepted!"],
   },
 ];
