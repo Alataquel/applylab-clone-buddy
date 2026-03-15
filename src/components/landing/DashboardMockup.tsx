@@ -591,6 +591,7 @@ const DashboardMockup = () => {
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
   const [activeTab, setActiveTab] = useState(0);
   const [selectedStudent, setSelectedStudent] = useState<typeof studentsData[0] | null>(null);
+  const [showTemplateEditor, setShowTemplateEditor] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
   const handleMouseMove = (e: React.MouseEvent) => {
@@ -607,13 +608,16 @@ const DashboardMockup = () => {
     if (activeTab === 1 && selectedStudent) {
       return <StudentDetailContent student={selectedStudent} onBack={() => setSelectedStudent(null)} />;
     }
+    if (activeTab === 5 && showTemplateEditor) {
+      return <TemplateEditorContent onBack={() => setShowTemplateEditor(false)} />;
+    }
     switch (activeTab) {
       case 0: return <OverviewContent />;
       case 1: return <StudentsContent onSelectStudent={setSelectedStudent} />;
       case 2: return <AnalyticsContent />;
       case 3: return <QualificationInsightsContent />;
       case 4: return <MarketInsightsContent />;
-      case 5: return <ResumeTemplatesContent />;
+      case 5: return <ResumeTemplatesContent onOpenEditor={() => setShowTemplateEditor(true)} />;
       case 6: return <JobEventPostingsContent />;
       default: return <OverviewContent />;
     }
