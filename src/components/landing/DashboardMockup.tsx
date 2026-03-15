@@ -2,18 +2,190 @@ import { useState, useRef } from "react";
 
 const navItems = ["Students", "Analytics", "Qualification Insights", "Market Insights", "Resume Templates", "Job & Event Postings"];
 
-const students = [
-  { name: "Sarah Chen", email: "s.chen@uni.edu", cohort: "Business 2026", status: "Placed", statusColor: "text-emerald-400", avatar: "SC" },
-  { name: "James Miller", email: "j.miller@uni.edu", cohort: "Engineering 2026", status: "Interviewing", statusColor: "text-blue-400", avatar: "JM" },
-  { name: "Priya Patel", email: "p.patel@uni.edu", cohort: "Arts & Design 2026", status: "At Risk", statusColor: "text-rose-400", avatar: "PP" },
-  { name: "Lucas Wang", email: "l.wang@uni.edu", cohort: "Finance 2026", status: "Placed", statusColor: "text-emerald-400", avatar: "LW" },
-  { name: "Emma Johnson", email: "e.johnson@uni.edu", cohort: "Business 2026", status: "Applying", statusColor: "text-amber-400", avatar: "EJ" },
-  { name: "Omar Hassan", email: "o.hassan@uni.edu", cohort: "Engineering 2026", status: "Placed", statusColor: "text-emerald-400", avatar: "OH" },
-  { name: "Mia Thompson", email: "m.thompson@uni.edu", cohort: "Arts & Design 2026", status: "Interviewing", statusColor: "text-blue-400", avatar: "MT" },
-  { name: "Daniel Kim", email: "d.kim@uni.edu", cohort: "Finance 2026", status: "At Risk", statusColor: "text-rose-400", avatar: "DK" },
+const studentsData = [
+  { name: "Sarah Chen", email: "s.chen@uni.edu", degree: "BSc Business Admin", phone: "+44 7911 123456", status: "placed" as const, avatar: "SC",
+    spider: { certifications: 4, languages: 3, projects: 5, skills: 4, experience: 3, gpa: 4 },
+    applications: [
+      { company: "Deloitte", role: "Analyst", status: "Offered" },
+      { company: "McKinsey", role: "Associate", status: "Interview" },
+      { company: "Goldman Sachs", role: "Intern", status: "Applied" },
+    ]},
+  { name: "James Miller", email: "j.miller@uni.edu", degree: "MEng Computer Science", phone: "+44 7922 234567", status: "in_progress" as const, avatar: "JM",
+    spider: { certifications: 2, languages: 4, projects: 3, skills: 5, experience: 2, gpa: 3 },
+    applications: [
+      { company: "Google", role: "SWE Intern", status: "Interview" },
+      { company: "Meta", role: "Engineer", status: "Applied" },
+    ]},
+  { name: "Priya Patel", email: "p.patel@uni.edu", degree: "BA Fine Arts", phone: "+44 7933 345678", status: "nothing" as const, avatar: "PP",
+    spider: { certifications: 1, languages: 2, projects: 2, skills: 3, experience: 1, gpa: 3 },
+    applications: []},
+  { name: "Lucas Wang", email: "l.wang@uni.edu", degree: "MSc Finance", phone: "+44 7944 456789", status: "placed" as const, avatar: "LW",
+    spider: { certifications: 3, languages: 3, projects: 4, skills: 4, experience: 4, gpa: 5 },
+    applications: [
+      { company: "JP Morgan", role: "Analyst", status: "Offered" },
+      { company: "HSBC", role: "Graduate", status: "Offered" },
+    ]},
+  { name: "Emma Johnson", email: "e.johnson@uni.edu", degree: "Dual Bachelors in Business & Data Analytics", phone: "+44 7955 567890", status: "in_progress" as const, avatar: "EJ",
+    spider: { certifications: 3, languages: 2, projects: 3, skills: 3, experience: 2, gpa: 4 },
+    applications: [
+      { company: "PwC", role: "Consultant", status: "Interview" },
+      { company: "EY", role: "Analyst", status: "Applied" },
+      { company: "Accenture", role: "Analyst", status: "Applied" },
+    ]},
+  { name: "Omar Hassan", email: "o.hassan@uni.edu", degree: "MEng Electrical Engineering", phone: "+44 7966 678901", status: "placed" as const, avatar: "OH",
+    spider: { certifications: 4, languages: 5, projects: 4, skills: 5, experience: 3, gpa: 4 },
+    applications: [
+      { company: "Siemens", role: "Engineer", status: "Offered" },
+    ]},
+  { name: "Mia Thompson", email: "m.thompson@uni.edu", degree: "BA Graphic Design", phone: "+44 7977 789012", status: "in_progress" as const, avatar: "MT",
+    spider: { certifications: 2, languages: 2, projects: 5, skills: 4, experience: 2, gpa: 3 },
+    applications: [
+      { company: "Pentagram", role: "Junior Designer", status: "Interview" },
+    ]},
+  { name: "Daniel Kim", email: "d.kim@uni.edu", degree: "BSc Economics", phone: "+44 7988 890123", status: "nothing" as const, avatar: "DK",
+    spider: { certifications: 1, languages: 1, projects: 1, skills: 2, experience: 1, gpa: 2 },
+    applications: []},
+  { name: "Aisha Begum", email: "a.begum@uni.edu", degree: "M.Sc. Data Science", phone: "+44 7999 901234", status: "placed" as const, avatar: "AB",
+    spider: { certifications: 5, languages: 3, projects: 4, skills: 5, experience: 4, gpa: 5 },
+    applications: [
+      { company: "Amazon", role: "Data Scientist", status: "Offered" },
+      { company: "Netflix", role: "ML Engineer", status: "Interview" },
+    ]},
 ];
 
-const StudentsContent = () => (
+const statusConfig = {
+  placed: { bg: "bg-emerald-500/15", border: "border-emerald-500/40", label: "Placed", labelColor: "text-emerald-400" },
+  in_progress: { bg: "bg-amber-500/15", border: "border-amber-500/40", label: "In Progress", labelColor: "text-amber-400" },
+  nothing: { bg: "bg-rose-500/15", border: "border-rose-500/40", label: "No Activity", labelColor: "text-rose-400" },
+};
+
+// Mini spider/radar chart as SVG
+const SpiderChart = ({ data }: { data: { certifications: number; languages: number; projects: number; skills: number; experience: number; gpa: number } }) => {
+  const labels = ["Certifications", "Languages", "Projects", "Skills", "Experience", "GPA"];
+  const values = [data.certifications, data.languages, data.projects, data.skills, data.experience, data.gpa];
+  const cx = 80, cy = 80, maxR = 55;
+  const angleStep = (Math.PI * 2) / 6;
+
+  const getPoint = (i: number, v: number) => ({
+    x: cx + Math.sin(angleStep * i) * (v / 5) * maxR,
+    y: cy - Math.cos(angleStep * i) * (v / 5) * maxR,
+  });
+
+  const gridLevels = [1, 2, 3, 4, 5];
+  const dataPoints = values.map((v, i) => getPoint(i, v));
+  const dataPath = dataPoints.map((p, i) => `${i === 0 ? "M" : "L"}${p.x},${p.y}`).join(" ") + "Z";
+
+  return (
+    <svg viewBox="0 0 160 160" className="w-full max-w-[160px]">
+      {/* Grid */}
+      {gridLevels.map((level) => {
+        const pts = Array.from({ length: 6 }, (_, i) => getPoint(i, level));
+        const path = pts.map((p, i) => `${i === 0 ? "M" : "L"}${p.x},${p.y}`).join(" ") + "Z";
+        return <path key={level} d={path} fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="0.5" />;
+      })}
+      {/* Axes */}
+      {Array.from({ length: 6 }, (_, i) => {
+        const end = getPoint(i, 5);
+        return <line key={i} x1={cx} y1={cy} x2={end.x} y2={end.y} stroke="rgba(255,255,255,0.08)" strokeWidth="0.5" />;
+      })}
+      {/* Data area */}
+      <path d={dataPath} fill="hsl(217, 91%, 60%, 0.2)" stroke="hsl(217, 91%, 60%)" strokeWidth="1.5" />
+      {/* Data points */}
+      {dataPoints.map((p, i) => (
+        <circle key={i} cx={p.x} cy={p.y} r="2" fill="hsl(217, 91%, 60%)" />
+      ))}
+      {/* Labels */}
+      {labels.map((label, i) => {
+        const pt = getPoint(i, 6.2);
+        return (
+          <text key={label} x={pt.x} y={pt.y} textAnchor="middle" dominantBaseline="middle" fill="#9ca3af" fontSize="5" fontFamily="sans-serif">
+            {label}
+          </text>
+        );
+      })}
+    </svg>
+  );
+};
+
+const StudentDetailContent = ({ student, onBack }: { student: typeof studentsData[0]; onBack: () => void }) => {
+  const cfg = statusConfig[student.status];
+  return (
+    <>
+      {/* Header */}
+      <div className={`flex items-center gap-3 mb-4 ${cfg.bg} ${cfg.border} border rounded-lg px-3 py-3`}>
+        <button onClick={onBack} className="text-gray-400 hover:text-white transition-colors">
+          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
+        </button>
+        <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-[10px] font-bold text-primary flex-shrink-0">{student.avatar}</div>
+        <div className="flex-1">
+          <p className="text-sm font-semibold text-white">{student.name}</p>
+          <p className="text-[10px] text-gray-400">{student.email}</p>
+        </div>
+        <span className={`text-[9px] font-semibold ${cfg.labelColor}`}>{cfg.label}</span>
+      </div>
+
+      <div className="grid grid-cols-2 gap-3">
+        {/* Left: Info + Spider */}
+        <div>
+          <p className="text-[10px] text-gray-500 mb-2">Information</p>
+          <div className="space-y-1.5 mb-3">
+            <div className="flex items-center gap-1.5">
+              <svg className="w-3 h-3 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+              <span className="text-[10px] text-gray-300">{student.email}</span>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <svg className="w-3 h-3 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
+              <span className="text-[10px] text-gray-300">{student.phone}</span>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <svg className="w-3 h-3 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
+              <span className="text-[10px] text-gray-300">{student.degree}</span>
+            </div>
+          </div>
+          <p className="text-[10px] text-gray-500 mb-1">Profile Report</p>
+          <SpiderChart data={student.spider} />
+        </div>
+
+        {/* Right: Applications + Documents */}
+        <div>
+          <p className="text-[10px] text-gray-500 mb-2">Job Applications</p>
+          {student.applications.length === 0 ? (
+            <p className="text-[10px] text-gray-600 italic mb-3">No applications yet</p>
+          ) : (
+            <div className="space-y-1 mb-3">
+              {student.applications.map((app) => (
+                <div key={app.company + app.role} className="flex items-center justify-between bg-white/[0.03] border border-white/5 rounded-md px-2 py-1.5">
+                  <div>
+                    <p className="text-[10px] font-medium text-white">{app.role}</p>
+                    <p className="text-[9px] text-gray-500">{app.company}</p>
+                  </div>
+                  <span className={`text-[8px] font-semibold px-1.5 py-0.5 rounded ${
+                    app.status === "Offered" ? "bg-emerald-500/20 text-emerald-400" :
+                    app.status === "Interview" ? "bg-amber-500/20 text-amber-400" :
+                    "bg-blue-500/20 text-blue-400"
+                  }`}>{app.status}</span>
+                </div>
+              ))}
+            </div>
+          )}
+
+          <p className="text-[10px] text-gray-500 mb-2">Documents</p>
+          <div className="space-y-1">
+            {["Resume", "Cover Letter"].map((doc) => (
+              <div key={doc} className="flex items-center gap-2 bg-white/[0.03] border border-white/5 rounded-md px-2 py-1.5 cursor-pointer hover:bg-white/[0.06] transition-colors">
+                <svg className="w-3.5 h-3.5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                <p className="text-[10px] text-white">{doc}</p>
+                <svg className="w-3 h-3 text-gray-500 ml-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+const StudentsContent = ({ onSelectStudent }: { onSelectStudent: (student: typeof studentsData[0]) => void }) => (
   <>
     <div className="flex items-center justify-between mb-3">
       <p className="text-xs text-gray-500">All Students</p>
@@ -22,24 +194,44 @@ const StudentsContent = () => (
           <span className="text-[10px] text-gray-400">Search...</span>
         </div>
         <div className="bg-white/[0.03] border border-white/5 rounded-md px-2.5 py-1">
-          <span className="text-[10px] text-gray-400">Filter</span>
+          <span className="text-[10px] text-gray-400">All degrees</span>
         </div>
       </div>
     </div>
-    <div className="space-y-1.5">
-      {students.map((s) => (
-        <div key={s.name} className="flex items-center gap-3 bg-white/[0.03] hover:bg-white/[0.06] border border-white/5 rounded-lg px-3 py-2.5 transition-colors">
-          <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-[10px] font-bold text-primary flex-shrink-0">{s.avatar}</div>
-          <div className="flex-1 min-w-0">
-            <p className="text-xs font-medium text-white">{s.name}</p>
-            <p className="text-[10px] text-gray-500">{s.email}</p>
-          </div>
-          <div className="text-right">
-            <span className={`text-[10px] font-medium ${s.statusColor}`}>{s.status}</span>
-            <p className="text-[9px] text-gray-600">{s.cohort}</p>
-          </div>
+    {/* Legend */}
+    <div className="flex gap-3 mb-3">
+      {[
+        { color: "bg-emerald-400", label: "Placed" },
+        { color: "bg-amber-400", label: "In Progress" },
+        { color: "bg-rose-400", label: "No Activity" },
+      ].map((l) => (
+        <div key={l.label} className="flex items-center gap-1">
+          <div className={`w-2 h-2 rounded-full ${l.color}`} />
+          <span className="text-[9px] text-gray-500">{l.label}</span>
         </div>
       ))}
+    </div>
+    <div className="grid grid-cols-3 gap-1.5">
+      {studentsData.map((s) => {
+        const cfg = statusConfig[s.status];
+        return (
+          <div
+            key={s.name}
+            onClick={() => onSelectStudent(s)}
+            className={`${cfg.bg} ${cfg.border} border rounded-lg px-2.5 py-2 cursor-pointer hover:brightness-125 transition-all`}
+          >
+            <p className="text-[10px] font-semibold text-white">{s.name}</p>
+            <div className="flex items-center gap-1 mt-0.5">
+              <svg className="w-2.5 h-2.5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+              <span className="text-[8px] text-gray-400 truncate">{s.email}</span>
+            </div>
+            <div className="flex items-center gap-1 mt-0.5">
+              <svg className="w-2.5 h-2.5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
+              <span className="text-[8px] text-gray-400 truncate">{s.degree}</span>
+            </div>
+          </div>
+        );
+      })}
     </div>
   </>
 );
@@ -219,6 +411,7 @@ const JobEventPostingsContent = () => (
 const DashboardMockup = () => {
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
   const [activeTab, setActiveTab] = useState(0);
+  const [selectedStudent, setSelectedStudent] = useState<typeof studentsData[0] | null>(null);
   const ref = useRef<HTMLDivElement>(null);
 
   const handleMouseMove = (e: React.MouseEvent) => {
@@ -232,14 +425,17 @@ const DashboardMockup = () => {
   const handleMouseLeave = () => setTilt({ x: 0, y: 0 });
 
   const renderContent = () => {
+    if (activeTab === 0 && selectedStudent) {
+      return <StudentDetailContent student={selectedStudent} onBack={() => setSelectedStudent(null)} />;
+    }
     switch (activeTab) {
-      case 0: return <StudentsContent />;
+      case 0: return <StudentsContent onSelectStudent={setSelectedStudent} />;
       case 1: return <AnalyticsContent />;
       case 2: return <QualificationInsightsContent />;
       case 3: return <MarketInsightsContent />;
       case 4: return <ResumeTemplatesContent />;
       case 5: return <JobEventPostingsContent />;
-      default: return <StudentsContent />;
+      default: return <StudentsContent onSelectStudent={setSelectedStudent} />;
     }
   };
 
@@ -275,7 +471,7 @@ const DashboardMockup = () => {
             {navItems.map((item, i) => (
               <div
                 key={item}
-                onClick={() => setActiveTab(i)}
+                onClick={() => { setActiveTab(i); setSelectedStudent(null); }}
                 className={`text-[11px] px-3 py-2 rounded-md transition-colors cursor-pointer ${
                   i === activeTab
                     ? "bg-primary text-white font-medium"
