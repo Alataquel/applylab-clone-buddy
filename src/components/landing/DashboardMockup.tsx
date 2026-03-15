@@ -277,6 +277,23 @@ const StudentDetailContent = ({ student, onBack }: { student: typeof studentsDat
   const cfg = statusConfig[student.status];
   const [viewingDoc, setViewingDoc] = useState<string | null>(null);
 
+  // Compute interview/offer rates
+  const totalApps = student.applications.length;
+  const interviewApps = student.applications.filter(a => ["1st Interview", "2nd Interview", "Offered"].includes(a.status)).length;
+  const offerApps = student.applications.filter(a => a.status === "Offered").length;
+  const interviewRate = totalApps > 0 ? Math.round((interviewApps / totalApps) * 100) : 0;
+  const offerRate = totalApps > 0 ? Math.round((offerApps / totalApps) * 100) : 0;
+
+  const isHealthy = student.status === "placed" || student.status === "in_progress";
+  const activityStatus = student.status === "placed" ? "Healthy" : student.status === "in_progress" ? "Active" : "At Risk";
+  const activityColor = student.status === "nothing" ? "text-rose-400 bg-rose-500/20 border-rose-500/30" : "text-emerald-400 bg-emerald-500/20 border-emerald-500/30";
+
+  // Pipeline health
+  const pipelineStatus = offerApps > 0 ? "On Track" : interviewApps > 0 ? "Progressing" : totalApps > 0 ? "Early Stage" : "No Activity";
+  const pipelineDesc = offerApps > 0 ? "Healthy pipeline with interviews and offers" : interviewApps > 0 ? "Active interviews, no offers yet" : totalApps > 0 ? "Applications submitted, awaiting progress" : "No applications submitted yet";
+  const pipelineColor = offerApps > 0 ? "bg-emerald-500/10 border-emerald-500/30" : interviewApps > 0 ? "bg-amber-500/10 border-amber-500/30" : totalApps > 0 ? "bg-blue-500/10 border-blue-500/30" : "bg-rose-500/10 border-rose-500/30";
+  const pipelineTextColor = offerApps > 0 ? "text-emerald-400" : interviewApps > 0 ? "text-amber-400" : totalApps > 0 ? "text-blue-400" : "text-rose-400";
+
   if (viewingDoc) {
     return (
       <>
@@ -287,7 +304,6 @@ const StudentDetailContent = ({ student, onBack }: { student: typeof studentsDat
           <svg className="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
           <p className="text-sm font-semibold text-white">{student.name} — {viewingDoc}</p>
         </div>
-        {/* Mock document viewer */}
         <div className="bg-white rounded-lg p-6 max-w-lg mx-auto shadow-lg text-gray-900 text-[10px] leading-relaxed">
           {viewingDoc === "Resume" ? (
             <>
@@ -298,108 +314,265 @@ const StudentDetailContent = ({ student, onBack }: { student: typeof studentsDat
               </div>
               <div className="mb-3">
                 <p className="text-[9px] font-bold uppercase tracking-wider text-gray-700 mb-1.5 border-b border-gray-300 pb-0.5">Education</p>
-                <div className="flex justify-between">
-                  <div>
-                    <p className="font-semibold text-gray-800">Saint Louis University</p>
-                    <p className="text-gray-500">{student.degree}</p>
-                  </div>
-                  <p className="text-gray-500">2022 – 2025</p>
-                </div>
+                <div className="flex justify-between"><div><p className="font-semibold text-gray-800">Saint Louis University</p><p className="text-gray-500">{student.degree}</p></div><p className="text-gray-500">2022 – 2025</p></div>
                 <p className="text-gray-500 mt-0.5">GPA: 3.7/4.0 · Dean's List 2023, 2024</p>
               </div>
               <div className="mb-3">
                 <p className="text-[9px] font-bold uppercase tracking-wider text-gray-700 mb-1.5 border-b border-gray-300 pb-0.5">Experience</p>
-                <div className="mb-2">
-                  <div className="flex justify-between">
-                    <p className="font-semibold text-gray-800">Strategy Intern — McKinsey & Company</p>
-                    <p className="text-gray-500">Jun – Aug 2024</p>
-                  </div>
-                  <ul className="list-disc ml-3 mt-0.5 space-y-0.5 text-gray-600">
-                    <li>Conducted market analysis for a €2B consumer goods client</li>
-                    <li>Built financial models for growth strategy recommendations</li>
-                    <li>Presented findings to senior partners and client C-suite</li>
-                  </ul>
+                <div className="mb-2"><div className="flex justify-between"><p className="font-semibold text-gray-800">Strategy Intern — McKinsey & Company</p><p className="text-gray-500">Jun – Aug 2024</p></div>
+                  <ul className="list-disc ml-3 mt-0.5 space-y-0.5 text-gray-600"><li>Conducted market analysis for a €2B consumer goods client</li><li>Built financial models for growth strategy recommendations</li><li>Presented findings to senior partners and client C-suite</li></ul>
                 </div>
-                <div>
-                  <div className="flex justify-between">
-                    <p className="font-semibold text-gray-800">Research Assistant — Dept. of Economics</p>
-                    <p className="text-gray-500">Sep 2023 – May 2024</p>
-                  </div>
-                  <ul className="list-disc ml-3 mt-0.5 space-y-0.5 text-gray-600">
-                    <li>Analyzed labour market datasets using Python and R</li>
-                    <li>Co-authored working paper on youth unemployment trends</li>
-                  </ul>
+                <div><div className="flex justify-between"><p className="font-semibold text-gray-800">Research Assistant — Dept. of Economics</p><p className="text-gray-500">Sep 2023 – May 2024</p></div>
+                  <ul className="list-disc ml-3 mt-0.5 space-y-0.5 text-gray-600"><li>Analyzed labour market datasets using Python and R</li><li>Co-authored working paper on youth unemployment trends</li></ul>
                 </div>
               </div>
-              <div className="mb-3">
-                <p className="text-[9px] font-bold uppercase tracking-wider text-gray-700 mb-1.5 border-b border-gray-300 pb-0.5">Skills</p>
-                <p className="text-gray-600">Python · R · SQL · Tableau · Financial Modelling · PowerPoint · Fluent in English, Mandarin</p>
-              </div>
-              <div>
-                <p className="text-[9px] font-bold uppercase tracking-wider text-gray-700 mb-1.5 border-b border-gray-300 pb-0.5">Certifications</p>
-                <p className="text-gray-600">CFA Level I Candidate · Google Data Analytics Certificate</p>
-              </div>
+              <div className="mb-3"><p className="text-[9px] font-bold uppercase tracking-wider text-gray-700 mb-1.5 border-b border-gray-300 pb-0.5">Skills</p><p className="text-gray-600">Python · R · SQL · Tableau · Financial Modelling · PowerPoint · Fluent in English, Mandarin</p></div>
+              <div><p className="text-[9px] font-bold uppercase tracking-wider text-gray-700 mb-1.5 border-b border-gray-300 pb-0.5">Certifications</p><p className="text-gray-600">CFA Level I Candidate · Google Data Analytics Certificate</p></div>
             </>
           ) : (
-            <>
-              <div className="mb-4">
-                <p className="text-right text-gray-500 mb-4">{new Date().toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })}</p>
-                <p className="mb-2">Dear Hiring Manager,</p>
-                <p className="mb-2">I am writing to express my strong interest in the Analyst position at Deloitte. As a {student.degree} student at Saint Louis University with a passion for strategic problem-solving, I believe my academic background and internship experience make me a strong candidate.</p>
-                <p className="mb-2">During my internship at McKinsey & Company, I gained hands-on experience in market analysis and financial modelling, working directly with senior partners on high-impact client engagements. This experience sharpened my analytical thinking and ability to distil complex data into actionable recommendations.</p>
-                <p className="mb-2">My research work in the Department of Economics further developed my quantitative skills, where I used Python and R to analyse large-scale labour market datasets. I am confident these skills would translate well to Deloitte's analytical frameworks.</p>
-                <p className="mb-2">I am particularly drawn to Deloitte's collaborative culture and commitment to developing early-career talent. I would welcome the opportunity to contribute my skills and grow within your team.</p>
-                <p className="mb-4">Thank you for your consideration. I look forward to hearing from you.</p>
-                <p>Sincerely,</p>
-                <p className="font-semibold">{student.name}</p>
-              </div>
-            </>
+            <div className="mb-4">
+              <p className="text-right text-gray-500 mb-4">{new Date().toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })}</p>
+              <p className="mb-2">Dear Hiring Manager,</p>
+              <p className="mb-2">I am writing to express my strong interest in the Analyst position at Deloitte. As a {student.degree} student at Saint Louis University with a passion for strategic problem-solving, I believe my academic background and internship experience make me a strong candidate.</p>
+              <p className="mb-2">During my internship at McKinsey & Company, I gained hands-on experience in market analysis and financial modelling, working directly with senior partners on high-impact client engagements.</p>
+              <p className="mb-2">I am particularly drawn to Deloitte's collaborative culture and commitment to developing early-career talent. I would welcome the opportunity to contribute my skills and grow within your team.</p>
+              <p className="mb-4">Thank you for your consideration. I look forward to hearing from you.</p>
+              <p>Sincerely,</p>
+              <p className="font-semibold">{student.name}</p>
+            </div>
           )}
         </div>
       </>
     );
   }
 
+  const stageColors: Record<string, { bar: string; badge: string }> = {
+    "Applied": { bar: "bg-amber-400", badge: "bg-gray-500/20 text-gray-300 border border-gray-500/30" },
+    "Technical Test": { bar: "bg-primary", badge: "bg-blue-500/20 text-blue-400 border border-blue-500/30" },
+    "Case Study": { bar: "bg-amber-400", badge: "bg-cyan-500/20 text-cyan-400 border border-cyan-500/30" },
+    "1st Interview": { bar: "bg-amber-400", badge: "bg-amber-500/20 text-amber-400 border border-amber-500/30" },
+    "2nd Interview": { bar: "bg-orange-400", badge: "bg-orange-500/20 text-orange-400 border border-orange-500/30" },
+    "Offered": { bar: "bg-emerald-400", badge: "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30" },
+    "Rejected": { bar: "bg-rose-400", badge: "bg-rose-500/20 text-rose-400 border border-rose-500/30" },
+  };
+  const progressStages = ["Applied", "Technical Test", "Case Study", "1st Interview", "2nd Interview", "Offered"];
+
   return (
     <>
-      {/* Header */}
-      <div className={`flex items-center gap-3 mb-5 ${cfg.bg} ${cfg.border} border rounded-lg px-4 py-3`}>
+      {/* Top header bar */}
+      <div className="flex items-center gap-3 mb-4 bg-primary/10 border border-primary/20 rounded-lg px-4 py-3">
         <button onClick={onBack} className="text-gray-400 hover:text-white transition-colors">
           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
         </button>
-        <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-xs font-bold text-primary flex-shrink-0">{student.avatar}</div>
+        <div className="w-9 h-9 rounded-full bg-primary/30 flex items-center justify-center text-xs font-bold text-primary flex-shrink-0">{student.avatar}</div>
         <div className="flex-1">
-          <p className="text-sm font-semibold text-white">{student.name}</p>
-          <p className="text-[10px] text-gray-400">{student.email}</p>
+          <p className="text-sm font-bold text-white">{student.name}</p>
+          <p className="text-[9px] text-gray-400">{student.degree}</p>
         </div>
-        <span className={`text-[9px] font-semibold ${cfg.labelColor}`}>{cfg.label}</span>
+        <div className="flex items-center gap-2">
+          <span className="text-[8px] bg-white/10 text-gray-300 px-2 py-0.5 rounded-full font-medium border border-white/10">3 CVs Created</span>
+          <span className={`text-[8px] px-2 py-0.5 rounded-full font-semibold ${cfg.labelColor} ${cfg.bg} ${cfg.border} border`}>{cfg.label}</span>
+        </div>
       </div>
 
-      <div className="grid grid-cols-[1fr_1.5fr] gap-5">
-        {/* Left: Info + Spider + Documents */}
+      {/* Pipeline status banner */}
+      <div className={`${pipelineColor} border rounded-lg px-4 py-2.5 mb-4 flex items-center justify-between`}>
+        <div className="flex items-center gap-2">
+          <span className="text-sm">✓</span>
+          <div>
+            <p className={`text-[11px] font-bold ${pipelineTextColor}`}>{pipelineStatus}</p>
+            <p className="text-[8px] text-gray-400">{pipelineDesc}</p>
+          </div>
+        </div>
+        <div className="flex items-center gap-4">
+          <div className="text-center">
+            <p className="text-base font-bold text-white">{interviewRate}%</p>
+            <p className="text-[7px] text-gray-500">Interview Rate</p>
+          </div>
+          <div className="text-center">
+            <p className="text-base font-bold text-white">{offerRate}%</p>
+            <p className="text-[7px] text-gray-500">Offer Rate</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Weekly Engagement + Activity Status */}
+      <div className="grid grid-cols-2 gap-3 mb-4">
+        <div className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5">
+          <div className="flex items-center gap-1.5 mb-2">
+            <span className="text-[10px]">📊</span>
+            <p className="text-[9px] text-gray-500 font-semibold uppercase tracking-wider">Weekly Engagement</p>
+          </div>
+          <div className="flex items-end gap-1.5 h-[40px]">
+            {[35, 40, 55, 60, 50, 65, 70, 80].map((h, i) => (
+              <div key={i} className="flex-1 bg-primary/80 rounded-sm" style={{ height: `${h}%` }} />
+            ))}
+          </div>
+          <div className="flex items-center justify-between mt-1">
+            <span className="text-[7px] text-gray-600">8 weeks ago</span>
+            <span className="text-[7px] text-gray-600">This week</span>
+          </div>
+        </div>
+
+        <div className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5">
+          <div className="flex items-center gap-1.5 mb-2">
+            <span className="text-[10px]">🕐</span>
+            <p className="text-[9px] text-gray-500 font-semibold uppercase tracking-wider">Activity Status</p>
+          </div>
+          <span className={`text-[9px] font-bold px-2 py-0.5 rounded-full border ${activityColor}`}>{activityStatus}</span>
+          <div className="space-y-1.5 mt-2">
+            <div className="flex items-center justify-between border-b border-white/5 pb-1">
+              <span className="text-[9px] text-gray-500">Last Active</span>
+              <span className="text-[9px] text-white font-medium">Today</span>
+            </div>
+            <div className="flex items-center justify-between border-b border-white/5 pb-1">
+              <span className="text-[9px] text-gray-500">Days Inactive</span>
+              <span className="text-[9px] text-white font-medium">{student.status === "nothing" ? "14 days" : "Active today"}</span>
+            </div>
+            <div className="flex items-center justify-between">
+              <span className="text-[9px] text-gray-500">Avg. Engagement</span>
+              <span className="text-[9px] text-white font-medium">{isHealthy ? "86%" : "23%"}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Main content: Left info + Right applications */}
+      <div className="grid grid-cols-[1fr_1.4fr] gap-4">
+        {/* Left column */}
         <div>
-          <p className="text-[11px] text-gray-500 mb-2 font-medium">Information</p>
-          <div className="space-y-2 mb-5 bg-white/[0.02] border border-white/5 rounded-lg p-3">
+          <p className="text-[9px] text-gray-500 font-semibold uppercase tracking-wider mb-2">Information</p>
+          <div className="space-y-1.5 mb-4">
             <div className="flex items-center gap-2">
-              <svg className="w-3.5 h-3.5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
-              <span className="text-[11px] text-gray-300">{student.email}</span>
+              <svg className="w-3 h-3 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+              <span className="text-[10px] text-gray-300">{student.email}</span>
             </div>
             <div className="flex items-center gap-2">
-              <svg className="w-3.5 h-3.5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
-              <span className="text-[11px] text-gray-300">{student.phone}</span>
+              <svg className="w-3 h-3 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
+              <span className="text-[10px] text-gray-300">{student.phone}</span>
             </div>
             <div className="flex items-center gap-2">
-              <svg className="w-3.5 h-3.5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
-              <span className="text-[11px] text-gray-300">{student.degree}</span>
+              <svg className="w-3 h-3 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
+              <span className="text-[10px] text-gray-300">{student.degree}</span>
             </div>
           </div>
 
-          <p className="text-[11px] text-gray-500 mb-2 font-medium">Profile Report</p>
-          <div className="mb-5">
-            <SpiderChart data={student.spider} />
+          <p className="text-[9px] text-gray-500 font-semibold uppercase tracking-wider mb-2">Career Preferences</p>
+          <div className="space-y-2 mb-4">
+            <div>
+              <div className="flex items-center gap-1.5 mb-1">
+                <span className="text-[9px]">🎯</span>
+                <span className="text-[9px] text-gray-400">Target Industries</span>
+              </div>
+              <div className="flex gap-1 flex-wrap">
+                {["Technology", "Finance"].map((t) => (
+                  <span key={t} className="text-[8px] bg-white/[0.06] border border-white/10 text-gray-300 px-1.5 py-0.5 rounded-full">{t}</span>
+                ))}
+              </div>
+            </div>
+            <div>
+              <div className="flex items-center gap-1.5 mb-1">
+                <span className="text-[9px]">💼</span>
+                <span className="text-[9px] text-gray-400">Target Titles</span>
+              </div>
+              <div className="flex gap-1 flex-wrap">
+                {["SWE Intern", "Data Analyst"].map((t) => (
+                  <span key={t} className="text-[8px] bg-white/[0.06] border border-white/10 text-gray-300 px-1.5 py-0.5 rounded-full">{t}</span>
+                ))}
+              </div>
+            </div>
+            <div>
+              <div className="flex items-center gap-1.5 mb-1">
+                <span className="text-[9px]">🏢</span>
+                <span className="text-[9px] text-gray-400">Target Companies</span>
+              </div>
+              <div className="flex gap-1 flex-wrap">
+                {(student.applications.slice(0, 2).map(a => a.company).length > 0 ? student.applications.slice(0, 2).map(a => a.company) : ["Google", "Goldman Sachs"]).map((t) => (
+                  <span key={t} className="text-[8px] bg-white/[0.06] border border-white/10 text-gray-300 px-1.5 py-0.5 rounded-full">{t}</span>
+                ))}
+              </div>
+            </div>
+            <div>
+              <div className="flex items-center gap-1.5 mb-1">
+                <span className="text-[9px]">📍</span>
+                <span className="text-[9px] text-gray-400">Location Preferences</span>
+              </div>
+              <div className="flex gap-1 flex-wrap">
+                {["London", "Barcelona"].map((t) => (
+                  <span key={t} className="text-[8px] bg-white/[0.06] border border-white/10 text-gray-300 px-1.5 py-0.5 rounded-full">{t}</span>
+                ))}
+              </div>
+            </div>
           </div>
 
-          <p className="text-[11px] text-gray-500 mb-2 font-medium">Documents</p>
+          <p className="text-[9px] text-gray-500 font-semibold uppercase tracking-wider mb-2">Profile Report</p>
+          <SpiderChart data={student.spider} />
+        </div>
+
+        {/* Right column */}
+        <div>
+          <p className="text-[9px] text-gray-500 font-semibold uppercase tracking-wider mb-2">Application Tracker</p>
+          {student.applications.length === 0 ? (
+            <p className="text-[11px] text-gray-600 italic mb-3">No applications yet</p>
+          ) : (
+            <div className="space-y-2 mb-3">
+              {student.applications.map((app) => {
+                const stageIdx = progressStages.indexOf(app.status);
+                const isRejected = app.status === "Rejected";
+                const colors = stageColors[app.status] || stageColors["Applied"];
+                const rejectedAtIdx = isRejected ? Math.max(0, 1) : stageIdx;
+
+                return (
+                  <div key={app.company + app.role} className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5">
+                    <div className="flex items-center justify-between mb-2">
+                      <div>
+                        <p className="text-[11px] font-semibold text-white">{app.role}</p>
+                        <p className="text-[9px] text-gray-500">{app.company}</p>
+                      </div>
+                      <span className={`text-[8px] font-bold px-2 py-0.5 rounded-md ${colors.badge}`}>{app.status}</span>
+                    </div>
+                    <div className="flex items-center gap-0.5">
+                      {progressStages.map((stage, i) => {
+                        const isActive = isRejected ? i <= rejectedAtIdx : i <= stageIdx;
+                        const isCurrent = isRejected ? false : i === stageIdx;
+                        const dotColor = isRejected
+                          ? (i <= rejectedAtIdx ? "bg-rose-400" : "bg-white/10")
+                          : isActive ? (isCurrent ? "bg-amber-400" : "bg-primary") : "bg-white/10";
+                        const lineColor = isRejected
+                          ? (i < rejectedAtIdx ? "bg-rose-400/50" : "bg-white/5")
+                          : (i < stageIdx ? "bg-primary/50" : "bg-white/5");
+
+                        return (
+                          <div key={stage} className="flex items-center flex-1">
+                            <div className="relative flex flex-col items-center">
+                              <div className={`w-2.5 h-2.5 rounded-full ${dotColor} ${isCurrent ? "ring-1 ring-white/30" : ""} transition-all`} />
+                              <span className={`text-[5px] mt-0.5 whitespace-nowrap ${isActive ? "text-gray-300" : "text-gray-600"}`}>
+                                {stage.replace("1st ", "1st\u00A0").replace("2nd ", "2nd\u00A0")}
+                              </span>
+                            </div>
+                            {i < progressStages.length - 1 && (
+                              <div className={`flex-1 h-[1.5px] mx-0.5 rounded ${lineColor}`} />
+                            )}
+                          </div>
+                        );
+                      })}
+                      {isRejected && (
+                        <div className="flex flex-col items-center ml-0.5">
+                          <div className="w-2.5 h-2.5 rounded-full bg-rose-500 flex items-center justify-center">
+                            <span className="text-[6px] text-white font-bold">✕</span>
+                          </div>
+                          <span className="text-[5px] mt-0.5 text-rose-400">Rejected</span>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+              <p className="text-[9px] text-gray-500">Total: {totalApps} applications</p>
+            </div>
+          )}
+
+          <p className="text-[9px] text-gray-500 font-semibold uppercase tracking-wider mb-2">Documents</p>
           <div className="space-y-1.5">
             {["Resume", "Cover Letter"].map((doc) => (
               <div
@@ -408,97 +581,15 @@ const StudentDetailContent = ({ student, onBack }: { student: typeof studentsDat
                 className="flex items-center gap-2.5 bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5 cursor-pointer hover:bg-white/[0.06] hover:border-primary/30 transition-all group"
               >
                 <svg className="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
-                <p className="text-[11px] text-white font-medium flex-1">{doc}</p>
-                <span className="text-[8px] text-gray-500 group-hover:text-primary transition-colors">View →</span>
+                <p className="text-[10px] text-white font-medium flex-1">{doc}</p>
+                {doc === "Resume" && <span className="text-[8px] text-primary font-medium">✦ Grade</span>}
+                <span className="text-[8px] text-gray-500 group-hover:text-primary transition-colors">👁</span>
               </div>
             ))}
           </div>
-        </div>
-
-        {/* Right: Applications */}
-        <div>
-          <p className="text-[11px] text-gray-500 mb-2 font-medium">Application Tracker</p>
-          {student.applications.length === 0 ? (
-            <p className="text-[11px] text-gray-600 italic mb-3">No applications yet</p>
-          ) : (
-            <>
-              {(() => {
-                const stageColors: Record<string, { bar: string; badge: string }> = {
-                  "Applied": { bar: "bg-gray-400", badge: "bg-gray-500/20 text-gray-400" },
-                  "Technical Test": { bar: "bg-blue-400", badge: "bg-blue-500/20 text-blue-400" },
-                  "Case Study": { bar: "bg-cyan-400", badge: "bg-cyan-500/20 text-cyan-400" },
-                  "1st Interview": { bar: "bg-amber-400", badge: "bg-amber-500/20 text-amber-400" },
-                  "2nd Interview": { bar: "bg-orange-400", badge: "bg-orange-500/20 text-orange-400" },
-                  "Offered": { bar: "bg-emerald-400", badge: "bg-emerald-500/20 text-emerald-400" },
-                  "Rejected": { bar: "bg-rose-400", badge: "bg-rose-500/20 text-rose-400" },
-                };
-                const progressStages = ["Applied", "Technical Test", "Case Study", "1st Interview", "2nd Interview", "Offered"];
-                const total = student.applications.length;
-
-                return (
-                  <div>
-                    <div className="space-y-2">
-                      {student.applications.map((app) => {
-                        const stageIdx = progressStages.indexOf(app.status);
-                        const isRejected = app.status === "Rejected";
-                        const colors = stageColors[app.status] || stageColors["Applied"];
-                        const rejectedAtIdx = isRejected ? Math.max(0, 1) : stageIdx;
-                        
-                        return (
-                          <div key={app.company + app.role} className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5">
-                            <div className="flex items-center justify-between mb-2">
-                              <div>
-                                <p className="text-[11px] font-semibold text-white">{app.role}</p>
-                                <p className="text-[9px] text-gray-500">{app.company}</p>
-                              </div>
-                              <span className={`text-[8px] font-bold px-2 py-0.5 rounded-md ${colors.badge}`}>{app.status}</span>
-                            </div>
-                            <div className="flex items-center gap-0.5">
-                              {progressStages.map((stage, i) => {
-                                const isActive = isRejected ? i <= rejectedAtIdx : i <= stageIdx;
-                                const isCurrent = isRejected ? false : i === stageIdx;
-                                const dotColor = isRejected
-                                  ? (i <= rejectedAtIdx ? "bg-rose-400" : "bg-white/10")
-                                  : isActive ? stageColors[stage]?.bar || "bg-primary" : "bg-white/10";
-                                const lineColor = isRejected
-                                  ? (i < rejectedAtIdx ? "bg-rose-400/50" : "bg-white/5")
-                                  : (i < stageIdx ? `${stageColors[progressStages[i]]?.bar || "bg-primary"}/50` : "bg-white/5");
-
-                                return (
-                                  <div key={stage} className="flex items-center flex-1">
-                                    <div className="relative flex flex-col items-center">
-                                      <div className={`w-2.5 h-2.5 rounded-full ${dotColor} ${isCurrent ? "ring-1 ring-white/30" : ""} transition-all`} />
-                                      <span className={`text-[6px] mt-0.5 whitespace-nowrap ${isActive ? "text-gray-300" : "text-gray-600"}`}>
-                                        {stage.replace("1st ", "1st\u00A0").replace("2nd ", "2nd\u00A0")}
-                                      </span>
-                                    </div>
-                                    {i < progressStages.length - 1 && (
-                                      <div className={`flex-1 h-[1.5px] mx-0.5 rounded ${lineColor}`} />
-                                    )}
-                                  </div>
-                                );
-                              })}
-                              {isRejected && (
-                                <div className="flex flex-col items-center ml-0.5">
-                                  <div className="w-2.5 h-2.5 rounded-full bg-rose-500 flex items-center justify-center">
-                                    <span className="text-[6px] text-white font-bold">✕</span>
-                                  </div>
-                                  <span className="text-[6px] mt-0.5 text-rose-400">Rejected</span>
-                                </div>
-                              )}
-                            </div>
-                          </div>
-                        );
-                      })}
-                    </div>
-                    <div className="flex items-center gap-1 mt-3">
-                      <span className="text-[10px] text-gray-500">Total: {total} applications</span>
-                    </div>
-                  </div>
-                );
-              })()}
-            </>
-          )}
+          <div className="flex items-center justify-end mt-1">
+            <span className="text-[8px] text-gray-500">3 CVs created</span>
+          </div>
         </div>
       </div>
     </>
