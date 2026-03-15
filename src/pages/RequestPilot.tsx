@@ -90,7 +90,7 @@ const RequestPilot = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
               onSubmit={handleSubmit}
-              className="bg-card rounded-xl p-8 shadow-precision space-y-6"
+              className="bg-gray-50 rounded-xl p-8 shadow-md border border-gray-100 space-y-6"
             >
               {/* Role selector */}
               <motion.div
