@@ -91,6 +91,13 @@ const Login = () => {
       {/* Staff side — dark */}
       <div className="flex-1 bg-background flex items-center justify-center px-6 py-16 lg:py-0">
         <div className="w-full max-w-sm">
+          <a
+            href="/"
+            className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors mb-8"
+          >
+            <ArrowLeft className="w-3.5 h-3.5" /> Back to home
+          </a>
+
           <div className="flex items-center gap-2.5 mb-2">
             <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center">
               <Building2 className="w-5 h-5 text-primary" />
