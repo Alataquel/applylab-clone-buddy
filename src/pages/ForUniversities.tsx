@@ -83,7 +83,7 @@ const ForUniversities = () => {
       </section>
 
       {/* Stats */}
-      <section className="py-16 px-6 lg:px-12 bg-secondary">
+      <section className="py-16 px-6 lg:px-12 border-t border-b" style={{ backgroundColor: "hsl(0, 0%, 100%)", borderColor: "hsl(220, 13%, 91%)" }}>
         <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
           {[
             { value: "85%", label: "Reduction in manual reporting" },
@@ -97,8 +97,8 @@ const ForUniversities = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.12 }}
             >
-              <p className="text-3xl lg:text-4xl font-bold text-foreground tracking-tight">{s.value}</p>
-              <p className="text-sm text-muted-foreground mt-2">{s.label}</p>
+              <p className="text-3xl lg:text-4xl font-bold tracking-tight" style={{ color: "hsl(230, 40%, 11%)" }}>{s.value}</p>
+              <p className="text-sm mt-2" style={{ color: "hsl(215, 16%, 47%)" }}>{s.label}</p>
             </motion.div>
           ))}
         </div>
