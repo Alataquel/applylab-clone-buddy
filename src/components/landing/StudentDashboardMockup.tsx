@@ -1253,11 +1253,38 @@ const EventsContent = () => {
 };
 
 /* ─── Meetings Tab ─── */
+const advisors = [
+  { name: "Rania", specialty: "Tech Industry, Graduate Studies", initials: "R", color: "bg-primary" },
+  { name: "Yan Bernard", specialty: "Resume Review, Academic Advising", initials: "YB", color: "bg-emerald-600" },
+  { name: "Dr. Sara Chen", specialty: "Data Science, Research Careers", initials: "SC", color: "bg-violet-600" },
+];
+const availableDays = [16, 17, 18, 19, 20, 23, 24, 25, 26, 27, 30, 31];
+const timeSlots = ["9:00 AM", "9:30 AM", "10:00 AM", "10:30 AM", "11:00 AM", "11:30 AM", "2:00 PM", "2:30 PM", "3:00 PM", "3:30 PM"];
+
 const MeetingsContent = () => {
   const [selectedAdvisor, setSelectedAdvisor] = useState<string | null>(null);
+  const [selectedDay, setSelectedDay] = useState<number | null>(null);
+  const [selectedTime, setSelectedTime] = useState<string | null>(null);
+  const [note, setNote] = useState("");
+  const [booked, setBooked] = useState(false);
+
+  const canBook = selectedAdvisor && selectedDay && selectedTime;
+
+  const handleBook = () => {
+    if (!canBook) return;
+    setBooked(true);
+  };
+
+  const resetBooking = () => {
+    setSelectedAdvisor(null);
+    setSelectedDay(null);
+    setSelectedTime(null);
+    setNote("");
+    setBooked(false);
+  };
 
   return (
-    <div className="grid grid-cols-[1fr_auto] gap-4">
+    <div className="grid grid-cols-[1fr_auto] gap-4 relative">
       <div>
         <h3 className="text-sm font-bold text-foreground italic mb-0.5">Book a Meeting</h3>
         <p className="text-[7px] text-muted-foreground mb-4">Schedule 1-on-1 with our advisors</p>
@@ -1265,15 +1292,12 @@ const MeetingsContent = () => {
         {/* Step 1 - Choose Advisor */}
         <p className="text-[9px] font-bold text-primary mb-2">1. Choose an Advisor</p>
         <div className="space-y-1.5 mb-4">
-          {[
-            { name: "Rania", specialty: "Tech Industry, Graduate Studies", initials: "R", color: "bg-primary" },
-            { name: "Yan Bernard", specialty: "Resume Review, Academic Advising", initials: "YB", color: "bg-emerald-600" },
-          ].map((adv) => (
+          {advisors.map((adv) => (
             <div
               key={adv.name}
               onClick={() => setSelectedAdvisor(adv.name)}
               className={`border rounded-lg px-3 py-2.5 flex items-center gap-2.5 cursor-pointer transition-colors ${
-                selectedAdvisor === adv.name ? "border-primary bg-primary/5" : "border-border"
+                selectedAdvisor === adv.name ? "border-primary bg-primary/5" : "border-border hover:border-primary/30"
               }`}
             >
               <div className={`w-7 h-7 rounded-full ${adv.color} flex items-center justify-center text-[8px] font-bold text-white`}>{adv.initials}</div>
@@ -1302,16 +1326,21 @@ const MeetingsContent = () => {
             {["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"].map((d) => (
               <span key={d} className="text-[7px] text-muted-foreground font-medium">{d}</span>
             ))}
-            {/* Calendar days */}
             {Array.from({ length: 31 }, (_, i) => i + 1).map((day) => {
-              const isAvailable = [16, 17, 18, 19, 20, 23, 24, 25, 26, 27, 30, 31].includes(day);
+              const isAvailable = availableDays.includes(day);
+              const isSelected = selectedDay === day;
               const offset = day === 1 ? "col-start-1" : "";
               return (
                 <span
                   key={day}
-                  className={`text-[7px] py-0.5 rounded ${offset} ${
-                    isAvailable ? "text-primary font-bold cursor-pointer hover:bg-primary/10" : "text-muted-foreground"
-                  } ${day === 15 ? "text-primary underline" : ""}`}
+                  onClick={() => isAvailable && setSelectedDay(day)}
+                  className={`text-[7px] py-0.5 rounded transition-colors ${offset} ${
+                    isSelected
+                      ? "bg-primary text-primary-foreground font-bold"
+                      : isAvailable
+                        ? "text-primary font-bold cursor-pointer hover:bg-primary/10"
+                        : "text-muted-foreground"
+                  }`}
                 >
                   {day}
                 </span>
@@ -1322,11 +1351,31 @@ const MeetingsContent = () => {
 
         {/* Step 3 - Select Time */}
         <p className="text-[9px] font-bold text-primary mb-2">3. Select Time</p>
-        <div className="grid grid-cols-4 gap-1">
-          {["9:00 AM", "9:30 AM", "10:00 AM", "10:30 AM", "11:00 AM", "11:30 AM", "2:00 PM", "2:30 PM"].map((t) => (
-            <button key={t} className="text-[7px] border border-border rounded py-1 text-muted-foreground hover:border-primary hover:text-primary transition-colors">{t}</button>
+        <div className="grid grid-cols-5 gap-1 mb-4">
+          {timeSlots.map((t) => (
+            <button
+              key={t}
+              onClick={() => setSelectedTime(t)}
+              className={`text-[7px] border rounded py-1 transition-colors ${
+                selectedTime === t
+                  ? "border-primary bg-primary text-primary-foreground font-semibold"
+                  : "border-border text-muted-foreground hover:border-primary hover:text-primary"
+              }`}
+            >
+              {t}
+            </button>
           ))}
         </div>
+
+        {/* Step 4 - Note */}
+        <p className="text-[9px] font-bold text-primary mb-2">4. Leave a Note (optional)</p>
+        <textarea
+          value={note}
+          onChange={(e) => setNote(e.target.value)}
+          placeholder="Tell the advisor what you'd like to discuss..."
+          rows={2}
+          className="w-full bg-background border border-border rounded-lg px-2.5 py-1.5 text-[7px] text-foreground placeholder:text-muted-foreground outline-none focus:border-primary transition-colors resize-none"
+        />
       </div>
 
       {/* Booking Summary sidebar */}
@@ -1334,25 +1383,67 @@ const MeetingsContent = () => {
         <div className="border border-border rounded-lg p-3 sticky top-0">
           <p className="text-[9px] font-bold text-foreground mb-2">Booking Summary</p>
           <div className="space-y-2">
-            {[
-              { IconComp: User, label: "Advisor", value: selectedAdvisor || "Not selected" },
-              { IconComp: CalendarDays, label: "Date", value: "Not selected" },
-              { IconComp: Clock, label: "Time", value: "Not selected" },
-              { IconComp: Video, label: "Meeting Type", value: "30 min Video call" },
-            ].map((item) => (
-              <div key={item.label}>
-                <p className="text-[6px] text-primary font-medium">{item.label}</p>
-                <p className="text-[7px] text-foreground font-medium">{item.value}</p>
+            <div>
+              <p className="text-[6px] text-primary font-medium">Advisor</p>
+              <p className={`text-[7px] font-medium ${selectedAdvisor ? "text-foreground" : "text-muted-foreground"}`}>{selectedAdvisor || "Not selected"}</p>
+            </div>
+            <div>
+              <p className="text-[6px] text-primary font-medium">Date</p>
+              <p className={`text-[7px] font-medium ${selectedDay ? "text-foreground" : "text-muted-foreground"}`}>{selectedDay ? `March ${selectedDay}, 2026` : "Not selected"}</p>
+            </div>
+            <div>
+              <p className="text-[6px] text-primary font-medium">Time</p>
+              <p className={`text-[7px] font-medium ${selectedTime ? "text-foreground" : "text-muted-foreground"}`}>{selectedTime || "Not selected"}</p>
+            </div>
+            <div>
+              <p className="text-[6px] text-primary font-medium">Meeting Type</p>
+              <p className="text-[7px] text-foreground font-medium">30 min Video call</p>
+            </div>
+            {note && (
+              <div>
+                <p className="text-[6px] text-primary font-medium">Note</p>
+                <p className="text-[7px] text-foreground font-medium line-clamp-3">{note}</p>
               </div>
-            ))}
+            )}
           </div>
-          <button className="w-full bg-primary/30 text-primary-foreground rounded-md py-1.5 text-[7px] font-medium mt-3 opacity-50 cursor-not-allowed">Confirm Booking →</button>
-          <p className="text-[6px] text-muted-foreground text-center mt-1">Please complete all selections above.</p>
+          <button
+            onClick={handleBook}
+            disabled={!canBook}
+            className={`w-full rounded-md py-1.5 text-[7px] font-medium mt-3 transition-colors ${
+              canBook
+                ? "bg-primary text-primary-foreground hover:bg-primary/90 cursor-pointer"
+                : "bg-primary/30 text-primary-foreground opacity-50 cursor-not-allowed"
+            }`}
+          >
+            Confirm Booking →
+          </button>
+          {!canBook && <p className="text-[6px] text-muted-foreground text-center mt-1">Please complete all selections above.</p>}
         </div>
         <div className="mt-2 border border-border rounded-lg p-2">
-          <span className="text-[7px] text-primary font-medium flex items-center gap-0.5"><User className="w-2.5 h-2.5" /> 2 advisors available</span>
+          <span className="text-[7px] text-primary font-medium flex items-center gap-0.5"><User className="w-2.5 h-2.5" /> {advisors.length} advisors available</span>
         </div>
       </div>
+
+      {/* Booked confirmation overlay */}
+      {booked && (
+        <div className="absolute inset-0 bg-black/40 z-30 flex items-center justify-center rounded-lg" onClick={resetBooking}>
+          <div className="bg-card border border-border rounded-xl shadow-xl p-6 text-center max-w-[280px]" onClick={(e) => e.stopPropagation()}>
+            <div className="w-12 h-12 rounded-full bg-emerald-500 flex items-center justify-center mx-auto mb-3">
+              <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+            </div>
+            <p className="text-sm font-bold text-foreground mb-1">Meeting Booked!</p>
+            <p className="text-[8px] text-muted-foreground mb-3">
+              Your meeting with <span className="font-semibold text-foreground">{selectedAdvisor}</span> has been scheduled for <span className="font-semibold text-foreground">March {selectedDay}, 2026</span> at <span className="font-semibold text-foreground">{selectedTime}</span>.
+            </p>
+            {note && <p className="text-[7px] text-muted-foreground italic mb-3">"{note}"</p>}
+            <p className="text-[7px] text-muted-foreground mb-3">A confirmation email has been sent to antonio.rossi@email.com</p>
+            <div className="flex gap-2">
+              <button onClick={resetBooking} className="flex-1 text-[7px] border border-border rounded-md py-1.5 text-muted-foreground hover:text-foreground transition-colors">Book Another</button>
+              <button onClick={resetBooking} className="flex-1 text-[7px] bg-primary text-primary-foreground rounded-md py-1.5 font-medium hover:bg-primary/90 transition-colors">Done</button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
