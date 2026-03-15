@@ -195,7 +195,7 @@ const Ambassador = () => {
       </section>
 
       {/* How it works */}
-      <section id="how-it-works" className="py-24 px-6 lg:px-12">
+      <section id="how-it-works" className="py-24 px-6 lg:px-12 bg-white">
         <div className="max-w-3xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
