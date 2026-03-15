@@ -26,12 +26,12 @@ const HeroSection = () => {
           </motion.div>
 
           <motion.h1 variants={itemVariants} className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] text-balance text-foreground">
-            Apply smarter.{" "}
-            <span className="text-gradient italic font-bold">Land faster.</span>
+            Career outcomes{" "}
+            <span className="text-gradient italic font-bold">infrastructure.</span>
           </motion.h1>
 
           <motion.p variants={itemVariants} className="text-lg text-muted-foreground max-w-md leading-relaxed">
-            The AI-native career platform that connects students with the right opportunities—and gives universities real-time visibility into outcomes.
+            The platform that powers how universities track, support, and improve student career outcomes — from first application to first job.
           </motion.p>
 
           <motion.div variants={itemVariants} className="flex items-center gap-3">

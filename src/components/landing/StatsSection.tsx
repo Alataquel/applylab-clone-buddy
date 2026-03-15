@@ -4,8 +4,8 @@ import { useRef } from "react";
 
 const stats = [
   { value: "12+", label: "University partners" },
-  { value: "94%", label: "ATS pass rate on student CVs" },
-  { value: "8k+", label: "Students helped" },
+  { value: "94%", label: "Average ATS pass rate" },
+  { value: "3x", label: "Improvement in placement visibility" },
 ];
 
 const StatsSection = () => {

@@ -25,7 +25,7 @@ const CTASection = () => {
           transition={{ duration: 0.5, delay: 0.1 }}
           className="text-sm text-muted-foreground mb-10 max-w-lg mx-auto"
         >
-          We're working with a select group of partner universities to build something that actually works. Request a pilot to get involved early.
+          We're building career outcomes infrastructure with a select group of partner universities. Request a pilot to see what visibility looks like.
         </motion.p>
 
         <motion.div

@@ -109,7 +109,7 @@ const PlatformSection = () => {
               Every application, <span className="text-gradient">one place.</span>
             </h3>
             <p className="text-sm text-muted-foreground mb-6">
-              Track your full pipeline from application to offer, with automated status updates.
+              A unified pipeline that gives career teams real-time visibility into where every student stands — from application to offer.
             </p>
 
             <div className="space-y-3">

@@ -149,9 +149,9 @@ const FeaturesSection = () => {
             animate={{ opacity: 1 }}
             className="bg-card rounded-xl p-12 shadow-precision text-center"
           >
-            <h3 className="text-xl font-semibold text-foreground mb-3">University Analytics Dashboard</h3>
+            <h3 className="text-xl font-semibold text-foreground mb-3">Outcomes Dashboard</h3>
             <p className="text-sm text-muted-foreground max-w-md mx-auto">
-              Real-time visibility into student placement rates, engagement metrics, and career outcomes across your institution.
+              Real-time visibility into placement rates, student engagement, and career outcomes — so your team can intervene early and report with confidence.
             </p>
           </motion.div>
         )}
