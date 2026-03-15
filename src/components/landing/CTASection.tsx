@@ -37,7 +37,7 @@ const CTASection = () => {
         >
           <a
             href="/request-pilot"
-            className="inline-flex items-center justify-center gap-2 bg-gray-900 text-white font-medium px-8 py-3.5 rounded-full text-sm hover:opacity-90 transition-opacity"
+            className="inline-flex items-center justify-center gap-2 bg-foreground text-background font-medium px-8 py-3.5 rounded-full text-sm hover:opacity-90 transition-opacity"
           >
             Request a pilot <ArrowRight className="w-4 h-4" />
           </a>
