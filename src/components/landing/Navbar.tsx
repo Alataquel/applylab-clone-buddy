@@ -72,6 +72,7 @@ const Navbar = () => {
               {[
                 { label: "For Students", href: "/students" },
                 { label: "For Universities", href: "/universities" },
+                { label: "Ambassador", href: "/ambassador" },
                 { label: "About", href: "/about" },
                 { label: "Log In", href: "/login" },
               ].map((link) => (
