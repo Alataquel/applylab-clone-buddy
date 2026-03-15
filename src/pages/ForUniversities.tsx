@@ -339,61 +339,61 @@ const ForUniversities = () => {
         </div>
       </section>
 
-      {/* Data Sovereignty */}
-      <section className="py-16 px-6 lg:px-12 bg-secondary">
-        <div className="max-w-3xl mx-auto text-center">
+      {/* How it works + GDPR */}
+      <section className="py-20 px-6 lg:px-12 bg-secondary">
+        <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-12 items-start">
+          {/* How it works */}
+          <div>
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="mb-12"
+            >
+              <p className="text-xs uppercase tracking-widest text-primary font-medium mb-3">Process</p>
+              <h2 className="text-2xl font-bold text-foreground tracking-tight">How the pilot works.</h2>
+            </motion.div>
+            <div className="space-y-6">
+              {[
+                { step: "01", title: "Request a pilot", desc: "Fill in the form and our partnerships team will reach out within 48 hours." },
+                { step: "02", title: "Onboarding call", desc: "We configure ApplyLab for your institution — programmes, branding, integrations." },
+                { step: "03", title: "Student rollout", desc: "Students receive access through your institution. We provide launch support and materials." },
+                { step: "04", title: "Outcomes dashboard", desc: "Career teams get access to live analytics within the first week of student activity." },
+              ].map((s, i) => (
+                <motion.div
+                  key={s.step}
+                  initial={{ opacity: 0, x: -24 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                  whileHover={{ x: 8, transition: { duration: 0.2 } }}
+                  className="flex gap-6 items-start"
+                >
+                  <span className="text-xs text-primary font-mono mt-1">{s.step}</span>
+                  <div>
+                    <h3 className="text-sm font-semibold text-foreground mb-1">{s.title}</h3>
+                    <p className="text-sm text-muted-foreground">{s.desc}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* GDPR Badge */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
+            className="bg-card rounded-xl p-6 text-center lg:sticky lg:top-32 w-full lg:w-56"
           >
-            <Shield className="w-6 h-6 text-primary mx-auto mb-4" />
-            <h2 className="text-xl font-bold text-foreground tracking-tight mb-3">GDPR compliant</h2>
-            <p className="text-sm text-muted-foreground max-w-md mx-auto leading-relaxed">
-              ApplyLab is fully GDPR compliant. We take data privacy seriously and ensure all student and institutional data is handled in accordance with European data protection regulations.
+            <Shield className="w-8 h-8 text-primary mx-auto mb-3" />
+            <h3 className="text-sm font-bold text-foreground mb-2">GDPR Compliant</h3>
+            <p className="text-[11px] text-muted-foreground leading-relaxed">
+              Fully compliant with European data protection regulations. Student and institutional data is handled with the highest security standards.
             </p>
           </motion.div>
-        </div>
-      </section>
-
-      {/* How it works */}
-      <section className="py-20 px-6 lg:px-12 border-t border-border/30">
-        <div className="max-w-4xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="mb-12"
-          >
-            <p className="text-xs uppercase tracking-widest text-primary font-medium mb-3">Process</p>
-            <h2 className="text-2xl font-bold text-foreground tracking-tight">How the pilot works.</h2>
-          </motion.div>
-          <div className="space-y-6">
-            {[
-              { step: "01", title: "Request a pilot", desc: "Fill in the form and our partnerships team will reach out within 48 hours." },
-              { step: "02", title: "Onboarding call", desc: "We configure ApplyLab for your institution — programmes, branding, integrations." },
-              { step: "03", title: "Student rollout", desc: "Students receive access through your institution. We provide launch support and materials." },
-              { step: "04", title: "Outcomes dashboard", desc: "Career teams get access to live analytics within the first week of student activity." },
-            ].map((s, i) => (
-              <motion.div
-                key={s.step}
-                initial={{ opacity: 0, x: -24 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                whileHover={{ x: 8, transition: { duration: 0.2 } }}
-                className="flex gap-6 items-start"
-              >
-                <span className="text-xs text-primary font-mono mt-1">{s.step}</span>
-                <div>
-                  <h3 className="text-sm font-semibold text-foreground mb-1">{s.title}</h3>
-                  <p className="text-sm text-muted-foreground">{s.desc}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
         </div>
       </section>
 
