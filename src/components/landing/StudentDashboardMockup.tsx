@@ -328,7 +328,7 @@ const ResumeGraderContent = () => (
 
     {/* What we check */}
     <div className="border border-border rounded-lg p-3">
-      <p className="text-[9px] font-semibold text-foreground mb-2">📋 What we check</p>
+      <p className="text-[9px] font-semibold text-foreground mb-2 flex items-center gap-1"><FileCheck className="w-3 h-3" /> What we check</p>
       <div className="grid grid-cols-2 gap-1.5">
         {["Contact", "Experiences", "Education", "Skills", "Summary", "Format"].map((c) => (
           <div key={c} className="flex items-center gap-1.5">
