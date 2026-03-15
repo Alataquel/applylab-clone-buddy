@@ -1745,9 +1745,9 @@ const DashboardMockup = () => {
         </div>
 
         {/* App content */}
-        <div className={`flex ${isExpanded ? "h-[calc(100%-40px)]" : "min-h-[540px]"}`}>
+        <div className={`flex ${isExpanded ? "h-[calc(100%-40px)]" : "min-h-[600px]"}`}>
           {/* Sidebar */}
-          <div className={`${isExpanded ? "w-52" : "w-44"} border-r border-white/5 p-4 hidden sm:block`}>
+          <div className={`${isExpanded ? "w-56" : "w-48"} border-r border-white/5 p-4 hidden sm:block`} style={{ zoom: isExpanded ? 1 : 1.15 }}>
             <p className="text-sm font-bold text-white mb-5">ApplyLab</p>
             <p className="text-[10px] uppercase tracking-wider text-gray-500 mb-2">Careers Team</p>
             <div className="space-y-0.5">
@@ -1768,7 +1768,7 @@ const DashboardMockup = () => {
           </div>
 
           {/* Main content */}
-          <div className={`flex-1 p-5 overflow-y-auto ${isExpanded ? "max-h-full" : "max-h-[540px]"}`}>
+          <div className={`flex-1 p-5 overflow-y-auto ${isExpanded ? "max-h-full" : "max-h-[600px]"}`} style={{ zoom: isExpanded ? 1.05 : 1.2 }}>
             {renderContent()}
           </div>
         </div>
