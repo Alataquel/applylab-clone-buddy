@@ -630,78 +630,161 @@ const CoverLettersContent = () => (
 );
 
 /* ─── Job Board Tab ─── */
-const JobBoardContent = () => (
-  <div className="flex gap-3">
-    {/* Filters sidebar */}
-    <div className="w-28 shrink-0">
-      <div className="flex items-center justify-between mb-2">
-        <p className="text-[9px] font-bold text-foreground">Filters</p>
-        <button className="text-[6px] text-primary flex items-center gap-0.5"><RotateCcw className="w-2 h-2" /> Reset</button>
-      </div>
-      <div className="mb-3">
-        <p className="text-[7px] font-semibold text-foreground mb-1">Location</p>
-        {["United States", "United Kingdom", "Germany", "France", "Spain", "Italy", "Switzerland", "Singapore", "United Arab Emirates", "Canada"].map((l) => (
-          <label key={l} className="flex items-center gap-1.5 mb-0.5">
-            <input type="checkbox" checked={l === "Spain"} readOnly className="w-2 h-2 rounded accent-primary" />
-            <span className="text-[7px] text-foreground">{l}</span>
-          </label>
-        ))}
-      </div>
-      <div>
-        <p className="text-[7px] font-semibold text-foreground mb-1">Experience Level</p>
-        {["Internship", "Entry level"].map((l) => (
-          <label key={l} className="flex items-center gap-1.5 mb-0.5">
-            <input type="checkbox" checked={l === "Internship"} readOnly className="w-2 h-2 rounded accent-primary" />
-            <span className="text-[7px] text-foreground">{l}</span>
-          </label>
-        ))}
-      </div>
-    </div>
+const allJobs = [
+  { company: "Market Control", logo: "MC", color: "bg-rose-500", title: "Intern Customer Success & Marketing", location: "Barcelona, Spain", country: "Spain", tag: "IT Services and IT Consulting", posted: "2 days ago", level: "Internship" },
+  { company: "American Express", logo: "AX", color: "bg-blue-600", title: "Campus - Internship Programme - Control Management", location: "Madrid, Spain", country: "Spain", tag: "Financial Services", posted: "2 days ago", level: "Internship" },
+  { company: "Zynga", logo: "Z", color: "bg-orange-500", title: "Level Design Intern", location: "Barcelona, Spain", country: "Spain", tag: "Computer Games", posted: "3 days ago", level: "Internship" },
+  { company: "Dermofarm", logo: "DF", color: "bg-teal-500", title: "Trainee Marketing Department", location: "Rubí, Spain", country: "Spain", tag: "Personal Care Product Manufacturing", posted: "3 days ago", level: "Internship" },
+  { company: "1A Ingenieros", logo: "1A", color: "bg-amber-600", title: "Intern - Ingeniería Energética", location: "Valladolid, Spain", country: "Spain", tag: "Business Consulting", posted: "3 days ago", level: "Internship" },
+  { company: "K-LAGAN", logo: "KL", color: "bg-gray-600", title: "Talent Acquisition Intern - Transporte & Supply Chain", location: "Barcelona, Spain", country: "Spain", tag: "IT Services and IT Consulting", posted: "3 days ago", level: "Internship" },
+  { company: "Sweanty", logo: "SW", color: "bg-emerald-500", title: "Software Engineer Intern", location: "Mataró, Spain", country: "Spain", tag: "Technology, Information and Internet", posted: "3 days ago", level: "Internship" },
+  { company: "Gameloft", logo: "GL", color: "bg-indigo-500", title: "Live Operations Intern", location: "Barcelona, Spain", country: "Spain", tag: "Computer Games", posted: "3 days ago", level: "Internship" },
+  { company: "Google", logo: "G", color: "bg-blue-500", title: "Software Engineering Intern", location: "London, United Kingdom", country: "United Kingdom", tag: "Technology", posted: "1 day ago", level: "Internship" },
+  { company: "McKinsey & Company", logo: "MK", color: "bg-sky-700", title: "Junior Associate - Strategy", location: "Berlin, Germany", country: "Germany", tag: "Management Consulting", posted: "4 days ago", level: "Entry level" },
+  { company: "L'Oréal", logo: "LO", color: "bg-pink-600", title: "Marketing Trainee - Digital", location: "Paris, France", country: "France", tag: "Consumer Goods", posted: "5 days ago", level: "Internship" },
+  { company: "Ferrari", logo: "FE", color: "bg-red-600", title: "Engineering Intern - Aerodynamics", location: "Maranello, Italy", country: "Italy", tag: "Automotive", posted: "1 day ago", level: "Internship" },
+  { company: "UBS", logo: "UB", color: "bg-red-700", title: "Graduate Analyst - Wealth Management", location: "Zurich, Switzerland", country: "Switzerland", tag: "Financial Services", posted: "2 days ago", level: "Entry level" },
+  { company: "DBS Bank", logo: "DB", color: "bg-red-500", title: "Technology Intern - Full Stack", location: "Singapore", country: "Singapore", tag: "Banking", posted: "4 days ago", level: "Internship" },
+  { company: "Emirates Group", logo: "EG", color: "bg-red-800", title: "Graduate Programme - Operations", location: "Dubai, UAE", country: "United Arab Emirates", tag: "Aviation", posted: "6 days ago", level: "Entry level" },
+  { company: "Shopify", logo: "SH", color: "bg-green-600", title: "Data Science Intern", location: "Toronto, Canada", country: "Canada", tag: "Technology", posted: "3 days ago", level: "Internship" },
+  { company: "Revolut", logo: "RV", color: "bg-violet-600", title: "Junior Product Manager", location: "London, United Kingdom", country: "United Kingdom", tag: "FinTech", posted: "1 day ago", level: "Entry level" },
+  { company: "Siemens", logo: "SI", color: "bg-cyan-600", title: "Electrical Engineering Intern", location: "Munich, Germany", country: "Germany", tag: "Manufacturing", posted: "5 days ago", level: "Internship" },
+  { company: "LVMH", logo: "LV", color: "bg-amber-800", title: "Retail Management Trainee", location: "Paris, France", country: "France", tag: "Luxury Goods", posted: "2 days ago", level: "Entry level" },
+  { company: "JPMorgan Chase", logo: "JP", color: "bg-blue-800", title: "Investment Banking Analyst", location: "New York, United States", country: "United States", tag: "Financial Services", posted: "1 day ago", level: "Entry level" },
+  { company: "Tesla", logo: "TS", color: "bg-gray-800", title: "Supply Chain Intern", location: "Austin, United States", country: "United States", tag: "Automotive", posted: "4 days ago", level: "Internship" },
+  { company: "Spotify", logo: "SP", color: "bg-green-500", title: "UX Research Intern", location: "Stockholm, Sweden", country: "Sweden", tag: "Technology", posted: "2 days ago", level: "Internship" },
+  { company: "Nestlé", logo: "NE", color: "bg-sky-600", title: "Supply Chain Graduate Programme", location: "Vevey, Switzerland", country: "Switzerland", tag: "Consumer Goods", posted: "6 days ago", level: "Entry level" },
+  { company: "Accenture", logo: "AC", color: "bg-purple-600", title: "Consulting Analyst Intern", location: "Milan, Italy", country: "Italy", tag: "Business Consulting", posted: "3 days ago", level: "Internship" },
+];
 
-    {/* Job listings */}
-    <div className="flex-1">
-      <h3 className="text-sm font-bold text-foreground italic mb-0.5">Job Board</h3>
-      <p className="text-[7px] text-primary mb-2 flex items-center gap-0.5"><Briefcase className="w-2.5 h-2.5" /> 303 total opportunities</p>
-      <div className="flex items-center gap-2 mb-3">
-        <div className="flex-1 bg-secondary rounded-md px-2 py-1.5 text-[8px] text-muted-foreground flex items-center gap-1"><Search className="w-2.5 h-2.5" /> Search jobs...</div>
-        <button className="bg-primary text-primary-foreground rounded-md px-3 py-1.5 text-[8px] font-medium">Search</button>
-      </div>
-      <div className="flex items-center justify-between mb-2">
-        <p className="text-[7px] text-muted-foreground">Showing 9 jobs</p>
-        <span className="text-[7px] text-muted-foreground">Most recent ▾</span>
-      </div>
+const locations = ["United States", "United Kingdom", "Germany", "France", "Spain", "Italy", "Switzerland", "Singapore", "United Arab Emirates", "Canada"];
+const levels = ["Internship", "Entry level"];
 
-      <div className="grid grid-cols-4 gap-1.5">
-        {[
-          { company: "Market Control", logo: "MC", color: "bg-rose-500", title: "Intern Customer Success & Marketing", location: "Barcelona, Spain", tag: "IT Services and IT Consulting", posted: "2 days ago" },
-          { company: "American Express", logo: "AX", color: "bg-blue-600", title: "Campus - Internship Programme - Control Management", location: "Madrid, Spain", tag: "Financial Services", posted: "2 days ago" },
-          { company: "Zynga", logo: "Z", color: "bg-orange-500", title: "Level Design Intern", location: "Barcelona, Spain", tag: "Computer Games", posted: "3 days ago" },
-          { company: "Dermofarm", logo: "DF", color: "bg-teal-500", title: "Trainee Marketing Department", location: "Rubí, Spain", tag: "Personal Care Product Manufacturing", posted: "3 days ago" },
-          { company: "1A Ingenieros", logo: "1A", color: "bg-amber-600", title: "Intern - Ingeniería Energética", location: "Valladolid, Spain", tag: "Business Consulting", posted: "3 days ago" },
-          { company: "K-LAGAN", logo: "KL", color: "bg-gray-600", title: "Talent Acquisition Intern - Transporte & Supply Chain", location: "Barcelona, Spain", tag: "IT Services and IT Consulting", posted: "3 days ago" },
-          { company: "Sweanty", logo: "SW", color: "bg-emerald-500", title: "Software Engineer Intern", location: "Mataró, Spain", tag: "Technology, Information and Internet", posted: "3 days ago" },
-          { company: "Gameloft", logo: "GL", color: "bg-indigo-500", title: "Live Operations Intern", location: "Barcelona, Spain", tag: "Computer Games", posted: "3 days ago" },
-        ].map((job) => (
-          <div key={job.title} className="bg-card border border-border rounded-lg p-2">
-            <div className="flex items-center justify-between mb-1.5">
-              <div className={`w-5 h-5 rounded ${job.color} flex items-center justify-center text-[5px] font-bold text-white`}>{job.logo}</div>
-              <Bookmark className="w-3 h-3 text-muted-foreground cursor-pointer" strokeWidth={1.8} />
-            </div>
-            <p className="text-[7px] font-semibold text-foreground leading-tight mb-0.5">{job.title}</p>
-            <p className="text-[6px] text-primary mb-0.5">{job.company}</p>
-            <p className="text-[6px] text-muted-foreground mb-1 flex items-center gap-0.5"><MapPin className="w-2 h-2" /> {job.location}</p>
-            <p className="text-[5px] text-muted-foreground leading-tight mb-1.5 line-clamp-2">Join our team and contribute to exciting projects in {job.tag.toLowerCase()}...</p>
-            <span className="text-[5px] bg-secondary text-muted-foreground rounded px-1 py-0.5 inline-block mb-1.5">{job.tag}</span>
-            <div className="flex items-center justify-between">
-              <span className="text-[5px] text-emerald-500 flex items-center gap-0.5">● Posted {job.posted}</span>
-              <span className="text-[6px] text-primary font-medium cursor-pointer flex items-center gap-0.5">View <ExternalLink className="w-2 h-2" /></span>
+const JobBoardContent = () => {
+  const [search, setSearch] = useState("");
+  const [selectedLocations, setSelectedLocations] = useState<string[]>(["Spain"]);
+  const [selectedLevels, setSelectedLevels] = useState<string[]>(["Internship"]);
+  const [sortBy, setSortBy] = useState<"recent" | "alpha">("recent");
+
+  const toggleFilter = (list: string[], item: string, setter: (v: string[]) => void) => {
+    setter(list.includes(item) ? list.filter(x => x !== item) : [...list, item]);
+  };
+
+  const filtered = allJobs.filter(job => {
+    const matchesSearch = search === "" || job.title.toLowerCase().includes(search.toLowerCase()) || job.company.toLowerCase().includes(search.toLowerCase()) || job.tag.toLowerCase().includes(search.toLowerCase());
+    const matchesLocation = selectedLocations.length === 0 || selectedLocations.includes(job.country);
+    const matchesLevel = selectedLevels.length === 0 || selectedLevels.includes(job.level);
+    return matchesSearch && matchesLocation && matchesLevel;
+  });
+
+  const sorted = [...filtered].sort((a, b) => sortBy === "alpha" ? a.title.localeCompare(b.title) : 0);
+
+  const resetFilters = () => { setSelectedLocations([]); setSelectedLevels([]); setSearch(""); };
+
+  return (
+    <div className="flex gap-3">
+      {/* Filters sidebar */}
+      <div className="w-28 shrink-0 max-h-[420px] overflow-y-auto">
+        <div className="flex items-center justify-between mb-2">
+          <p className="text-[9px] font-bold text-foreground">Filters</p>
+          <button onClick={resetFilters} className="text-[6px] text-primary flex items-center gap-0.5"><RotateCcw className="w-2 h-2" /> Reset</button>
+        </div>
+        <div className="mb-3">
+          <p className="text-[7px] font-semibold text-foreground mb-1">Location</p>
+          {locations.map((l) => (
+            <label key={l} className="flex items-center gap-1.5 mb-0.5 cursor-pointer" onClick={() => toggleFilter(selectedLocations, l, setSelectedLocations)}>
+              <input type="checkbox" checked={selectedLocations.includes(l)} readOnly className="w-2 h-2 rounded accent-primary pointer-events-none" />
+              <span className="text-[7px] text-foreground">{l}</span>
+            </label>
+          ))}
+        </div>
+        <div className="mb-3">
+          <p className="text-[7px] font-semibold text-foreground mb-1">Experience Level</p>
+          {levels.map((l) => (
+            <label key={l} className="flex items-center gap-1.5 mb-0.5 cursor-pointer" onClick={() => toggleFilter(selectedLevels, l, setSelectedLevels)}>
+              <input type="checkbox" checked={selectedLevels.includes(l)} readOnly className="w-2 h-2 rounded accent-primary pointer-events-none" />
+              <span className="text-[7px] text-foreground">{l}</span>
+            </label>
+          ))}
+        </div>
+        {(selectedLocations.length > 0 || selectedLevels.length > 0) && (
+          <div>
+            <p className="text-[7px] font-semibold text-foreground mb-1">Active Filters</p>
+            <div className="flex flex-wrap gap-0.5">
+              {[...selectedLocations, ...selectedLevels].map(f => (
+                <span key={f} className="text-[5px] bg-primary/10 text-primary rounded-full px-1.5 py-0.5 flex items-center gap-0.5">
+                  {f} <span className="cursor-pointer font-bold" onClick={() => {
+                    if (locations.includes(f)) toggleFilter(selectedLocations, f, setSelectedLocations);
+                    else toggleFilter(selectedLevels, f, setSelectedLevels);
+                  }}>×</span>
+                </span>
+              ))}
             </div>
           </div>
-        ))}
+        )}
+      </div>
+
+      {/* Job listings */}
+      <div className="flex-1">
+        <h3 className="text-sm font-bold text-foreground italic mb-0.5">Job Board</h3>
+        <p className="text-[7px] text-primary mb-2 flex items-center gap-0.5"><Briefcase className="w-2.5 h-2.5" /> {allJobs.length} total opportunities · {sorted.length} matching</p>
+        <div className="flex items-center gap-2 mb-3">
+          <div className="flex-1 bg-secondary rounded-md px-2 py-1.5 text-[8px] text-muted-foreground flex items-center gap-1">
+            <Search className="w-2.5 h-2.5 shrink-0" />
+            <input
+              type="text"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Search jobs by title, company, or industry..."
+              className="bg-transparent outline-none w-full text-foreground placeholder:text-muted-foreground text-[8px]"
+            />
+          </div>
+          <button className="bg-primary text-primary-foreground rounded-md px-3 py-1.5 text-[8px] font-medium">Search</button>
+        </div>
+        <div className="flex items-center justify-between mb-2">
+          <p className="text-[7px] text-muted-foreground">Showing {sorted.length} jobs</p>
+          <button onClick={() => setSortBy(sortBy === "recent" ? "alpha" : "recent")} className="text-[7px] text-muted-foreground cursor-pointer hover:text-foreground">
+            {sortBy === "recent" ? "Most recent ▾" : "A-Z ▾"}
+          </button>
+        </div>
+
+        <div className="max-h-[320px] overflow-y-auto pr-1">
+          {sorted.length === 0 ? (
+            <div className="text-center py-8">
+              <Search className="w-6 h-6 text-muted-foreground mx-auto mb-2" />
+              <p className="text-[9px] font-semibold text-foreground">No jobs found</p>
+              <p className="text-[7px] text-muted-foreground">Try adjusting your filters or search query</p>
+              <button onClick={resetFilters} className="text-[7px] text-primary font-medium mt-2">Reset all filters</button>
+            </div>
+          ) : (
+            <div className="grid grid-cols-4 gap-1.5">
+              {sorted.map((job, idx) => (
+                <div key={`${job.company}-${job.title}-${idx}`} className="bg-card border border-border rounded-lg p-2 hover:border-primary/30 transition-colors">
+                  <div className="flex items-center justify-between mb-1.5">
+                    <div className={`w-5 h-5 rounded ${job.color} flex items-center justify-center text-[5px] font-bold text-white`}>{job.logo}</div>
+                    <Bookmark className="w-3 h-3 text-muted-foreground cursor-pointer hover:text-primary transition-colors" strokeWidth={1.8} />
+                  </div>
+                  <p className="text-[7px] font-semibold text-foreground leading-tight mb-0.5">{job.title}</p>
+                  <p className="text-[6px] text-primary mb-0.5">{job.company}</p>
+                  <p className="text-[6px] text-muted-foreground mb-1 flex items-center gap-0.5"><MapPin className="w-2 h-2" /> {job.location}</p>
+                  <p className="text-[5px] text-muted-foreground leading-tight mb-1.5 line-clamp-2">Join our team and contribute to exciting projects in {job.tag.toLowerCase()}...</p>
+                  <div className="flex items-center gap-1 mb-1.5">
+                    <span className="text-[5px] bg-secondary text-muted-foreground rounded px-1 py-0.5">{job.tag}</span>
+                    <span className="text-[5px] bg-primary/10 text-primary rounded px-1 py-0.5">{job.level}</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-[5px] text-emerald-500 flex items-center gap-0.5">● Posted {job.posted}</span>
+                    <span className="text-[6px] text-primary font-medium cursor-pointer flex items-center gap-0.5">View <ExternalLink className="w-2 h-2" /></span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 /* ─── Events Tab ─── */
 const EventsContent = () => (
