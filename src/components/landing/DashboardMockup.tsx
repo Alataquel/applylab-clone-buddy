@@ -1678,32 +1678,10 @@ const JobEventPostingsContent = ({ onSelectPosting }: { onSelectPosting: (p: typ
 );
 
 const DashboardMockup = () => {
-  const [tilt, setTilt] = useState({ x: 0, y: 0 });
   const [activeTab, setActiveTab] = useState(0);
   const [selectedStudent, setSelectedStudent] = useState<typeof studentsData[0] | null>(null);
   const [showTemplateEditor, setShowTemplateEditor] = useState(false);
   const [selectedPosting, setSelectedPosting] = useState<typeof postingsData[0] | null>(null);
-  const [isExpanded, setIsExpanded] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!ref.current || isExpanded) return;
-    const rect = ref.current.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width - 0.5;
-    const y = (e.clientY - rect.top) / rect.height - 0.5;
-    setTilt({ x: y * -8, y: x * 8 });
-  };
-
-  const handleMouseLeave = () => {
-    if (!isExpanded) setTilt({ x: 0, y: 0 });
-  };
-
-  const handleFirstClick = () => {
-    if (!isExpanded) {
-      setIsExpanded(true);
-      setTilt({ x: 0, y: 0 });
-    }
-  };
 
   const renderContent = () => {
     if (activeTab === 1 && selectedStudent) {
@@ -1728,106 +1706,48 @@ const DashboardMockup = () => {
   };
 
   return (
-    <>
-      {/* Overlay backdrop when expanded */}
-      {isExpanded && (
-        <div
-          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[99] animate-fade-in cursor-pointer"
-          onClick={() => setIsExpanded(false)}
-        />
-      )}
-
-      <div
-        ref={ref}
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
-        onClick={handleFirstClick}
-        className={`rounded-xl overflow-hidden shadow-precision-lg bg-[hsl(230,40%,11%)] border border-white/5 transition-all duration-500 ease-out ${
-          isExpanded
-            ? "fixed top-[3%] left-[5%] right-[5%] bottom-[3%] z-[100] cursor-default"
-            : "relative cursor-pointer"
-        }`}
-        style={
-          isExpanded
-            ? { transform: "none" }
-            : {
-                transform: `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) scale(1.02)`,
-              }
-        }
-      >
-        {/* Interactive overlay when not expanded */}
-        {!isExpanded && (
-          <div className="absolute inset-0 z-20 flex flex-col items-center justify-end pb-8 opacity-0 hover:opacity-100 transition-opacity duration-300 rounded-xl pointer-events-none">
-            {/* Gradient fade at bottom */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent rounded-xl" />
-            <div className="relative flex flex-col items-center gap-3 pointer-events-auto">
-              <div className="bg-black/80 backdrop-blur-md text-white text-sm font-semibold px-5 py-2.5 rounded-full border border-white/15 flex items-center gap-2.5 shadow-lg">
-                <svg className="w-4 h-4 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" /></svg>
-                Click to explore interactive demo
-              </div>
-              <p className="text-[11px] text-gray-400">Navigate tabs, view student profiles, analytics & more</p>
-            </div>
-          </div>
-        )}
-
-        {/* Floating cursor hint - always visible when collapsed */}
-        {!isExpanded && (
-          <div className="absolute top-4 right-4 z-20 flex items-center gap-1.5 bg-primary/90 text-white text-[9px] font-semibold px-2.5 py-1.5 rounded-full animate-pulse shadow-lg">
-            <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5" /></svg>
-            Interactive
-          </div>
-        )}
-
-        {/* Browser chrome */}
-        <div className="flex items-center gap-2 px-4 py-2.5 bg-[hsl(230,38%,9%)] border-b border-white/5">
-          <div className="flex gap-1.5">
-            <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
-            <div className="w-2.5 h-2.5 rounded-full bg-[#febc2e]" />
-            <div className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
-          </div>
-          <div className="flex-1 text-center">
-            <span className="text-[11px] text-gray-500 bg-white/5 px-4 py-1 rounded-md">applylab.software/careers-team</span>
-          </div>
-          {isExpanded && (
-            <button
-              onClick={(e) => { e.stopPropagation(); setIsExpanded(false); }}
-              className="text-gray-500 hover:text-white transition-colors"
-            >
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
-            </button>
-          )}
+    <div className="rounded-xl overflow-hidden shadow-precision-lg bg-[hsl(230,40%,11%)] border border-white/5 relative">
+      {/* Browser chrome */}
+      <div className="flex items-center gap-2 px-4 py-2.5 bg-[hsl(230,38%,9%)] border-b border-white/5">
+        <div className="flex gap-1.5">
+          <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
+          <div className="w-2.5 h-2.5 rounded-full bg-[#febc2e]" />
+          <div className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
         </div>
-
-        {/* App content */}
-        <div className={`flex ${isExpanded ? "h-[calc(100%-40px)]" : "min-h-[600px]"}`}>
-          {/* Sidebar */}
-          <div className={`${isExpanded ? "w-56" : "w-48"} border-r border-white/5 p-4 hidden sm:block`} style={{ zoom: isExpanded ? 1 : 1.15 }}>
-            <p className="text-sm font-bold text-white mb-5">ApplyLab</p>
-            <p className="text-[10px] uppercase tracking-wider text-gray-500 mb-2">Careers Team</p>
-            <div className="space-y-0.5">
-              {navItems.map((item, i) => (
-                <div
-                  key={item}
-                  onClick={(e) => { e.stopPropagation(); setActiveTab(i); setSelectedStudent(null); setShowTemplateEditor(false); }}
-                  className={`text-[11px] px-3 py-2 rounded-md transition-colors cursor-pointer ${
-                    i === activeTab
-                      ? "bg-primary text-white font-medium"
-                      : "text-gray-500 hover:text-gray-300"
-                  }`}
-                >
-                  {item}
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Main content */}
-          <div className={`flex-1 p-5 overflow-y-auto ${isExpanded ? "max-h-full" : "max-h-[600px]"}`} style={{ zoom: isExpanded ? 1.05 : 1.2 }}>
-            {renderContent()}
-          </div>
+        <div className="flex-1 text-center">
+          <span className="text-[11px] text-gray-500 bg-white/5 px-4 py-1 rounded-md">applylab.software/careers-team</span>
         </div>
       </div>
-    </>
+
+      {/* App content */}
+      <div className="flex min-h-[600px]">
+        {/* Sidebar */}
+        <div className="w-48 border-r border-white/5 p-4 hidden sm:block" style={{ zoom: 1.15 }}>
+          <p className="text-sm font-bold text-white mb-5">ApplyLab</p>
+          <p className="text-[10px] uppercase tracking-wider text-gray-500 mb-2">Careers Team</p>
+          <div className="space-y-0.5">
+            {navItems.map((item, i) => (
+              <div
+                key={item}
+                onClick={() => { setActiveTab(i); setSelectedStudent(null); setShowTemplateEditor(false); setSelectedPosting(null); }}
+                className={`text-[11px] px-3 py-2 rounded-md transition-colors cursor-pointer ${
+                  i === activeTab
+                    ? "bg-primary text-white font-medium"
+                    : "text-gray-500 hover:text-gray-300"
+                }`}
+              >
+                {item}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Main content */}
+        <div className="flex-1 p-5 overflow-y-auto max-h-[600px]" style={{ zoom: 1.2 }}>
+          {renderContent()}
+        </div>
+      </div>
+    </div>
   );
 };
 
