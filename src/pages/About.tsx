@@ -116,7 +116,7 @@ const About = () => {
 
       {/* Team */}
       <section className="py-20 px-6 lg:px-12">
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -129,21 +129,30 @@ const About = () => {
               Small team. <span className="text-gradient italic">Big mission.</span>
             </h2>
           </motion.div>
-          <div className="grid sm:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {team.map((t, i) => (
               <motion.div
                 key={t.name}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.6, delay: i * 0.15 }}
-                className="bg-card rounded-xl overflow-hidden shadow-precision group"
+                initial={{ opacity: 0, y: 50, scale: 0.95 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.6, delay: i * 0.12, ease: [0.2, 0, 0, 1] }}
+                whileHover={{ y: -8, transition: { duration: 0.3 } }}
+                className="bg-card rounded-2xl overflow-hidden shadow-precision group cursor-default"
               >
-                <div className="aspect-[4/3] overflow-hidden">
-                  <img src={t.photo} alt={t.name} className={`w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ${t.name === "Antonio Larrucea" ? "object-[center_30%]" : ""}`} />
+                <div className="relative aspect-[3/4] overflow-hidden">
+                  <img
+                    src={t.photo}
+                    alt={t.name}
+                    className={`w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ${t.name === "Antonio Larrucea" ? "object-[center_30%]" : ""}`}
+                  />
+                  <div className="absolute bottom-3 left-3">
+                    <span className="inline-block text-[10px] font-semibold uppercase tracking-wider bg-primary/80 text-primary-foreground px-3 py-1 rounded-full backdrop-blur-sm">
+                      {t.role}
+                    </span>
+                  </div>
                 </div>
                 <div className="p-5">
-                  <p className="text-xs text-primary font-medium mb-1">{t.role}</p>
                   <p className="text-base font-semibold text-foreground mb-2">{t.name}</p>
                   <p className="text-sm text-muted-foreground leading-relaxed">{t.desc}</p>
                 </div>
