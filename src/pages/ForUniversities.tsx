@@ -75,6 +75,7 @@ const ForUniversities = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.6 }}
+            className="h-[640px] overflow-hidden rounded-xl"
           >
             <DashboardMockup />
           </motion.div>
