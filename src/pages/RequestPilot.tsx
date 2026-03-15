@@ -151,7 +151,7 @@ const RequestPilot = () => {
                   type="email"
                   value={form.email || ""}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
-                  className="w-full bg-secondary border border-transparent rounded-lg px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-1 focus:ring-primary transition-all hover:border-primary/20"
+                  className="w-full bg-white border border-gray-200 rounded-lg px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-primary transition-all hover:border-primary/30"
                   placeholder="you@university.edu"
                 />
                 {errors.email && <p className="text-xs text-destructive mt-1">{errors.email}</p>}
