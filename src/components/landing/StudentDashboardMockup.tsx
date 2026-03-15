@@ -1582,7 +1582,7 @@ const StudentDashboardMockup = () => {
       </div>
 
       {/* Content */}
-      <div className="p-4 min-h-[400px] max-h-[500px] overflow-y-auto" onClick={() => setResumeDropdownOpen(false)}>
+      <div className="p-5 min-h-[600px] max-h-[600px] overflow-y-auto" onClick={() => setResumeDropdownOpen(false)}>
         {renderContent()}
       </div>
     </div>
