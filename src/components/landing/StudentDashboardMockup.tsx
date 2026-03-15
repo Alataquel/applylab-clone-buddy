@@ -678,8 +678,8 @@ const MeetingsContent = () => {
                 <p className="text-[7px] text-muted-foreground">{adv.specialty}</p>
               </div>
               <div className="ml-auto flex items-center gap-2 text-[7px] text-muted-foreground">
-                <span>⏱ 30 min</span>
-                <span>📹 Video call</span>
+                <span className="flex items-center gap-0.5"><Clock className="w-2 h-2" /> 30 min</span>
+                <span className="flex items-center gap-0.5"><Video className="w-2 h-2" /> Video call</span>
                 <span className="text-emerald-500 font-semibold">Free</span>
               </div>
             </div>
