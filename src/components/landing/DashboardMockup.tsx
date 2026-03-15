@@ -1701,13 +1701,26 @@ const DashboardMockup = () => {
               }
         }
       >
-        {/* Expand hint when not expanded */}
+        {/* Interactive overlay when not expanded */}
         {!isExpanded && (
-          <div className="absolute inset-0 z-20 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300 bg-black/20 rounded-xl">
-            <div className="bg-black/70 backdrop-blur-sm text-white text-sm font-medium px-4 py-2 rounded-lg border border-white/10 flex items-center gap-2">
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" /></svg>
-              Click to explore live demo
+          <div className="absolute inset-0 z-20 flex flex-col items-center justify-end pb-8 opacity-0 hover:opacity-100 transition-opacity duration-300 rounded-xl pointer-events-none">
+            {/* Gradient fade at bottom */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent rounded-xl" />
+            <div className="relative flex flex-col items-center gap-3 pointer-events-auto">
+              <div className="bg-black/80 backdrop-blur-md text-white text-sm font-semibold px-5 py-2.5 rounded-full border border-white/15 flex items-center gap-2.5 shadow-lg">
+                <svg className="w-4 h-4 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" /></svg>
+                Click to explore interactive demo
+              </div>
+              <p className="text-[11px] text-gray-400">Navigate tabs, view student profiles, analytics & more</p>
             </div>
+          </div>
+        )}
+
+        {/* Floating cursor hint - always visible when collapsed */}
+        {!isExpanded && (
+          <div className="absolute top-4 right-4 z-20 flex items-center gap-1.5 bg-primary/90 text-white text-[9px] font-semibold px-2.5 py-1.5 rounded-full animate-pulse shadow-lg">
+            <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5" /></svg>
+            Interactive
           </div>
         )}
 
