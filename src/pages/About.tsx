@@ -65,7 +65,7 @@ const About = () => {
       <Navbar />
 
       {/* Hero */}
-      <section className="pt-32 pb-32 px-6 lg:px-12">
+      <section className="pt-32 pb-48 px-6 lg:px-12">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -115,7 +115,7 @@ const About = () => {
       </section>
 
       {/* Team */}
-      <section className="py-32 px-6 lg:px-12 border-t border-border/30">
+      <section className="py-40 px-6 lg:px-12 border-t border-border/30">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
