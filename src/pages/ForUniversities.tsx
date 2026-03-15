@@ -46,7 +46,9 @@ const ForUniversities = () => {
         </div>
       </section>
 
-      {/* Interactive Demo - moved to top */}
+      <SolutionSection />
+
+      {/* Interactive Demo */}
       <section className="py-20 px-6 lg:px-12 bg-background">
         <div className="max-w-7xl mx-auto">
           <motion.div
