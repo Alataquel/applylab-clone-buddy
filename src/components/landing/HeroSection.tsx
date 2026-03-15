@@ -18,7 +18,7 @@ const itemVariants = {
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center py-20 px-6 lg:px-12 overflow-hidden">
-      <div className="max-w-[90rem] mx-auto grid lg:grid-cols-[1fr_1.5fr] gap-12 items-center">
+      <div className="max-w-[96rem] mx-auto grid lg:grid-cols-[0.8fr_1.8fr] gap-12 items-center">
         <motion.div variants={containerVariants} initial="hidden" animate="visible" className="space-y-8">
           <motion.div variants={itemVariants} className="flex items-center gap-2 text-sm text-muted-foreground">
             <span className="w-2 h-2 rounded-full bg-emerald-500" />
@@ -69,7 +69,12 @@ const HeroSection = () => {
           className="relative"
         >
           <DashboardMockup />
-          <p className="text-center text-xs text-muted-foreground mt-3 animate-pulse">👆 Click around — this dashboard is interactive</p>
+          <div className="flex items-center justify-center gap-2 mt-4 animate-pulse">
+            <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center">
+              <svg className="w-3.5 h-3.5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" /></svg>
+            </div>
+            <p className="text-sm font-medium text-primary">Click around — this dashboard is fully interactive</p>
+          </div>
 
           {/* Floating card - Placement rate */}
           <motion.div

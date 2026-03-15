@@ -462,7 +462,7 @@ const DashboardMockup = () => {
       </div>
 
       {/* App content */}
-      <div className="flex min-h-[460px]">
+      <div className="flex min-h-[540px]">
         {/* Sidebar */}
         <div className="w-44 border-r border-white/5 p-4 hidden sm:block">
           <p className="text-sm font-bold text-white mb-5">ApplyLab</p>
@@ -485,7 +485,7 @@ const DashboardMockup = () => {
         </div>
 
         {/* Main content */}
-        <div className="flex-1 p-5 overflow-y-auto max-h-[460px]">
+        <div className="flex-1 p-5 overflow-y-auto max-h-[540px]">
           {renderContent()}
         </div>
       </div>
