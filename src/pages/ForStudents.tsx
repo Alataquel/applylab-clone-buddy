@@ -97,7 +97,7 @@ const ForStudents = () => {
                 transition={{ duration: 0.4, delay: 0.35 }}
                 className="text-sm text-muted-foreground leading-relaxed max-w-lg"
               >
-                Roles ranked by genuine fit — not keyword overlap. Our matching model reads your full profile and surfaces only the positions where you'd genuinely stand out.
+                75,000+ internships refreshed monthly, ranked by genuine fit — not keyword overlap. Our matching model reads your full profile and surfaces only the positions where you'd genuinely stand out.
               </motion.p>
             </div>
             <div className="px-6 lg:px-8 pb-6 lg:pb-8">
