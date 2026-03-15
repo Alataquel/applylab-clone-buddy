@@ -635,372 +635,535 @@ const StudentsContent = ({ onSelectStudent }: { onSelectStudent: (student: typeo
 };
 
 const AnalyticsContent = () => {
-  const statCards = [
-    { label: "Total Students", value: "1,284", change: "+5% vs last year", icon: (
-      <svg className="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
-    )},
-    { label: "Total Applications", value: "4,821", change: "+15% vs last year", icon: (
-      <svg className="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
-    )},
-    { label: "Students Who Applied", value: "912", change: "+8% vs last year", icon: (
-      <svg className="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>
-    )},
-    { label: "Placed Students", value: "648", change: "+12% vs last year", icon: (
-      <svg className="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
-    )},
-    { label: "Avg. Applications per Student", value: "5.3", change: "+20% vs last month", icon: (
-      <svg className="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>
-    )},
-    { label: "Average Salary", value: "$68,400", change: "+8% vs last year", icon: (
-      <svg className="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-    )},
-  ];
-
-  const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-  const placedByMonth = [12, 18, 22, 35, 48, 56, 62, 71, 85, 94, 102, 110];
-  const maxPlaced = Math.max(...placedByMonth);
-
-  const degreeData = [
-    { degree: "CS", placed: 230, rate: 92 },
-    { degree: "Eng", placed: 210, rate: 88 },
-    { degree: "Biz", placed: 185, rate: 78 },
-    { degree: "Sci", placed: 105, rate: 72 },
-    { degree: "Arts", placed: 85, rate: 65 },
-    { degree: "Other", placed: 70, rate: 60 },
-  ];
-  const maxDegree = 250;
-
-  const funnelData = [
-    { label: "Total Applications", value: 4821, pct: "100%" },
-    { label: "Application Submitted", value: 3842, pct: "79.7%" },
-    { label: "Under Review", value: 2156, pct: "44.7%" },
-    { label: "Interview Stage", value: 1284, pct: "26.6%" },
-    { label: "Offer Received", value: 648, pct: "13.4%" },
-  ];
-
+  const [analyticsTab, setAnalyticsTab] = useState<"overview" | "placements" | "engagement">("overview");
   const [hoveredPin, setHoveredPin] = useState<number | null>(null);
+  const [timePeriod, setTimePeriod] = useState("Month");
+
+  const tabs = [
+    { key: "overview" as const, label: "Overview" },
+    { key: "placements" as const, label: "Placements & Employers" },
+    { key: "engagement" as const, label: "Student Engagement" },
+  ];
 
   return (
     <>
-      {/* Stat Cards - 2 rows of 3 */}
-      <div className="grid grid-cols-3 gap-2 mb-3">
-        {statCards.slice(0, 3).map((s) => (
-          <div key={s.label} className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5">
-            <div className="w-7 h-7 rounded-lg bg-white/[0.06] flex items-center justify-center mb-2">{s.icon}</div>
-            <span className="text-lg font-bold text-white">{s.value}</span>
-            <p className="text-[10px] text-gray-400 mb-0.5">{s.label}</p>
-            <p className="text-[9px] text-emerald-400 font-medium">{s.change}</p>
+      {/* Header */}
+      <div className="flex items-center justify-between mb-3">
+        <div>
+          <p className="text-sm font-bold text-white">Analytics</p>
+          <p className="text-[9px] text-gray-500">University performance overview</p>
+        </div>
+        <div className="flex items-center gap-2">
+          <div className="bg-white/[0.03] border border-white/5 rounded-md px-2 py-1 flex items-center gap-1 cursor-pointer">
+            <span className="text-[9px] text-gray-300">All Departments</span>
+            <svg className="w-2.5 h-2.5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
           </div>
+          <div className="flex items-center bg-white/[0.03] border border-white/5 rounded-md overflow-hidden">
+            {["Week", "Month", "Year", "All"].map((p) => (
+              <button
+                key={p}
+                onClick={() => setTimePeriod(p)}
+                className={`text-[8px] px-2 py-1 font-medium transition-colors ${timePeriod === p ? "bg-primary text-white" : "text-gray-400 hover:text-white"}`}
+              >
+                {p}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Sub-tabs */}
+      <div className="flex items-center gap-0 mb-4 border-b border-white/5">
+        {tabs.map((t) => (
+          <button
+            key={t.key}
+            onClick={() => setAnalyticsTab(t.key)}
+            className={`text-[10px] px-3 py-2 font-medium transition-colors border-b-2 ${analyticsTab === t.key ? "border-primary text-white" : "border-transparent text-gray-500 hover:text-gray-300"}`}
+          >
+            {t.label}
+          </button>
         ))}
       </div>
-      <div className="grid grid-cols-3 gap-2 mb-4">
-        {statCards.slice(3).map((s) => (
-          <div key={s.label} className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5">
-            <div className="w-7 h-7 rounded-lg bg-white/[0.06] flex items-center justify-center mb-2">{s.icon}</div>
-            <span className="text-lg font-bold text-white">{s.value}</span>
-            <p className="text-[10px] text-gray-400 mb-0.5">{s.label}</p>
-            <p className="text-[9px] text-emerald-400 font-medium">{s.change}</p>
-          </div>
-        ))}
-      </div>
 
-      {/* Charts Row */}
-      <div className="grid grid-cols-2 gap-2 mb-3">
-        {/* Line Chart - Distinct Students Placed by Month */}
-        <div className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5">
-          <p className="text-[10px] font-semibold text-white mb-0.5">Distinct Students Placed by Month</p>
-          <div className="flex items-center gap-2 mb-2">
-            <div className="flex items-center gap-1"><div className="w-3 h-[2px] bg-primary rounded" /><span className="text-[8px] text-gray-500">Distinct Students Placed</span></div>
-          </div>
-          <svg viewBox="0 0 220 80" className="w-full">
-            {/* Y grid lines */}
-            {[0, 20, 40, 60, 80].map((y) => (
-              <line key={y} x1="25" y1={70 - (y / maxPlaced) * 60} x2="215" y2={70 - (y / maxPlaced) * 60} stroke="rgba(255,255,255,0.05)" strokeWidth="0.5" />
-            ))}
-            {/* Y labels */}
-            {[0, 30, 60, 90, 120].map((v, i) => (
-              <text key={v} x="22" y={70 - (i * 15)} textAnchor="end" fill="#6b7280" fontSize="4">{v}</text>
-            ))}
-            {/* Line */}
-            <polyline
-              fill="none"
-              stroke="hsl(217, 91%, 60%)"
-              strokeWidth="1.5"
-              points={placedByMonth.map((v, i) => `${25 + i * (190 / 11)},${70 - (v / maxPlaced) * 60}`).join(" ")}
-            />
-            {/* Dots */}
-            {placedByMonth.map((v, i) => (
-              <circle key={i} cx={25 + i * (190 / 11)} cy={70 - (v / maxPlaced) * 60} r="2" fill="hsl(217, 91%, 60%)" />
-            ))}
-            {/* X labels */}
-            {months.map((m, i) => (
-              <text key={m} x={25 + i * (190 / 11)} y="78" textAnchor="middle" fill="#6b7280" fontSize="4">{m}</text>
-            ))}
-          </svg>
-        </div>
-
-        {/* Bar Chart - Placement & Employability by Degree */}
-        <div className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5">
-          <p className="text-[10px] font-semibold text-white mb-0.5">Placement & Employability by Degree</p>
-          <div className="flex items-center gap-3 mb-2">
-            <div className="flex items-center gap-1"><div className="w-3 h-2 bg-primary rounded-sm" /><span className="text-[8px] text-gray-500">Placed Students</span></div>
-            <div className="flex items-center gap-1"><div className="w-3 h-2 bg-primary/40 rounded-sm" /><span className="text-[8px] text-gray-500">Employability Rate (%)</span></div>
-          </div>
-          <svg viewBox="0 0 220 80" className="w-full">
-            {/* Y grid */}
-            {[0, 50, 100, 150, 200, 250].map((v) => (
-              <g key={v}>
-                <line x1="25" y1={70 - (v / maxDegree) * 60} x2="215" y2={70 - (v / maxDegree) * 60} stroke="rgba(255,255,255,0.05)" strokeWidth="0.5" />
-                <text x="22" y={72 - (v / maxDegree) * 60} textAnchor="end" fill="#6b7280" fontSize="4">{v}</text>
-              </g>
-            ))}
-            {/* Bars */}
-            {degreeData.map((d, i) => {
-              const x = 35 + i * 30;
-              const barH1 = (d.placed / maxDegree) * 60;
-              const barH2 = (d.rate / maxDegree) * 60;
-              return (
-                <g key={d.degree}>
-                  <rect x={x} y={70 - barH1} width="8" height={barH1} fill="hsl(217, 91%, 60%)" rx="1" />
-                  <rect x={x + 10} y={70 - barH2} width="8" height={barH2} fill="hsl(217, 91%, 60%, 0.4)" rx="1" />
-                  <text x={x + 9} y="78" textAnchor="middle" fill="#6b7280" fontSize="3.5">{d.degree}</text>
-                </g>
-              );
-            })}
-          </svg>
-        </div>
-      </div>
-
-      {/* Application Funnel */}
-      <div className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5">
-        <p className="text-[10px] font-semibold text-white mb-2">Application Funnel by Stage & Status</p>
-        <div className="space-y-1.5">
-          {funnelData.map((f) => (
-            <div key={f.label} className="flex items-center gap-2">
-              <span className="text-[8px] text-gray-400 w-24 shrink-0">{f.label}</span>
-              <div className="flex-1 h-3 bg-white/5 rounded-full overflow-hidden">
-                <div className="h-full bg-primary/50 rounded-full flex items-center justify-center" style={{ width: f.pct }}>
-                  <span className="text-[6px] text-white font-medium">{f.value.toLocaleString()}</span>
-                </div>
-              </div>
-              <span className="text-[8px] text-gray-500 w-8 text-right">{f.pct}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Top Employers Table */}
-      <div className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5 mt-3">
-        <p className="text-[10px] font-semibold text-white mb-2">Top Employers</p>
-        <div className="space-y-0">
-          <div className="grid grid-cols-4 gap-2 pb-1 border-b border-white/5">
-            <span className="text-[8px] text-primary font-semibold">Employer</span>
-            <span className="text-[8px] text-primary font-semibold">Industry</span>
-            <span className="text-[8px] text-primary font-semibold text-center">Hires</span>
-            <span className="text-[8px] text-primary font-semibold text-center">Rating</span>
-          </div>
-          {[
-            { name: "Deloitte", industry: "Finance", hires: 12, rating: "★★★★★" },
-            { name: "Google", industry: "Technology", hires: 9, rating: "★★★★★" },
-            { name: "McKinsey & Co.", industry: "Consulting", hires: 8, rating: "★★★★☆" },
-            { name: "JP Morgan", industry: "Finance", hires: 7, rating: "★★★★☆" },
-            { name: "Siemens", industry: "Manufacturing", hires: 6, rating: "★★★★☆" },
-          ].map((e) => (
-            <div key={e.name} className="grid grid-cols-4 gap-2 py-1.5 border-b border-white/[0.03]">
-              <span className="text-[9px] text-gray-300">{e.name}</span>
-              <span className="text-[9px] text-gray-500">{e.industry}</span>
-              <span className="text-[9px] text-white text-center font-medium">{e.hires}</span>
-              <span className="text-[8px] text-amber-400 text-center">{e.rating}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-
-
-      {/* Placement Speed */}
-      <div className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5 mt-3">
-        <p className="text-[10px] font-semibold text-white mb-3">Placement Speed</p>
-        <div className="flex items-center justify-around mb-3">
-          {[
-            { value: 18, label: "Fastest", sub: "Average days", color: "bg-emerald-500", textColor: "text-emerald-400" },
-            { value: 23, label: "Average", sub: "Overall average", color: "bg-purple-500", textColor: "text-purple-400" },
-            { value: 45, label: "Slowest", sub: "Maximum days", color: "bg-orange-500", textColor: "text-orange-400" },
-          ].map((s) => (
-            <div key={s.label} className="flex flex-col items-center">
-              <div className={`w-10 h-10 rounded-full ${s.color} flex items-center justify-center mb-1`}>
-                <span className="text-sm font-bold text-white">{s.value}</span>
-              </div>
-              <span className={`text-[9px] font-semibold ${s.textColor}`}>{s.label}</span>
-              <span className="text-[7px] text-gray-500">{s.sub}</span>
-            </div>
-          ))}
-        </div>
-        <div className="flex h-2 rounded-full overflow-hidden mb-2">
-          <div className="bg-emerald-500" style={{ width: "35%" }} />
-          <div className="bg-blue-500" style={{ width: "48%" }} />
-          <div className="bg-orange-500" style={{ width: "17%" }} />
-        </div>
-        <div className="flex items-center justify-between">
-          {[
-            { color: "bg-emerald-500", label: "0-15 days", pct: "35%" },
-            { color: "bg-blue-500", label: "16-30 days", pct: "48%" },
-            { color: "bg-orange-500", label: "31+ days", pct: "17%" },
-          ].map((d) => (
-            <div key={d.label} className="flex items-center gap-1">
-              <div className={`w-1.5 h-1.5 rounded-full ${d.color}`} />
-              <span className="text-[8px] text-gray-500">{d.label}</span>
-              <span className="text-[8px] text-emerald-400 font-medium">{d.pct}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Interactive Global Placement Distribution */}
-      <div className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5 mt-3">
-        <div className="flex items-center gap-1.5 mb-2">
-          <svg className="w-3.5 h-3.5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-          <p className="text-[10px] font-semibold text-white">Global Placement Distribution</p>
-          <span className="text-[7px] text-gray-500 ml-auto">Hover over pins for details</span>
-        </div>
-        <div className="relative bg-[hsl(220,25%,10%)] rounded-lg overflow-hidden" style={{ height: 220 }}>
-          {/* SVG World Map - Natural Earth style */}
-          <svg viewBox="0 0 1000 500" className="w-full h-full" preserveAspectRatio="xMidYMid slice">
-            <defs>
-              <linearGradient id="oceanGrad" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="hsl(220,30%,12%)" />
-                <stop offset="100%" stopColor="hsl(220,25%,9%)" />
-              </linearGradient>
-              <filter id="landGlow">
-                <feGaussianBlur stdDeviation="2" result="blur" />
-                <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
-              </filter>
-            </defs>
-            <rect width="1000" height="500" fill="url(#oceanGrad)" />
-            {/* Latitude/longitude grid */}
-            {[83,167,250,333,417].map(y => <line key={`h${y}`} x1="0" y1={y} x2="1000" y2={y} stroke="hsl(220,20%,14%)" strokeWidth="0.4" strokeDasharray="4 4" />)}
-            {[100,200,300,400,500,600,700,800,900].map(x => <line key={`v${x}`} x1={x} y1="0" x2={x} y2="500" stroke="hsl(220,20%,14%)" strokeWidth="0.4" strokeDasharray="4 4" />)}
-            
-            {/* North America */}
-            <path d="M50,80 Q80,60 130,55 Q160,50 190,55 Q210,50 230,60 Q250,55 260,65 L265,75 Q270,80 268,90 L260,105 Q255,115 250,120 L245,130 Q240,140 230,150 L220,160 Q210,165 200,168 L185,172 Q170,175 155,178 L140,180 Q120,185 110,180 Q95,175 85,165 L75,150 Q65,140 60,125 L55,110 Q50,100 48,90 Z" fill="hsl(220,20%,20%)" stroke="hsl(220,15%,28%)" strokeWidth="0.8" />
-            {/* Greenland */}
-            <path d="M230,35 Q250,30 270,35 Q280,40 275,50 Q270,58 260,55 Q245,50 240,45 Z" fill="hsl(220,20%,20%)" stroke="hsl(220,15%,28%)" strokeWidth="0.6" />
-            {/* Central America */}
-            <path d="M140,180 Q150,182 158,190 Q162,195 165,205 Q160,210 155,208 Q148,200 142,195 Z" fill="hsl(220,20%,20%)" stroke="hsl(220,15%,28%)" strokeWidth="0.6" />
-            {/* South America */}
-            <path d="M165,210 Q180,205 195,210 Q210,218 220,235 Q228,255 225,280 Q220,310 210,335 Q200,355 185,370 Q170,380 160,375 Q150,365 145,345 Q140,320 138,295 Q136,270 140,245 Q145,225 155,215 Z" fill="hsl(220,20%,20%)" stroke="hsl(220,15%,28%)" strokeWidth="0.8" />
-            
-            {/* Europe */}
-            <path d="M420,50 Q440,42 460,45 Q475,42 490,48 Q500,50 505,58 L508,65 Q510,72 508,80 Q505,88 498,95 L490,100 Q480,105 470,108 L458,110 Q445,112 435,108 Q425,105 420,98 L418,88 Q415,78 418,68 Z" fill="hsl(220,20%,20%)" stroke="hsl(220,15%,28%)" strokeWidth="0.8" />
-            {/* UK & Ireland */}
-            <path d="M405,55 Q412,50 418,52 Q422,55 420,62 Q416,68 410,65 Q405,62 405,58 Z" fill="hsl(220,20%,20%)" stroke="hsl(220,15%,28%)" strokeWidth="0.6" />
-            {/* Scandinavia */}
-            <path d="M458,28 Q465,22 472,25 Q478,30 480,40 Q478,48 474,45 Q468,38 462,35 Z" fill="hsl(220,20%,20%)" stroke="hsl(220,15%,28%)" strokeWidth="0.6" />
-            {/* Italy */}
-            <path d="M462,80 Q468,78 470,85 Q472,92 470,100 Q466,105 462,100 Q460,92 461,85 Z" fill="hsl(220,20%,20%)" stroke="hsl(220,15%,28%)" strokeWidth="0.5" />
-            
-            {/* Africa */}
-            <path d="M430,120 Q450,115 475,118 Q495,122 510,135 Q520,150 525,170 Q528,195 525,220 Q520,250 510,275 Q498,300 480,315 Q465,325 450,320 Q435,315 425,300 Q415,280 412,255 Q410,230 412,205 Q415,180 420,155 Q425,135 430,125 Z" fill="hsl(220,20%,20%)" stroke="hsl(220,15%,28%)" strokeWidth="0.8" />
-            {/* Madagascar */}
-            <path d="M535,275 Q540,270 543,278 Q545,288 542,295 Q538,298 535,292 Z" fill="hsl(220,20%,20%)" stroke="hsl(220,15%,28%)" strokeWidth="0.5" />
-            
-            {/* Middle East */}
-            <path d="M510,100 Q530,95 545,100 Q555,108 558,118 Q555,128 548,130 Q535,132 525,128 Q515,122 512,112 Z" fill="hsl(220,20%,20%)" stroke="hsl(220,15%,28%)" strokeWidth="0.6" />
-            
-            {/* Russia / Central Asia */}
-            <path d="M500,30 Q550,22 620,25 Q680,28 740,35 Q780,42 800,55 Q810,65 805,75 Q795,82 780,78 Q750,72 720,68 Q680,62 640,58 Q600,55 560,52 Q530,50 510,48 Q502,45 500,38 Z" fill="hsl(220,20%,20%)" stroke="hsl(220,15%,28%)" strokeWidth="0.8" />
-            
-            {/* India */}
-            <path d="M600,110 Q615,105 625,112 Q632,120 635,135 Q636,150 630,165 Q625,175 615,178 Q605,175 600,165 Q595,150 596,135 Q597,120 600,112 Z" fill="hsl(220,20%,20%)" stroke="hsl(220,15%,28%)" strokeWidth="0.7" />
-            
-            {/* Southeast Asia */}
-            <path d="M660,120 Q680,115 700,118 Q715,122 720,132 Q722,142 715,148 Q705,152 695,148 Q680,142 670,135 Q662,128 660,122 Z" fill="hsl(220,20%,20%)" stroke="hsl(220,15%,28%)" strokeWidth="0.6" />
-            {/* Indonesia */}
-            <path d="M680,180 Q700,175 720,178 Q740,182 755,185 Q765,190 760,195 Q750,198 735,195 Q715,192 695,188 Q682,186 680,182 Z" fill="hsl(220,20%,20%)" stroke="hsl(220,15%,28%)" strokeWidth="0.5" />
-            
-            {/* China / East Asia */}
-            <path d="M660,55 Q690,48 720,52 Q745,55 760,65 Q770,75 768,88 Q765,100 755,108 Q742,115 725,112 Q705,108 690,100 Q675,90 668,78 Q662,68 660,58 Z" fill="hsl(220,20%,20%)" stroke="hsl(220,15%,28%)" strokeWidth="0.8" />
-            {/* Japan */}
-            <path d="M780,60 Q788,55 792,62 Q795,72 793,82 Q790,88 785,85 Q781,78 780,68 Z" fill="hsl(220,20%,20%)" stroke="hsl(220,15%,28%)" strokeWidth="0.5" />
-            {/* Korea */}
-            <path d="M770,68 Q775,65 778,70 Q780,76 778,80 Q775,82 772,78 Z" fill="hsl(220,20%,20%)" stroke="hsl(220,15%,28%)" strokeWidth="0.4" />
-            
-            {/* Australia */}
-            <path d="M740,260 Q770,250 800,255 Q830,260 850,275 Q860,290 855,310 Q845,325 825,330 Q800,335 775,328 Q755,320 745,305 Q738,290 740,275 Z" fill="hsl(220,20%,20%)" stroke="hsl(220,15%,28%)" strokeWidth="0.8" />
-            {/* New Zealand */}
-            <path d="M880,320 Q885,315 888,322 Q890,332 887,340 Q883,342 880,335 Z" fill="hsl(220,20%,20%)" stroke="hsl(220,15%,28%)" strokeWidth="0.4" />
-          </svg>
-          
-          {/* Interactive pins */}
-          {[
-            { x: "13%", y: "30%", city: "San Francisco", count: 28, salary: "$92K", color: "bg-purple-500", industry: "Technology" },
-            { x: "19%", y: "26%", city: "New York", count: 42, salary: "$88K", color: "bg-blue-500", industry: "Finance" },
-            { x: "16%", y: "22%", city: "Toronto", count: 15, salary: "$76K", color: "bg-emerald-500", industry: "Consulting" },
-            { x: "43%", y: "18%", city: "London", count: 56, salary: "$85K", color: "bg-primary", industry: "Finance" },
-            { x: "47%", y: "17%", city: "Berlin", count: 18, salary: "$72K", color: "bg-amber-500", industry: "Technology" },
-            { x: "54%", y: "24%", city: "Dubai", count: 12, salary: "$95K", color: "bg-orange-500", industry: "Consulting" },
-            { x: "72%", y: "30%", city: "Singapore", count: 24, salary: "$82K", color: "bg-cyan-500", industry: "Finance" },
-            { x: "79%", y: "18%", city: "Tokyo", count: 19, salary: "$78K", color: "bg-rose-500", industry: "Technology" },
-            { x: "76%", y: "22%", city: "Hong Kong", count: 16, salary: "$90K", color: "bg-amber-400", industry: "Finance" },
-            { x: "82%", y: "60%", city: "Sydney", count: 14, salary: "$74K", color: "bg-emerald-400", industry: "Healthcare" },
-            { x: "46%", y: "48%", city: "Lagos", count: 8, salary: "$45K", color: "bg-pink-500", industry: "Technology" },
-            { x: "18%", y: "60%", city: "São Paulo", count: 11, salary: "$52K", color: "bg-violet-500", industry: "Finance" },
-          ].map((pin, i) => (
-            <div
-              key={i}
-              className="absolute cursor-pointer"
-              style={{ left: pin.x, top: pin.y, transform: "translate(-50%, -50%)" }}
-              onMouseEnter={() => setHoveredPin(i)}
-              onMouseLeave={() => setHoveredPin(null)}
-            >
-              {/* Pulse ring */}
-              <div className={`absolute -inset-1.5 ${pin.color} rounded-full animate-ping opacity-15`} />
-              {/* Pin dot */}
-              <div className={`relative w-5 h-5 ${pin.color} rounded-full border-2 border-white/40 flex items-center justify-center shadow-lg shadow-black/30 transition-all duration-200 ${hoveredPin === i ? "scale-[1.6] z-20 border-white/60" : "scale-100"}`}>
-                <span className="text-[6px] text-white font-bold">{pin.count}</span>
-              </div>
-              {/* Tooltip on hover */}
-              {hoveredPin === i && (
-                <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 bg-[hsl(230,35%,15%)] border border-white/15 rounded-xl px-3 py-2.5 shadow-2xl z-30 whitespace-nowrap animate-fade-in backdrop-blur-sm">
-                  <p className="text-xs font-bold text-white">{pin.city}</p>
-                  <div className="flex items-center gap-1.5 mt-0.5">
-                    <span className={`w-2 h-2 rounded-full ${pin.color}`} />
-                    <span className="text-[10px] text-gray-400">{pin.industry}</span>
-                  </div>
-                  <div className="grid grid-cols-2 gap-3 mt-1.5 pt-1.5 border-t border-white/10">
-                    <div>
-                      <p className="text-[8px] text-gray-500">Placements</p>
-                      <p className="text-xs font-bold text-white">{pin.count}</p>
-                    </div>
-                    <div>
-                      <p className="text-[8px] text-gray-500">Avg Salary</p>
-                      <p className="text-xs font-bold text-emerald-400">{pin.salary}</p>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
-        <div className="flex items-center justify-between mt-2">
-          <div className="flex items-center gap-2">
-            <span className="text-[8px] text-gray-500">12 countries</span>
-            <span className="text-[8px] text-gray-600">•</span>
-            <span className="text-[8px] text-gray-500">263 placements</span>
-          </div>
-          <div className="flex items-center gap-1.5">
+      {analyticsTab === "overview" && (
+        <>
+          {/* KPI Cards */}
+          <div className="grid grid-cols-6 gap-2 mb-3">
             {[
-              { color: "bg-primary", label: "Finance" },
-              { color: "bg-purple-500", label: "Tech" },
-              { color: "bg-emerald-500", label: "Other" },
-            ].map((l) => (
-              <div key={l.label} className="flex items-center gap-0.5">
-                <div className={`w-1.5 h-1.5 rounded-full ${l.color}`} />
-                <span className="text-[7px] text-gray-500">{l.label}</span>
+              { label: "Total Students", value: "1,284", change: "+5%", icon: "👥" },
+              { label: "Total Applications", value: "4,821", change: "+15%", icon: "📄" },
+              { label: "Placement Rate", value: "71%", change: "+4.2%", icon: "📈" },
+              { label: "Average Salary", value: "$78k", change: "+8%", icon: "💰" },
+              { label: "Avg Apps / Student", value: "3.8", change: "+20%", icon: "🎯" },
+              { label: "CVs Created", value: "2,156", change: "+32%", icon: "📋" },
+            ].map((s) => (
+              <div key={s.label} className="bg-white/[0.03] border border-white/5 rounded-lg px-2.5 py-2">
+                <div className="flex items-center justify-between mb-1">
+                  <span className="text-[10px]">{s.icon}</span>
+                  <span className="text-[8px] text-emerald-400 font-medium">{s.change}</span>
+                </div>
+                <p className="text-base font-bold text-white">{s.value}</p>
+                <p className="text-[8px] text-gray-500">{s.label}</p>
               </div>
             ))}
           </div>
-        </div>
-      </div>
+
+          {/* Students Placed by Month + Application Funnel */}
+          <div className="grid grid-cols-2 gap-2 mb-3">
+            <div className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5">
+              <p className="text-[10px] font-semibold text-white mb-2">Students Placed by Month</p>
+              <svg viewBox="0 0 240 90" className="w-full">
+                {[0, 15, 30, 45, 60].map((v, i) => (
+                  <g key={v}>
+                    <line x1="25" y1={75 - i * 15} x2="235" y2={75 - i * 15} stroke="rgba(255,255,255,0.05)" strokeWidth="0.5" />
+                    <text x="22" y={77 - i * 15} textAnchor="end" fill="#6b7280" fontSize="3.5">{v}</text>
+                  </g>
+                ))}
+                {/* Area fill */}
+                <polygon
+                  points={`25,75 ${[5,16,20,28,25,30,28,32,38,42,48,55].map((v, i) => `${25 + i * (210 / 11)},${75 - (v / 60) * 60}`).join(" ")} 235,75`}
+                  fill="hsl(217, 91%, 60%, 0.08)"
+                />
+                <polyline
+                  fill="none" stroke="hsl(217, 91%, 60%)" strokeWidth="1.5"
+                  points={[5,16,20,28,25,30,28,32,38,42,48,55].map((v, i) => `${25 + i * (210 / 11)},${75 - (v / 60) * 60}`).join(" ")}
+                />
+                {[5,16,20,28,25,30,28,32,38,42,48,55].map((v, i) => (
+                  <circle key={i} cx={25 + i * (210 / 11)} cy={75 - (v / 60) * 60} r="1.5" fill="hsl(217, 91%, 60%)" stroke="white" strokeWidth="0.5" />
+                ))}
+                {["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"].map((m, i) => (
+                  <text key={m} x={25 + i * (210 / 11)} y="83" textAnchor="middle" fill="#6b7280" fontSize="3.5">{m}</text>
+                ))}
+              </svg>
+            </div>
+
+            <div className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5">
+              <p className="text-[10px] font-semibold text-white mb-2">Application Funnel</p>
+              <div className="space-y-1.5">
+                {[
+                  { label: "Total Applications", value: 1250, pct: "100%" },
+                  { label: "Screening Passed", value: 720, pct: "57.6%" },
+                  { label: "Interview Invited", value: 480, pct: "38.4%" },
+                  { label: "Technical Assessment", value: 350, pct: "28.0%" },
+                  { label: "Final Interview", value: 220, pct: "17.6%" },
+                  { label: "Offer Extended", value: 180, pct: "14.4%" },
+                  { label: "Offer Accepted", value: 150, pct: "12.0%" },
+                ].map((f) => (
+                  <div key={f.label} className="flex items-center gap-2">
+                    <span className="text-[8px] text-gray-400 w-28 shrink-0">{f.label}</span>
+                    <div className="flex-1 h-3.5 bg-white/5 rounded-full overflow-hidden">
+                      <div className="h-full bg-primary/60 rounded-full flex items-center justify-center" style={{ width: f.pct }}>
+                        <span className="text-[6px] text-white font-bold">{f.value.toLocaleString()}</span>
+                      </div>
+                    </div>
+                    <span className="text-[8px] text-gray-500 w-8 text-right">{f.pct}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom row: Salary by Industry, Placement by Degree, Application Success */}
+          <div className="grid grid-cols-3 gap-2 mb-3">
+            <div className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5">
+              <p className="text-[10px] font-semibold text-white mb-2">Avg Salary by Industry</p>
+              <svg viewBox="0 0 150 80" className="w-full">
+                {[0, 25000, 50000, 75000, 100000].map((v, i) => (
+                  <g key={v}>
+                    <line x1="8" y1={70 - i * 14} x2="145" y2={70 - i * 14} stroke="rgba(255,255,255,0.05)" strokeWidth="0.5" />
+                    <text x="6" y={72 - i * 14} textAnchor="end" fill="#6b7280" fontSize="3">{v === 0 ? "0" : `${v/1000}k`}</text>
+                  </g>
+                ))}
+                {[
+                  { label: "Tech", value: 92 },
+                  { label: "Finance", value: 88 },
+                  { label: "Consulting", value: 82 },
+                  { label: "Healthcare", value: 72 },
+                  { label: "Education", value: 65 },
+                ].map((d, i) => {
+                  const barH = (d.value / 100) * 56;
+                  return (
+                    <g key={d.label}>
+                      <rect x={18 + i * 26} y={70 - barH} width="16" height={barH} fill="hsl(217, 91%, 40%)" rx="1.5" />
+                      <text x={26 + i * 26} y="77" textAnchor="middle" fill="#6b7280" fontSize="3">{d.label}</text>
+                    </g>
+                  );
+                })}
+              </svg>
+            </div>
+
+            <div className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5">
+              <p className="text-[10px] font-semibold text-white mb-2">Placement by Degree</p>
+              <svg viewBox="0 0 150 80" className="w-full">
+                {[0, 65, 130, 195, 260].map((v, i) => (
+                  <g key={v}>
+                    <line x1="8" y1={70 - i * 14} x2="145" y2={70 - i * 14} stroke="rgba(255,255,255,0.05)" strokeWidth="0.5" />
+                    <text x="6" y={72 - i * 14} textAnchor="end" fill="#6b7280" fontSize="3">{v}</text>
+                  </g>
+                ))}
+                {[
+                  { label: "CS", value: 245 },
+                  { label: "Eng", value: 220 },
+                  { label: "Biz", value: 105 },
+                  { label: "Science", value: 90 },
+                  { label: "Arts", value: 80 },
+                ].map((d, i) => {
+                  const barH = (d.value / 260) * 56;
+                  return (
+                    <g key={d.label}>
+                      <rect x={18 + i * 26} y={70 - barH} width="16" height={barH} fill={i < 2 ? "hsl(217, 91%, 35%)" : "hsl(217, 91%, 45%)"} rx="1.5" />
+                      <text x={26 + i * 26} y="77" textAnchor="middle" fill="#6b7280" fontSize="3">{d.label}</text>
+                    </g>
+                  );
+                })}
+              </svg>
+            </div>
+
+            <div className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5">
+              <p className="text-[10px] font-semibold text-white mb-2">Application Success by Channel</p>
+              <div className="space-y-2">
+                {[
+                  { channel: "Career Portal", applied: 1820, interviews: 680, success: "37%" },
+                  { channel: "Referrals", applied: 480, interviews: 290, success: "60%" },
+                  { channel: "Job Fairs", applied: 720, interviews: 310, success: "43%" },
+                  { channel: "Direct Apply", applied: 1200, interviews: 380, success: "32%" },
+                  { channel: "LinkedIn", applied: 601, interviews: 160, success: "27%" },
+                ].map((c) => (
+                  <div key={c.channel}>
+                    <div className="flex items-center justify-between mb-0.5">
+                      <span className="text-[8px] text-white font-medium">{c.channel}</span>
+                      <span className="text-[8px] text-emerald-400 font-bold">{c.success} success</span>
+                    </div>
+                    <div className="h-1.5 bg-white/5 rounded-full overflow-hidden mb-0.5">
+                      <div className="h-full bg-gray-400/50 rounded-full" style={{ width: c.success }} />
+                    </div>
+                    <p className="text-[6px] text-gray-600">{c.applied} applied → {c.interviews} interviews</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Offer Conversion + Geographic Preferences */}
+          <div className="grid grid-cols-2 gap-2">
+            <div className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5">
+              <p className="text-[10px] font-semibold text-white mb-2">Offer Conversion by Industry</p>
+              <div className="space-y-1.5">
+                {[
+                  { industry: "Technology", pct: 68 },
+                  { industry: "Finance", pct: 55 },
+                  { industry: "Consulting", pct: 48 },
+                  { industry: "Healthcare", pct: 35 },
+                  { industry: "Education", pct: 22 },
+                ].map((d) => (
+                  <div key={d.industry} className="flex items-center gap-2">
+                    <span className="text-[8px] text-gray-400 w-16 shrink-0">{d.industry}</span>
+                    <div className="flex-1 h-2.5 bg-white/5 rounded-full overflow-hidden">
+                      <div className="h-full bg-primary rounded-full" style={{ width: `${d.pct}%` }} />
+                    </div>
+                    <span className="text-[8px] text-gray-400 w-6 text-right">{d.pct}%</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5">
+              <div className="flex items-center gap-1.5 mb-2">
+                <span className="text-[10px]">📍</span>
+                <p className="text-[10px] font-semibold text-white">Geographic Preferences</p>
+              </div>
+              <div className="grid grid-cols-6 gap-1.5">
+                {[
+                  { city: "London", count: 340 },
+                  { city: "Remote", count: 280 },
+                  { city: "New York", count: 195 },
+                  { city: "Bay Area", count: 160 },
+                  { city: "Berlin", count: 95 },
+                  { city: "Dublin", count: 88 },
+                ].map((g) => (
+                  <div key={g.city} className="bg-white/[0.03] border border-white/5 rounded-lg p-2 text-center">
+                    <p className="text-sm font-bold text-white">{g.count}</p>
+                    <p className="text-[7px] text-gray-500">{g.city}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </>
+      )}
+
+      {analyticsTab === "placements" && (
+        <>
+          {/* Placement Timeline */}
+          <div className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5 mb-3">
+            <div className="flex items-center gap-1.5 mb-3">
+              <span className="text-[10px]">⏱</span>
+              <p className="text-[10px] font-semibold text-white">Placement Timeline</p>
+            </div>
+            <div className="flex items-center justify-around mb-4">
+              {[
+                { value: 18, label: "Fastest", sub: "days to placement", color: "bg-emerald-500", textColor: "text-emerald-400" },
+                { value: 23, label: "Average", sub: "days overall", color: "bg-primary", textColor: "text-primary" },
+                { value: 45, label: "Slowest", sub: "maximum days", color: "bg-amber-500", textColor: "text-amber-400" },
+              ].map((s) => (
+                <div key={s.label} className="flex flex-col items-center">
+                  <div className={`w-12 h-12 rounded-full ${s.color} flex items-center justify-center mb-1.5`}>
+                    <span className="text-base font-bold text-white">{s.value}</span>
+                  </div>
+                  <span className={`text-[9px] font-semibold ${s.textColor}`}>{s.label}</span>
+                  <span className="text-[7px] text-gray-500">{s.sub}</span>
+                </div>
+              ))}
+            </div>
+            <div className="flex h-2.5 rounded-full overflow-hidden mb-2">
+              <div className="bg-emerald-500" style={{ width: "35%" }} />
+              <div className="bg-blue-500" style={{ width: "48%" }} />
+              <div className="bg-amber-500" style={{ width: "17%" }} />
+            </div>
+            <div className="flex items-center justify-between">
+              {[
+                { color: "bg-emerald-500", label: "0-15 days", pct: "35%" },
+                { color: "bg-blue-500", label: "16-30 days", pct: "48%" },
+                { color: "bg-amber-500", label: "31+ days", pct: "17%" },
+              ].map((d) => (
+                <div key={d.label} className="flex items-center gap-1">
+                  <div className={`w-2 h-2 rounded-full ${d.color}`} />
+                  <span className="text-[8px] text-gray-500">{d.label}</span>
+                  <span className="text-[8px] text-emerald-400 font-medium">{d.pct}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Top Employers + Global Placement Map */}
+          <div className="grid grid-cols-2 gap-2">
+            <div className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5">
+              <p className="text-[10px] font-semibold text-white mb-2">Top Employers</p>
+              <div className="grid grid-cols-4 gap-2 pb-1 border-b border-white/5 mb-1">
+                <span className="text-[7px] text-gray-500 font-semibold">Employer</span>
+                <span className="text-[7px] text-gray-500 font-semibold">Industry</span>
+                <span className="text-[7px] text-gray-500 font-semibold text-center">Hires</span>
+                <span className="text-[7px] text-gray-500 font-semibold text-center">Rating</span>
+              </div>
+              {[
+                { name: "Google", industry: "Technology", hires: 45, rating: 4.8 },
+                { name: "Goldman Sachs", industry: "Finance", hires: 32, rating: 4.5 },
+                { name: "McKinsey", industry: "Consulting", hires: 28, rating: 4.7 },
+                { name: "Amazon", industry: "Technology", hires: 25, rating: 4.3 },
+                { name: "Deloitte", industry: "Consulting", hires: 22, rating: 4.4 },
+              ].map((e) => (
+                <div key={e.name} className="grid grid-cols-4 gap-2 py-1.5 border-b border-white/[0.03] items-center">
+                  <span className="text-[9px] text-white font-medium">{e.name}</span>
+                  <span className="text-[9px] text-gray-500">{e.industry}</span>
+                  <span className="text-[9px] text-white text-center font-medium">{e.hires}</span>
+                  <div className="flex items-center justify-center gap-0.5">
+                    <span className="text-[9px] text-amber-400">★</span>
+                    <span className="text-[9px] text-white font-medium">{e.rating}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5">
+              <div className="flex items-center gap-1.5 mb-2">
+                <span className="text-[10px]">📍</span>
+                <p className="text-[10px] font-semibold text-white">Global Placement Map</p>
+              </div>
+              <div className="relative w-full aspect-[2/1] bg-white/[0.02] rounded-lg overflow-hidden">
+                {/* Simplified bubble map */}
+                <svg viewBox="0 0 300 150" className="w-full h-full">
+                  {/* Subtle continent outlines */}
+                  <ellipse cx="80" cy="60" rx="40" ry="30" fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="0.5" />
+                  <ellipse cx="150" cy="55" rx="30" ry="35" fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="0.5" />
+                  <ellipse cx="220" cy="65" rx="35" ry="30" fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="0.5" />
+                  {/* Placement bubbles */}
+                  {[
+                    { cx: 60, cy: 45, r: 8, label: "SF", count: 15, color: "hsl(217, 91%, 60%)" },
+                    { cx: 85, cy: 40, r: 10, label: "NY", count: 12, color: "hsl(160, 60%, 45%)" },
+                    { cx: 135, cy: 35, r: 7, label: "LDN", count: 8, color: "hsl(30, 80%, 55%)" },
+                    { cx: 150, cy: 40, r: 5, label: "BER", count: 6, color: "hsl(350, 65%, 55%)" },
+                    { cx: 175, cy: 55, r: 4, label: "DXB", count: 5, color: "hsl(40, 80%, 55%)" },
+                    { cx: 240, cy: 50, r: 6, label: "SG", count: 7, color: "hsl(280, 50%, 55%)" },
+                  ].map((b, i) => (
+                    <g key={i}>
+                      <circle cx={b.cx} cy={b.cy} r={b.r * 2} fill={b.color} opacity="0.15" />
+                      <circle cx={b.cx} cy={b.cy} r={b.r} fill={b.color} opacity="0.6" />
+                      <text x={b.cx} y={b.cy + 1} textAnchor="middle" dominantBaseline="middle" fill="white" fontSize="4" fontWeight="bold">{b.count}</text>
+                    </g>
+                  ))}
+                </svg>
+              </div>
+              <div className="flex items-center justify-center gap-3 mt-2 flex-wrap">
+                {[
+                  { color: "bg-blue-500", label: "San Francisco (15)" },
+                  { color: "bg-emerald-500", label: "New York (12)" },
+                  { color: "bg-orange-500", label: "London (8)" },
+                  { color: "bg-rose-500", label: "Berlin (6)" },
+                  { color: "bg-amber-500", label: "Dubai (5)" },
+                  { color: "bg-purple-500", label: "Singapore (7)" },
+                ].map((l) => (
+                  <div key={l.label} className="flex items-center gap-1">
+                    <div className={`w-1.5 h-1.5 rounded-full ${l.color}`} />
+                    <span className="text-[7px] text-gray-500">{l.label}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </>
+      )}
+
+      {analyticsTab === "engagement" && (
+        <>
+          {/* Engagement KPIs */}
+          <div className="grid grid-cols-4 gap-2 mb-3">
+            {[
+              { label: "Weekly Active Students", value: "710", sub: "-5% vs last week", icon: "📊", subColor: "text-rose-400" },
+              { label: "At-Risk (Burnout)", value: "157", sub: "12% of cohort", icon: "🔥", subColor: "text-rose-400" },
+              { label: "Resume Issues", value: "512", sub: "40% of students", icon: "⚠️", subColor: "text-amber-400" },
+              { label: "CVs Created This Month", value: "490", sub: "+32% vs last month", icon: "📄", subColor: "text-emerald-400" },
+            ].map((s) => (
+              <div key={s.label} className="bg-white/[0.03] border border-white/5 rounded-lg px-2.5 py-2">
+                <div className="w-6 h-6 rounded-lg bg-white/[0.06] flex items-center justify-center mb-1.5">
+                  <span className="text-xs">{s.icon}</span>
+                </div>
+                <p className="text-base font-bold text-white">{s.value}</p>
+                <p className="text-[8px] text-gray-400 mb-0.5">{s.label}</p>
+                <p className={`text-[8px] font-medium ${s.subColor}`}>{s.sub}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Weekly Engagement Trend + CV Creation Trend */}
+          <div className="grid grid-cols-2 gap-2 mb-3">
+            <div className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5">
+              <p className="text-[10px] font-semibold text-white mb-2">Weekly Engagement Trend</p>
+              <svg viewBox="0 0 220 80" className="w-full">
+                {[0, 350, 700, 1050, 1400].map((v, i) => (
+                  <g key={v}>
+                    <line x1="25" y1={70 - i * 14} x2="215" y2={70 - i * 14} stroke="rgba(255,255,255,0.05)" strokeWidth="0.5" />
+                    <text x="22" y={72 - i * 14} textAnchor="end" fill="#6b7280" fontSize="3.5">{v}</text>
+                  </g>
+                ))}
+                {/* Active Students area */}
+                <polygon
+                  points={`35,70 ${[700,750,800,850,780,720,690,710].map((v, i) => `${35 + i * 25},${70 - (v / 1400) * 56}`).join(" ")} 210,70`}
+                  fill="hsl(217, 91%, 60%, 0.1)"
+                />
+                <polyline fill="none" stroke="hsl(217, 91%, 60%)" strokeWidth="1.2"
+                  points={[700,750,800,850,780,720,690,710].map((v, i) => `${35 + i * 25},${70 - (v / 1400) * 56}`).join(" ")}
+                />
+                {/* Total Logins line */}
+                <polyline fill="none" stroke="hsl(160, 60%, 50%)" strokeWidth="1.2"
+                  points={[1050,1100,1200,1150,1080,1000,950,1020].map((v, i) => `${35 + i * 25},${70 - (v / 1400) * 56}`).join(" ")}
+                />
+                {["W1","W2","W3","W4","W5","W6","W7","W8"].map((w, i) => (
+                  <text key={w} x={35 + i * 25} y="78" textAnchor="middle" fill="#6b7280" fontSize="3.5">{w}</text>
+                ))}
+              </svg>
+              <div className="flex items-center gap-3 mt-1 justify-center">
+                <div className="flex items-center gap-1"><div className="w-3 h-[2px] bg-primary rounded" /><span className="text-[7px] text-gray-500">Active Students</span></div>
+                <div className="flex items-center gap-1"><div className="w-3 h-[2px] bg-emerald-500 rounded" /><span className="text-[7px] text-gray-500">Total Logins</span></div>
+              </div>
+            </div>
+
+            <div className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5">
+              <p className="text-[10px] font-semibold text-white mb-2">CV Creation Trend</p>
+              <svg viewBox="0 0 220 80" className="w-full">
+                {[0, 150, 300, 450, 600].map((v, i) => (
+                  <g key={v}>
+                    <line x1="25" y1={70 - i * 14} x2="215" y2={70 - i * 14} stroke="rgba(255,255,255,0.05)" strokeWidth="0.5" />
+                    <text x="22" y={72 - i * 14} textAnchor="end" fill="#6b7280" fontSize="3.5">{v}</text>
+                  </g>
+                ))}
+                {[80,150,200,280,310,320,350,340,360,350,380,520].map((v, i) => {
+                  const barH = (v / 600) * 56;
+                  return (
+                    <rect key={i} x={28 + i * 15.5} y={70 - barH} width="10" height={barH} fill="hsl(217, 91%, 35%)" rx="1" />
+                  );
+                })}
+                {["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"].map((m, i) => (
+                  <text key={m} x={33 + i * 15.5} y="78" textAnchor="middle" fill="#6b7280" fontSize="3">{m}</text>
+                ))}
+              </svg>
+            </div>
+          </div>
+
+          {/* Resume Diagnostics + Burnout & Inactivity */}
+          <div className="grid grid-cols-2 gap-2">
+            <div className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5">
+              <div className="flex items-center gap-1.5 mb-1">
+                <span className="text-[10px]">📊</span>
+                <p className="text-[10px] font-semibold text-white">Resume Diagnostics</p>
+              </div>
+              <p className="text-[7px] text-gray-600 mb-2">Students flagged based on interview-to-application and offer-to-interview rates</p>
+              <div className="space-y-2">
+                {[
+                  { label: "On Track", count: 486, pct: "38%", color: "bg-emerald-500" },
+                  { label: "Resume Issue", count: 512, pct: "40%", color: "bg-rose-500" },
+                  { label: "Interview Issue", count: 286, pct: "22%", color: "bg-amber-500" },
+                ].map((d) => (
+                  <div key={d.label}>
+                    <div className="flex items-center justify-between mb-0.5">
+                      <div className="flex items-center gap-1.5">
+                        <div className={`w-2 h-2 rounded-full ${d.color}`} />
+                        <span className="text-[9px] text-gray-300">{d.label}</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <span className="text-[9px] text-white font-bold">{d.count}</span>
+                        <span className="text-[8px] text-gray-500">{d.pct}</span>
+                      </div>
+                    </div>
+                    <div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
+                      <div className={`h-full ${d.color} rounded-full`} style={{ width: d.pct }} />
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-2 bg-white/[0.02] border border-white/5 rounded-md p-2 space-y-0.5">
+                <p className="text-[7px] text-gray-400"><span className="font-semibold text-rose-400">Resume Issue:</span> Low interview rate — CV may need improvement</p>
+                <p className="text-[7px] text-gray-400"><span className="font-semibold text-amber-400">Interview Issue:</span> Gets interviews but no offers — needs prep</p>
+              </div>
+            </div>
+
+            <div className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5">
+              <div className="flex items-center gap-1.5 mb-1">
+                <span className="text-[10px]">🔥</span>
+                <p className="text-[10px] font-semibold text-white">Burnout & Inactivity Signals</p>
+              </div>
+              <p className="text-[7px] text-gray-600 mb-2">Students grouped by activity pattern over the last 8 weeks</p>
+              <div className="space-y-2">
+                {[
+                  { label: "Healthy", count: 640, pct: "50%", color: "bg-emerald-500" },
+                  { label: "Low Activity", count: 256, pct: "20%", color: "bg-amber-500" },
+                  { label: "Declining", count: 231, pct: "18%", color: "bg-orange-500" },
+                  { label: "At Risk", count: 157, pct: "12%", color: "bg-rose-500" },
+                ].map((d) => (
+                  <div key={d.label}>
+                    <div className="flex items-center justify-between mb-0.5">
+                      <div className="flex items-center gap-1.5">
+                        <div className={`w-2 h-2 rounded-full ${d.color}`} />
+                        <span className="text-[9px] text-gray-300">{d.label}</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <span className="text-[9px] text-white font-bold">{d.count}</span>
+                        <span className="text-[8px] text-gray-500">{d.pct}</span>
+                      </div>
+                    </div>
+                    <div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
+                      <div className={`h-full ${d.color} rounded-full`} style={{ width: d.pct }} />
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-2 bg-amber-500/10 border border-amber-500/20 rounded-md p-2 flex items-center gap-1.5">
+                <span className="text-[10px]">⚡</span>
+                <p className="text-[7px] text-amber-400 font-medium">157 students show burnout signals and may need outreach</p>
+              </div>
+            </div>
+          </div>
+        </>
+      )}
     </>
   );
 };
