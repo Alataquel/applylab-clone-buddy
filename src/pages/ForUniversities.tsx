@@ -363,39 +363,10 @@ const ForUniversities = () => {
                 <div className="bg-secondary rounded-lg p-4">
                   {/* Rubric template mockup */}
                   <div className="flex items-center gap-2 mb-4">
-                    <Sliders className="w-3.5 h-3.5 text-primary" />
+                    <ClipboardCheck className="w-3.5 h-3.5 text-primary" />
                     <p className="text-[10px] text-muted-foreground uppercase tracking-wider">Business Admin 2026 — Rubric Template</p>
                   </div>
-                  <div className="space-y-3 mb-5">
-                    {[
-                      { criterion: "Quantified impact statements", weight: 30 },
-                      { criterion: "Relevant skills & keywords", weight: 25 },
-                      { criterion: "Formatting & structure", weight: 20 },
-                      { criterion: "Tailored to target sector", weight: 15 },
-                      { criterion: "Extracurriculars & leadership", weight: 10 },
-                    ].map((r, i) => (
-                      <motion.div
-                        key={r.criterion}
-                        initial={{ opacity: 0, x: -16 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.4, delay: 0.3 + i * 0.08 }}
-                        className="flex items-center gap-3"
-                      >
-                        <span className="text-xs text-foreground flex-1">{r.criterion}</span>
-                        <div className="w-24 h-1.5 bg-muted rounded-full overflow-hidden">
-                          <motion.div
-                            className="h-full rounded-full bg-primary/60"
-                            initial={{ width: 0 }}
-                            whileInView={{ width: `${r.weight * 3}%` }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.8, delay: 0.4 + i * 0.1 }}
-                          />
-                        </div>
-                        <span className="text-[10px] text-muted-foreground w-8 text-right">{r.weight}%</span>
-                      </motion.div>
-                    ))}
-                  </div>
+                  <RubricDonut variant="themed" />
                   {/* Student result preview */}
                   <div className="border-t border-border/30 pt-4">
                     <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-3">Student result preview</p>
