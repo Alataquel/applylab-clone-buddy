@@ -170,10 +170,10 @@ const ForStudents = () => {
               <p className="text-xs uppercase tracking-widest text-primary font-semibold mb-3">Feature 02</p>
               <h2 className="text-3xl lg:text-4xl font-bold text-foreground tracking-tight mb-4">Resume Lab</h2>
               <p className="text-base text-muted-foreground/80 font-medium mb-3">
-                Real-time feedback to get you past the bots
+                Real-time feedback to strengthen every application
               </p>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                Build ATS-optimised resumes with instant feedback on formatting, keywords, and impact bullets. Our AI scores your resume against each specific job description.
+                Build optimised resumes with instant feedback on formatting, keywords, and impact bullets. Our AI scores your resume against each specific job description.
               </p>
             </div>
           </motion.div>
