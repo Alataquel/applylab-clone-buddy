@@ -420,6 +420,8 @@ const AnalyticsContent = () => {
     { label: "Offer Received", value: 648, pct: "13.4%" },
   ];
 
+  const [hoveredPin, setHoveredPin] = useState<number | null>(null);
+
   return (
     <>
       {/* Stat Cards - 2 rows of 3 */}
@@ -427,7 +429,7 @@ const AnalyticsContent = () => {
         {statCards.slice(0, 3).map((s) => (
           <div key={s.label} className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5">
             <div className="w-7 h-7 rounded-lg bg-white/[0.06] flex items-center justify-center mb-2">{s.icon}</div>
-            <div className="w-5 h-[2px] bg-primary/40 rounded mb-1.5" />
+            <span className="text-lg font-bold text-white">{s.value}</span>
             <p className="text-[10px] text-gray-400 mb-0.5">{s.label}</p>
             <p className="text-[9px] text-emerald-400 font-medium">{s.change}</p>
           </div>
@@ -437,7 +439,7 @@ const AnalyticsContent = () => {
         {statCards.slice(3).map((s) => (
           <div key={s.label} className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5">
             <div className="w-7 h-7 rounded-lg bg-white/[0.06] flex items-center justify-center mb-2">{s.icon}</div>
-            <div className="w-5 h-[2px] bg-primary/40 rounded mb-1.5" />
+            <span className="text-lg font-bold text-white">{s.value}</span>
             <p className="text-[10px] text-gray-400 mb-0.5">{s.label}</p>
             <p className="text-[9px] text-emerald-400 font-medium">{s.change}</p>
           </div>
