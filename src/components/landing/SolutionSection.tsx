@@ -64,18 +64,14 @@ const SolutionSection = ({ variant = "dark" }: SolutionSectionProps) => {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.15 + i * 0.12 }}
-              className={`rounded-2xl p-7 hover:-translate-y-1 transition-transform duration-300 group ${
-                isLight
-                  ? "bg-gray-50 border border-gray-100"
-                  : "bg-white/[0.03] border border-white/[0.06]"
-              }`}
+              className="bg-white/[0.03] border border-white/[0.06] rounded-2xl p-7 hover:-translate-y-1 transition-transform duration-300 group"
             >
               <div className={`w-10 h-10 rounded-xl ${s.bgColor} flex items-center justify-center mb-5`}>
                 <s.icon className={`w-5 h-5 ${s.color}`} />
               </div>
               <p className="text-[10px] uppercase tracking-widest text-primary font-semibold mb-2">Layer {s.number}</p>
-              <h3 className={`text-xl font-bold mb-3 ${isLight ? "text-gray-900" : "text-white"}`}>{s.title}</h3>
-              <p className={`text-sm leading-relaxed ${isLight ? "text-gray-500" : "text-gray-400"}`}>{s.description}</p>
+              <h3 className="text-xl font-bold text-white mb-3">{s.title}</h3>
+              <p className="text-sm text-gray-400 leading-relaxed">{s.description}</p>
             </motion.div>
           ))}
         </div>
