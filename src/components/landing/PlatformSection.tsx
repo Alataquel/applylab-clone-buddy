@@ -16,7 +16,7 @@ const PlatformSection = () => {
           className="mb-16"
         >
           <p className="text-xs uppercase tracking-widest text-primary font-medium mb-3">Platform</p>
-          <h2 className="text-3xl lg:text-4xl font-bold text-foreground tracking-tight">Built for the whole career journey.</h2>
+          <h2 className="text-3xl lg:text-4xl font-bold text-foreground tracking-tight">End-to-end career outcomes, one system.</h2>
         </motion.div>
 
         <div className="grid lg:grid-cols-3 gap-6">
