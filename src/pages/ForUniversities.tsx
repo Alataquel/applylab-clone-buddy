@@ -241,14 +241,27 @@ const ForUniversities = () => {
                     { name: "Finance", width: 78 },
                     { name: "Business Admin", width: 74 },
                     { name: "Marketing", width: 61 },
-                  ].map((b) => (
-                    <div key={b.name} className="flex items-center gap-3">
+                  ].map((b, i) => (
+                    <motion.div
+                      key={b.name}
+                      initial={{ opacity: 0, x: -10 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: 0.5 + i * 0.1 }}
+                      className="flex items-center gap-3"
+                    >
                       <span className="text-[10px] text-white/40 w-24 text-right">{b.name}</span>
                       <div className="flex-1 h-2 bg-white/10 rounded-full overflow-hidden">
-                        <div className="h-full bg-primary/60 rounded-full" style={{ width: `${b.width}%` }} />
+                        <motion.div
+                          className="h-full bg-primary/60 rounded-full"
+                          initial={{ width: 0 }}
+                          whileInView={{ width: `${b.width}%` }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.8, delay: 0.6 + i * 0.1, ease: "easeOut" }}
+                        />
                       </div>
                       <span className="text-[10px] text-white w-8">{b.width}%</span>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
               </div>
