@@ -94,14 +94,17 @@ const ForUniversities = () => {
           >
             {[
               {
+                icon: Globe,
                 title: "See what's happening",
                 desc: "Real-time visibility into student career activity — applications, interviews, and placements.",
               },
               {
+                icon: AlertTriangle,
                 title: "Spot who needs help",
                 desc: "Early-warning signals flag disengaged students so counsellors can intervene before it's too late.",
               },
               {
+                icon: TrendingUp,
                 title: "Prove your impact",
                 desc: "Auto-generated reports with placement rates, employer data, and outcome trends — no more spreadsheets.",
               },
@@ -114,6 +117,7 @@ const ForUniversities = () => {
                 transition={{ duration: 0.4, delay: 0.15 + i * 0.1 }}
                 className="bg-card rounded-xl p-6 border border-border/30 shadow-precision"
               >
+                <item.icon className="w-5 h-5 text-primary mb-3" />
                 <h3 className="text-sm font-semibold text-foreground mb-1.5">{item.title}</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
               </motion.div>
