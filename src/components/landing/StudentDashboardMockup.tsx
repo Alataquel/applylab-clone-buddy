@@ -664,61 +664,72 @@ const StudentDashboardMockup = () => {
           <span className="text-[10px] font-semibold text-foreground">Student Portal</span>
         </div>
         <div className="flex items-center gap-1">
-          {navIcons.map((nav, i) => (
-            <div key={nav.label} className="relative">
-              <button
-                onClick={() => {
-                  if (nav.icon === "file") {
-                    setResumeDropdownOpen(!resumeDropdownOpen);
-                  } else {
-                    setActiveTab(i);
-                    setResumeDropdownOpen(false);
-                  }
-                }}
-                className={`w-7 h-7 rounded-md flex items-center justify-center text-[10px] transition-colors ${
-                  activeTab === i
-                    ? "bg-primary/10 text-primary border border-primary/30"
-                    : "text-muted-foreground hover:bg-secondary"
-                }`}
-                title={nav.label}
-              >
-                {nav.icon === "grid" && "⊞"}
-                {nav.icon === "clipboard" && "📋"}
-                {nav.icon === "file" && (
-                  <span className="flex items-center gap-0.5">📄<span className="text-[6px]">▾</span></span>
+          {navIcons.map((nav, i) => {
+            const IconComp = nav.icon;
+            const isResume = !!nav.hasDropdown;
+            return (
+              <div key={nav.label} className="relative">
+                <button
+                  onClick={() => {
+                    if (isResume) {
+                      setResumeDropdownOpen(!resumeDropdownOpen);
+                    } else {
+                      setActiveTab(i);
+                      setResumeDropdownOpen(false);
+                    }
+                  }}
+                  className={`w-7 h-7 rounded-md flex items-center justify-center transition-colors ${
+                    activeTab === i
+                      ? "bg-primary/10 text-primary border border-primary/30"
+                      : "text-muted-foreground hover:bg-secondary"
+                  }`}
+                  title={nav.label}
+                >
+                  {isResume ? (
+                    <span className="flex items-center gap-0">
+                      <IconComp className="w-3.5 h-3.5" strokeWidth={1.8} />
+                      <ChevronDown className="w-2 h-2" strokeWidth={2} />
+                    </span>
+                  ) : (
+                    <IconComp className="w-3.5 h-3.5" strokeWidth={1.8} />
+                  )}
+                </button>
+                {isResume && resumeDropdownOpen && (
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1 bg-[hsl(0,0%,100%)] border border-[hsl(214.3,31.8%,91.4%)] rounded-md shadow-lg z-20 min-w-[140px]">
+                    {([
+                      ["grader", "Resume Grader"],
+                      ["builder", "Resume Builder"],
+                      ["coverLetters", "Cover Letter Maker"],
+                    ] as const).map(([key, label]) => (
+                      <button
+                        key={key}
+                        onClick={() => {
+                          setResumeSubTab(key);
+                          setActiveTab(2);
+                          setResumeDropdownOpen(false);
+                        }}
+                        className={`block w-full text-left px-3 py-1.5 text-[8px] transition-colors ${
+                          activeTab === 2 && resumeSubTab === key
+                            ? "bg-primary/10 text-primary font-semibold"
+                            : "text-foreground hover:bg-secondary"
+                        }`}
+                      >
+                        {label}
+                      </button>
+                    ))}
+                  </div>
                 )}
-                {nav.icon === "briefcase" && "💼"}
-                {nav.icon === "calendar" && "📅"}
-                {nav.icon === "video" && "📹"}
-              </button>
-              {/* Resume dropdown */}
-              {nav.icon === "file" && resumeDropdownOpen && (
-                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1 bg-[hsl(0,0%,100%)] border border-[hsl(214.3,31.8%,91.4%)] rounded-md shadow-lg z-20 min-w-[140px]">
-                  {([
-                    ["grader", "Resume Grader"],
-                    ["builder", "Resume Builder"],
-                    ["coverLetters", "Cover Letter Maker"],
-                  ] as const).map(([key, label]) => (
-                    <button
-                      key={key}
-                      onClick={() => {
-                        setResumeSubTab(key);
-                        setActiveTab(2);
-                        setResumeDropdownOpen(false);
-                      }}
-                      className={`block w-full text-left px-3 py-1.5 text-[8px] transition-colors ${
-                        activeTab === 2 && resumeSubTab === key
-                          ? "bg-primary/10 text-primary font-semibold"
-                          : "text-foreground hover:bg-secondary"
-                      }`}
-                    >
-                      {label}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
-          ))}
+              </div>
+            );
+          })}
+          {/* Extra icons like in the reference */}
+          <div className="w-px h-4 bg-border mx-1" />
+          <button className="w-7 h-7 rounded-md flex items-center justify-center text-muted-foreground hover:bg-secondary">
+            <User className="w-3.5 h-3.5" strokeWidth={1.8} />
+          </button>
+          <button className="w-7 h-7 rounded-md flex items-center justify-center text-muted-foreground hover:bg-secondary">
+            <Settings className="w-3.5 h-3.5" strokeWidth={1.8} />
+          </button>
         </div>
         <div className="flex items-center gap-1.5">
           <span className="text-[8px] text-muted-foreground">🌐 English ▾</span>
