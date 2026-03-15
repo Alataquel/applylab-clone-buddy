@@ -2157,9 +2157,8 @@ const DashboardMockup = () => {
       case 1: return <StudentsContent onSelectStudent={setSelectedStudent} />;
       case 2: return <AnalyticsContent />;
       case 3: return <QualificationInsightsContent />;
-      case 4: return <MarketInsightsContent />;
-      case 5: return <ResumeTemplatesContent onOpenEditor={() => setShowTemplateEditor(true)} />;
-      case 6: return <JobEventPostingsContent onSelectPosting={setSelectedPosting} />;
+      case 4: return <ResumeTemplatesContent onOpenEditor={() => setShowTemplateEditor(true)} />;
+      case 5: return <JobEventPostingsContent onSelectPosting={setSelectedPosting} />;
       default: return <OverviewContent />;
     }
   };
