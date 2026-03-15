@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
 import Navbar from "@/components/landing/Navbar";
 import Footer from "@/components/landing/Footer";
-import { ArrowRight, FileText, BarChart3, Search, Calendar, UserCheck, ExternalLink, CheckCircle, AlertCircle } from "lucide-react";
+import StudentDashboardMockup from "@/components/landing/StudentDashboardMockup";
+import { ArrowRight, FileText, BarChart3, Search, Calendar, UserCheck, ExternalLink, CheckCircle, AlertCircle, Monitor } from "lucide-react";
 
 const ForStudents = () => {
   return (
@@ -355,6 +356,38 @@ const ForStudents = () => {
             </div>
           </motion.div>
 
+        </div>
+      </section>
+
+      {/* Interactive Demo */}
+      <section className="py-20 px-6 lg:px-12 bg-background">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-center mb-10"
+          >
+            <div className="inline-flex items-center gap-2 bg-primary/10 text-primary rounded-full px-4 py-1.5 text-xs font-semibold mb-4">
+              <Monitor className="w-3.5 h-3.5" />
+              Interactive Demo
+            </div>
+            <h2 className="text-2xl lg:text-3xl font-bold text-foreground tracking-tight mb-3">
+              Experience the student portal.
+            </h2>
+            <p className="text-sm text-muted-foreground max-w-xl mx-auto leading-relaxed">
+              Explore the full student experience — browse jobs, build your resume, track applications, discover events, and book advisor meetings.
+            </p>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6 }}
+          >
+            <StudentDashboardMockup />
+          </motion.div>
         </div>
       </section>
 
