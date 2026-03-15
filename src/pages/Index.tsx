@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import GridBackground from "@/components/landing/GridBackground";
 import Navbar from "@/components/landing/Navbar";
 import HeroSection from "@/components/landing/HeroSection";
 import CompanyMarquee from "@/components/landing/CompanyMarquee";
