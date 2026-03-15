@@ -40,8 +40,8 @@ const FAQSection = () => {
           className="mb-12"
         >
           <p className="text-xs uppercase tracking-widest text-primary font-medium mb-3">FAQ</p>
-          <h2 className="text-3xl lg:text-4xl font-bold text-foreground tracking-tight mb-3">Common questions.</h2>
-          <p className="text-sm text-muted-foreground">
+          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 tracking-tight mb-3">Common questions.</h2>
+          <p className="text-sm text-gray-500">
             Can't find what you're looking for?{" "}
             <a href="#" className="text-primary hover:underline">Contact support →</a>
           </p>
