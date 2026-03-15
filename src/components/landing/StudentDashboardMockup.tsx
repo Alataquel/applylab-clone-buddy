@@ -1569,7 +1569,6 @@ const StudentDashboardMockup = () => {
   };
 
   return (
-    <div className="origin-top" style={{ transform: "scale(1.15)", transformOrigin: "top center" }}>
     <div
       className="rounded-xl overflow-hidden shadow-precision-lg border border-gray-200 relative"
       style={{
