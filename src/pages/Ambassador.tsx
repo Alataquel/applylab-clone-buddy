@@ -220,7 +220,7 @@ const Ambassador = () => {
               >
                 {/* Connector line */}
                 {i < steps.length - 1 && (
-                  <div className="absolute left-[11px] top-[48px] bottom-0 w-px bg-border" />
+                  <div className="absolute left-[11px] top-[48px] bottom-0 w-px bg-gray-200" />
                 )}
                 <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5 relative z-10">
                   <span className="text-[9px] text-primary font-bold">{s.step}</span>
