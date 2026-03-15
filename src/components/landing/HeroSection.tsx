@@ -69,6 +69,7 @@ const HeroSection = () => {
           className="relative"
         >
           <DashboardMockup />
+          <p className="text-center text-xs text-muted-foreground mt-3 animate-pulse">👆 Click around — this dashboard is interactive</p>
 
           {/* Floating card - Placement rate */}
           <motion.div
