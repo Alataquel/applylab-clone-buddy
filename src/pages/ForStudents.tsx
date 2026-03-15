@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import GridBackground from "@/components/landing/GridBackground";
 import Navbar from "@/components/landing/Navbar";
 import Footer from "@/components/landing/Footer";
+import SolutionSection from "@/components/landing/SolutionSection";
 import StudentDashboardMockup from "@/components/landing/StudentDashboardMockup";
 import { ArrowRight, FileText, BarChart3, Search, Calendar, UserCheck, ExternalLink, CheckCircle, AlertCircle, Monitor } from "lucide-react";
 
@@ -49,7 +50,9 @@ const ForStudents = () => {
         </div>
       </section>
 
-      {/* Interactive Demo - moved to top */}
+      <SolutionSection variant="light" />
+
+      {/* Interactive Demo */}
       <section className="py-20 px-6 lg:px-12 bg-background">
         <div className="max-w-7xl mx-auto">
           <motion.div
