@@ -80,7 +80,7 @@ const ForUniversities = () => {
             className="mb-12"
           >
             <p className="text-xs uppercase tracking-widest text-primary font-medium mb-3">The platform</p>
-            <h2 className="text-2xl lg:text-3xl font-bold text-foreground tracking-tight">Your institutional dashboard.</h2>
+            <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 tracking-tight">Your institutional dashboard.</h2>
           </motion.div>
 
           <div className="space-y-8">
