@@ -42,8 +42,8 @@ const CountUpStat = ({ config, isInView, delay }: { config: typeof statConfig[0]
       transition={{ duration: 0.5, delay, ease: [0.2, 0, 0, 1] }}
       className="text-center"
     >
-      <p className="text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight">{display}</p>
-      <p className="text-sm text-gray-500 mt-2">{config.label}</p>
+      <p className="text-4xl lg:text-5xl font-bold tracking-tight text-[hsl(230,40%,11%)]">{display}</p>
+      <p className="text-sm mt-2 text-[hsl(215,16%,47%)]">{config.label}</p>
     </motion.div>
   );
 };
