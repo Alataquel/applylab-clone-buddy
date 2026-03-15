@@ -17,10 +17,10 @@ const itemVariants = {
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex flex-col justify-center pt-28 pb-16 px-4 lg:px-8 overflow-hidden">
+    <section className="relative min-h-screen flex flex-col justify-center pt-36 lg:pt-44 pb-16 px-4 lg:px-8 overflow-hidden">
       <div className="max-w-[110rem] w-full mx-auto">
         {/* Top: headline + CTA centered */}
-        <motion.div variants={containerVariants} initial="hidden" animate="visible" className="text-center mb-10 space-y-5">
+        <motion.div variants={containerVariants} initial="hidden" animate="visible" className="text-center mb-12 space-y-5">
           <motion.div variants={itemVariants} className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
             <span className="w-2 h-2 rounded-full bg-emerald-500" />
             Now in beta · Partnering with universities across Europe
@@ -71,6 +71,16 @@ const HeroSection = () => {
           className="relative"
         >
           <DashboardMockup />
+
+          {/* Demo note */}
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.2 }}
+            className="text-center text-xs text-muted-foreground mt-4"
+          >
+            ↑ This is a live demo — click around and explore the tabs
+          </motion.p>
 
           {/* Floating card - Placement rate */}
           <motion.div
