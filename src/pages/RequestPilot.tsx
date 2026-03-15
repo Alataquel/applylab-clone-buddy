@@ -46,7 +46,7 @@ const RequestPilot = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-white">
       <Navbar />
 
       <section className="pt-32 pb-20 px-6 lg:px-12">
@@ -58,10 +58,10 @@ const RequestPilot = () => {
             className="mb-12"
           >
             <motion.p variants={itemVariants} className="text-xs uppercase tracking-widest text-primary font-medium mb-3">Get started</motion.p>
-            <motion.h1 variants={itemVariants} className="text-3xl lg:text-4xl font-bold text-foreground tracking-tight leading-[1.1] mb-4">
+            <motion.h1 variants={itemVariants} className="text-3xl lg:text-4xl font-bold text-gray-900 tracking-tight leading-[1.1] mb-4">
               Request a pilot.
             </motion.h1>
-            <motion.p variants={itemVariants} className="text-sm text-muted-foreground leading-relaxed max-w-md">
+            <motion.p variants={itemVariants} className="text-sm text-gray-500 leading-relaxed max-w-md">
               Whether you're a student looking for early access or a university exploring a partnership — we'd like to hear from you.
             </motion.p>
           </motion.div>
@@ -71,7 +71,7 @@ const RequestPilot = () => {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5 }}
-              className="bg-card rounded-xl p-10 shadow-precision text-center"
+              className="bg-gray-50 rounded-xl p-10 shadow-md text-center"
             >
               <motion.div
                 initial={{ scale: 0 }}
@@ -81,8 +81,8 @@ const RequestPilot = () => {
               >
                 <ArrowRight className="w-5 h-5 text-primary" />
               </motion.div>
-              <h2 className="text-xl font-semibold text-foreground mb-2">Request received.</h2>
-              <p className="text-sm text-muted-foreground">We'll be in touch within 48 hours.</p>
+              <h2 className="text-xl font-semibold text-gray-900 mb-2">Request received.</h2>
+              <p className="text-sm text-gray-500">We'll be in touch within 48 hours.</p>
             </motion.div>
           ) : (
             <motion.form
@@ -90,7 +90,7 @@ const RequestPilot = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
               onSubmit={handleSubmit}
-              className="bg-card rounded-xl p-8 shadow-precision space-y-6"
+              className="bg-gray-50 rounded-xl p-8 shadow-md border border-gray-100 space-y-6"
             >
               {/* Role selector */}
               <motion.div
@@ -98,7 +98,7 @@ const RequestPilot = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.3 }}
               >
-                <label className="text-xs text-muted-foreground font-medium mb-2 block">I am a</label>
+                <label className="text-xs text-gray-500 font-medium mb-2 block">I am a</label>
                 <div className="flex gap-2">
                   {[
                     { value: "student", label: "Student" },
@@ -112,7 +112,7 @@ const RequestPilot = () => {
                       className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                         form.role === r.value
                           ? "bg-primary/10 text-primary"
-                          : "bg-secondary text-muted-foreground hover:text-foreground"
+                          : "bg-gray-100 text-gray-500 hover:text-gray-900"
                       }`}
                       whileHover={{ scale: 1.04 }}
                       whileTap={{ scale: 0.96 }}
@@ -129,12 +129,12 @@ const RequestPilot = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.35 }}
               >
-                <label className="text-xs text-muted-foreground font-medium mb-2 block">Full name</label>
+                <label className="text-xs text-gray-500 font-medium mb-2 block">Full name</label>
                 <input
                   type="text"
                   value={form.name || ""}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  className="w-full bg-secondary border border-transparent rounded-lg px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-1 focus:ring-primary transition-all hover:border-primary/20"
+                  className="w-full bg-white border border-gray-200 rounded-lg px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-primary transition-all hover:border-primary/30"
                   placeholder="Your name"
                 />
                 {errors.name && <p className="text-xs text-destructive mt-1">{errors.name}</p>}
@@ -146,12 +146,12 @@ const RequestPilot = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.4 }}
               >
-                <label className="text-xs text-muted-foreground font-medium mb-2 block">Email</label>
+                <label className="text-xs text-gray-500 font-medium mb-2 block">Email</label>
                 <input
                   type="email"
                   value={form.email || ""}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
-                  className="w-full bg-secondary border border-transparent rounded-lg px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-1 focus:ring-primary transition-all hover:border-primary/20"
+                  className="w-full bg-white border border-gray-200 rounded-lg px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-primary transition-all hover:border-primary/30"
                   placeholder="you@university.edu"
                 />
                 {errors.email && <p className="text-xs text-destructive mt-1">{errors.email}</p>}
@@ -163,12 +163,12 @@ const RequestPilot = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.45 }}
               >
-                <label className="text-xs text-muted-foreground font-medium mb-2 block">Institution (optional)</label>
+                <label className="text-xs text-gray-500 font-medium mb-2 block">Institution (optional)</label>
                 <input
                   type="text"
                   value={form.institution || ""}
                   onChange={(e) => setForm({ ...form, institution: e.target.value })}
-                  className="w-full bg-secondary border border-transparent rounded-lg px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-1 focus:ring-primary transition-all hover:border-primary/20"
+                  className="w-full bg-white border border-gray-200 rounded-lg px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-primary transition-all hover:border-primary/30"
                   placeholder="University name"
                 />
               </motion.div>
@@ -179,12 +179,12 @@ const RequestPilot = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.5 }}
               >
-                <label className="text-xs text-muted-foreground font-medium mb-2 block">Message (optional)</label>
+                <label className="text-xs text-gray-500 font-medium mb-2 block">Message (optional)</label>
                 <textarea
                   rows={3}
                   value={form.message || ""}
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
-                  className="w-full bg-secondary border border-transparent rounded-lg px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-1 focus:ring-primary resize-none transition-all hover:border-primary/20"
+                  className="w-full bg-white border border-gray-200 rounded-lg px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-primary resize-none transition-all hover:border-primary/30"
                   placeholder="Anything else you'd like us to know"
                 />
               </motion.div>
@@ -194,7 +194,7 @@ const RequestPilot = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.55 }}
                 type="submit"
-                className="w-full bg-foreground text-background font-medium py-3 rounded-lg text-sm hover:opacity-90 transition-opacity"
+                className="w-full bg-gray-900 text-white font-medium py-3 rounded-lg text-sm hover:bg-gray-800 transition-colors"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
