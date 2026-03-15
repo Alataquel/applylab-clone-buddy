@@ -77,12 +77,15 @@ const studentsData = [
       { company: "Deloitte", role: "Analyst", status: "Offered" },
       { company: "McKinsey", role: "Associate", status: "Interview" },
       { company: "Goldman Sachs", role: "Intern", status: "Applied" },
+      { company: "PwC", role: "Consultant", status: "Submitted" },
+      { company: "BCG", role: "Associate", status: "Rejected" },
     ]},
   { name: "James Miller", email: "j.miller@uni.edu", degree: "MEng Computer Science", phone: "+44 7922 234567", status: "in_progress" as const, avatar: "JM",
     spider: { certifications: 2, languages: 4, projects: 3, skills: 5, experience: 2, gpa: 3 },
     applications: [
       { company: "Google", role: "SWE Intern", status: "Interview" },
       { company: "Meta", role: "Engineer", status: "Applied" },
+      { company: "Amazon", role: "SDE Intern", status: "Submitted" },
     ]},
   { name: "Priya Patel", email: "p.patel@uni.edu", degree: "BA Fine Arts", phone: "+44 7933 345678", status: "nothing" as const, avatar: "PP",
     spider: { certifications: 1, languages: 2, projects: 2, skills: 3, experience: 1, gpa: 3 },
@@ -92,23 +95,27 @@ const studentsData = [
     applications: [
       { company: "JP Morgan", role: "Analyst", status: "Offered" },
       { company: "HSBC", role: "Graduate", status: "Offered" },
+      { company: "Barclays", role: "Analyst", status: "Interview" },
+      { company: "Citi", role: "Associate", status: "Rejected" },
     ]},
   { name: "Emma Johnson", email: "e.johnson@uni.edu", degree: "Dual Bachelors in Business & Data Analytics", phone: "+44 7955 567890", status: "in_progress" as const, avatar: "EJ",
     spider: { certifications: 3, languages: 2, projects: 3, skills: 3, experience: 2, gpa: 4 },
     applications: [
       { company: "PwC", role: "Consultant", status: "Interview" },
       { company: "EY", role: "Analyst", status: "Applied" },
-      { company: "Accenture", role: "Analyst", status: "Applied" },
+      { company: "Accenture", role: "Analyst", status: "Submitted" },
     ]},
   { name: "Omar Hassan", email: "o.hassan@uni.edu", degree: "MEng Electrical Engineering", phone: "+44 7966 678901", status: "placed" as const, avatar: "OH",
     spider: { certifications: 4, languages: 5, projects: 4, skills: 5, experience: 3, gpa: 4 },
     applications: [
       { company: "Siemens", role: "Engineer", status: "Offered" },
+      { company: "Tesla", role: "Hardware Eng", status: "Interview" },
     ]},
   { name: "Mia Thompson", email: "m.thompson@uni.edu", degree: "BA Graphic Design", phone: "+44 7977 789012", status: "in_progress" as const, avatar: "MT",
     spider: { certifications: 2, languages: 2, projects: 5, skills: 4, experience: 2, gpa: 3 },
     applications: [
       { company: "Pentagram", role: "Junior Designer", status: "Interview" },
+      { company: "IDEO", role: "Design Intern", status: "Applied" },
     ]},
   { name: "Daniel Kim", email: "d.kim@uni.edu", degree: "BSc Economics", phone: "+44 7988 890123", status: "nothing" as const, avatar: "DK",
     spider: { certifications: 1, languages: 1, projects: 1, skills: 2, experience: 1, gpa: 2 },
@@ -118,6 +125,7 @@ const studentsData = [
     applications: [
       { company: "Amazon", role: "Data Scientist", status: "Offered" },
       { company: "Netflix", role: "ML Engineer", status: "Interview" },
+      { company: "Spotify", role: "Data Analyst", status: "Rejected" },
     ]},
 ];
 
