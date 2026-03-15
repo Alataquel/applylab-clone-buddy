@@ -101,9 +101,9 @@ const Ambassador = () => {
       <section className="py-14 px-6 lg:px-12 bg-gray-50">
         <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
           {[
-            { value: "4", label: "Universities currently active" },
-            { value: "50+", label: "Students reached per ambassador" },
-            { value: "100%", label: "Say it boosted their CV" },
+            { value: "12+", label: "Events hosted by ambassadors" },
+            { value: "3×", label: "More likely to land an internship" },
+            { value: "100%", label: "Put it on their CV" },
           ].map((s, i) => (
             <motion.div
               key={s.label}
