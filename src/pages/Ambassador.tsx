@@ -205,7 +205,7 @@ const Ambassador = () => {
             className="mb-14"
           >
             <p className="text-xs uppercase tracking-widest text-primary font-medium mb-3">Process</p>
-            <h2 className="text-2xl lg:text-3xl font-bold text-foreground tracking-tight">How to become an ambassador.</h2>
+            <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 tracking-tight">How to become an ambassador.</h2>
           </motion.div>
 
           <div className="space-y-0">
