@@ -685,44 +685,247 @@ const AnalyticsContent = () => {
   );
 };
 
-const QualificationInsightsContent = () => (
-  <>
-    <p className="text-xs text-gray-500 mb-3">Qualification Distribution</p>
-    <div className="grid grid-cols-2 gap-2 mb-4">
-      {[
-        { label: "Bachelor's", count: 824, pct: "64%" },
-        { label: "Master's", count: 312, pct: "24%" },
-        { label: "MBA", count: 98, pct: "8%" },
-        { label: "PhD", count: 50, pct: "4%" },
-      ].map((q) => (
-        <div key={q.label} className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5">
-          <p className="text-[10px] text-gray-500">{q.label}</p>
-          <div className="flex items-baseline justify-between">
-            <span className="text-base font-bold text-white">{q.count}</span>
-            <span className="text-[10px] font-medium text-primary">{q.pct}</span>
+const QualificationInsightsContent = () => {
+  const skillLevels = [
+    { color: "bg-emerald-500", label: "Expert (4)" },
+    { color: "bg-blue-500", label: "Advanced (3)" },
+    { color: "bg-amber-500", label: "Intermediate (2)" },
+    { color: "bg-rose-500", label: "Basic (1)" },
+  ];
+
+  const techSkills = [
+    { name: "Python", total: 81, segments: [21, 30, 24, 6] },
+    { name: "JavaScript", total: 72, segments: [15, 23, 24, 10] },
+    { name: "SQL", total: 69, segments: [10, 20, 25, 14] },
+    { name: "React", total: 55, segments: [6, 14, 22, 13] },
+    { name: "Machine Learning", total: 42, segments: [5, 9, 18, 10] },
+    { name: "DevOps", total: 38, segments: [3, 7, 13, 15] },
+  ];
+
+  const bizSkills = [
+    { name: "Financial Analysis", total: 83, segments: [25, 30, 18, 10] },
+    { name: "Market Research", total: 68, segments: [8, 14, 27, 19] },
+    { name: "Data Visualization", total: 51, segments: [5, 13, 19, 14] },
+    { name: "Public Speaking", total: 47, segments: [6, 16, 13, 12] },
+    { name: "Project Mgmt", total: 54, segments: [8, 16, 18, 12] },
+  ];
+
+  const employabilityData = [
+    { skill: "DevOps", letter: "D", color: "bg-rose-500", students: 22, placed: 20, skillRate: "90.9%", overallRate: "78.2%", impact: "+16.2%", level: "High" },
+    { skill: "Machine Learning", letter: "M", color: "bg-amber-500", students: 42, placed: 38, skillRate: "90.5%", overallRate: "78.2%", impact: "+15.7%", level: "High" },
+    { skill: "Python", letter: "P", color: "bg-emerald-500", students: 85, placed: 72, skillRate: "84.7%", overallRate: "78.2%", impact: "+8.3%", level: "High" },
+    { skill: "React", letter: "R", color: "bg-blue-500", students: 55, placed: 44, skillRate: "80.0%", overallRate: "78.2%", impact: "+2.3%", level: "" },
+    { skill: "SQL", letter: "S", color: "bg-emerald-400", students: 68, placed: 52, skillRate: "76.5%", overallRate: "78.2%", impact: "-2.2%", level: "" },
+  ];
+
+  const renderSkillBar = (skill: { name: string; total: number; segments: number[] }) => {
+    const maxTotal = 90;
+    return (
+      <div key={skill.name} className="mb-1.5">
+        <div className="flex items-center justify-between mb-0.5">
+          <span className="text-[8px] text-gray-300 font-medium">{skill.name}</span>
+          <span className="text-[7px] text-gray-500">Total: {skill.total}</span>
+        </div>
+        <div className="flex h-2.5 rounded-sm overflow-hidden" style={{ width: `${(skill.total / maxTotal) * 100}%` }}>
+          {skill.segments.map((seg, i) => (
+            <div key={i} className={`${skillLevels[i].color} flex items-center justify-center`} style={{ width: `${(seg / skill.total) * 100}%` }}>
+              <span className="text-[5px] text-white font-bold">{seg}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  };
+
+  return (
+    <>
+      {/* Technical Skills Proficiency */}
+      <div className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5 mb-3">
+        <div className="flex items-center gap-1.5 mb-2">
+          <span className="text-amber-400 text-xs">✦</span>
+          <p className="text-[10px] font-semibold text-white">Technical Skills Proficiency</p>
+        </div>
+        <div className="flex gap-2 mb-2">
+          {skillLevels.map((l) => (
+            <div key={l.label} className="flex items-center gap-1">
+              <div className={`w-1.5 h-1.5 rounded-full ${l.color}`} />
+              <span className="text-[7px] text-gray-500">{l.label}</span>
+            </div>
+          ))}
+        </div>
+        <div className="grid grid-cols-2 gap-3">
+          <div>
+            <p className="text-[8px] text-gray-400 font-semibold mb-1">Programming & Development</p>
+            {techSkills.map(renderSkillBar)}
+          </div>
+          <div>
+            <p className="text-[8px] text-gray-400 font-semibold mb-1">Business & Analytics</p>
+            {bizSkills.map(renderSkillBar)}
           </div>
         </div>
-      ))}
-    </div>
-    <p className="text-xs text-gray-500 mb-2">Top Skills</p>
-    <div className="flex flex-wrap gap-1.5 mb-4">
-      {["Data Analysis", "Python", "Communication", "Project Mgmt", "SQL", "Leadership", "Excel", "Marketing"].map((skill) => (
-        <span key={skill} className="text-[10px] bg-primary/10 text-primary px-2 py-1 rounded-md font-medium">{skill}</span>
-      ))}
-    </div>
-    <p className="text-xs text-gray-500 mb-2">Certifications Held</p>
-    <div className="space-y-1.5">
-      {["Google Analytics", "AWS Cloud Practitioner", "PMP", "CFA Level I"].map((cert) => (
-        <div key={cert} className="flex items-center gap-2 bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2">
-          <div className="w-5 h-5 rounded bg-emerald-500/20 flex items-center justify-center">
-            <svg className="w-3 h-3 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+      </div>
+
+      {/* Skill Level Summary */}
+      <div className="grid grid-cols-4 gap-1.5 mb-3">
+        {[
+          { count: 127, label: "Expert Level Skills", color: "text-emerald-400", bg: "bg-emerald-500/10 border-emerald-500/20" },
+          { count: 230, label: "Advanced Level Skills", color: "text-blue-400", bg: "bg-blue-500/10 border-blue-500/20" },
+          { count: 303, label: "Intermediate Level Skills", color: "text-amber-400", bg: "bg-amber-500/10 border-amber-500/20" },
+          { count: 181, label: "Basic Level Skills", color: "text-rose-400", bg: "bg-rose-500/10 border-rose-500/20" },
+        ].map((s) => (
+          <div key={s.label} className={`${s.bg} border rounded-lg px-2 py-2 text-center`}>
+            <p className={`text-sm font-bold ${s.color}`}>{s.count}</p>
+            <p className="text-[7px] text-gray-500">{s.label}</p>
           </div>
-          <p className="text-xs text-white">{cert}</p>
+        ))}
+      </div>
+
+      {/* Education Level Analysis */}
+      <div className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5 mb-3">
+        <div className="flex items-center gap-1.5 mb-2">
+          <svg className="w-3 h-3 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" /></svg>
+          <p className="text-[10px] font-semibold text-white">Education Level Analysis</p>
         </div>
-      ))}
-    </div>
-  </>
-);
+        <div className="space-y-2">
+          {[
+            { degree: "Bachelor's Degree", pct: "68%", students: 17, color: "bg-blue-500" },
+            { degree: "Master's Degree", pct: "24%", students: 6, color: "bg-emerald-500" },
+            { degree: "PhD", pct: "8%", students: 2, color: "bg-purple-500" },
+          ].map((d) => (
+            <div key={d.degree} className="flex items-center justify-between border-b border-white/5 pb-1.5">
+              <div className="flex items-center gap-2">
+                <div className={`w-2 h-2 rounded-full ${d.color}`} />
+                <span className="text-[10px] text-gray-300">{d.degree}</span>
+              </div>
+              <div className="text-right">
+                <span className="text-[10px] text-white font-semibold">{d.pct}</span>
+                <span className="text-[8px] text-gray-500 ml-1">{d.students} students</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Certifications Overview */}
+      <div className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5 mb-3">
+        <div className="flex items-center gap-1.5 mb-2">
+          <svg className="w-3 h-3 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+          <p className="text-[10px] font-semibold text-white">Certifications Overview</p>
+        </div>
+        <div className="space-y-1">
+          {[
+            { name: "AWS Certified Solutions Architect", abbr: "AWS", students: 12, color: "bg-amber-500" },
+            { name: "Google Cloud Professional", abbr: "GC", students: 8, color: "bg-emerald-500" },
+            { name: "Microsoft Azure Fundamentals", abbr: "MS", students: 6, color: "bg-purple-500" },
+            { name: "Cisco CCNA", abbr: "CS", students: 5, color: "bg-rose-500" },
+          ].map((c) => (
+            <div key={c.name} className={`flex items-center gap-2 rounded-lg px-2.5 py-1.5 ${c.color}/10`}>
+              <div className={`w-5 h-5 ${c.color} rounded-full flex items-center justify-center text-[7px] font-bold text-white shrink-0`}>{c.abbr}</div>
+              <span className="text-[9px] text-gray-300 flex-1">{c.name}</span>
+              <span className={`text-[9px] font-semibold ${c.color.replace("bg-", "text-")}`}>{c.students} students</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Skill Employability Impact */}
+      <div className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5 mb-3">
+        <div className="flex items-center gap-1.5 mb-1">
+          <svg className="w-3 h-3 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+          <p className="text-[10px] font-semibold text-white">Skill Employability Impact</p>
+        </div>
+        <p className="text-[7px] text-gray-500 mb-2 ml-4">How each skill affects student placement rates</p>
+        <div className="grid grid-cols-7 gap-1 pb-1 border-b border-white/5 mb-1">
+          {["Skill", "Students", "Placed", "Skill Rate", "Overall", "Impact", ""].map((h, i) => (
+            <span key={i} className="text-[7px] text-gray-500 font-semibold">{h}</span>
+          ))}
+        </div>
+        {employabilityData.map((d) => (
+          <div key={d.skill} className="grid grid-cols-7 gap-1 py-1 border-b border-white/[0.03] items-center">
+            <div className="flex items-center gap-1">
+              <div className={`w-3 h-3 ${d.color} rounded-full flex items-center justify-center text-[6px] font-bold text-white`}>{d.letter}</div>
+              <span className="text-[8px] text-gray-300">{d.skill}</span>
+            </div>
+            <span className="text-[8px] text-gray-400">{d.students}</span>
+            <span className="text-[8px] text-gray-400">{d.placed}</span>
+            <span className="text-[8px] text-white font-semibold">{d.skillRate}</span>
+            <span className="text-[8px] text-gray-500">{d.overallRate}</span>
+            <span className={`text-[8px] font-semibold ${d.impact.startsWith("+") ? "text-emerald-400" : "text-rose-400"}`}>{d.impact}</span>
+            {d.level ? <span className="text-[6px] font-bold px-1 py-0.5 rounded bg-emerald-500/20 text-emerald-400">{d.level}</span> : <span />}
+          </div>
+        ))}
+        <div className="grid grid-cols-3 gap-1.5 mt-2">
+          <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-md px-2 py-1.5">
+            <p className="text-[7px] text-emerald-300">Top Performing Skills</p>
+            <p className="text-[9px] font-bold text-emerald-400">ML, DevOps</p>
+            <p className="text-[6px] text-emerald-300/60">+16% impact on placement</p>
+          </div>
+          <div className="bg-amber-500/10 border border-amber-500/20 rounded-md px-2 py-1.5">
+            <p className="text-[7px] text-amber-300">Solid Foundation</p>
+            <p className="text-[9px] font-bold text-amber-400">Python</p>
+            <p className="text-[6px] text-amber-300/60">+8.3% impact on placement</p>
+          </div>
+          <div className="bg-rose-500/10 border border-rose-500/20 rounded-md px-2 py-1.5">
+            <p className="text-[7px] text-rose-300">Needs Attention</p>
+            <p className="text-[9px] font-bold text-rose-400">SQL</p>
+            <p className="text-[6px] text-rose-300/60">-2.2% below average</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Critical Skill Gaps */}
+      <div className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5">
+        <div className="flex items-center gap-1.5 mb-1">
+          <span className="text-amber-400 text-[10px]">⚠</span>
+          <p className="text-[10px] font-semibold text-white">Critical Skill Gaps</p>
+        </div>
+        <p className="text-[7px] text-gray-500 mb-2 ml-4">Skills with high demand but low student coverage</p>
+        {[
+          { skill: "DevOps", coverage: 22, impact: "+16.2%", gap: 12.6, priority: "CRITICAL" },
+          { skill: "Machine Learning", coverage: 15, impact: "+15.7%", gap: 13.3, priority: "CRITICAL" },
+        ].map((g) => (
+          <div key={g.skill} className="bg-white/[0.02] border border-white/5 rounded-lg px-2.5 py-2 mb-1.5">
+            <div className="flex items-center justify-between mb-1.5">
+              <div className="flex items-center gap-1.5">
+                <div className="w-1.5 h-1.5 rounded-full bg-rose-500" />
+                <span className="text-[10px] text-white font-semibold">{g.skill}</span>
+              </div>
+              <div className="text-right">
+                <span className="text-sm font-bold text-rose-400">{g.gap}</span>
+                <p className="text-[7px] text-gray-500">gap score</p>
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-2 mb-1.5">
+              <div>
+                <div className="flex items-center justify-between mb-0.5">
+                  <span className="text-[8px] text-gray-500">Student Coverage</span>
+                  <span className="text-[8px] text-rose-400 font-semibold">{g.coverage}%</span>
+                </div>
+                <div className="h-1.5 bg-white/5 rounded-full"><div className="h-full bg-rose-500 rounded-full" style={{ width: `${g.coverage}%` }} /></div>
+                <p className="text-[6px] text-gray-600 mt-0.5">{100 - g.coverage}% of students lack this skill</p>
+              </div>
+              <div>
+                <div className="flex items-center justify-between mb-0.5">
+                  <span className="text-[8px] text-gray-500">Employability Impact</span>
+                  <span className="text-[8px] text-emerald-400 font-semibold">{g.impact}</span>
+                </div>
+                <div className="h-1.5 bg-white/5 rounded-full"><div className="h-full bg-emerald-500 rounded-full" style={{ width: "80%" }} /></div>
+                <p className="text-[6px] text-gray-600 mt-0.5">Above average placement rate</p>
+              </div>
+            </div>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-1">
+                <span className="text-[7px] text-gray-500">Priority Level:</span>
+                <span className="text-[7px] font-bold text-rose-400 bg-rose-500/20 px-1.5 py-0.5 rounded">{g.priority}</span>
+              </div>
+              <span className="text-[8px] text-emerald-400 font-medium">{g.gap} potential impact points</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </>
+  );
+};
 
 const MarketInsightsContent = () => (
   <>
