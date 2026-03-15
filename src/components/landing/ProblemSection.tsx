@@ -59,26 +59,26 @@ const ProblemSection = () => {
             </div>
           </motion.div>
 
-          {/* No actionable data - top middle (dark) */}
+          {/* No actionable data - top middle (white) */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="lg:col-span-4 bg-[hsl(220,25%,10%)] rounded-2xl p-7 hover:-translate-y-1 transition-transform duration-300"
+            className="lg:col-span-4 bg-white border border-gray-200 rounded-2xl p-7 hover:-translate-y-1 transition-transform duration-300"
           >
             <div className="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center mb-5">
-              <BarChart3 className="w-5 h-5 text-amber-400" />
+              <BarChart3 className="w-5 h-5 text-amber-500" />
             </div>
-            <h3 className="text-xl font-bold text-white mb-2">No actionable data</h3>
-            <p className="text-sm text-gray-400 leading-relaxed">
+            <h3 className="text-xl font-bold text-gray-900 mb-2">No actionable data</h3>
+            <p className="text-sm text-gray-500 leading-relaxed">
               Placement reporting is manual, delayed, and based on estimates. Accreditation bodies expect better.
             </p>
 
             <div className="mt-6 grid grid-cols-3 gap-2">
               {["Q1", "Q2", "Q3"].map((q) => (
-                <div key={q} className="bg-white/5 rounded-lg p-3 text-center">
+                <div key={q} className="bg-gray-50 border border-gray-200 rounded-lg p-3 text-center">
                   <p className="text-[10px] text-gray-500 mb-1">{q}</p>
-                  <p className="text-xs text-gray-600">No data</p>
+                  <p className="text-xs text-gray-400">No data</p>
                 </div>
               ))}
             </div>
