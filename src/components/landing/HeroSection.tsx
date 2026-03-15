@@ -1,6 +1,8 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, TrendingUp, Users } from "lucide-react";
+import { ArrowRight, TrendingUp, Users, Building2, GraduationCap } from "lucide-react";
 import DashboardMockup from "./DashboardMockup";
+import StudentDashboardMockup from "./StudentDashboardMockup";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -16,6 +18,8 @@ const itemVariants = {
 };
 
 const HeroSection = () => {
+  const [activeDemo, setActiveDemo] = useState<"university" | "student">("university");
+
   return (
     <section className="relative min-h-screen flex flex-col justify-center pt-48 lg:pt-56 pb-20 px-4 lg:px-8 overflow-hidden">
       <div className="max-w-[110rem] w-full mx-auto">
@@ -61,6 +65,30 @@ const HeroSection = () => {
             <span>·</span>
             <span className="font-semibold text-foreground">XU Exponential</span>
           </motion.div>
+
+          {/* Demo Toggle */}
+          <motion.div variants={itemVariants} className="pt-2">
+            <div className="inline-flex items-center bg-white/10 backdrop-blur-sm border border-white/10 rounded-full p-1 gap-1">
+              <button
+                onClick={() => setActiveDemo("university")}
+                className={`flex items-center gap-2 px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                  activeDemo === "university" ? "bg-foreground text-background shadow-md" : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                <Building2 className="w-4 h-4" />
+                University Portal
+              </button>
+              <button
+                onClick={() => setActiveDemo("student")}
+                className={`flex items-center gap-2 px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                  activeDemo === "student" ? "bg-foreground text-background shadow-md" : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                <GraduationCap className="w-4 h-4" />
+                Student Portal
+              </button>
+            </div>
+          </motion.div>
         </motion.div>
 
         {/* Dashboard below */}
@@ -70,7 +98,14 @@ const HeroSection = () => {
           transition={{ duration: 0.7, delay: 0.3, ease: [0.2, 0, 0, 1] }}
           className="relative"
         >
-          <DashboardMockup />
+          <motion.div
+            key={activeDemo}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+          >
+            {activeDemo === "university" ? <DashboardMockup /> : <StudentDashboardMockup />}
+          </motion.div>
 
           {/* Demo note */}
           <motion.p
