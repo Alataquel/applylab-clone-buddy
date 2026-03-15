@@ -21,6 +21,7 @@ const Navbar = () => {
         <div className="hidden md:flex items-center gap-8">
           <a href="/students" className="text-sm text-muted-foreground hover:text-foreground transition-colors">For Students</a>
           <a href="/universities" className="text-sm text-muted-foreground hover:text-foreground transition-colors">For Universities</a>
+          <a href="/ambassador" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Ambassador</a>
           <a href="/about" className="text-sm text-muted-foreground hover:text-foreground transition-colors">About</a>
         </div>
 
@@ -71,6 +72,7 @@ const Navbar = () => {
               {[
                 { label: "For Students", href: "/students" },
                 { label: "For Universities", href: "/universities" },
+                { label: "Ambassador", href: "/ambassador" },
                 { label: "About", href: "/about" },
                 { label: "Log In", href: "/login" },
               ].map((link) => (

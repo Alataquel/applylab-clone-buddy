@@ -7,6 +7,7 @@ import Index from "./pages/Index.tsx";
 import About from "./pages/About.tsx";
 import ForStudents from "./pages/ForStudents.tsx";
 import ForUniversities from "./pages/ForUniversities.tsx";
+import Ambassador from "./pages/Ambassador.tsx";
 import RequestPilot from "./pages/RequestPilot.tsx";
 import Terms from "./pages/Terms.tsx";
 import Privacy from "./pages/Privacy.tsx";
@@ -26,6 +27,7 @@ const App = () => (
           <Route path="/about" element={<About />} />
           <Route path="/students" element={<ForStudents />} />
           <Route path="/universities" element={<ForUniversities />} />
+          <Route path="/ambassador" element={<Ambassador />} />
           <Route path="/request-pilot" element={<RequestPilot />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/privacy" element={<Privacy />} />
