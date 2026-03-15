@@ -16,7 +16,7 @@ const PlatformSection = () => {
           className="mb-16"
         >
           <p className="text-xs uppercase tracking-widest text-primary font-medium mb-3">Platform</p>
-          <h2 className="text-3xl lg:text-4xl font-bold text-foreground tracking-tight">Built for the whole career journey.</h2>
+          <h2 className="text-3xl lg:text-4xl font-bold text-foreground tracking-tight">End-to-end career outcomes, one system.</h2>
         </motion.div>
 
         <div className="grid lg:grid-cols-3 gap-6">
@@ -32,7 +32,7 @@ const PlatformSection = () => {
               Roles ranked by <span className="text-gradient">real fit</span>, not keywords
             </h3>
             <p className="text-sm text-muted-foreground mb-6">
-              Our model reads your full profile and surfaces only the roles where you're genuinely in the top tier of candidates.
+              Students see only the roles where they're genuinely competitive — reducing noise and improving application quality institution-wide.
             </p>
             <div className="space-y-3 mb-6">
               {[
@@ -69,7 +69,7 @@ const PlatformSection = () => {
               Beat ATS. <span className="text-gradient">Impress humans.</span>
             </h3>
             <p className="text-sm text-muted-foreground mb-6">
-              Line-by-line AI feedback that turns a generic CV into a targeted, high-scoring one.
+              AI-driven, line-by-line CV feedback that raises the baseline quality of every student application your university produces.
             </p>
 
             <div className="bg-secondary rounded-lg p-4 mb-4">
@@ -109,7 +109,7 @@ const PlatformSection = () => {
               Every application, <span className="text-gradient">one place.</span>
             </h3>
             <p className="text-sm text-muted-foreground mb-6">
-              Track your full pipeline from application to offer, with automated status updates.
+              A unified pipeline that gives career teams real-time visibility into where every student stands — from application to offer.
             </p>
 
             <div className="space-y-3">

@@ -37,7 +37,7 @@ const TestimonialsSection = () => {
       <div className="max-w-7xl mx-auto mb-12">
         <p className="text-xs uppercase tracking-widest text-primary font-medium mb-3">Social proof</p>
         <h2 className="text-3xl lg:text-4xl font-bold text-foreground tracking-tight">
-          Loved by students. <span className="text-gradient italic">Trusted by universities.</span>
+          Loved by students. <span className="text-gradient italic">Trusted by institutions.</span>
         </h2>
       </div>
 

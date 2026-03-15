@@ -15,7 +15,7 @@ const CTASection = () => {
         >
           <p className="text-xs uppercase tracking-widest text-primary font-medium mb-3">Get involved</p>
           <h2 className="text-3xl lg:text-4xl font-bold text-foreground tracking-tight mb-12">
-            Make your career <span className="text-gradient italic">activity visible.</span>
+            Make career outcomes <span className="text-gradient italic">visible.</span>
           </h2>
         </motion.div>
 
@@ -25,7 +25,7 @@ const CTASection = () => {
           transition={{ duration: 0.5, delay: 0.1 }}
           className="text-sm text-muted-foreground mb-10 max-w-lg mx-auto"
         >
-          We're working with a select group of partner universities to build something that actually works. Request a pilot to get involved early.
+          We're building career outcomes infrastructure with a select group of partner universities. Request a pilot to see what visibility looks like.
         </motion.p>
 
         <motion.div

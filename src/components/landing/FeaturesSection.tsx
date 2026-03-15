@@ -5,7 +5,7 @@ const studentFeatures = [
   {
     num: "01",
     title: "Job Board",
-    desc: "Our model reads your whole profile and surfaces roles where you're genuinely a top candidate—ranked by real fit, not keyword overlap.",
+    desc: "Intelligent matching surfaces roles where students are genuinely competitive — improving application quality and reducing wasted effort across your cohort.",
     items: [
       { letter: "L", color: "bg-blue-500", role: "Product Designer", company: "Linear", score: "98% Match" },
       { letter: "V", color: "bg-foreground", role: "Frontend Engineer", company: "Vercel", score: "95% Match" },
@@ -15,7 +15,7 @@ const studentFeatures = [
   {
     num: "02",
     title: "Resume Lab",
-    desc: "Line-by-line feedback that improves your ATS score, strengthens impact statements, and plugs keyword gaps in seconds.",
+    desc: "AI-powered, line-by-line CV feedback that raises ATS pass rates, strengthens impact statements, and closes keyword gaps — at scale.",
     atsScore: 92,
     suggestions: [
       "Suggestion: Add metrics to your 2nd bullet point.",
@@ -25,7 +25,7 @@ const studentFeatures = [
   {
     num: "03",
     title: "Application Tracker",
-    desc: "A visual pipeline that automatically updates your status across every process, with reminders and follow-up prompts built in.",
+    desc: "A visual pipeline that automatically tracks every student's application status — giving career teams and students a shared, real-time view.",
     pipeline: ["Applied", "Interview", "Offer", "Accepted!"],
   },
 ];
@@ -45,7 +45,7 @@ const FeaturesSection = () => {
           className="mb-12"
         >
           <p className="text-xs uppercase tracking-widest text-primary font-medium mb-3">Features</p>
-          <h2 className="text-3xl lg:text-4xl font-bold text-foreground tracking-tight">Everything you need to launch your career.</h2>
+          <h2 className="text-3xl lg:text-4xl font-bold text-foreground tracking-tight">The infrastructure behind better career outcomes.</h2>
         </motion.div>
 
         {/* Tabs */}
@@ -56,7 +56,7 @@ const FeaturesSection = () => {
               activeTab === "students" ? "bg-card text-foreground shadow-precision" : "text-muted-foreground"
             }`}
           >
-            For Students
+            Student Experience
           </button>
           <button
             onClick={() => setActiveTab("teams")}
@@ -64,7 +64,7 @@ const FeaturesSection = () => {
               activeTab === "teams" ? "bg-card text-foreground shadow-precision" : "text-muted-foreground"
             }`}
           >
-            For Career Teams
+            Institutional Dashboard
           </button>
         </div>
 
@@ -149,9 +149,9 @@ const FeaturesSection = () => {
             animate={{ opacity: 1 }}
             className="bg-card rounded-xl p-12 shadow-precision text-center"
           >
-            <h3 className="text-xl font-semibold text-foreground mb-3">University Analytics Dashboard</h3>
+            <h3 className="text-xl font-semibold text-foreground mb-3">Outcomes Dashboard</h3>
             <p className="text-sm text-muted-foreground max-w-md mx-auto">
-              Real-time visibility into student placement rates, engagement metrics, and career outcomes across your institution.
+              Real-time visibility into placement rates, student engagement, and career outcomes — so your team can intervene early and report with confidence.
             </p>
           </motion.div>
         )}
