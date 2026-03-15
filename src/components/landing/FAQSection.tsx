@@ -62,7 +62,7 @@ const FAQSection = () => {
               >
                 <span className="text-sm font-medium text-gray-900">{faq.q}</span>
                 <ChevronDown
-                  className={`w-4 h-4 text-muted-foreground transition-transform ${
+                  className={`w-4 h-4 text-gray-400 transition-transform ${
                     open === i ? "rotate-180" : ""
                   }`}
                 />
