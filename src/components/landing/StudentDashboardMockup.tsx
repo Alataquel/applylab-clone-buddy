@@ -1589,6 +1589,7 @@ const StudentDashboardMockup = () => {
         "--border": "214.3 31.8% 91.4%",
         backgroundColor: "hsl(0 0% 100%)",
         color: "hsl(222.2 84% 4.9%)",
+        zoom: 1.12,
       } as React.CSSProperties}
     >
       {/* Browser chrome */}
