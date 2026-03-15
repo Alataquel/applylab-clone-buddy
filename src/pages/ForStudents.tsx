@@ -187,15 +187,15 @@ const ForStudents = () => {
             className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center"
           >
             <div>
-              <div className="w-12 h-12 rounded-xl bg-primary/15 flex items-center justify-center mb-6">
+              <div className="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center mb-6">
                 <BarChart3 className="w-5 h-5 text-primary" />
               </div>
               <p className="text-xs uppercase tracking-widest text-primary font-semibold mb-3">Feature 03</p>
-              <h2 className="text-3xl lg:text-4xl font-bold text-foreground tracking-tight mb-4">Automatic Tracker</h2>
-              <p className="text-base text-muted-foreground/80 font-medium mb-3">
+              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 tracking-tight mb-4">Automatic Tracker</h2>
+              <p className="text-base text-gray-500 font-medium mb-3">
                 Every application, one visual pipeline
               </p>
-              <p className="text-sm text-muted-foreground leading-relaxed">
+              <p className="text-sm text-gray-400 leading-relaxed">
                 A visual pipeline that automatically keeps every application organised. Track status in real time without lifting a finger — from application to offer.
               </p>
             </div>
