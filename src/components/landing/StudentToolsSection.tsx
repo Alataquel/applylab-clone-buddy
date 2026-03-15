@@ -40,7 +40,7 @@ const StudentToolsSection = () => {
               </p>
             </div>
             <div className="px-6 lg:px-8 pb-6 lg:pb-8">
-              <div className="bg-secondary rounded-lg p-4 space-y-2">
+              <div className="bg-gray-100 rounded-lg p-4 space-y-2">
                 {[
                   { letter: "F", color: "bg-purple-500", role: "Product Design Intern", company: "Figma", match: "98%", location: "Remote" },
                   { letter: "L", color: "bg-blue-500", role: "Frontend Engineering Intern", company: "Linear", match: "95%", location: "London" },
