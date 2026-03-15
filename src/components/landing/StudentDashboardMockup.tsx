@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { LayoutGrid, ClipboardList, FileText, ChevronDown, Briefcase, CalendarDays, Video, User, Settings } from "lucide-react";
+import { LayoutGrid, ClipboardList, FileText, ChevronDown, Briefcase, CalendarDays, Video, User, Settings, UserCircle, Mail, Search, MapPin, Clock, Bookmark, ExternalLink, Eye, Pencil, Trash2, ArrowRight, RotateCcw, FileCheck, Sparkles, GraduationCap } from "lucide-react";
 
 const navIcons = [
   { label: "Dashboard", icon: LayoutGrid },
@@ -22,15 +22,15 @@ const DashboardContent = () => (
     {/* Quick actions */}
     <div className="grid grid-cols-3 gap-2 mb-5">
       {[
-        { icon: "👤", title: "Complete Your Profile", desc: "Update your information to improve your opportunities" },
-        { icon: "💼", title: "Start Looking for Jobs", desc: "Find opportunities that match your profile" },
-        { icon: "📧", title: "Email Status Tracking", desc: "Automatically track your applications", badge: "New" },
+        { Icon: UserCircle, title: "Complete Your Profile", desc: "Update your information to improve your opportunities" },
+        { Icon: Briefcase, title: "Start Looking for Jobs", desc: "Find opportunities that match your profile" },
+        { Icon: Mail, title: "Email Status Tracking", desc: "Automatically track your applications", badge: "New" },
       ].map((a) => (
         <div key={a.title} className="bg-card border border-border rounded-lg px-3 py-3 relative">
           {a.badge && (
             <span className="absolute top-2 right-2 text-[6px] bg-primary text-primary-foreground rounded-full px-1.5 py-0.5 font-bold">{a.badge}</span>
           )}
-          <span className="text-sm mb-1 block">{a.icon}</span>
+          <a.Icon className="w-4 h-4 mb-1" style={{ color: "hsl(228, 76%, 35%)" }} strokeWidth={1.8} />
           <p className="text-[9px] font-semibold text-foreground leading-tight">{a.title}</p>
           <p className="text-[7px] text-muted-foreground mt-0.5 leading-tight">{a.desc}</p>
         </div>
@@ -38,7 +38,7 @@ const DashboardContent = () => (
     </div>
 
     {/* Recent Applications */}
-    <div>
+    <div className="mb-5">
       <div className="flex items-center justify-between mb-2">
         <p className="text-[10px] font-bold text-foreground">Recent Applications</p>
         <div className="flex gap-1.5">
@@ -68,6 +68,126 @@ const DashboardContent = () => (
             <span className={`text-[6px] font-medium rounded-full px-1.5 py-0.5 w-fit ${app.statusColor}`}>{app.status}</span>
           </div>
         ))}
+      </div>
+    </div>
+
+    {/* Application Status - Donut Chart */}
+    <div className="bg-card border border-border rounded-xl p-4 mb-5">
+      <p className="text-[10px] font-bold text-foreground mb-3">Application Status</p>
+      <div className="grid grid-cols-2 gap-4 items-center">
+        {/* Donut chart */}
+        <div className="flex justify-center">
+          <svg viewBox="0 0 120 120" className="w-32 h-32">
+            {/* Background circle */}
+            <circle cx="60" cy="60" r="45" fill="none" stroke="hsl(210, 40%, 96%)" strokeWidth="18" />
+            {/* Applied - blue */}
+            <circle cx="60" cy="60" r="45" fill="none" stroke="hsl(228, 76%, 55%)" strokeWidth="18"
+              strokeDasharray={`${(4/17)*283} ${283 - (4/17)*283}`} strokeDashoffset="0" transform="rotate(-90 60 60)" />
+            {/* Second round - dark navy */}
+            <circle cx="60" cy="60" r="45" fill="none" stroke="hsl(228, 40%, 25%)" strokeWidth="18"
+              strokeDasharray={`${(4/17)*283} ${283 - (4/17)*283}`} strokeDashoffset={`${-(4/17)*283}`} transform="rotate(-90 60 60)" />
+            {/* Offer extended - emerald */}
+            <circle cx="60" cy="60" r="45" fill="none" stroke="hsl(160, 60%, 45%)" strokeWidth="18"
+              strokeDasharray={`${(4/17)*283} ${283 - (4/17)*283}`} strokeDashoffset={`${-(8/17)*283}`} transform="rotate(-90 60 60)" />
+            {/* Interview invited - dark */}
+            <circle cx="60" cy="60" r="45" fill="none" stroke="hsl(228, 30%, 35%)" strokeWidth="18"
+              strokeDasharray={`${(3/17)*283} ${283 - (3/17)*283}`} strokeDashoffset={`${-(12/17)*283}`} transform="rotate(-90 60 60)" />
+            {/* Accepted - bright green */}
+            <circle cx="60" cy="60" r="45" fill="none" stroke="hsl(142, 71%, 45%)" strokeWidth="18"
+              strokeDasharray={`${(2/17)*283} ${283 - (2/17)*283}`} strokeDashoffset={`${-(15/17)*283}`} transform="rotate(-90 60 60)" />
+          </svg>
+        </div>
+        {/* Stats + Legend */}
+        <div>
+          <div className="grid grid-cols-3 gap-1.5 mb-3">
+            {[
+              { label: "Interviews", value: "41%" },
+              { label: "Offers", value: "24%" },
+              { label: "Accepted", value: "12%" },
+            ].map((s) => (
+              <div key={s.label} className="border border-border rounded-md px-2 py-1.5">
+                <p className="text-[6px] text-muted-foreground">{s.label}</p>
+                <p className="text-sm font-bold text-foreground">{s.value}</p>
+              </div>
+            ))}
+          </div>
+          <div className="flex flex-wrap gap-1.5">
+            {[
+              { label: "Applied", count: 4, color: "bg-[hsl(228,76%,55%)]" },
+              { label: "Second round", count: 4, color: "bg-[hsl(228,40%,25%)]" },
+              { label: "Offer extended", count: 4, color: "bg-[hsl(160,60%,45%)]" },
+              { label: "Interview invited", count: 3, color: "bg-[hsl(228,30%,35%)]" },
+              { label: "Accepted", count: 2, color: "bg-[hsl(142,71%,45%)]" },
+            ].map((l) => (
+              <div key={l.label} className="flex items-center gap-1 border border-border rounded-full px-2 py-0.5">
+                <div className={`w-2 h-2 rounded-full ${l.color}`} />
+                <span className="text-[7px] text-foreground">{l.label}</span>
+                <span className="text-[7px] text-muted-foreground">{l.count}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {/* Bottom row: Upcoming Events + Book a Meeting */}
+    <div className="grid grid-cols-2 gap-3">
+      {/* Upcoming Events */}
+      <div className="bg-card border border-border rounded-xl p-4">
+        <div className="flex items-center justify-between mb-3">
+          <div className="flex items-center gap-1.5">
+            <CalendarDays className="w-3.5 h-3.5" style={{ color: "hsl(228, 76%, 35%)" }} strokeWidth={1.8} />
+            <p className="text-[10px] font-bold text-foreground">Upcoming Events</p>
+          </div>
+          <span className="text-[7px] text-primary font-medium flex items-center gap-0.5 cursor-pointer">View All <ArrowRight className="w-2.5 h-2.5" /></span>
+        </div>
+        <div className="space-y-2">
+          {[
+            { type: "In-Person", title: "NVIDIA GTC 2026", date: "Mon, Mar 16, 8 AM – Thu, Mar 19, 6 PM PDT", time: "8:00 AM - 6:00 PM", typeColor: "bg-rose-500" },
+            { type: "In-Person", title: "Student & Community Voice AI Summit", date: "Thu, Mar 19, 5 PM – Sat, Mar 21, 12 PM", time: "5:00 PM - 12:00 PM", typeColor: "bg-rose-500" },
+            { type: "Virtual", title: "HYBRID Workshop Vestibular Rehabilitation & Concussion Certification (Mar 21, 2026)", date: "Sat, Mar 21", time: "12:00 PM - Invalid Date", typeColor: "bg-emerald-600" },
+          ].map((ev) => (
+            <div key={ev.title} className="border border-border rounded-lg p-2.5">
+              <div className="flex items-center gap-1.5 mb-1">
+                <span className={`text-[5px] text-white font-bold rounded px-1 py-0.5 ${ev.typeColor}`}>{ev.type}</span>
+                <p className="text-[8px] font-semibold text-foreground">{ev.title}</p>
+              </div>
+              <div className="flex items-center gap-2 text-[6px] text-muted-foreground mb-1.5">
+                <span className="flex items-center gap-0.5"><CalendarDays className="w-2 h-2" /> {ev.date}</span>
+                <span className="flex items-center gap-0.5"><Clock className="w-2 h-2" /> {ev.time}</span>
+                <span className="flex items-center gap-0.5"><MapPin className="w-2 h-2" /> {ev.type}</span>
+              </div>
+              <button className="text-[7px] border border-border rounded px-2 py-0.5 text-muted-foreground flex items-center gap-0.5">Register <ExternalLink className="w-2 h-2" /></button>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Book a Meeting */}
+      <div className="bg-card border border-border rounded-xl p-4">
+        <div className="flex items-center justify-between mb-2">
+          <div className="flex items-center gap-1.5">
+            <Video className="w-3.5 h-3.5" style={{ color: "hsl(228, 76%, 35%)" }} strokeWidth={1.8} />
+            <p className="text-[10px] font-bold text-foreground">Book a Meeting</p>
+          </div>
+          <span className="text-[7px] text-primary font-medium flex items-center gap-0.5 cursor-pointer">All Advisors <ArrowRight className="w-2.5 h-2.5" /></span>
+        </div>
+        <p className="text-[7px] text-muted-foreground mb-3">Schedule a one-on-one session with our career advisors to get personalized guidance.</p>
+        <div className="space-y-2">
+          {[
+            { name: "Rania", specialty: "Tech Industry, Graduate Studies", initials: "R", color: "bg-primary" },
+            { name: "Yan Bernard", specialty: "Resume Review, Academic Advising", initials: "YB", color: "bg-gray-400" },
+          ].map((adv) => (
+            <div key={adv.name} className="border border-border rounded-lg px-3 py-2.5 flex items-center gap-2.5">
+              <div className={`w-7 h-7 rounded-full ${adv.color} flex items-center justify-center text-[8px] font-bold text-white`}>{adv.initials}</div>
+              <div className="flex-1">
+                <p className="text-[9px] font-semibold text-foreground">{adv.name}</p>
+                <p className="text-[7px] text-muted-foreground">{adv.specialty}</p>
+              </div>
+              <button className="text-[7px] bg-primary text-primary-foreground rounded px-2.5 py-1 font-medium">Book Now</button>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   </>
@@ -200,7 +320,7 @@ const ResumeGraderContent = () => (
       </div>
       <div className="border border-border rounded-lg p-4 flex items-center justify-center">
         <div className="text-center">
-          <p className="text-xl text-muted-foreground mb-1">↑</p>
+          <ExternalLink className="w-4 h-4 text-muted-foreground mb-1" />
           <p className="text-[8px] text-muted-foreground">Upload a PDF to preview.</p>
         </div>
       </div>
@@ -208,7 +328,7 @@ const ResumeGraderContent = () => (
 
     {/* What we check */}
     <div className="border border-border rounded-lg p-3">
-      <p className="text-[9px] font-semibold text-foreground mb-2">📋 What we check</p>
+      <p className="text-[9px] font-semibold text-foreground mb-2 flex items-center gap-1"><FileCheck className="w-3 h-3" /> What we check</p>
       <div className="grid grid-cols-2 gap-1.5">
         {["Contact", "Experiences", "Education", "Skills", "Summary", "Format"].map((c) => (
           <div key={c} className="flex items-center gap-1.5">
@@ -218,7 +338,7 @@ const ResumeGraderContent = () => (
         ))}
       </div>
       <div className="bg-primary/5 border border-primary/20 rounded-md px-2 py-1.5 mt-2">
-        <p className="text-[7px] text-muted-foreground">💡 Keep descriptions concise and quantifiable. Adding measurable results is a great way to make your experiences more impactful.</p>
+        <p className="text-[7px] text-muted-foreground flex items-start gap-1"><Sparkles className="w-2.5 h-2.5 shrink-0 mt-0.5" /> Keep descriptions concise and quantifiable. Adding measurable results is a great way to make your experiences more impactful.</p>
       </div>
     </div>
   </>
@@ -371,12 +491,12 @@ const CoverLettersContent = () => (
     {/* Stats */}
     <div className="grid grid-cols-3 gap-2 mb-4">
       {[
-        { icon: "📄", value: "6", label: "Total Cover Letters" },
-        { icon: "✨", value: "6", label: "AI Generated" },
-        { icon: "🔍", value: "0", label: "Drafts" },
+        { IconComp: FileText, value: "6", label: "Total Cover Letters" },
+        { IconComp: Sparkles, value: "6", label: "AI Generated" },
+        { IconComp: Search, value: "0", label: "Drafts" },
       ].map((s) => (
         <div key={s.label} className="bg-card border border-border rounded-lg px-3 py-2.5 flex items-center gap-2">
-          <span className="text-sm">{s.icon}</span>
+          <s.IconComp className="w-4 h-4" style={{ color: "hsl(228, 76%, 35%)" }} strokeWidth={1.8} />
           <div>
             <p className="text-sm font-bold text-foreground">{s.value}</p>
             <p className="text-[7px] text-muted-foreground">{s.label}</p>
@@ -402,11 +522,11 @@ const CoverLettersContent = () => (
           </div>
           <p className="text-[7px] text-muted-foreground mb-1">{cl.company} · {cl.role}</p>
           <p className="text-[6px] text-muted-foreground truncate mb-2">Antonio Larrucea Madrid, Comunidad de Madrid...</p>
-          <p className="text-[6px] text-muted-foreground">📅 Created {cl.date}</p>
+          <p className="text-[6px] text-muted-foreground flex items-center gap-0.5"><CalendarDays className="w-2 h-2" /> Created {cl.date}</p>
           <div className="flex gap-1 mt-2">
-            <button className="flex-1 text-[6px] border border-border rounded py-0.5 text-muted-foreground">👁 View</button>
-            <button className="flex-1 text-[6px] border border-border rounded py-0.5 text-muted-foreground">✏️ Edit</button>
-            <button className="text-[6px] text-rose-400 px-1">🗑</button>
+            <button className="flex-1 text-[6px] border border-border rounded py-0.5 text-muted-foreground flex items-center justify-center gap-0.5"><Eye className="w-2 h-2" /> View</button>
+            <button className="flex-1 text-[6px] border border-border rounded py-0.5 text-muted-foreground flex items-center justify-center gap-0.5"><Pencil className="w-2 h-2" /> Edit</button>
+            <button className="text-[6px] text-rose-400 px-1"><Trash2 className="w-2.5 h-2.5" /></button>
           </div>
         </div>
       ))}
@@ -421,7 +541,7 @@ const JobBoardContent = () => (
     <div className="w-28 shrink-0">
       <div className="flex items-center justify-between mb-2">
         <p className="text-[9px] font-bold text-foreground">Filters</p>
-        <button className="text-[6px] text-primary">↻ Reset</button>
+        <button className="text-[6px] text-primary flex items-center gap-0.5"><RotateCcw className="w-2 h-2" /> Reset</button>
       </div>
       <div className="mb-3">
         <p className="text-[7px] font-semibold text-foreground mb-1">Location</p>
@@ -446,9 +566,9 @@ const JobBoardContent = () => (
     {/* Job listings */}
     <div className="flex-1">
       <h3 className="text-sm font-bold text-foreground italic mb-0.5">Job Board</h3>
-      <p className="text-[7px] text-primary mb-2">💼 303 total opportunities</p>
+      <p className="text-[7px] text-primary mb-2 flex items-center gap-0.5"><Briefcase className="w-2.5 h-2.5" /> 303 total opportunities</p>
       <div className="flex items-center gap-2 mb-3">
-        <div className="flex-1 bg-secondary rounded-md px-2 py-1.5 text-[8px] text-muted-foreground">🔍 Search jobs...</div>
+        <div className="flex-1 bg-secondary rounded-md px-2 py-1.5 text-[8px] text-muted-foreground flex items-center gap-1"><Search className="w-2.5 h-2.5" /> Search jobs...</div>
         <button className="bg-primary text-primary-foreground rounded-md px-3 py-1.5 text-[8px] font-medium">Search</button>
       </div>
       <div className="flex items-center justify-between mb-2">
@@ -470,16 +590,16 @@ const JobBoardContent = () => (
           <div key={job.title} className="bg-card border border-border rounded-lg p-2">
             <div className="flex items-center justify-between mb-1.5">
               <div className={`w-5 h-5 rounded ${job.color} flex items-center justify-center text-[5px] font-bold text-white`}>{job.logo}</div>
-              <span className="text-[7px] text-muted-foreground cursor-pointer">🔖</span>
+              <Bookmark className="w-3 h-3 text-muted-foreground cursor-pointer" strokeWidth={1.8} />
             </div>
             <p className="text-[7px] font-semibold text-foreground leading-tight mb-0.5">{job.title}</p>
             <p className="text-[6px] text-primary mb-0.5">{job.company}</p>
-            <p className="text-[6px] text-muted-foreground mb-1">📍 {job.location}</p>
+            <p className="text-[6px] text-muted-foreground mb-1 flex items-center gap-0.5"><MapPin className="w-2 h-2" /> {job.location}</p>
             <p className="text-[5px] text-muted-foreground leading-tight mb-1.5 line-clamp-2">Join our team and contribute to exciting projects in {job.tag.toLowerCase()}...</p>
             <span className="text-[5px] bg-secondary text-muted-foreground rounded px-1 py-0.5 inline-block mb-1.5">{job.tag}</span>
             <div className="flex items-center justify-between">
-              <span className="text-[5px] text-muted-foreground">🟢 Posted {job.posted}</span>
-              <span className="text-[6px] text-primary font-medium cursor-pointer">View ↗</span>
+              <span className="text-[5px] text-emerald-500 flex items-center gap-0.5">● Posted {job.posted}</span>
+              <span className="text-[6px] text-primary font-medium cursor-pointer flex items-center gap-0.5">View <ExternalLink className="w-2 h-2" /></span>
             </div>
           </div>
         ))}
@@ -494,7 +614,7 @@ const EventsContent = () => (
     <h3 className="text-sm font-bold text-foreground italic mb-0.5">Events</h3>
     <p className="text-[7px] text-muted-foreground mb-3">Discover workshops, career fairs, webinars, and networking opportunities</p>
 
-    <div className="bg-secondary rounded-md px-2 py-1.5 text-[8px] text-muted-foreground mb-3">🔍 Search events by name or description...</div>
+    <div className="bg-secondary rounded-md px-2 py-1.5 text-[8px] text-muted-foreground mb-3 flex items-center gap-1"><Search className="w-2.5 h-2.5" /> Search events by name or description...</div>
 
     <div className="flex items-center gap-2 mb-3">
       <span className="text-[7px]">Event Type</span>
@@ -517,11 +637,11 @@ const EventsContent = () => (
           <span className={`text-[5px] text-white font-bold rounded px-1 py-0.5 ${ev.typeColor} inline-block mb-1.5`}>{ev.type} Event</span>
           <p className="text-[7px] font-semibold text-foreground leading-tight mb-0.5">{ev.title}</p>
           <p className="text-[6px] text-muted-foreground leading-tight mb-1.5 line-clamp-2">{ev.desc}</p>
-          <p className="text-[6px] text-muted-foreground">📅 {ev.date}</p>
-          <p className="text-[6px] text-muted-foreground">⏰ {ev.time}</p>
-          <p className="text-[6px] text-muted-foreground mb-1.5">📍 {ev.location}</p>
+          <p className="text-[6px] text-muted-foreground flex items-center gap-0.5"><CalendarDays className="w-2 h-2" /> {ev.date}</p>
+          <p className="text-[6px] text-muted-foreground flex items-center gap-0.5"><Clock className="w-2 h-2" /> {ev.time}</p>
+          <p className="text-[6px] text-muted-foreground mb-1.5 flex items-center gap-0.5"><MapPin className="w-2 h-2" /> {ev.location}</p>
           <p className="text-[5px] text-muted-foreground mb-1.5">Published by {ev.publisher}</p>
-          <button className="w-full bg-primary text-primary-foreground rounded-md py-1 text-[7px] font-medium">Register Now ↗</button>
+          <button className="w-full bg-primary text-primary-foreground rounded-md py-1 text-[7px] font-medium flex items-center justify-center gap-0.5">Register Now <ExternalLink className="w-2 h-2" /></button>
         </div>
       ))}
     </div>
@@ -558,8 +678,8 @@ const MeetingsContent = () => {
                 <p className="text-[7px] text-muted-foreground">{adv.specialty}</p>
               </div>
               <div className="ml-auto flex items-center gap-2 text-[7px] text-muted-foreground">
-                <span>⏱ 30 min</span>
-                <span>📹 Video call</span>
+                <span className="flex items-center gap-0.5"><Clock className="w-2 h-2" /> 30 min</span>
+                <span className="flex items-center gap-0.5"><Video className="w-2 h-2" /> Video call</span>
                 <span className="text-emerald-500 font-semibold">Free</span>
               </div>
             </div>
@@ -611,10 +731,10 @@ const MeetingsContent = () => {
           <p className="text-[9px] font-bold text-foreground mb-2">Booking Summary</p>
           <div className="space-y-2">
             {[
-              { icon: "👤", label: "Advisor", value: selectedAdvisor || "Not selected" },
-              { icon: "📅", label: "Date", value: "Not selected" },
-              { icon: "⏰", label: "Time", value: "Not selected" },
-              { icon: "📹", label: "Meeting Type", value: "30 min Video call" },
+              { IconComp: User, label: "Advisor", value: selectedAdvisor || "Not selected" },
+              { IconComp: CalendarDays, label: "Date", value: "Not selected" },
+              { IconComp: Clock, label: "Time", value: "Not selected" },
+              { IconComp: Video, label: "Meeting Type", value: "30 min Video call" },
             ].map((item) => (
               <div key={item.label}>
                 <p className="text-[6px] text-primary font-medium">{item.label}</p>
@@ -626,7 +746,7 @@ const MeetingsContent = () => {
           <p className="text-[6px] text-muted-foreground text-center mt-1">Please complete all selections above.</p>
         </div>
         <div className="mt-2 border border-border rounded-lg p-2">
-          <span className="text-[7px] text-primary font-medium">👤 2 advisors available</span>
+          <span className="text-[7px] text-primary font-medium flex items-center gap-0.5"><User className="w-2.5 h-2.5" /> 2 advisors available</span>
         </div>
       </div>
     </div>
