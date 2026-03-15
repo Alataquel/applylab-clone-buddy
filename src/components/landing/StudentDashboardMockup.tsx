@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { LayoutGrid, ClipboardList, FileText, ChevronDown, Briefcase, CalendarDays, Video, User, Settings, UserCircle, Mail, Search, MapPin, Clock, Bookmark, ExternalLink, Eye, Pencil, Trash2, ArrowRight, RotateCcw, FileCheck, Sparkles, GraduationCap } from "lucide-react";
+import { useState, useEffect } from "react";
+import { LayoutGrid, ClipboardList, FileText, ChevronDown, Briefcase, CalendarDays, Video, User, Settings, UserCircle, Mail, Search, MapPin, Clock, Bookmark, ExternalLink, Eye, Pencil, Trash2, ArrowRight, RotateCcw, FileCheck, Sparkles, GraduationCap, X } from "lucide-react";
 
 const navIcons = [
   { label: "Dashboard", icon: LayoutGrid },
