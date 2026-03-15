@@ -1389,7 +1389,7 @@ const EventsContent = () => {
             <p className="text-[7px] text-muted-foreground">Try adjusting your search or filters</p>
           </div>
         ) : (
-          <div className="grid grid-cols-5 gap-1.5">
+          <div className="grid grid-cols-3 gap-1.5">
             {filtered.map((ev) => (
               <div key={ev.title} className="bg-card border border-border rounded-lg p-2 hover:border-primary/30 transition-colors">
                 <span className={`text-[5px] text-white font-bold rounded px-1 py-0.5 ${ev.typeColor} inline-block mb-1.5`}>{ev.type} Event</span>
