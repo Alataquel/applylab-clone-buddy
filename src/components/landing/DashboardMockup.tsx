@@ -1722,15 +1722,15 @@ const DashboardMockup = () => {
       {/* App content */}
       <div className="flex min-h-[600px]">
         {/* Sidebar */}
-        <div className="w-48 border-r border-white/5 p-4 hidden sm:block" style={{ zoom: 1.15 }}>
-          <p className="text-sm font-bold text-white mb-5">ApplyLab</p>
-          <p className="text-[10px] uppercase tracking-wider text-gray-500 mb-2">Careers Team</p>
+        <div className="w-40 border-r border-white/5 p-3 hidden sm:block">
+          <p className="text-xs font-bold text-white mb-4">ApplyLab</p>
+          <p className="text-[9px] uppercase tracking-wider text-gray-500 mb-2">Careers Team</p>
           <div className="space-y-0.5">
             {navItems.map((item, i) => (
               <div
                 key={item}
                 onClick={() => { setActiveTab(i); setSelectedStudent(null); setShowTemplateEditor(false); setSelectedPosting(null); }}
-                className={`text-[11px] px-3 py-2 rounded-md transition-colors cursor-pointer ${
+                className={`text-[10px] px-2.5 py-1.5 rounded-md transition-colors cursor-pointer ${
                   i === activeTab
                     ? "bg-primary text-white font-medium"
                     : "text-gray-500 hover:text-gray-300"
@@ -1743,7 +1743,7 @@ const DashboardMockup = () => {
         </div>
 
         {/* Main content */}
-        <div className="flex-1 p-5 overflow-y-auto max-h-[600px]" style={{ zoom: 1.2 }}>
+        <div className="flex-1 p-5 overflow-y-auto max-h-[600px]">
           {renderContent()}
         </div>
       </div>
