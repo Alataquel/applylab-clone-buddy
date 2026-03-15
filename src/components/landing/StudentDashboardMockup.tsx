@@ -1559,6 +1559,7 @@ const StudentDashboardMockup = () => {
   };
 
   return (
+    <div className="origin-top" style={{ transform: "scale(1.15)", transformOrigin: "top center" }}>
     <div
       className="rounded-xl overflow-hidden shadow-precision-lg border border-gray-200 relative"
       style={{
@@ -1677,6 +1678,7 @@ const StudentDashboardMockup = () => {
       <div className="p-5 min-h-[600px] max-h-[600px] overflow-y-auto" onClick={() => setResumeDropdownOpen(false)}>
         {renderContent()}
       </div>
+    </div>
     </div>
   );
 };
