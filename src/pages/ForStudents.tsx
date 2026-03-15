@@ -48,7 +48,7 @@ const ForStudents = () => {
       </section>
 
       {/* Features - Alternating Layout */}
-      <section className="py-20 px-6 lg:px-12">
+      <section className="py-20 px-6 lg:px-12 bg-white">
         <div className="max-w-6xl mx-auto space-y-32">
 
           {/* Feature 01 - Job Board: text left, mockup right */}
@@ -60,15 +60,15 @@ const ForStudents = () => {
             className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center"
           >
             <div>
-              <div className="w-12 h-12 rounded-xl bg-primary/15 flex items-center justify-center mb-6">
+              <div className="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center mb-6">
                 <Search className="w-5 h-5 text-primary" />
               </div>
               <p className="text-xs uppercase tracking-widest text-primary font-semibold mb-3">Feature 01</p>
-              <h2 className="text-3xl lg:text-4xl font-bold text-foreground tracking-tight mb-4">Job Board</h2>
-              <p className="text-base text-muted-foreground/80 font-medium mb-3">
+              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 tracking-tight mb-4">Job Board</h2>
+              <p className="text-base text-gray-500 font-medium mb-3">
                 AI-matched opportunities tailored to your skills and goals
               </p>
-              <p className="text-sm text-muted-foreground leading-relaxed">
+              <p className="text-sm text-gray-400 leading-relaxed">
                 Our intelligent algorithm analyses your profile, skills, and preferences to surface the most relevant opportunities from thousands of listings — filtered by fit, not just keywords.
               </p>
             </div>
@@ -164,15 +164,15 @@ const ForStudents = () => {
               </div>
             </div>
             <div className="order-1 lg:order-2">
-              <div className="w-12 h-12 rounded-xl bg-primary/15 flex items-center justify-center mb-6">
+              <div className="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center mb-6">
                 <FileText className="w-5 h-5 text-primary" />
               </div>
               <p className="text-xs uppercase tracking-widest text-primary font-semibold mb-3">Feature 02</p>
-              <h2 className="text-3xl lg:text-4xl font-bold text-foreground tracking-tight mb-4">Resume Lab</h2>
-              <p className="text-base text-muted-foreground/80 font-medium mb-3">
+              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 tracking-tight mb-4">Resume Lab</h2>
+              <p className="text-base text-gray-500 font-medium mb-3">
                 Real-time feedback to strengthen every application
               </p>
-              <p className="text-sm text-muted-foreground leading-relaxed">
+              <p className="text-sm text-gray-400 leading-relaxed">
                 Build optimised resumes with instant feedback on formatting, keywords, and impact bullets. Our AI scores your resume against each specific job description.
               </p>
             </div>
@@ -187,15 +187,15 @@ const ForStudents = () => {
             className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center"
           >
             <div>
-              <div className="w-12 h-12 rounded-xl bg-primary/15 flex items-center justify-center mb-6">
+              <div className="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center mb-6">
                 <BarChart3 className="w-5 h-5 text-primary" />
               </div>
               <p className="text-xs uppercase tracking-widest text-primary font-semibold mb-3">Feature 03</p>
-              <h2 className="text-3xl lg:text-4xl font-bold text-foreground tracking-tight mb-4">Automatic Tracker</h2>
-              <p className="text-base text-muted-foreground/80 font-medium mb-3">
+              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 tracking-tight mb-4">Automatic Tracker</h2>
+              <p className="text-base text-gray-500 font-medium mb-3">
                 Every application, one visual pipeline
               </p>
-              <p className="text-sm text-muted-foreground leading-relaxed">
+              <p className="text-sm text-gray-400 leading-relaxed">
                 A visual pipeline that automatically keeps every application organised. Track status in real time without lifting a finger — from application to offer.
               </p>
             </div>
@@ -283,15 +283,15 @@ const ForStudents = () => {
               </div>
             </div>
             <div className="order-1 lg:order-2">
-              <div className="w-12 h-12 rounded-xl bg-primary/15 flex items-center justify-center mb-6">
+              <div className="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center mb-6">
                 <Calendar className="w-5 h-5 text-primary" />
               </div>
               <p className="text-xs uppercase tracking-widest text-primary font-semibold mb-3">Feature 04</p>
-              <h2 className="text-3xl lg:text-4xl font-bold text-foreground tracking-tight mb-4">Event Board</h2>
-              <p className="text-base text-muted-foreground/80 font-medium mb-3">
+              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 tracking-tight mb-4">Event Board</h2>
+              <p className="text-base text-gray-500 font-medium mb-3">
                 Never miss a career opportunity
               </p>
-              <p className="text-sm text-muted-foreground leading-relaxed">
+              <p className="text-sm text-gray-400 leading-relaxed">
                 Discover career fairs, networking sessions, and workshops curated for your profile. Never miss an opportunity to connect with employers.
               </p>
             </div>
@@ -306,15 +306,15 @@ const ForStudents = () => {
             className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center"
           >
             <div>
-              <div className="w-12 h-12 rounded-xl bg-primary/15 flex items-center justify-center mb-6">
+              <div className="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center mb-6">
                 <UserCheck className="w-5 h-5 text-primary" />
               </div>
               <p className="text-xs uppercase tracking-widest text-primary font-semibold mb-3">Feature 05</p>
-              <h2 className="text-3xl lg:text-4xl font-bold text-foreground tracking-tight mb-4">Book an Advisor</h2>
-              <p className="text-base text-muted-foreground/80 font-medium mb-3">
+              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 tracking-tight mb-4">Book an Advisor</h2>
+              <p className="text-base text-gray-500 font-medium mb-3">
                 Personalised guidance, one click away
               </p>
-              <p className="text-sm text-muted-foreground leading-relaxed">
+              <p className="text-sm text-gray-400 leading-relaxed">
                 One-click booking with your university's career advisors. Get personalised guidance on your applications, interview prep, or career direction.
               </p>
             </div>
