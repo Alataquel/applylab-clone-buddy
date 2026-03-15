@@ -1,11 +1,13 @@
 import { useState, useRef } from "react";
 
-const navItems = ["Overview", "Students", "Qualifications", "Market", "Reports"];
+const navItems = ["Dashboard", "Job Board", "My CVs", "Tracking", "Analytics"];
 
 const cohorts = [
-  { name: "Business 2026", students: 342, placed: "68%", trend: "+12%" },
-  { name: "Engineering 2026", students: 218, placed: "74%", trend: "+8%" },
-  { name: "Arts & Design 2026", students: 156, placed: "61%", trend: "+15%" },
+  { name: "Business 2026", students: 342, placed: "68%", trend: "+12%", color: "bg-purple-500", letter: "B2" },
+  { name: "Engineering 2026", students: 218, placed: "74%", trend: "+8%", color: "bg-blue-500", letter: "E2" },
+  { name: "Arts & Design 2026", students: 156, placed: "61%", trend: "+15%", color: "bg-emerald-500", letter: "A2" },
+  { name: "Finance 2026", students: 198, placed: "72%", trend: "+10%", color: "bg-rose-500", letter: "F2" },
+  { name: "Marketing 2026", students: 124, placed: "65%", trend: "+7%", color: "bg-indigo-500", letter: "M2" },
 ];
 
 const DashboardMockup = () => {
@@ -27,86 +29,70 @@ const DashboardMockup = () => {
       ref={ref}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="rounded-xl overflow-hidden shadow-precision-lg bg-card transition-transform duration-300 ease-out"
+      className="rounded-xl overflow-hidden shadow-precision-lg bg-[hsl(222,50%,11%)] border border-white/5 transition-transform duration-300 ease-out"
       style={{
         transform: `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) scale(1.02)`,
       }}
     >
       {/* Browser chrome */}
-      <div className="flex items-center gap-2 px-4 py-3 bg-secondary/50">
+      <div className="flex items-center gap-2 px-4 py-2.5 bg-[hsl(222,45%,9%)] border-b border-white/5">
         <div className="flex gap-1.5">
-          <div className="w-3 h-3 rounded-full bg-destructive/80" />
-          <div className="w-3 h-3 rounded-full bg-amber-500/80" />
-          <div className="w-3 h-3 rounded-full bg-emerald-500/80" />
+          <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
+          <div className="w-2.5 h-2.5 rounded-full bg-[#febc2e]" />
+          <div className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
         </div>
-        <div className="flex-1 text-center text-xs text-muted-foreground">applylab.software/dashboard</div>
+        <div className="flex-1 text-center">
+          <span className="text-[11px] text-gray-500 bg-white/5 px-4 py-1 rounded-md">applylab.software/dashboard</span>
+        </div>
       </div>
 
       {/* App content */}
-      <div className="flex min-h-[400px]">
+      <div className="flex min-h-[420px]">
         {/* Sidebar */}
-        <div className="w-44 border-r border-border/50 p-5 space-y-1 hidden sm:block">
-          <p className="text-sm font-semibold text-foreground mb-5">ApplyLab</p>
-          {navItems.map((item, i) => (
-            <div
-              key={item}
-              className={`text-xs px-3 py-2.5 rounded-md ${
-                i === 0
-                  ? "bg-primary/10 text-primary font-medium"
-                  : "text-muted-foreground"
-              }`}
-            >
-              {item}
-            </div>
-          ))}
+        <div className="w-36 border-r border-white/5 p-4 hidden sm:block">
+          <p className="text-sm font-bold text-white mb-5">ApplyLab</p>
+          <div className="space-y-0.5">
+            {navItems.map((item, i) => (
+              <div
+                key={item}
+                className={`text-xs px-3 py-2 rounded-md transition-colors ${
+                  i === 0
+                    ? "bg-primary text-white font-medium"
+                    : "text-gray-500 hover:text-gray-300"
+                }`}
+              >
+                {item}
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Main content */}
-        <div className="flex-1 p-5 space-y-5">
-          {/* Stats row */}
-          <div className="grid grid-cols-3 gap-3">
-            {[
-              { label: "Active students", value: "716" },
-              { label: "Placement rate", value: "68%" },
-              { label: "Avg. applications", value: "14.2" },
-            ].map((s) => (
-              <div key={s.label} className="bg-secondary rounded-lg p-3 text-center">
-                <p className="text-xl font-bold text-foreground leading-tight">{s.value}</p>
-                <p className="text-[11px] text-muted-foreground">{s.label}</p>
+        <div className="flex-1 p-5">
+          <p className="text-xs text-gray-500 mb-4">Top matches · Today</p>
+
+          <div className="space-y-2">
+            {cohorts.map((c) => (
+              <div key={c.name} className="flex items-center gap-3 bg-white/[0.03] hover:bg-white/[0.06] border border-white/5 rounded-lg px-4 py-3 transition-colors">
+                <div className={`w-9 h-9 rounded-lg ${c.color} flex items-center justify-center text-[10px] font-bold text-white flex-shrink-0`}>
+                  {c.letter}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-medium text-white">{c.name}</p>
+                  <p className="text-[11px] text-gray-500">{c.students} students</p>
+                </div>
+                <span className="text-sm font-semibold text-emerald-400 bg-emerald-400/10 px-2.5 py-0.5 rounded-full">{c.placed}</span>
               </div>
             ))}
           </div>
 
-          {/* Cohort table */}
-          <div>
-            <p className="text-xs text-muted-foreground mb-2">Cohort performance</p>
-            <div className="space-y-2">
-              {cohorts.map((c) => (
-                <div key={c.name} className="flex items-center gap-3 bg-secondary/50 rounded-lg px-4 py-3">
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-foreground">{c.name}</p>
-                    <p className="text-[11px] text-muted-foreground">{c.students} students</p>
-                  </div>
-                  <div className="text-right">
-                    <p className="text-sm font-semibold text-foreground">{c.placed}</p>
-                    <p className="text-[11px] text-emerald-400">{c.trend}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Mini bar chart */}
-          <div>
-            <p className="text-xs text-muted-foreground mb-2">Weekly application volume</p>
-            <div className="flex items-end gap-1.5 h-16">
-              {[35, 50, 42, 65, 58, 72, 68, 80, 75, 90, 85, 95].map((h, i) => (
-                <div
-                  key={i}
-                  className="flex-1 rounded-sm bg-primary/40"
-                  style={{ height: `${h}%` }}
-                />
-              ))}
+          {/* CTA button */}
+          <div className="mt-4 flex gap-2">
+            <button className="flex-1 bg-primary hover:bg-primary/90 text-white text-sm font-medium py-2.5 rounded-lg transition-colors">
+              Optimise Resume
+            </button>
+            <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center">
+              <div className="w-5 h-3 bg-gray-600 rounded-sm" />
             </div>
           </div>
         </div>
