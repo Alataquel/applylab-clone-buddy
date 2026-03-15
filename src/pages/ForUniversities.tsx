@@ -22,16 +22,16 @@ const ForUniversities = () => {
 
       {/* Hero */}
       <section className="pt-32 pb-20 px-6 lg:px-12">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl mx-auto text-center">
           <motion.div variants={containerVariants} initial="hidden" animate="visible">
             <motion.p variants={itemVariants} className="text-xs uppercase tracking-widest text-primary font-medium mb-3">For Universities</motion.p>
             <motion.h1 variants={itemVariants} className="text-4xl lg:text-5xl font-bold text-foreground tracking-tight leading-[1.1] mb-6 text-balance">
               Career outcomes you can <span className="text-gradient italic">actually measure.</span>
             </motion.h1>
-            <motion.p variants={itemVariants} className="text-lg text-muted-foreground max-w-2xl leading-relaxed mb-10">
-              Three layers of intelligence that give your career team the data to intervene early, report with confidence, and improve outcomes year over year.
+            <motion.p variants={itemVariants} className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed mb-10">
+              One platform that connects student career activity, employer data, and reporting — so your team can intervene early, prove impact, and improve outcomes year over year.
             </motion.p>
-            <motion.div variants={itemVariants} className="flex flex-wrap gap-3">
+            <motion.div variants={itemVariants} className="flex flex-wrap gap-3 justify-center">
               <motion.a
                 href="/request-pilot"
                 className="inline-flex items-center gap-2 bg-foreground text-background font-medium px-6 py-3 rounded-full text-sm hover:opacity-90 transition-opacity"
