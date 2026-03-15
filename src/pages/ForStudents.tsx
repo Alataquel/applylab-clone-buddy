@@ -3,27 +3,6 @@ import Navbar from "@/components/landing/Navbar";
 import Footer from "@/components/landing/Footer";
 import { ArrowRight, FileText, BarChart3, Search } from "lucide-react";
 
-const features = [
-  {
-    icon: Search,
-    title: "Internship Board",
-    desc: "Roles ranked by genuine fit — not keyword overlap. Our matching model reads your full profile and surfaces only the positions where you'd genuinely stand out.",
-    detail: "Powered by contextual AI that understands skills, experience, and career trajectory.",
-  },
-  {
-    icon: FileText,
-    title: "Resume Lab",
-    desc: "Line-by-line AI feedback on your CV. Strengthen impact statements, improve formatting, and close keyword gaps — in seconds, not hours.",
-    detail: "94% average CV optimisation rate across all student CVs.",
-  },
-  {
-    icon: BarChart3,
-    title: "Automatic Tracker",
-    desc: "A visual pipeline that automatically keeps every application organised. Track status in real time without lifting a finger.",
-    detail: "Automatic status updates and follow-up prompts built in.",
-  },
-];
-
 const ForStudents = () => {
   return (
     <div className="min-h-screen bg-background">
@@ -54,33 +33,189 @@ const ForStudents = () => {
         </div>
       </section>
 
-      {/* Features */}
+      {/* Features with Visuals */}
       <section className="py-20 px-6 lg:px-12">
-        <div className="max-w-5xl mx-auto space-y-6">
-          {features.map((f, i) => (
-            <motion.div
-              key={f.title}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.06 }}
-              className="grid lg:grid-cols-[1fr_1.2fr] gap-8 items-center bg-card rounded-xl p-8 shadow-precision hover:-translate-y-0.5 transition-transform"
-            >
-              <div>
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center">
-                    <f.icon className="w-4 h-4 text-primary" />
-                  </div>
-                  <span className="text-xs text-muted-foreground font-mono">0{i + 1}</span>
+        <div className="max-w-7xl mx-auto space-y-8">
+          {/* Internship Board */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="bg-card rounded-xl shadow-precision overflow-hidden"
+          >
+            <div className="p-6 lg:p-8">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center">
+                  <Search className="w-4 h-4 text-primary" />
                 </div>
-                <h3 className="text-xl font-semibold text-foreground mb-3">{f.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
+                <span className="text-xs text-muted-foreground font-mono">01</span>
               </div>
-              <div className="bg-secondary rounded-lg p-6">
-                <p className="text-sm text-muted-foreground leading-relaxed">{f.detail}</p>
+              <h3 className="text-xl font-semibold text-foreground mb-3">Internship Board</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed max-w-lg">
+                Roles ranked by genuine fit — not keyword overlap. Our matching model reads your full profile and surfaces only the positions where you'd genuinely stand out.
+              </p>
+            </div>
+            <div className="px-6 lg:px-8 pb-6 lg:pb-8">
+              <div className="bg-secondary rounded-lg p-4 space-y-2">
+                {[
+                  { letter: "F", color: "bg-purple-500", role: "Product Design Intern", company: "Figma", match: "98%", location: "Remote" },
+                  { letter: "L", color: "bg-blue-500", role: "Frontend Engineering Intern", company: "Linear", match: "95%", location: "London" },
+                  { letter: "S", color: "bg-emerald-500", role: "Growth Marketing Intern", company: "Spotify", match: "92%", location: "Stockholm" },
+                  { letter: "M", color: "bg-amber-500", role: "Strategy Analyst Intern", company: "McKinsey", match: "88%", location: "Madrid" },
+                ].map((job) => (
+                  <div key={job.role} className="flex items-center gap-3 bg-card rounded-md px-3 py-3">
+                    <div className={`w-8 h-8 rounded-md ${job.color} flex items-center justify-center text-[10px] font-bold text-foreground`}>
+                      {job.letter}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-xs font-medium text-foreground">{job.role}</p>
+                      <p className="text-[10px] text-muted-foreground">{job.company} · {job.location}</p>
+                    </div>
+                    <span className="text-xs font-semibold text-emerald-400">{job.match}</span>
+                  </div>
+                ))}
               </div>
-            </motion.div>
-          ))}
+            </div>
+          </motion.div>
+
+          {/* Resume Lab */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="bg-card rounded-xl shadow-precision overflow-hidden"
+          >
+            <div className="p-6 lg:p-8">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center">
+                  <FileText className="w-4 h-4 text-primary" />
+                </div>
+                <span className="text-xs text-muted-foreground font-mono">02</span>
+              </div>
+              <h3 className="text-xl font-semibold text-foreground mb-3">Resume Lab</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed max-w-lg">
+                Line-by-line AI feedback on your CV. Strengthen impact statements, improve formatting, and close keyword gaps — in seconds, not hours.
+              </p>
+            </div>
+            <div className="px-6 lg:px-8 pb-6 lg:pb-8">
+              <div className="bg-secondary rounded-lg p-4">
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-4">
+                  <div className="bg-card rounded-md p-3 text-center">
+                    <p className="text-2xl font-bold text-foreground">92</p>
+                    <p className="text-[10px] text-muted-foreground">Overall Score</p>
+                  </div>
+                  {[
+                    { label: "Impact", value: "88%", color: "text-amber-400" },
+                    { label: "Keywords", value: "95%", color: "text-emerald-400" },
+                    { label: "Format", value: "92%", color: "text-primary" },
+                  ].map((m) => (
+                    <div key={m.label} className="bg-card rounded-md p-3 text-center">
+                      <p className={`text-lg font-bold ${m.color}`}>{m.value}</p>
+                      <p className="text-[10px] text-muted-foreground">{m.label}</p>
+                    </div>
+                  ))}
+                </div>
+                <div className="space-y-2">
+                  {[
+                    { type: "suggestion", text: "Add metrics to your 2nd bullet point to quantify impact." },
+                    { type: "optimised", text: "Skills section optimised for Technology sector roles." },
+                    { type: "suggestion", text: "Consider adding a project section to showcase relevant work." },
+                  ].map((s, i) => (
+                    <div key={i} className={`rounded-md px-3 py-2.5 text-xs ${
+                      s.type === "suggestion"
+                        ? "bg-amber-500/5 text-amber-300/80"
+                        : "bg-emerald-500/5 text-emerald-300/80"
+                    }`}>
+                      {s.type === "suggestion" ? "💡 " : "✓ "}{s.text}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Automatic Tracker */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="bg-card rounded-xl shadow-precision overflow-hidden"
+          >
+            <div className="p-6 lg:p-8">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center">
+                  <BarChart3 className="w-4 h-4 text-primary" />
+                </div>
+                <span className="text-xs text-muted-foreground font-mono">03</span>
+              </div>
+              <h3 className="text-xl font-semibold text-foreground mb-3">Automatic Tracker</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed max-w-lg">
+                A visual pipeline that automatically keeps every application organised. Track status in real time without lifting a finger.
+              </p>
+            </div>
+            <div className="px-6 lg:px-8 pb-6 lg:pb-8">
+              <div className="bg-secondary rounded-lg p-4">
+                <div className="grid grid-cols-4 gap-2">
+                  {[
+                    {
+                      stage: "Applied",
+                      color: "bg-blue-400",
+                      items: [
+                        { company: "Spotify", role: "Marketing", days: "2d ago" },
+                        { company: "Revolut", role: "Product", days: "3d ago" },
+                        { company: "Wise", role: "Ops", days: "5d ago" },
+                      ],
+                    },
+                    {
+                      stage: "Interview",
+                      color: "bg-amber-400",
+                      items: [
+                        { company: "Linear", role: "Engineering", days: "Tomorrow" },
+                        { company: "Figma", role: "Design", days: "Thu" },
+                      ],
+                    },
+                    {
+                      stage: "Offer",
+                      color: "bg-emerald-400",
+                      items: [
+                        { company: "McKinsey", role: "Strategy", days: "Pending" },
+                      ],
+                    },
+                    {
+                      stage: "Accepted",
+                      color: "bg-primary",
+                      items: [],
+                    },
+                  ].map((col) => (
+                    <div key={col.stage}>
+                      <div className="flex items-center gap-1.5 mb-2">
+                        <div className={`w-2 h-2 rounded-full ${col.color}`} />
+                        <span className="text-[10px] font-medium text-foreground">{col.stage}</span>
+                        <span className="text-[10px] text-muted-foreground">{col.items.length}</span>
+                      </div>
+                      <div className="space-y-1.5">
+                        {col.items.map((item) => (
+                          <div key={item.company} className="bg-card rounded-md p-2">
+                            <p className="text-[10px] font-medium text-foreground">{item.company}</p>
+                            <p className="text-[9px] text-muted-foreground">{item.role}</p>
+                            <p className="text-[9px] text-muted-foreground/60 mt-0.5">{item.days}</p>
+                          </div>
+                        ))}
+                        {col.items.length === 0 && (
+                          <div className="border border-dashed border-border/30 rounded-md p-2 text-center">
+                            <p className="text-[9px] text-muted-foreground/40">—</p>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
