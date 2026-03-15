@@ -1,33 +1,33 @@
 const testimonials = [
   {
-    quote: "I used to track applications in a spreadsheet. ApplyLab feels like a personal career assistant. Landed my internship in three weeks.",
-    initials: "SC",
-    name: "Sarah Chen",
-    role: "Student",
-  },
-  {
-    quote: "Finally, real visibility into what our students are doing. The placement data lets us adjust curriculum in real-time.",
+    quote: "Finally, real visibility into what our students are doing. The placement data lets us adjust curriculum in real-time, not a year later.",
     initials: "MC",
     name: "Dr. Marcus Cole",
     role: "Director of Careers",
   },
   {
-    quote: "The resume builder taught me how to write better impact bullets—it's not a template filler. My response rate tripled.",
-    initials: "JW",
-    name: "James Wilson",
-    role: "Business Graduate",
-  },
-  {
-    quote: "Smart Job Discovery surfaced roles I didn't know existed. Matched me with a company that fits my values perfectly.",
-    initials: "ER",
-    name: "Elena Rodriguez",
-    role: "Marketing Graduate",
-  },
-  {
-    quote: "The engagement dashboard changed how counsellors spend their time. We now proactively reach at-risk students.",
+    quote: "The engagement dashboard changed how counsellors spend their time. We now proactively reach at-risk students before they disengage.",
     initials: "AP",
     name: "Prof. Aisha Patel",
     role: "Head of Employability",
+  },
+  {
+    quote: "We went from manual end-of-year surveys to live placement tracking. The data quality is incomparable.",
+    initials: "RH",
+    name: "Rachel Hughes",
+    role: "Associate Dean, Careers",
+  },
+  {
+    quote: "The qualifications insights showed us gaps in our programme we didn't know existed. We restructured two modules based on the data.",
+    initials: "TK",
+    name: "Dr. Thomas Keller",
+    role: "Programme Director",
+  },
+  {
+    quote: "Onboarding was fast — under two weeks. Students adopted the platform without any training because the tools are genuinely useful.",
+    initials: "LM",
+    name: "Laura Martinez",
+    role: "Career Services Manager",
   },
 ];
 
@@ -35,9 +35,9 @@ const TestimonialsSection = () => {
   return (
     <section className="py-24 px-6 lg:px-12">
       <div className="max-w-7xl mx-auto mb-12">
-        <p className="text-xs uppercase tracking-widest text-primary font-medium mb-3">Social proof</p>
+        <p className="text-xs uppercase tracking-widest text-primary font-medium mb-3">From our partners</p>
         <h2 className="text-3xl lg:text-4xl font-bold text-foreground tracking-tight">
-          Loved by students. <span className="text-gradient italic">Trusted by institutions.</span>
+          Trusted by career teams <span className="text-gradient italic">across Europe.</span>
         </h2>
       </div>
 
