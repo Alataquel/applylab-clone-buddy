@@ -1138,9 +1138,28 @@ const allJobs = [
   { company: "Spotify", logo: "SP", color: "bg-green-500", title: "UX Research Intern", location: "Stockholm, Sweden", country: "Sweden", tag: "Technology", posted: "2 days ago", level: "Internship" },
   { company: "Nestlé", logo: "NE", color: "bg-sky-600", title: "Supply Chain Graduate Programme", location: "Vevey, Switzerland", country: "Switzerland", tag: "Consumer Goods", posted: "6 days ago", level: "Entry level" },
   { company: "Accenture", logo: "AC", color: "bg-purple-600", title: "Consulting Analyst Intern", location: "Milan, Italy", country: "Italy", tag: "Business Consulting", posted: "3 days ago", level: "Internship" },
+  { company: "Meta", logo: "ME", color: "bg-blue-500", title: "Product Design Intern", location: "Menlo Park, United States", country: "United States", tag: "Technology", posted: "1 day ago", level: "Internship" },
+  { company: "Bain & Company", logo: "BC", color: "bg-red-600", title: "Associate Consultant Intern", location: "London, United Kingdom", country: "United Kingdom", tag: "Management Consulting", posted: "2 days ago", level: "Internship" },
+  { company: "Samsung", logo: "SM", color: "bg-blue-700", title: "Hardware Engineering Intern", location: "Seoul, South Korea", country: "South Korea", tag: "Electronics", posted: "5 days ago", level: "Internship" },
+  { company: "Goldman Sachs", logo: "GS", color: "bg-sky-800", title: "Summer Analyst - Asset Management", location: "London, United Kingdom", country: "United Kingdom", tag: "Financial Services", posted: "1 day ago", level: "Internship" },
+  { company: "BMW Group", logo: "BW", color: "bg-blue-900", title: "Autonomous Driving Intern", location: "Munich, Germany", country: "Germany", tag: "Automotive", posted: "3 days ago", level: "Internship" },
+  { company: "Stripe", logo: "ST", color: "bg-indigo-600", title: "Backend Engineer Intern", location: "San Francisco, United States", country: "United States", tag: "FinTech", posted: "2 days ago", level: "Internship" },
+  { company: "Unilever", logo: "UL", color: "bg-teal-600", title: "Brand Management Trainee", location: "Rotterdam, Netherlands", country: "Netherlands", tag: "Consumer Goods", posted: "4 days ago", level: "Entry level" },
+  { company: "Airbus", logo: "AB", color: "bg-sky-500", title: "Aerospace Engineering Intern", location: "Toulouse, France", country: "France", tag: "Aviation", posted: "6 days ago", level: "Internship" },
+  { company: "Booking.com", logo: "BK", color: "bg-blue-600", title: "Data Analyst Intern", location: "Amsterdam, Netherlands", country: "Netherlands", tag: "Technology", posted: "3 days ago", level: "Internship" },
+  { company: "PwC", logo: "PW", color: "bg-orange-600", title: "Audit & Assurance Graduate", location: "Dublin, Ireland", country: "Ireland", tag: "Professional Services", posted: "2 days ago", level: "Entry level" },
+  { company: "Adidas", logo: "AD", color: "bg-gray-900", title: "Digital Marketing Intern", location: "Herzogenaurach, Germany", country: "Germany", tag: "Sporting Goods", posted: "4 days ago", level: "Internship" },
+  { company: "Salesforce", logo: "SF", color: "bg-sky-400", title: "Solutions Engineer Intern", location: "San Francisco, United States", country: "United States", tag: "Technology", posted: "1 day ago", level: "Internship" },
+  { company: "Morgan Stanley", logo: "MS", color: "bg-blue-800", title: "Quantitative Finance Analyst", location: "New York, United States", country: "United States", tag: "Financial Services", posted: "3 days ago", level: "Entry level" },
+  { company: "Roche", logo: "RO", color: "bg-blue-400", title: "Biotech Research Intern", location: "Basel, Switzerland", country: "Switzerland", tag: "Pharmaceuticals", posted: "5 days ago", level: "Internship" },
+  { company: "Porsche", logo: "PO", color: "bg-red-700", title: "Business Strategy Intern", location: "Stuttgart, Germany", country: "Germany", tag: "Automotive", posted: "2 days ago", level: "Internship" },
+  { company: "N26", logo: "N2", color: "bg-teal-500", title: "Mobile Engineer Intern", location: "Berlin, Germany", country: "Germany", tag: "FinTech", posted: "1 day ago", level: "Internship" },
+  { company: "Deloitte", logo: "DL", color: "bg-green-700", title: "Risk Advisory Graduate", location: "Madrid, Spain", country: "Spain", tag: "Professional Services", posted: "4 days ago", level: "Entry level" },
+  { company: "Netflix", logo: "NF", color: "bg-red-500", title: "Content Strategy Intern", location: "Los Angeles, United States", country: "United States", tag: "Entertainment", posted: "2 days ago", level: "Internship" },
+  { company: "EY", logo: "EY", color: "bg-yellow-500", title: "Tax Consulting Intern", location: "Zurich, Switzerland", country: "Switzerland", tag: "Professional Services", posted: "5 days ago", level: "Internship" },
 ];
 
-const locations = ["United States", "United Kingdom", "Germany", "France", "Spain", "Italy", "Switzerland", "Singapore", "United Arab Emirates", "Canada"];
+const locations = ["United States", "United Kingdom", "Germany", "France", "Spain", "Italy", "Switzerland", "Singapore", "United Arab Emirates", "Canada", "Netherlands", "Ireland", "South Korea", "Sweden"];
 const levels = ["Internship", "Entry level"];
 
 const JobBoardContent = () => {
