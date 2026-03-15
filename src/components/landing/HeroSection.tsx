@@ -17,7 +17,7 @@ const itemVariants = {
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen pt-32 pb-20 px-6 lg:px-12 overflow-hidden">
+    <section className="relative min-h-screen flex items-center py-20 px-6 lg:px-12 overflow-hidden">
       <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
         <motion.div variants={containerVariants} initial="hidden" animate="visible" className="space-y-8">
           <motion.div variants={itemVariants} className="flex items-center gap-2 text-sm text-muted-foreground">
