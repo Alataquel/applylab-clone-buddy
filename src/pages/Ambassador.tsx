@@ -243,7 +243,7 @@ const Ambassador = () => {
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-card rounded-2xl p-12 lg:p-16 shadow-precision-lg relative overflow-hidden"
+            className="bg-white rounded-2xl p-12 lg:p-16 shadow-md border border-gray-100 relative overflow-hidden"
           >
             {/* Subtle glow */}
             <div className="absolute -top-20 -right-20 w-60 h-60 bg-primary/10 rounded-full blur-[80px] pointer-events-none" />
