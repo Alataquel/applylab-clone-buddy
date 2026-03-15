@@ -256,7 +256,7 @@ const Ambassador = () => {
             </p>
             <motion.a
               href="/request-pilot"
-              className="inline-flex items-center gap-2 bg-foreground text-background font-medium px-8 py-3.5 rounded-full text-sm hover:opacity-90 transition-opacity relative"
+              className="inline-flex items-center gap-2 bg-gray-900 text-white font-medium px-8 py-3.5 rounded-full text-sm hover:bg-gray-800 transition-colors relative"
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.97 }}
             >
