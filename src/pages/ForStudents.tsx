@@ -48,7 +48,7 @@ const ForStudents = () => {
       </section>
 
       {/* Features - Alternating Layout */}
-      <section className="py-20 px-6 lg:px-12 bg-white">
+      <section className="py-20 px-6 lg:px-12">
         <div className="max-w-6xl mx-auto space-y-32">
 
           {/* Feature 01 - Job Board: text left, mockup right */}
