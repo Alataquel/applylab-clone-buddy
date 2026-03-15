@@ -15,7 +15,7 @@ const studentFeatures = [
   {
     num: "02",
     title: "Resume Lab",
-    desc: "Line-by-line feedback that improves your ATS score, strengthens impact statements, and plugs keyword gaps in seconds.",
+    desc: "AI-powered, line-by-line CV feedback that raises ATS pass rates, strengthens impact statements, and closes keyword gaps — at scale.",
     atsScore: 92,
     suggestions: [
       "Suggestion: Add metrics to your 2nd bullet point.",
