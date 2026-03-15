@@ -1940,7 +1940,7 @@ const DashboardMockup = () => {
     if (activeTab === 1 && selectedStudent) {
       return <StudentDetailContent student={selectedStudent} onBack={() => setSelectedStudent(null)} />;
     }
-    if (activeTab === 5 && showTemplateEditor) {
+    if (activeTab === 4 && showTemplateEditor) {
       return <TemplateEditorContent onBack={() => setShowTemplateEditor(false)} />;
     }
     if (activeTab === 6 && selectedPosting) {
