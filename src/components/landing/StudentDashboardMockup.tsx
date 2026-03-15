@@ -367,48 +367,143 @@ const ResumeBuilderContent = () => (
         <button className="text-[7px] text-blue-300 border border-blue-400/30 rounded px-2 py-0.5">⬇ Save as PDF</button>
       </div>
       {/* The resume "page" */}
-      <div className="bg-white rounded shadow-lg p-4 w-full border border-white/20">
-        <div className="border-b border-primary pb-2 mb-3">
-          <h4 className="text-xs font-bold text-gray-900">Your Name</h4>
-          <p className="text-[7px] text-gray-500">Your Professional Title</p>
-          <p className="text-[6px] text-gray-400 text-right">your.email@example.com</p>
+      <div className="bg-white rounded shadow-lg p-4 w-full border border-white/20 max-h-[520px] overflow-y-auto scrollbar-thin">
+        <div className="border-b-2 border-primary pb-2 mb-3">
+          <h4 className="text-sm font-bold text-gray-900">Antonio Rossi</h4>
+          <p className="text-[7px] text-gray-500">Frontend Developer & UX Designer</p>
+          <div className="flex items-center gap-3 mt-1 text-[6px] text-gray-400">
+            <span>antonio.rossi@email.com</span>
+            <span>+39 345 678 9012</span>
+            <span>Milan, Italy</span>
+          </div>
+          <div className="flex items-center gap-3 mt-0.5 text-[6px] text-primary">
+            <span>linkedin.com/in/antoniorossi</span>
+            <span>github.com/arossi</span>
+            <span>antoniorossi.dev</span>
+          </div>
         </div>
-        <div className="space-y-2">
+
+        <div className="space-y-2.5">
+          {/* Summary */}
           <div>
             <p className="text-[7px] font-bold text-primary uppercase tracking-wider mb-1">Professional Summary</p>
-            <p className="text-[6px] text-gray-500">Brief professional summary...</p>
+            <p className="text-[6px] text-gray-600 leading-relaxed">Creative frontend developer with 2+ years of experience building responsive web applications. Passionate about clean code, accessibility, and user-centered design. Proficient in React, TypeScript, and modern CSS frameworks. Seeking to leverage my skills in a dynamic product team.</p>
           </div>
+
+          {/* Experience */}
           <div>
             <p className="text-[7px] font-bold text-primary uppercase tracking-wider mb-1">Professional Experience</p>
-            <div className="flex justify-between">
-              <div>
-                <p className="text-[7px] font-semibold text-gray-800">Your Job Title</p>
-                <p className="text-[6px] text-primary">Company Name</p>
+            <div className="mb-2">
+              <div className="flex justify-between">
+                <div>
+                  <p className="text-[7px] font-semibold text-gray-800">Frontend Developer Intern</p>
+                  <p className="text-[6px] text-primary">Deloitte Digital</p>
+                </div>
+                <div className="text-right">
+                  <p className="text-[6px] text-gray-500">Jun 2025 – Present</p>
+                  <p className="text-[6px] text-gray-400">Milan, Italy</p>
+                </div>
               </div>
-              <div className="text-right">
-                <p className="text-[6px] text-gray-500">2023-01 - Present</p>
-                <p className="text-[6px] text-gray-400">City, Country</p>
-              </div>
+              <ul className="text-[6px] text-gray-600 ml-2 mt-0.5 space-y-0.5">
+                <li>• Built reusable React component library used across 3 client projects, reducing dev time by 40%</li>
+                <li>• Implemented responsive dashboards with real-time data visualization using D3.js and Chart.js</li>
+                <li>• Collaborated with UX team to improve accessibility scores from 72 to 96 (Lighthouse)</li>
+                <li>• Participated in agile sprints and code reviews with a team of 8 engineers</li>
+              </ul>
             </div>
-            <ul className="text-[6px] text-gray-500 ml-2 mt-0.5 space-y-0.5">
-              <li>• Achievement 1</li>
-              <li>• Achievement 2</li>
-              <li>• Achievement 3</li>
-            </ul>
+            <div>
+              <div className="flex justify-between">
+                <div>
+                  <p className="text-[7px] font-semibold text-gray-800">Web Developer (Freelance)</p>
+                  <p className="text-[6px] text-primary">Self-Employed</p>
+                </div>
+                <div className="text-right">
+                  <p className="text-[6px] text-gray-500">Jan 2024 – May 2025</p>
+                  <p className="text-[6px] text-gray-400">Remote</p>
+                </div>
+              </div>
+              <ul className="text-[6px] text-gray-600 ml-2 mt-0.5 space-y-0.5">
+                <li>• Designed and developed 12+ responsive websites for small businesses and startups</li>
+                <li>• Achieved 95+ PageSpeed scores through image optimization and lazy loading strategies</li>
+                <li>• Integrated payment systems (Stripe) and CMS platforms (Contentful, Sanity)</li>
+              </ul>
+            </div>
           </div>
+
+          {/* Education */}
           <div>
             <p className="text-[7px] font-bold text-primary uppercase tracking-wider mb-1">Education</p>
             <div className="flex justify-between">
               <div>
-                <p className="text-[7px] font-semibold text-gray-800">Bachelor's in Your Field</p>
-                <p className="text-[6px] text-primary">University Name</p>
+                <p className="text-[7px] font-semibold text-gray-800">MSc Computer Science</p>
+                <p className="text-[6px] text-primary">Politecnico di Milano</p>
               </div>
-              <p className="text-[6px] text-gray-500">2019-09 - 2023-06</p>
+              <p className="text-[6px] text-gray-500">Sep 2024 – Present</p>
             </div>
-            <ul className="text-[6px] text-gray-500 ml-2 mt-0.5 space-y-0.5">
-              <li>• Relevant coursework</li>
-              <li>• Academic achievement</li>
-              <li>• Project work</li>
+            <ul className="text-[6px] text-gray-600 ml-2 mt-0.5 space-y-0.5">
+              <li>• Focus: Human-Computer Interaction & Software Engineering</li>
+              <li>• GPA: 28.5/30 — Dean's List 2024</li>
+            </ul>
+            <div className="flex justify-between mt-1.5">
+              <div>
+                <p className="text-[7px] font-semibold text-gray-800">BSc Computer Engineering</p>
+                <p className="text-[6px] text-primary">Università degli Studi di Milano</p>
+              </div>
+              <p className="text-[6px] text-gray-500">Sep 2021 – Jul 2024</p>
+            </div>
+            <ul className="text-[6px] text-gray-600 ml-2 mt-0.5 space-y-0.5">
+              <li>• Thesis: "Optimizing React Rendering Performance in Data-Heavy Applications"</li>
+              <li>• Final grade: 110/110 cum laude</li>
+            </ul>
+          </div>
+
+          {/* Projects */}
+          <div>
+            <p className="text-[7px] font-bold text-primary uppercase tracking-wider mb-1">Projects</p>
+            <div className="mb-1.5">
+              <div className="flex justify-between">
+                <p className="text-[7px] font-semibold text-gray-800">TaskFlow — Productivity App</p>
+                <p className="text-[6px] text-primary">github.com/arossi/taskflow</p>
+              </div>
+              <p className="text-[6px] text-gray-600">Full-stack task management app built with React, Node.js, and PostgreSQL. Features real-time collaboration via WebSockets, drag-and-drop Kanban boards, and automated email reminders.</p>
+            </div>
+            <div>
+              <div className="flex justify-between">
+                <p className="text-[7px] font-semibold text-gray-800">EcoTrack — Carbon Footprint Calculator</p>
+                <p className="text-[6px] text-primary">ecotrack.app</p>
+              </div>
+              <p className="text-[6px] text-gray-600">Award-winning hackathon project. Mobile-first PWA that tracks daily carbon emissions with data visualization and personalized reduction tips. 2,000+ active users.</p>
+            </div>
+          </div>
+
+          {/* Skills */}
+          <div>
+            <p className="text-[7px] font-bold text-primary uppercase tracking-wider mb-1">Technical Skills</p>
+            <div className="grid grid-cols-2 gap-1 text-[6px] text-gray-600">
+              <div><span className="font-semibold text-gray-700">Languages:</span> TypeScript, JavaScript, Python, HTML, CSS, SQL</div>
+              <div><span className="font-semibold text-gray-700">Frameworks:</span> React, Next.js, Node.js, Express, Tailwind CSS</div>
+              <div><span className="font-semibold text-gray-700">Tools:</span> Git, Docker, Figma, Jira, VS Code, Postman</div>
+              <div><span className="font-semibold text-gray-700">Cloud:</span> AWS (S3, Lambda), Vercel, Supabase, Firebase</div>
+            </div>
+          </div>
+
+          {/* Languages */}
+          <div>
+            <p className="text-[7px] font-bold text-primary uppercase tracking-wider mb-1">Languages</p>
+            <div className="flex gap-3 text-[6px] text-gray-600">
+              <span><span className="font-semibold text-gray-700">Italian</span> — Native</span>
+              <span><span className="font-semibold text-gray-700">English</span> — C1 (IELTS 7.5)</span>
+              <span><span className="font-semibold text-gray-700">French</span> — B1</span>
+            </div>
+          </div>
+
+          {/* Certifications */}
+          <div>
+            <p className="text-[7px] font-bold text-primary uppercase tracking-wider mb-1">Certifications</p>
+            <ul className="text-[6px] text-gray-600 space-y-0.5">
+              <li>• AWS Certified Cloud Practitioner — Amazon Web Services, 2025</li>
+              <li>• Meta Front-End Developer Professional Certificate — Coursera, 2024</li>
+              <li>• Google UX Design Certificate — Google, 2024</li>
             </ul>
           </div>
         </div>
