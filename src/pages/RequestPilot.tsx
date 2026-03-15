@@ -194,7 +194,7 @@ const RequestPilot = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.55 }}
                 type="submit"
-                className="w-full bg-foreground text-background font-medium py-3 rounded-lg text-sm hover:opacity-90 transition-opacity"
+                className="w-full bg-gray-900 text-white font-medium py-3 rounded-lg text-sm hover:bg-gray-800 transition-colors"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
