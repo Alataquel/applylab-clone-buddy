@@ -48,7 +48,7 @@ const ForUniversities = () => {
       </section>
 
       {/* Stats */}
-      <section className="py-16 px-6 lg:px-12 border-t border-border/30">
+      <section className="py-16 px-6 lg:px-12 bg-secondary">
         <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
           {[
             { value: "85%", label: "Reduction in manual reporting" },
@@ -340,7 +340,7 @@ const ForUniversities = () => {
       </section>
 
       {/* Data Sovereignty */}
-      <section className="py-16 px-6 lg:px-12 border-t border-border/30">
+      <section className="py-16 px-6 lg:px-12 bg-secondary">
         <div className="max-w-3xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
