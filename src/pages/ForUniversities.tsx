@@ -335,6 +335,98 @@ const ForUniversities = () => {
                 </div>
               </div>
             </motion.div>
+
+            {/* Resume Rubric Grading */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="bg-card rounded-xl shadow-precision overflow-hidden"
+            >
+              <div className="p-6 lg:p-8">
+                <motion.div
+                  initial={{ opacity: 0, x: -16 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                >
+                  <ClipboardCheck className="w-5 h-5 text-primary mb-3" />
+                  <h3 className="text-lg font-semibold text-foreground mb-2">Resume Rubric Grading</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed max-w-lg">
+                    Define your own grading rubric by programme and degree. When students use Resume Lab, their CV is automatically scored against your institution's criteria — consistent, scalable, and advisor-free.
+                  </p>
+                </motion.div>
+              </div>
+              <div className="px-6 lg:px-8 pb-6 lg:pb-8">
+                <div className="bg-secondary rounded-lg p-4">
+                  {/* Rubric template mockup */}
+                  <div className="flex items-center gap-2 mb-4">
+                    <Sliders className="w-3.5 h-3.5 text-primary" />
+                    <p className="text-[10px] text-muted-foreground uppercase tracking-wider">Business Admin 2026 — Rubric Template</p>
+                  </div>
+                  <div className="space-y-3 mb-5">
+                    {[
+                      { criterion: "Quantified impact statements", weight: 30 },
+                      { criterion: "Relevant skills & keywords", weight: 25 },
+                      { criterion: "Formatting & structure", weight: 20 },
+                      { criterion: "Tailored to target sector", weight: 15 },
+                      { criterion: "Extracurriculars & leadership", weight: 10 },
+                    ].map((r, i) => (
+                      <motion.div
+                        key={r.criterion}
+                        initial={{ opacity: 0, x: -16 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.4, delay: 0.3 + i * 0.08 }}
+                        className="flex items-center gap-3"
+                      >
+                        <span className="text-xs text-foreground flex-1">{r.criterion}</span>
+                        <div className="w-24 h-1.5 bg-muted rounded-full overflow-hidden">
+                          <motion.div
+                            className="h-full rounded-full bg-primary/60"
+                            initial={{ width: 0 }}
+                            whileInView={{ width: `${r.weight * 3}%` }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8, delay: 0.4 + i * 0.1 }}
+                          />
+                        </div>
+                        <span className="text-[10px] text-muted-foreground w-8 text-right">{r.weight}%</span>
+                      </motion.div>
+                    ))}
+                  </div>
+                  {/* Student result preview */}
+                  <div className="border-t border-border/30 pt-4">
+                    <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-3">Student result preview</p>
+                    <div className="grid grid-cols-2 gap-3">
+                      {[
+                        { name: "Emma Torres", score: 87, status: "Pass" },
+                        { name: "Liam Chen", score: 72, status: "Needs revision" },
+                      ].map((s, i) => (
+                        <motion.div
+                          key={s.name}
+                          initial={{ opacity: 0, scale: 0.95 }}
+                          whileInView={{ opacity: 1, scale: 1 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.4, delay: 0.5 + i * 0.1 }}
+                          className="bg-card rounded-md p-3 flex items-center gap-3"
+                        >
+                          <div>
+                            <p className="text-xs font-medium text-foreground">{s.name}</p>
+                            <p className="text-[10px] text-muted-foreground">Rubric score: <span className="font-semibold text-foreground">{s.score}/100</span></p>
+                          </div>
+                          <span className={`ml-auto text-[10px] font-medium rounded-full px-2 py-0.5 ${
+                            s.status === "Pass" ? "bg-emerald-500/10 text-emerald-400" : "bg-amber-500/10 text-amber-400"
+                          }`}>
+                            {s.status}
+                          </span>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
