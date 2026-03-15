@@ -19,7 +19,7 @@ const itemVariants = {
 
 const ForUniversities = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <GridBackground>
       <Navbar />
 
       {/* Hero */}
