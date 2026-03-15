@@ -641,7 +641,7 @@ const EventsContent = () => (
           <p className="text-[6px] text-muted-foreground flex items-center gap-0.5"><Clock className="w-2 h-2" /> {ev.time}</p>
           <p className="text-[6px] text-muted-foreground mb-1.5 flex items-center gap-0.5"><MapPin className="w-2 h-2" /> {ev.location}</p>
           <p className="text-[5px] text-muted-foreground mb-1.5">Published by {ev.publisher}</p>
-          <button className="w-full bg-primary text-primary-foreground rounded-md py-1 text-[7px] font-medium">Register Now ↗</button>
+          <button className="w-full bg-primary text-primary-foreground rounded-md py-1 text-[7px] font-medium flex items-center justify-center gap-0.5">Register Now <ExternalLink className="w-2 h-2" /></button>
         </div>
       ))}
     </div>
