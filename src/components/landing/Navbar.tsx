@@ -15,9 +15,9 @@ const Navbar = () => {
       </div>
 
       <div className="hidden md:flex items-center gap-8">
-        <a href="#students" className="text-sm text-muted-foreground hover:text-foreground transition-colors">For Students</a>
-        <a href="#universities" className="text-sm text-muted-foreground hover:text-foreground transition-colors">For Universities</a>
-        <a href="#about" className="text-sm text-muted-foreground hover:text-foreground transition-colors">About</a>
+        <a href="/students" className="text-sm text-muted-foreground hover:text-foreground transition-colors">For Students</a>
+        <a href="/universities" className="text-sm text-muted-foreground hover:text-foreground transition-colors">For Universities</a>
+        <a href="/about" className="text-sm text-muted-foreground hover:text-foreground transition-colors">About</a>
       </div>
 
       <div className="flex items-center gap-3">
