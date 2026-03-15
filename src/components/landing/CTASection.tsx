@@ -15,7 +15,7 @@ const CTASection = () => {
         >
           <p className="text-xs uppercase tracking-widest text-primary font-medium mb-3">Get involved</p>
           <h2 className="text-3xl lg:text-4xl font-bold text-foreground tracking-tight mb-12">
-            Make your career <span className="text-gradient italic">activity visible.</span>
+            Make career outcomes <span className="text-gradient italic">visible.</span>
           </h2>
         </motion.div>
 
