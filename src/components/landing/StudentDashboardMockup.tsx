@@ -616,7 +616,7 @@ const ResumeBuilderContent = () => {
     <div className="grid grid-cols-[0.8fr_1.4fr_0.8fr] gap-0">
       {/* Left sidebar - Editable Form */}
       <div className="bg-[hsl(228,50%,20%)] rounded-l-lg p-2.5 text-white space-y-2 max-h-[560px] overflow-y-auto">
-        <button className="text-[6px] text-blue-300 bg-blue-400/10 rounded px-1.5 py-0.5 border border-blue-400/20">Autofill from profile</button>
+        <button onClick={autofillAll} className="w-full text-[6px] text-blue-300 bg-blue-400/10 rounded px-1.5 py-1 border border-blue-400/20 hover:bg-blue-400/20 transition-colors font-medium">⚡ Autofill from profile</button>
         <p className="text-[7px] font-bold text-white/80 uppercase tracking-wider">Basics</p>
         {([
           ["headline", "Headline"],
