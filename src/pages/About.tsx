@@ -219,7 +219,7 @@ const About = () => {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="flex justify-center"
           >
-            <div className="rounded-xl overflow-hidden shadow-precision-md max-w-xs">
+            <div className="rounded-xl overflow-hidden shadow-precision-md max-w-xs bg-white p-6">
               <img src={applylabLogo} alt="ApplyLab" className="w-full h-auto" />
             </div>
           </motion.div>
