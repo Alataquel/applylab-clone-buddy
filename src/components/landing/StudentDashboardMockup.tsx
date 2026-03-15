@@ -753,12 +753,12 @@ const StudentDashboardMockup = () => {
             );
           })}
           {/* Extra icons like in the reference */}
-          <div className="w-px h-4 bg-border mx-1" />
-          <button className="w-7 h-7 rounded-md flex items-center justify-center text-muted-foreground hover:bg-secondary">
-            <User className="w-3.5 h-3.5" strokeWidth={1.8} />
+          <div className="w-px h-4 bg-[hsl(214.3,31.8%,91.4%)] mx-1" />
+          <button className="w-7 h-7 rounded-md flex items-center justify-center hover:bg-[hsl(210,40%,96.1%)]" style={{ color: "hsl(215, 16%, 47%)" }}>
+            <User className="w-4 h-4" strokeWidth={1.8} />
           </button>
-          <button className="w-7 h-7 rounded-md flex items-center justify-center text-muted-foreground hover:bg-secondary">
-            <Settings className="w-3.5 h-3.5" strokeWidth={1.8} />
+          <button className="w-7 h-7 rounded-md flex items-center justify-center hover:bg-[hsl(210,40%,96.1%)]" style={{ color: "hsl(215, 16%, 47%)" }}>
+            <Settings className="w-4 h-4" strokeWidth={1.8} />
           </button>
         </div>
         <div className="flex items-center gap-1.5">
