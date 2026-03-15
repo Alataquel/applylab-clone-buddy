@@ -637,7 +637,28 @@ const StudentDashboardMockup = () => {
   };
 
   return (
-    <div className="rounded-xl overflow-hidden shadow-precision-lg bg-background border border-border relative">
+    <div
+      className="rounded-xl overflow-hidden shadow-precision-lg border border-gray-200 relative"
+      style={{
+        "--background": "0 0% 100%",
+        "--foreground": "222.2 84% 4.9%",
+        "--card": "0 0% 100%",
+        "--card-foreground": "222.2 84% 4.9%",
+        "--popover": "0 0% 100%",
+        "--popover-foreground": "222.2 84% 4.9%",
+        "--primary": "228 76% 35%",
+        "--primary-foreground": "210 40% 98%",
+        "--secondary": "210 40% 96.1%",
+        "--secondary-foreground": "222.2 47.4% 11.2%",
+        "--muted": "210 40% 96.1%",
+        "--muted-foreground": "215.4 16.3% 46.9%",
+        "--accent": "210 40% 96.1%",
+        "--accent-foreground": "222.2 47.4% 11.2%",
+        "--border": "214.3 31.8% 91.4%",
+        backgroundColor: "hsl(0 0% 100%)",
+        color: "hsl(222.2 84% 4.9%)",
+      } as React.CSSProperties}
+    >
       {/* Browser chrome */}
       <div className="flex items-center gap-2 bg-secondary px-4 py-2 border-b border-border">
         <div className="flex gap-1.5">
