@@ -545,232 +545,302 @@ const ResumeGraderContent = () => {
   );
 };
 
-const ResumeBuilderContent = () => (
-  <div className="grid grid-cols-[0.8fr_1.4fr_0.8fr] gap-0">
-    {/* Left sidebar - Form */}
-    <div className="bg-[hsl(228,50%,20%)] rounded-l-lg p-2.5 text-white space-y-2">
-      <button className="text-[6px] text-blue-300 bg-blue-400/10 rounded px-1.5 py-0.5 border border-blue-400/20">Autofill from profile</button>
-      <p className="text-[7px] font-bold text-white/80 uppercase tracking-wider">Basics</p>
-      {["Headline", "Full name", "Summary", "Email", "Phone", "Website", "Location", "LinkedIn", "GitHub"].map((f) => (
-        <div key={f}>
-          <p className="text-[6px] text-white/50 mb-0.5">{f}</p>
-          <div className="bg-white/10 rounded px-1.5 py-1 text-[7px] text-white/60">{f === "Headline" ? "Your Professional Title" : f === "Full name" ? "Your Name" : `your.${f.toLowerCase()}...`}</div>
+const colorOptions = [
+  { name: "Blue", class: "bg-blue-500", hex: "#3b82f6", hsl: "217 91% 60%" },
+  { name: "Rose", class: "bg-rose-500", hex: "#f43f5e", hsl: "350 89% 60%" },
+  { name: "Emerald", class: "bg-emerald-500", hex: "#10b981", hsl: "160 84% 39%" },
+  { name: "Teal", class: "bg-teal-500", hex: "#14b8a6", hsl: "173 80% 40%" },
+  { name: "Amber", class: "bg-amber-500", hex: "#f59e0b", hsl: "38 92% 50%" },
+  { name: "Orange", class: "bg-orange-500", hex: "#f97316", hsl: "25 95% 53%" },
+  { name: "Pink", class: "bg-pink-500", hex: "#ec4899", hsl: "330 81% 60%" },
+  { name: "Purple", class: "bg-purple-500", hex: "#a855f7", hsl: "271 81% 65%" },
+  { name: "Cyan", class: "bg-cyan-500", hex: "#06b6d4", hsl: "189 94% 43%" },
+  { name: "Black", class: "bg-gray-900", hex: "#111827", hsl: "221 39% 11%" },
+];
+
+const templates = ["Modern", "Classic", "Minimal", "Executive"];
+
+const ResumeBuilderContent = () => {
+  const [fields, setFields] = useState({
+    headline: "Frontend Developer & UX Designer",
+    fullName: "Antonio Rossi",
+    summary: "Creative frontend developer with 2+ years of experience building responsive web applications. Passionate about clean code, accessibility, and user-centered design. Proficient in React, TypeScript, and modern CSS frameworks.",
+    email: "antonio.rossi@email.com",
+    phone: "+39 345 678 9012",
+    website: "antoniorossi.dev",
+    location: "Milan, Italy",
+    linkedin: "linkedin.com/in/antoniorossi",
+    github: "github.com/arossi",
+  });
+  const [selectedColor, setSelectedColor] = useState(0);
+  const [selectedTemplate, setSelectedTemplate] = useState("Modern");
+  const [templateDropdownOpen, setTemplateDropdownOpen] = useState(false);
+
+  const updateField = (key: string, value: string) => setFields(prev => ({ ...prev, [key]: value }));
+  const accentColor = colorOptions[selectedColor].hex;
+  const accentHsl = colorOptions[selectedColor].hsl;
+
+  const isClassic = selectedTemplate === "Classic";
+  const isMinimal = selectedTemplate === "Minimal";
+  const isExecutive = selectedTemplate === "Executive";
+
+  return (
+    <div className="grid grid-cols-[0.8fr_1.4fr_0.8fr] gap-0">
+      {/* Left sidebar - Editable Form */}
+      <div className="bg-[hsl(228,50%,20%)] rounded-l-lg p-2.5 text-white space-y-2 max-h-[560px] overflow-y-auto">
+        <button className="text-[6px] text-blue-300 bg-blue-400/10 rounded px-1.5 py-0.5 border border-blue-400/20">Autofill from profile</button>
+        <p className="text-[7px] font-bold text-white/80 uppercase tracking-wider">Basics</p>
+        {([
+          ["headline", "Headline"],
+          ["fullName", "Full name"],
+          ["summary", "Summary"],
+          ["email", "Email"],
+          ["phone", "Phone"],
+          ["website", "Website"],
+          ["location", "Location"],
+          ["linkedin", "LinkedIn"],
+          ["github", "GitHub"],
+        ] as const).map(([key, label]) => (
+          <div key={key}>
+            <p className="text-[6px] text-white/50 mb-0.5">{label}</p>
+            {key === "summary" ? (
+              <textarea
+                value={fields[key]}
+                onChange={(e) => updateField(key, e.target.value)}
+                className="w-full bg-white/10 rounded px-1.5 py-1 text-[7px] text-white/90 outline-none focus:ring-1 focus:ring-blue-400/50 resize-none"
+                rows={3}
+              />
+            ) : (
+              <input
+                type="text"
+                value={fields[key]}
+                onChange={(e) => updateField(key, e.target.value)}
+                className="w-full bg-white/10 rounded px-1.5 py-1 text-[7px] text-white/90 outline-none focus:ring-1 focus:ring-blue-400/50"
+              />
+            )}
+          </div>
+        ))}
+        <p className="text-[7px] font-bold text-white/80 uppercase tracking-wider mt-2">Experience</p>
+        <button className="text-[7px] text-blue-300 border border-blue-400/30 rounded px-2 py-0.5">+ Add Experience</button>
+      </div>
+
+      {/* Center - Resume Preview */}
+      <div className="bg-[hsl(228,40%,25%)] p-4 flex flex-col items-center">
+        <div className="flex items-center justify-between w-full mb-3">
+          <button className="text-[7px] text-blue-300">← Back to My CVs</button>
+          <button className="text-[7px] text-blue-300 border border-blue-400/30 rounded px-2 py-0.5">⬇ Save as PDF</button>
         </div>
-      ))}
-      <p className="text-[7px] font-bold text-white/80 uppercase tracking-wider mt-2">Experience</p>
-      <button className="text-[7px] text-blue-300 border border-blue-400/30 rounded px-2 py-0.5">+ Add Experience</button>
+        <div className="bg-white rounded shadow-lg w-full border border-white/20 max-h-[520px] overflow-y-auto scrollbar-thin" style={{ fontFamily: isClassic ? "Georgia, serif" : isExecutive ? "Garamond, serif" : "Inter, sans-serif" }}>
+          
+          {/* MODERN template */}
+          {!isClassic && !isMinimal && !isExecutive && (
+            <div className="p-4">
+              <div className="border-b-2 pb-2 mb-3" style={{ borderColor: accentColor }}>
+                <h4 className="text-sm font-bold text-gray-900">{fields.fullName}</h4>
+                <p className="text-[7px] text-gray-500">{fields.headline}</p>
+                <div className="flex items-center gap-3 mt-1 text-[6px] text-gray-400">
+                  <span>{fields.email}</span><span>{fields.phone}</span><span>{fields.location}</span>
+                </div>
+                <div className="flex items-center gap-3 mt-0.5 text-[6px]" style={{ color: accentColor }}>
+                  <span>{fields.linkedin}</span><span>{fields.github}</span><span>{fields.website}</span>
+                </div>
+              </div>
+              <ResumeBody accentColor={accentColor} summary={fields.summary} />
+            </div>
+          )}
+
+          {/* CLASSIC template */}
+          {isClassic && (
+            <div className="p-4">
+              <div className="text-center mb-3 pb-2 border-b border-gray-300">
+                <h4 className="text-sm font-bold text-gray-900 uppercase tracking-wide">{fields.fullName}</h4>
+                <p className="text-[7px] text-gray-500 italic">{fields.headline}</p>
+                <div className="flex items-center justify-center gap-2 mt-1 text-[6px] text-gray-400">
+                  <span>{fields.email}</span><span>|</span><span>{fields.phone}</span><span>|</span><span>{fields.location}</span>
+                </div>
+              </div>
+              <ResumeBody accentColor={accentColor} summary={fields.summary} sectionStyle="border-b border-gray-200 pb-1 mb-1" />
+            </div>
+          )}
+
+          {/* MINIMAL template */}
+          {isMinimal && (
+            <div className="p-5">
+              <div className="mb-4">
+                <h4 className="text-sm font-bold text-gray-900">{fields.fullName}</h4>
+                <p className="text-[7px] mt-0.5" style={{ color: accentColor }}>{fields.headline}</p>
+                <div className="flex items-center gap-2 mt-1.5 text-[6px] text-gray-400">
+                  <span>{fields.email}</span><span>·</span><span>{fields.phone}</span><span>·</span><span>{fields.location}</span>
+                </div>
+              </div>
+              <ResumeBody accentColor={accentColor} summary={fields.summary} minimal />
+            </div>
+          )}
+
+          {/* EXECUTIVE template */}
+          {isExecutive && (
+            <div className="flex">
+              <div className="w-[35%] p-3" style={{ backgroundColor: accentColor + "12" }}>
+                <h4 className="text-[10px] font-bold text-gray-900 mb-0.5">{fields.fullName}</h4>
+                <p className="text-[6px] mb-2" style={{ color: accentColor }}>{fields.headline}</p>
+                <div className="space-y-1.5 text-[6px] text-gray-500">
+                  <p>{fields.email}</p><p>{fields.phone}</p><p>{fields.location}</p><p style={{ color: accentColor }}>{fields.linkedin}</p><p style={{ color: accentColor }}>{fields.github}</p>
+                </div>
+                <div className="mt-3">
+                  <p className="text-[6px] font-bold uppercase tracking-wider mb-1" style={{ color: accentColor }}>Skills</p>
+                  <div className="space-y-0.5 text-[6px] text-gray-600">
+                    <p>TypeScript, JavaScript</p><p>React, Next.js, Node.js</p><p>Python, SQL</p><p>Git, Docker, Figma</p>
+                  </div>
+                </div>
+                <div className="mt-3">
+                  <p className="text-[6px] font-bold uppercase tracking-wider mb-1" style={{ color: accentColor }}>Languages</p>
+                  <div className="space-y-0.5 text-[6px] text-gray-600">
+                    <p>Italian — Native</p><p>English — C1</p><p>French — B1</p>
+                  </div>
+                </div>
+              </div>
+              <div className="flex-1 p-4">
+                <ResumeBody accentColor={accentColor} summary={fields.summary} />
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Right sidebar - Settings */}
+      <div className="bg-[hsl(228,50%,20%)] rounded-r-lg p-2.5 space-y-2.5 text-white max-h-[560px] overflow-y-auto">
+        <div>
+          <p className="text-[7px] font-bold text-white/80 uppercase tracking-wider">Preview</p>
+          <label className="flex items-center gap-1.5 mt-1">
+            <input type="checkbox" className="w-2.5 h-2.5 rounded" />
+            <span className="text-[7px] text-white/60">Enforce one page</span>
+          </label>
+          <div className="text-[6px] text-white/40 mt-1 space-y-0.5">
+            <p>• Changes are saved automatically</p>
+            <p>• Preview updates in real-time</p>
+          </div>
+        </div>
+        <div className="relative">
+          <p className="text-[7px] font-bold text-white/80 uppercase tracking-wider">Template</p>
+          <button
+            onClick={() => setTemplateDropdownOpen(!templateDropdownOpen)}
+            className="w-full bg-white/10 rounded px-1.5 py-1 text-[7px] text-white/70 mt-0.5 text-left flex items-center justify-between hover:bg-white/15 transition-colors"
+          >
+            {selectedTemplate}
+            <ChevronDown className="w-2.5 h-2.5" />
+          </button>
+          {templateDropdownOpen && (
+            <div className="absolute top-full left-0 right-0 mt-0.5 bg-[hsl(228,50%,15%)] border border-white/10 rounded shadow-lg z-20">
+              {templates.map((t) => (
+                <button
+                  key={t}
+                  onClick={() => { setSelectedTemplate(t); setTemplateDropdownOpen(false); }}
+                  className={`block w-full text-left px-2 py-1 text-[7px] transition-colors ${selectedTemplate === t ? "text-blue-300 bg-white/10" : "text-white/60 hover:bg-white/5 hover:text-white/80"}`}
+                >
+                  {t}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+        <div>
+          <p className="text-[7px] font-bold text-white/80 uppercase tracking-wider">Colors</p>
+          <p className="text-[6px] text-white/50">Primary Color</p>
+          <div className="flex items-center gap-1 mt-0.5">
+            <div className="w-4 h-4 rounded" style={{ backgroundColor: accentColor }} />
+            <span className="text-[7px] text-white/70">{colorOptions[selectedColor].hex}</span>
+          </div>
+          <p className="text-[6px] text-white/50 mt-1">Quick Colors</p>
+          <div className="flex gap-1 mt-0.5 flex-wrap">
+            {colorOptions.map((c, i) => (
+              <div
+                key={i}
+                onClick={() => setSelectedColor(i)}
+                className={`w-3 h-3 rounded cursor-pointer transition-transform hover:scale-125 ${c.class} ${selectedColor === i ? "ring-1 ring-blue-300 ring-offset-1 ring-offset-[hsl(228,50%,20%)]" : ""}`}
+              />
+            ))}
+          </div>
+        </div>
+        <div>
+          <p className="text-[7px] font-bold text-white/80 uppercase tracking-wider">Typography</p>
+          <p className="text-[6px] text-white/50">Font Family</p>
+          <div className="bg-white/10 rounded px-1.5 py-1 text-[7px] text-white/70 mt-0.5">
+            {isClassic ? "Georgia" : isExecutive ? "Garamond" : "Inter"}
+          </div>
+        </div>
+        <div>
+          <p className="text-[7px] font-bold text-white/80 uppercase tracking-wider">Page Layout</p>
+          <p className="text-[6px] text-white/50">Page Size</p>
+          <div className="bg-white/10 rounded px-1.5 py-1 text-[7px] text-white/70 mt-0.5">A4 (210 × 297 mm)</div>
+        </div>
+      </div>
     </div>
+  );
+};
 
-    {/* Center - Resume Preview (white outlined page on blue bg) */}
-    <div className="bg-[hsl(228,40%,25%)] p-4 flex flex-col items-center">
-      <div className="flex items-center justify-between w-full mb-3">
-        <button className="text-[7px] text-blue-300">← Back to My CVs</button>
-        <button className="text-[7px] text-blue-300 border border-blue-400/30 rounded px-2 py-0.5">⬇ Save as PDF</button>
+/* Shared resume body across templates */
+const ResumeBody = ({ accentColor, summary, sectionStyle, minimal }: { accentColor: string; summary: string; sectionStyle?: string; minimal?: boolean }) => (
+  <div className={`space-y-2.5 ${minimal ? "space-y-3" : ""}`}>
+    <div className={sectionStyle}>
+      <p className="text-[7px] font-bold uppercase tracking-wider mb-1" style={{ color: accentColor }}>Professional Summary</p>
+      <p className="text-[6px] text-gray-600 leading-relaxed">{summary}</p>
+    </div>
+    <div className={sectionStyle}>
+      <p className="text-[7px] font-bold uppercase tracking-wider mb-1" style={{ color: accentColor }}>Professional Experience</p>
+      <div className="mb-2">
+        <div className="flex justify-between">
+          <div><p className="text-[7px] font-semibold text-gray-800">Frontend Developer Intern</p><p className="text-[6px]" style={{ color: accentColor }}>Deloitte Digital</p></div>
+          <div className="text-right"><p className="text-[6px] text-gray-500">Jun 2025 – Present</p><p className="text-[6px] text-gray-400">Milan, Italy</p></div>
+        </div>
+        <ul className="text-[6px] text-gray-600 ml-2 mt-0.5 space-y-0.5">
+          <li>• Built reusable React component library used across 3 client projects, reducing dev time by 40%</li>
+          <li>• Implemented responsive dashboards with real-time data visualization using D3.js and Chart.js</li>
+          <li>• Collaborated with UX team to improve accessibility scores from 72 to 96 (Lighthouse)</li>
+        </ul>
       </div>
-      {/* The resume "page" */}
-      <div className="bg-white rounded shadow-lg p-4 w-full border border-white/20 max-h-[520px] overflow-y-auto scrollbar-thin">
-        <div className="border-b-2 border-primary pb-2 mb-3">
-          <h4 className="text-sm font-bold text-gray-900">Antonio Rossi</h4>
-          <p className="text-[7px] text-gray-500">Frontend Developer & UX Designer</p>
-          <div className="flex items-center gap-3 mt-1 text-[6px] text-gray-400">
-            <span>antonio.rossi@email.com</span>
-            <span>+39 345 678 9012</span>
-            <span>Milan, Italy</span>
-          </div>
-          <div className="flex items-center gap-3 mt-0.5 text-[6px] text-primary">
-            <span>linkedin.com/in/antoniorossi</span>
-            <span>github.com/arossi</span>
-            <span>antoniorossi.dev</span>
-          </div>
+      <div>
+        <div className="flex justify-between">
+          <div><p className="text-[7px] font-semibold text-gray-800">Web Developer (Freelance)</p><p className="text-[6px]" style={{ color: accentColor }}>Self-Employed</p></div>
+          <div className="text-right"><p className="text-[6px] text-gray-500">Jan 2024 – May 2025</p><p className="text-[6px] text-gray-400">Remote</p></div>
         </div>
-
-        <div className="space-y-2.5">
-          {/* Summary */}
-          <div>
-            <p className="text-[7px] font-bold text-primary uppercase tracking-wider mb-1">Professional Summary</p>
-            <p className="text-[6px] text-gray-600 leading-relaxed">Creative frontend developer with 2+ years of experience building responsive web applications. Passionate about clean code, accessibility, and user-centered design. Proficient in React, TypeScript, and modern CSS frameworks. Seeking to leverage my skills in a dynamic product team.</p>
-          </div>
-
-          {/* Experience */}
-          <div>
-            <p className="text-[7px] font-bold text-primary uppercase tracking-wider mb-1">Professional Experience</p>
-            <div className="mb-2">
-              <div className="flex justify-between">
-                <div>
-                  <p className="text-[7px] font-semibold text-gray-800">Frontend Developer Intern</p>
-                  <p className="text-[6px] text-primary">Deloitte Digital</p>
-                </div>
-                <div className="text-right">
-                  <p className="text-[6px] text-gray-500">Jun 2025 – Present</p>
-                  <p className="text-[6px] text-gray-400">Milan, Italy</p>
-                </div>
-              </div>
-              <ul className="text-[6px] text-gray-600 ml-2 mt-0.5 space-y-0.5">
-                <li>• Built reusable React component library used across 3 client projects, reducing dev time by 40%</li>
-                <li>• Implemented responsive dashboards with real-time data visualization using D3.js and Chart.js</li>
-                <li>• Collaborated with UX team to improve accessibility scores from 72 to 96 (Lighthouse)</li>
-                <li>• Participated in agile sprints and code reviews with a team of 8 engineers</li>
-              </ul>
-            </div>
-            <div>
-              <div className="flex justify-between">
-                <div>
-                  <p className="text-[7px] font-semibold text-gray-800">Web Developer (Freelance)</p>
-                  <p className="text-[6px] text-primary">Self-Employed</p>
-                </div>
-                <div className="text-right">
-                  <p className="text-[6px] text-gray-500">Jan 2024 – May 2025</p>
-                  <p className="text-[6px] text-gray-400">Remote</p>
-                </div>
-              </div>
-              <ul className="text-[6px] text-gray-600 ml-2 mt-0.5 space-y-0.5">
-                <li>• Designed and developed 12+ responsive websites for small businesses and startups</li>
-                <li>• Achieved 95+ PageSpeed scores through image optimization and lazy loading strategies</li>
-                <li>• Integrated payment systems (Stripe) and CMS platforms (Contentful, Sanity)</li>
-              </ul>
-            </div>
-          </div>
-
-          {/* Education */}
-          <div>
-            <p className="text-[7px] font-bold text-primary uppercase tracking-wider mb-1">Education</p>
-            <div className="flex justify-between">
-              <div>
-                <p className="text-[7px] font-semibold text-gray-800">MSc Computer Science</p>
-                <p className="text-[6px] text-primary">Politecnico di Milano</p>
-              </div>
-              <p className="text-[6px] text-gray-500">Sep 2024 – Present</p>
-            </div>
-            <ul className="text-[6px] text-gray-600 ml-2 mt-0.5 space-y-0.5">
-              <li>• Focus: Human-Computer Interaction & Software Engineering</li>
-              <li>• GPA: 28.5/30 — Dean's List 2024</li>
-            </ul>
-            <div className="flex justify-between mt-1.5">
-              <div>
-                <p className="text-[7px] font-semibold text-gray-800">BSc Computer Engineering</p>
-                <p className="text-[6px] text-primary">Università degli Studi di Milano</p>
-              </div>
-              <p className="text-[6px] text-gray-500">Sep 2021 – Jul 2024</p>
-            </div>
-            <ul className="text-[6px] text-gray-600 ml-2 mt-0.5 space-y-0.5">
-              <li>• Thesis: "Optimizing React Rendering Performance in Data-Heavy Applications"</li>
-              <li>• Final grade: 110/110 cum laude</li>
-            </ul>
-          </div>
-
-          {/* Projects */}
-          <div>
-            <p className="text-[7px] font-bold text-primary uppercase tracking-wider mb-1">Projects</p>
-            <div className="mb-1.5">
-              <div className="flex justify-between">
-                <p className="text-[7px] font-semibold text-gray-800">TaskFlow — Productivity App</p>
-                <p className="text-[6px] text-primary">github.com/arossi/taskflow</p>
-              </div>
-              <p className="text-[6px] text-gray-600">Full-stack task management app built with React, Node.js, and PostgreSQL. Features real-time collaboration via WebSockets, drag-and-drop Kanban boards, and automated email reminders.</p>
-            </div>
-            <div>
-              <div className="flex justify-between">
-                <p className="text-[7px] font-semibold text-gray-800">EcoTrack — Carbon Footprint Calculator</p>
-                <p className="text-[6px] text-primary">ecotrack.app</p>
-              </div>
-              <p className="text-[6px] text-gray-600">Award-winning hackathon project. Mobile-first PWA that tracks daily carbon emissions with data visualization and personalized reduction tips. 2,000+ active users.</p>
-            </div>
-          </div>
-
-          {/* Skills */}
-          <div>
-            <p className="text-[7px] font-bold text-primary uppercase tracking-wider mb-1">Technical Skills</p>
-            <div className="grid grid-cols-2 gap-1 text-[6px] text-gray-600">
-              <div><span className="font-semibold text-gray-700">Languages:</span> TypeScript, JavaScript, Python, HTML, CSS, SQL</div>
-              <div><span className="font-semibold text-gray-700">Frameworks:</span> React, Next.js, Node.js, Express, Tailwind CSS</div>
-              <div><span className="font-semibold text-gray-700">Tools:</span> Git, Docker, Figma, Jira, VS Code, Postman</div>
-              <div><span className="font-semibold text-gray-700">Cloud:</span> AWS (S3, Lambda), Vercel, Supabase, Firebase</div>
-            </div>
-          </div>
-
-          {/* Languages */}
-          <div>
-            <p className="text-[7px] font-bold text-primary uppercase tracking-wider mb-1">Languages</p>
-            <div className="flex gap-3 text-[6px] text-gray-600">
-              <span><span className="font-semibold text-gray-700">Italian</span> — Native</span>
-              <span><span className="font-semibold text-gray-700">English</span> — C1 (IELTS 7.5)</span>
-              <span><span className="font-semibold text-gray-700">French</span> — B1</span>
-            </div>
-          </div>
-
-          {/* Certifications */}
-          <div>
-            <p className="text-[7px] font-bold text-primary uppercase tracking-wider mb-1">Certifications</p>
-            <ul className="text-[6px] text-gray-600 space-y-0.5">
-              <li>• AWS Certified Cloud Practitioner — Amazon Web Services, 2025</li>
-              <li>• Meta Front-End Developer Professional Certificate — Coursera, 2024</li>
-              <li>• Google UX Design Certificate — Google, 2024</li>
-            </ul>
-          </div>
-        </div>
+        <ul className="text-[6px] text-gray-600 ml-2 mt-0.5 space-y-0.5">
+          <li>• Designed and developed 12+ responsive websites for small businesses and startups</li>
+          <li>• Achieved 95+ PageSpeed scores through image optimization and lazy loading</li>
+        </ul>
       </div>
     </div>
-
-    {/* Right sidebar - Settings */}
-    <div className="bg-[hsl(228,50%,20%)] rounded-r-lg p-2.5 space-y-2.5 text-white">
-      <div>
-        <p className="text-[7px] font-bold text-white/80 uppercase tracking-wider">Preview</p>
-        <label className="flex items-center gap-1.5 mt-1">
-          <input type="checkbox" className="w-2.5 h-2.5 rounded" />
-          <span className="text-[7px] text-white/60">Enforce one page</span>
-        </label>
-        <div className="text-[6px] text-white/40 mt-1 space-y-0.5">
-          <p>• Changes are saved automatically</p>
-          <p>• Preview updates in real-time</p>
-          <p>• Use Ctrl+P to print</p>
-        </div>
+    <div className={sectionStyle}>
+      <p className="text-[7px] font-bold uppercase tracking-wider mb-1" style={{ color: accentColor }}>Education</p>
+      <div className="flex justify-between">
+        <div><p className="text-[7px] font-semibold text-gray-800">MSc Computer Science</p><p className="text-[6px]" style={{ color: accentColor }}>Politecnico di Milano</p></div>
+        <p className="text-[6px] text-gray-500">Sep 2024 – Present</p>
       </div>
-      <div>
-        <p className="text-[7px] font-bold text-white/80 uppercase tracking-wider">Template</p>
-        <div className="bg-white/10 rounded px-1.5 py-1 text-[7px] text-white/70 mt-0.5">Modern</div>
-      </div>
-      <div>
-        <p className="text-[7px] font-bold text-white/80 uppercase tracking-wider">Colors</p>
-        <p className="text-[6px] text-white/50">Primary Color</p>
-        <div className="flex items-center gap-1 mt-0.5">
-          <div className="w-4 h-4 rounded bg-blue-500" />
-          <span className="text-[7px] text-white/70">#1f6feb</span>
-        </div>
-        <p className="text-[6px] text-white/50 mt-1">Quick Colors</p>
-        <div className="flex gap-1 mt-0.5">
-          {["bg-blue-500", "bg-rose-500", "bg-emerald-500", "bg-teal-500", "bg-amber-500", "bg-orange-500", "bg-pink-500", "bg-purple-500", "bg-cyan-500"].map((c, i) => (
-            <div key={i} className={`w-3 h-3 rounded ${c} ${i === 0 ? "ring-1 ring-blue-300 ring-offset-1 ring-offset-[hsl(228,50%,20%)]" : ""}`} />
-          ))}
-        </div>
-      </div>
-      <div>
-        <p className="text-[7px] font-bold text-white/80 uppercase tracking-wider">Typography</p>
-        <p className="text-[6px] text-white/50">Font Family</p>
-        <div className="bg-white/10 rounded px-1.5 py-1 text-[7px] text-white/70 mt-0.5">Inter</div>
-        <div className="grid grid-cols-2 gap-1 mt-1">
-          <div>
-            <p className="text-[6px] text-white/50">Font Size (px)</p>
-            <div className="bg-white/10 rounded px-1.5 py-0.5 text-[7px] text-white/70">12</div>
-          </div>
-          <div>
-            <p className="text-[6px] text-white/50">Line Height</p>
-            <div className="bg-white/10 rounded px-1.5 py-0.5 text-[7px] text-white/70">1.35</div>
-          </div>
-        </div>
-      </div>
-      <div>
-        <p className="text-[7px] font-bold text-white/80 uppercase tracking-wider">Page Layout</p>
-        <p className="text-[6px] text-white/50">Page Size</p>
-        <div className="bg-white/10 rounded px-1.5 py-1 text-[7px] text-white/70 mt-0.5">A4 (210 × 297 mm)</div>
-        <p className="text-[6px] text-white/50 mt-1">Margins</p>
-        <div className="bg-white/10 rounded px-1.5 py-0.5 text-[7px] text-white/70">36</div>
-        <div className="flex gap-1 mt-1">
-          {["Small", "Medium", "Large"].map((s) => (
-            <button key={s} className={`text-[6px] border rounded px-1.5 py-0.5 ${s === "Medium" ? "bg-blue-500 text-white border-blue-500" : "border-white/20 text-white/60"}`}>{s}</button>
-          ))}
-        </div>
+      <div className="flex justify-between mt-1.5">
+        <div><p className="text-[7px] font-semibold text-gray-800">BSc Computer Engineering</p><p className="text-[6px]" style={{ color: accentColor }}>Università degli Studi di Milano</p></div>
+        <p className="text-[6px] text-gray-500">Sep 2021 – Jul 2024</p>
       </div>
     </div>
+    {!minimal && (
+      <>
+        <div className={sectionStyle}>
+          <p className="text-[7px] font-bold uppercase tracking-wider mb-1" style={{ color: accentColor }}>Technical Skills</p>
+          <div className="grid grid-cols-2 gap-1 text-[6px] text-gray-600">
+            <div><span className="font-semibold text-gray-700">Languages:</span> TypeScript, JavaScript, Python</div>
+            <div><span className="font-semibold text-gray-700">Frameworks:</span> React, Next.js, Node.js</div>
+            <div><span className="font-semibold text-gray-700">Tools:</span> Git, Docker, Figma, Jira</div>
+            <div><span className="font-semibold text-gray-700">Cloud:</span> AWS, Vercel, Supabase</div>
+          </div>
+        </div>
+        <div className={sectionStyle}>
+          <p className="text-[7px] font-bold uppercase tracking-wider mb-1" style={{ color: accentColor }}>Languages</p>
+          <div className="flex gap-3 text-[6px] text-gray-600">
+            <span><span className="font-semibold text-gray-700">Italian</span> — Native</span>
+            <span><span className="font-semibold text-gray-700">English</span> — C1</span>
+            <span><span className="font-semibold text-gray-700">French</span> — B1</span>
+          </div>
+        </div>
+      </>
+    )}
   </div>
 );
 
