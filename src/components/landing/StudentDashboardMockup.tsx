@@ -291,6 +291,7 @@ const ResumeContent = ({ subTab }: { subTab: "grader" | "builder" | "coverLetter
 const ResumeGraderContent = () => {
   const [graderState, setGraderState] = useState<"idle" | "uploading" | "grading" | "done">("idle");
   const [progress, setProgress] = useState(0);
+  const [showGradingInfo, setShowGradingInfo] = useState(false);
 
   const startGrading = () => {
     setGraderState("uploading");
