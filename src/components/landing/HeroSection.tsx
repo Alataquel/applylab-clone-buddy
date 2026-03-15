@@ -66,8 +66,17 @@ const HeroSection = () => {
             <span className="font-semibold text-foreground">XU Exponential</span>
           </motion.div>
 
+        </motion.div>
+
+        {/* Dashboard below */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.3, ease: [0.2, 0, 0, 1] }}
+          className="relative"
+        >
           {/* Demo Toggle */}
-          <motion.div variants={itemVariants} className="pt-2">
+          <div className="flex justify-center mb-6">
             <div className="inline-flex items-center bg-white/10 backdrop-blur-sm border border-white/10 rounded-full p-1 gap-1">
               <button
                 onClick={() => setActiveDemo("university")}
@@ -88,16 +97,8 @@ const HeroSection = () => {
                 Student Portal
               </button>
             </div>
-          </motion.div>
-        </motion.div>
+          </div>
 
-        {/* Dashboard below */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.3, ease: [0.2, 0, 0, 1] }}
-          className="relative"
-        >
           <div className="h-[640px] overflow-hidden rounded-xl">
             <motion.div
               key={activeDemo}
