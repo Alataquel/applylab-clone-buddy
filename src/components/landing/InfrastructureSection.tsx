@@ -30,18 +30,18 @@ const InfrastructureSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="bg-gray-50 border border-gray-200 rounded-xl overflow-hidden"
+            className="bg-[hsl(220,25%,10%)] rounded-xl overflow-hidden"
           >
             <div className="p-6 lg:p-8">
               <Users className="w-5 h-5 text-primary mb-3" />
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Student Analysis</h3>
-              <p className="text-sm text-gray-500 leading-relaxed max-w-lg">
+              <h3 className="text-lg font-semibold text-white mb-2">Student Analysis</h3>
+              <p className="text-sm text-gray-400 leading-relaxed max-w-lg">
                 Deep, individual-level insights into every student's career journey. Track application activity, engagement patterns, and progress across your entire cohort in real time.
               </p>
             </div>
             <div className="px-6 lg:px-8 pb-6 lg:pb-8">
-              <div className="bg-white border border-gray-200 rounded-lg p-4 space-y-3">
-                <div className="flex items-center gap-2 text-[10px] text-gray-400 uppercase tracking-wider px-1">
+              <div className="bg-white/5 border border-white/10 rounded-lg p-4 space-y-3">
+                <div className="flex items-center gap-2 text-[10px] text-gray-500 uppercase tracking-wider px-1">
                   <span className="flex-1">Student</span>
                   <span className="w-16 text-center">Apps</span>
                   <span className="w-16 text-center">Interviews</span>
@@ -55,24 +55,24 @@ const InfrastructureSection = () => {
                   { name: "Marco Rossi", programme: "Business 2026", apps: 22, interviews: 6, engagement: 95, status: "active" },
                   { name: "Aisha Khan", programme: "Engineering 2026", apps: 1, interviews: 0, engagement: 15, status: "at-risk" },
                 ].map((s) => (
-                  <div key={s.name} className="flex items-center gap-2 bg-gray-50 rounded-md px-3 py-2.5">
+                  <div key={s.name} className="flex items-center gap-2 bg-white/5 rounded-md px-3 py-2.5">
                     <div className="flex-1 min-w-0">
-                      <p className="text-xs font-medium text-gray-900">{s.name}</p>
-                      <p className="text-[10px] text-gray-400">{s.programme}</p>
+                      <p className="text-xs font-medium text-white">{s.name}</p>
+                      <p className="text-[10px] text-gray-500">{s.programme}</p>
                     </div>
-                    <span className="w-16 text-center text-xs text-gray-900">{s.apps}</span>
-                    <span className="w-16 text-center text-xs text-gray-900">{s.interviews}</span>
+                    <span className="w-16 text-center text-xs text-white">{s.apps}</span>
+                    <span className="w-16 text-center text-xs text-white">{s.interviews}</span>
                     <div className="w-20 flex items-center justify-center gap-1">
-                      <div className="w-10 h-1.5 bg-gray-200 rounded-full overflow-hidden">
+                      <div className="w-10 h-1.5 bg-white/10 rounded-full overflow-hidden">
                         <div
-                          className={`h-full rounded-full ${s.engagement > 60 ? "bg-emerald-500" : "bg-amber-500"}`}
+                          className={`h-full rounded-full ${s.engagement > 60 ? "bg-emerald-400" : "bg-amber-400"}`}
                           style={{ width: `${s.engagement}%` }}
                         />
                       </div>
-                      <span className="text-[10px] text-gray-500">{s.engagement}%</span>
+                      <span className="text-[10px] text-gray-400">{s.engagement}%</span>
                     </div>
                     <span className={`w-16 text-center text-[10px] font-medium rounded-full px-2 py-0.5 ${
-                      s.status === "active" ? "bg-emerald-100 text-emerald-600" : "bg-amber-100 text-amber-600"
+                      s.status === "active" ? "bg-emerald-500/10 text-emerald-400" : "bg-amber-500/10 text-amber-400"
                     }`}>
                       {s.status === "at-risk" && <AlertTriangle className="w-2.5 h-2.5 inline mr-0.5" />}
                       {s.status}
@@ -88,17 +88,17 @@ const InfrastructureSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="bg-gray-50 border border-gray-200 rounded-xl overflow-hidden"
+            className="bg-[hsl(220,25%,10%)] rounded-xl overflow-hidden"
           >
             <div className="p-6 lg:p-8">
               <BookOpen className="w-5 h-5 text-primary mb-3" />
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Qualifications Insights</h3>
-              <p className="text-sm text-gray-500 leading-relaxed max-w-lg">
+              <h3 className="text-lg font-semibold text-white mb-2">Qualifications Insights</h3>
+              <p className="text-sm text-gray-400 leading-relaxed max-w-lg">
                 See how your programmes translate into employability. Understand which qualifications, modules, and skill sets drive stronger career outcomes.
               </p>
             </div>
             <div className="px-6 lg:px-8 pb-6 lg:pb-8">
-              <div className="bg-white border border-gray-200 rounded-lg p-4">
+              <div className="bg-white/5 border border-white/10 rounded-lg p-4">
                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-4">
                   {[
                     { programme: "Business Admin", rate: "74%", change: "+8%" },
@@ -106,16 +106,16 @@ const InfrastructureSection = () => {
                     { programme: "Marketing", rate: "61%", change: "+3%" },
                     { programme: "Finance", rate: "78%", change: "+6%" },
                   ].map((p) => (
-                    <div key={p.programme} className="bg-gray-50 border border-gray-200 rounded-md p-3 text-center">
+                    <div key={p.programme} className="bg-white/5 border border-white/10 rounded-md p-3 text-center">
                       <p className="text-[10px] text-gray-500 mb-1">{p.programme}</p>
-                      <p className="text-lg font-bold text-gray-900">{p.rate}</p>
-                      <p className="text-[10px] text-emerald-500 flex items-center justify-center gap-0.5">
+                      <p className="text-lg font-bold text-white">{p.rate}</p>
+                      <p className="text-[10px] text-emerald-400 flex items-center justify-center gap-0.5">
                         <ArrowUpRight className="w-2.5 h-2.5" />{p.change}
                       </p>
                     </div>
                   ))}
                 </div>
-                <p className="text-[10px] text-gray-400 mb-2">Placement rate by programme</p>
+                <p className="text-[10px] text-gray-500 mb-2">Placement rate by programme</p>
                 <div className="space-y-2">
                   {[
                     { name: "Computer Science", width: "82%" },
@@ -125,10 +125,10 @@ const InfrastructureSection = () => {
                   ].map((b) => (
                     <div key={b.name} className="flex items-center gap-3">
                       <span className="text-[10px] text-gray-500 w-24 text-right">{b.name}</span>
-                      <div className="flex-1 h-2 bg-gray-200 rounded-full overflow-hidden">
+                      <div className="flex-1 h-2 bg-white/10 rounded-full overflow-hidden">
                         <div className="h-full bg-primary/60 rounded-full" style={{ width: b.width }} />
                       </div>
-                      <span className="text-[10px] text-gray-900 w-8">{b.width}</span>
+                      <span className="text-[10px] text-white w-8">{b.width}</span>
                     </div>
                   ))}
                 </div>
@@ -141,20 +141,20 @@ const InfrastructureSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="bg-gray-50 border border-gray-200 rounded-xl overflow-hidden"
+            className="bg-[hsl(220,25%,10%)] rounded-xl overflow-hidden"
           >
             <div className="p-6 lg:p-8">
               <Globe className="w-5 h-5 text-primary mb-3" />
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Market Insights</h3>
-              <p className="text-sm text-gray-500 leading-relaxed max-w-lg">
+              <h3 className="text-lg font-semibold text-white mb-2">Market Insights</h3>
+              <p className="text-sm text-gray-400 leading-relaxed max-w-lg">
                 Real-time labour market intelligence tailored to your student population. See which industries are hiring, what skills are in demand, and where your graduates compete.
               </p>
             </div>
             <div className="px-6 lg:px-8 pb-6 lg:pb-8">
-              <div className="bg-white border border-gray-200 rounded-lg p-4">
+              <div className="bg-white/5 border border-white/10 rounded-lg p-4">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                   <div>
-                    <p className="text-[10px] text-gray-400 mb-2 uppercase tracking-wider">Trending sectors</p>
+                    <p className="text-[10px] text-gray-500 mb-2 uppercase tracking-wider">Trending sectors</p>
                     <div className="space-y-2">
                       {[
                         { sector: "Technology", demand: "High", openings: "2,340", trend: "+18%" },
@@ -162,19 +162,19 @@ const InfrastructureSection = () => {
                         { sector: "Finance", demand: "Medium", openings: "890", trend: "+4%" },
                         { sector: "Healthcare", demand: "High", openings: "1,560", trend: "+22%" },
                       ].map((s) => (
-                        <div key={s.sector} className="flex items-center gap-3 bg-gray-50 rounded-md px-3 py-2">
-                          <span className="text-xs font-medium text-gray-900 flex-1">{s.sector}</span>
+                        <div key={s.sector} className="flex items-center gap-3 bg-white/5 rounded-md px-3 py-2">
+                          <span className="text-xs font-medium text-white flex-1">{s.sector}</span>
                           <span className={`text-[10px] px-2 py-0.5 rounded-full ${
-                            s.demand === "High" ? "bg-emerald-100 text-emerald-600" : "bg-amber-100 text-amber-600"
+                            s.demand === "High" ? "bg-emerald-500/10 text-emerald-400" : "bg-amber-500/10 text-amber-400"
                           }`}>{s.demand}</span>
                           <span className="text-[10px] text-gray-500 w-12 text-right">{s.openings}</span>
-                          <span className="text-[10px] text-emerald-500 w-8 text-right">{s.trend}</span>
+                          <span className="text-[10px] text-emerald-400 w-8 text-right">{s.trend}</span>
                         </div>
                       ))}
                     </div>
                   </div>
                   <div>
-                    <p className="text-[10px] text-gray-400 mb-2 uppercase tracking-wider">In-demand skills</p>
+                    <p className="text-[10px] text-gray-500 mb-2 uppercase tracking-wider">In-demand skills</p>
                     <div className="flex flex-wrap gap-1.5">
                       {[
                         { skill: "Python", level: "high" },
@@ -193,17 +193,17 @@ const InfrastructureSection = () => {
                           className={`text-[10px] px-2.5 py-1 rounded-md ${
                             s.level === "high"
                               ? "bg-primary/10 text-primary"
-                              : "bg-gray-100 text-gray-500"
+                              : "bg-white/5 text-gray-400"
                           }`}
                         >
                           {s.skill}
                         </span>
                       ))}
                     </div>
-                    <div className="mt-4 bg-gray-50 border border-gray-200 rounded-md p-3">
-                      <p className="text-[10px] text-gray-400 mb-1">Avg. graduate salary (region)</p>
-                      <p className="text-xl font-bold text-gray-900">€38,200</p>
-                      <p className="text-[10px] text-emerald-500 flex items-center gap-0.5">
+                    <div className="mt-4 bg-white/5 border border-white/10 rounded-md p-3">
+                      <p className="text-[10px] text-gray-500 mb-1">Avg. graduate salary (region)</p>
+                      <p className="text-xl font-bold text-white">€38,200</p>
+                      <p className="text-[10px] text-emerald-400 flex items-center gap-0.5">
                         <TrendingUp className="w-2.5 h-2.5" /> +6% vs. last year
                       </p>
                     </div>
