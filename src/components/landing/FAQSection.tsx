@@ -60,7 +60,7 @@ const FAQSection = () => {
                 onClick={() => setOpen(open === i ? null : i)}
                 className="w-full flex items-center justify-between px-5 py-4 text-left"
               >
-                <span className="text-sm font-medium text-foreground">{faq.q}</span>
+                <span className="text-sm font-medium text-gray-900">{faq.q}</span>
                 <ChevronDown
                   className={`w-4 h-4 text-muted-foreground transition-transform ${
                     open === i ? "rotate-180" : ""
