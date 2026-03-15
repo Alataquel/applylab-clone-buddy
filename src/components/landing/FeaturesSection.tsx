@@ -45,7 +45,7 @@ const FeaturesSection = () => {
           className="mb-12"
         >
           <p className="text-xs uppercase tracking-widest text-primary font-medium mb-3">Features</p>
-          <h2 className="text-3xl lg:text-4xl font-bold text-foreground tracking-tight">Everything you need to launch your career.</h2>
+          <h2 className="text-3xl lg:text-4xl font-bold text-foreground tracking-tight">The infrastructure behind better career outcomes.</h2>
         </motion.div>
 
         {/* Tabs */}
