@@ -505,6 +505,7 @@ const InfrastructureSection = () => {
             </motion.div>
           </div>
         </div>
+      </div>
     </section>
   );
 };
