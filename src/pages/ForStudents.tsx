@@ -12,7 +12,7 @@ const ForStudents = () => {
       <Navbar />
 
       {/* Hero */}
-      <section className="pt-32 pb-20 px-6 lg:px-12">
+      <section className="pt-44 pb-20 px-6 lg:px-12">
         <div className="max-w-4xl mx-auto text-center">
           <motion.p
             initial={{ opacity: 0, y: 16 }}
