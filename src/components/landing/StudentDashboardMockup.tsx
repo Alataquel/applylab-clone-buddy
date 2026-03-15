@@ -614,7 +614,7 @@ const EventsContent = () => (
     <h3 className="text-sm font-bold text-foreground italic mb-0.5">Events</h3>
     <p className="text-[7px] text-muted-foreground mb-3">Discover workshops, career fairs, webinars, and networking opportunities</p>
 
-    <div className="bg-secondary rounded-md px-2 py-1.5 text-[8px] text-muted-foreground mb-3">🔍 Search events by name or description...</div>
+    <div className="bg-secondary rounded-md px-2 py-1.5 text-[8px] text-muted-foreground mb-3 flex items-center gap-1"><Search className="w-2.5 h-2.5" /> Search events by name or description...</div>
 
     <div className="flex items-center gap-2 mb-3">
       <span className="text-[7px]">Event Type</span>
