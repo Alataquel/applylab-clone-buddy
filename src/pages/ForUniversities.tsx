@@ -45,6 +45,38 @@ const ForUniversities = () => {
         </div>
       </section>
 
+      {/* Interactive Demo - moved to top */}
+      <section className="py-20 px-6 lg:px-12 bg-background">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-center mb-10"
+          >
+            <div className="inline-flex items-center gap-2 bg-primary/10 text-primary rounded-full px-4 py-1.5 text-xs font-semibold mb-4">
+              <Monitor className="w-3.5 h-3.5" />
+              Interactive Demo
+            </div>
+            <h2 className="text-2xl lg:text-3xl font-bold text-foreground tracking-tight mb-3">
+              See the platform in action.
+            </h2>
+            <p className="text-sm text-muted-foreground max-w-xl mx-auto leading-relaxed">
+              Explore a fully interactive preview of the institutional dashboard — click through tabs, drill into student profiles, and see how data flows in real time.
+            </p>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6 }}
+          >
+            <DashboardMockup />
+          </motion.div>
+        </div>
+      </section>
+
       {/* Stats */}
       <section className="py-16 px-6 lg:px-12 bg-secondary">
         <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
