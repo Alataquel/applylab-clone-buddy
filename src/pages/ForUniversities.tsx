@@ -334,8 +334,17 @@ const ForUniversities = () => {
                 </div>
                 <p className="text-[10px] text-white/40 mb-2 uppercase tracking-wider">In-demand skills</p>
                 <div className="flex flex-wrap gap-1.5 mb-3">
-                  {["Python", "Data Analysis", "SQL", "Communication", "React", "Project Management", "Strategic Thinking"].map((skill) => (
-                    <span key={skill} className="text-[10px] px-2.5 py-1 rounded-md bg-primary/10 text-primary">{skill}</span>
+                  {["Python", "Data Analysis", "SQL", "Communication", "React", "Project Management", "Strategic Thinking"].map((skill, i) => (
+                    <motion.span
+                      key={skill}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.3, delay: 0.4 + i * 0.06 }}
+                      className="text-[10px] px-2.5 py-1 rounded-md bg-primary/10 text-primary"
+                    >
+                      {skill}
+                    </motion.span>
                   ))}
                 </div>
                 <div className="bg-[#232942] rounded-md p-3">
