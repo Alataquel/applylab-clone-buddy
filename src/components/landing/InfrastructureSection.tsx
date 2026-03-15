@@ -1,6 +1,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
-import { Users, BookOpen, Globe, AlertTriangle, TrendingUp, ArrowUpRight, ClipboardCheck, Sliders, Calendar, Briefcase } from "lucide-react";
+import { Users, BookOpen, Globe, AlertTriangle, TrendingUp, ArrowUpRight, ClipboardCheck, Calendar, Briefcase } from "lucide-react";
+import RubricDonut from "./RubricDonut";
 
 const useCountUp = (end: number, isInView: boolean, duration = 1200, delay = 0) => {
   const [count, setCount] = useState(0);
