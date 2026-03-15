@@ -590,7 +590,7 @@ const JobBoardContent = () => (
           <div key={job.title} className="bg-card border border-border rounded-lg p-2">
             <div className="flex items-center justify-between mb-1.5">
               <div className={`w-5 h-5 rounded ${job.color} flex items-center justify-center text-[5px] font-bold text-white`}>{job.logo}</div>
-              <span className="text-[7px] text-muted-foreground cursor-pointer">🔖</span>
+              <Bookmark className="w-3 h-3 text-muted-foreground cursor-pointer" strokeWidth={1.8} />
             </div>
             <p className="text-[7px] font-semibold text-foreground leading-tight mb-0.5">{job.title}</p>
             <p className="text-[6px] text-primary mb-0.5">{job.company}</p>
