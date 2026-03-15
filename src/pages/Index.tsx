@@ -22,7 +22,7 @@ const Index = () => {
         <StatsSection />
         <ProblemSection />
         <SolutionSection />
-        <DemoToggleSection />
+        
         <InfrastructureSection />
         
         <SocialProofSection />
