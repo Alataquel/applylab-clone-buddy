@@ -226,8 +226,8 @@ const Ambassador = () => {
                   <span className="text-[9px] text-primary font-bold">{s.step}</span>
                 </div>
                 <div>
-                  <h3 className="text-sm font-semibold text-foreground mb-1">{s.title}</h3>
-                  <p className="text-sm text-muted-foreground">{s.desc}</p>
+                  <h3 className="text-sm font-semibold text-gray-900 mb-1">{s.title}</h3>
+                  <p className="text-sm text-gray-500">{s.desc}</p>
                 </div>
               </motion.div>
             ))}
