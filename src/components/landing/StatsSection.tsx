@@ -18,7 +18,13 @@ const useCountUp = (end: number, duration: number, start: boolean, prefix = "", 
   return display;
 };
 
-const CountUpStat = ({ stat, isInView, delay }: { stat: { value: string; label: string }; isInView: boolean; delay: number }) => {
+const statConfig = [
+  { end: 12, prefix: "", suffix: "+", label: "University partners" },
+  { end: 3, prefix: "", suffix: "x", label: "More visibility into career activity" },
+  { end: 2, prefix: "< ", suffix: " weeks", label: "Average onboarding time" },
+];
+
+const CountUpStat = ({ config, isInView, delay }: { config: typeof statConfig[0]; isInView: boolean; delay: number }) => {
   const [triggered, setTriggered] = useState(false);
   useEffect(() => {
     if (isInView) {
@@ -27,15 +33,7 @@ const CountUpStat = ({ stat, isInView, delay }: { stat: { value: string; label: 
     }
   }, [isInView, delay]);
 
-  // Parse the stat value
-  let display: string;
-  if (stat.value === "12+") {
-    display = useCountUp(12, 1.5, triggered, "", "+");
-  } else if (stat.value === "3x") {
-    display = useCountUp(3, 1.2, triggered, "", "x");
-  } else {
-    display = useCountUp(2, 1.2, triggered, "< ", " weeks");
-  }
+  const display = useCountUp(config.end, 1.3, triggered, config.prefix, config.suffix);
 
   return (
     <motion.div
@@ -45,7 +43,7 @@ const CountUpStat = ({ stat, isInView, delay }: { stat: { value: string; label: 
       className="text-center"
     >
       <p className="text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight">{display}</p>
-      <p className="text-sm text-gray-500 mt-2">{stat.label}</p>
+      <p className="text-sm text-gray-500 mt-2">{config.label}</p>
     </motion.div>
   );
 };
