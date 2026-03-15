@@ -112,8 +112,8 @@ const Ambassador = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
             >
-              <p className="text-3xl lg:text-4xl font-bold text-foreground tracking-tight">{s.value}</p>
-              <p className="text-sm text-muted-foreground mt-2">{s.label}</p>
+              <p className="text-3xl lg:text-4xl font-bold text-gray-900 tracking-tight">{s.value}</p>
+              <p className="text-sm text-gray-500 mt-2">{s.label}</p>
             </motion.div>
           ))}
         </div>
