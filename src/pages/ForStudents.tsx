@@ -60,15 +60,15 @@ const ForStudents = () => {
             className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center"
           >
             <div>
-              <div className="w-12 h-12 rounded-xl bg-primary/15 flex items-center justify-center mb-6">
+              <div className="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center mb-6">
                 <Search className="w-5 h-5 text-primary" />
               </div>
               <p className="text-xs uppercase tracking-widest text-primary font-semibold mb-3">Feature 01</p>
-              <h2 className="text-3xl lg:text-4xl font-bold text-foreground tracking-tight mb-4">Job Board</h2>
-              <p className="text-base text-muted-foreground/80 font-medium mb-3">
+              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 tracking-tight mb-4">Job Board</h2>
+              <p className="text-base text-gray-500 font-medium mb-3">
                 AI-matched opportunities tailored to your skills and goals
               </p>
-              <p className="text-sm text-muted-foreground leading-relaxed">
+              <p className="text-sm text-gray-400 leading-relaxed">
                 Our intelligent algorithm analyses your profile, skills, and preferences to surface the most relevant opportunities from thousands of listings — filtered by fit, not just keywords.
               </p>
             </div>
