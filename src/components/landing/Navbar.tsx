@@ -18,7 +18,7 @@ const Navbar = () => {
           <span className="text-foreground font-bold text-xl tracking-tight">applylab</span>
         </a>
 
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
           <a href="/students" className="text-sm text-muted-foreground hover:text-foreground transition-colors">For Students</a>
           <a href="/universities" className="text-sm text-muted-foreground hover:text-foreground transition-colors">For Universities</a>
           <a href="/ambassador" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Ambassador</a>
