@@ -118,12 +118,12 @@ const StudentToolsSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="bg-card rounded-xl shadow-precision overflow-hidden"
+            className="bg-gray-50 rounded-xl border border-gray-100 overflow-hidden"
           >
             <div className="p-6 lg:p-8">
               <BarChart3 className="w-5 h-5 text-primary mb-3" />
-              <h3 className="text-lg font-semibold text-foreground mb-2">Automatic Tracker</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed max-w-lg">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Automatic Tracker</h3>
+              <p className="text-sm text-gray-500 leading-relaxed max-w-lg">
                 A shared pipeline that automatically tracks every student's applications — giving your team and students real-time status visibility.
               </p>
             </div>
