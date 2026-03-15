@@ -236,7 +236,7 @@ const Ambassador = () => {
       </section>
 
       {/* CTA */}
-      <section className="py-24 px-6 lg:px-12">
+      <section className="py-24 px-6 lg:px-12 bg-gray-50">
         <div className="max-w-3xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 20, scale: 0.98 }}
