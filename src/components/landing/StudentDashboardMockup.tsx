@@ -320,7 +320,7 @@ const ResumeGraderContent = () => (
       </div>
       <div className="border border-border rounded-lg p-4 flex items-center justify-center">
         <div className="text-center">
-          <p className="text-xl text-muted-foreground mb-1">↑</p>
+          <ExternalLink className="w-4 h-4 text-muted-foreground mb-1" />
           <p className="text-[8px] text-muted-foreground">Upload a PDF to preview.</p>
         </div>
       </div>
