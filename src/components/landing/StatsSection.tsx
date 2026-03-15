@@ -19,9 +19,9 @@ const useCountUp = (end: number, duration: number, start: boolean, prefix = "", 
 };
 
 const statConfig = [
-  { end: 94, prefix: "", suffix: "%", label: "Student engagement rate" },
-  { end: 100, prefix: "", suffix: "%", label: "More visibility into career activity" },
-  { end: 1, prefix: "", suffix: " day", label: "Average onboarding time" },
+  { end: 94, prefix: "", suffix: "%", label: "CV optimisation rate" },
+  { end: 3, prefix: "", suffix: "×", label: "More visibility into career activity" },
+  { end: 2, prefix: "< ", suffix: " weeks", label: "Average onboarding time" },
 ];
 
 const CountUpStat = ({ config, isInView, delay }: { config: typeof statConfig[0]; isInView: boolean; delay: number }) => {
