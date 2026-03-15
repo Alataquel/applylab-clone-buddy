@@ -236,7 +236,7 @@ const About = () => {
       </section>
 
       {/* CTA */}
-      <section className="py-20 px-6 lg:px-12 border-t border-border/30">
+      <section className="py-20 px-6 lg:px-12 bg-white text-gray-900">
         <div className="max-w-3xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
