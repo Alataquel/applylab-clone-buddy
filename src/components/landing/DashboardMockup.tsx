@@ -421,7 +421,118 @@ const MarketInsightsContent = () => (
   </>
 );
 
-const ResumeTemplatesContent = () => (
+const rubricSections = [
+  { name: "Education", color: "bg-amber-400", pct: 20, subs: [
+    { label: "Degree level", weight: 9 }, { label: "GPA / grades", weight: 5 }, { label: "Field of study relevance", weight: 6 },
+  ]},
+  { name: "Experience", color: "bg-orange-400", pct: 35, subs: [
+    { label: "Number of experiences", weight: 7 }, { label: "Average duration", weight: 8 }, { label: "Relevance to target role", weight: 8 },
+    { label: "Quantifiable impact", weight: 7 }, { label: "Career progression", weight: 5 },
+  ]},
+  { name: "Skills", color: "bg-amber-500", pct: 20, subs: [
+    { label: "Technical skills", weight: 8 }, { label: "Soft skills", weight: 6 }, { label: "Industry tools", weight: 6 },
+  ]},
+  { name: "Languages", color: "bg-emerald-400", pct: 10, subs: [
+    { label: "Number of languages", weight: 5 }, { label: "Proficiency levels", weight: 5 },
+  ]},
+  { name: "Projects", color: "bg-cyan-400", pct: 10, subs: [
+    { label: "Relevance", weight: 5 }, { label: "Complexity", weight: 5 },
+  ]},
+  { name: "Certifications", color: "bg-purple-400", pct: 5, subs: [
+    { label: "Industry certifications", weight: 5 },
+  ]},
+];
+
+const MiniDonut = () => {
+  const segments = [
+    { pct: 20, color: "#fbbf24" },
+    { pct: 35, color: "#fb923c" },
+    { pct: 20, color: "#f59e0b" },
+    { pct: 10, color: "#34d399" },
+    { pct: 10, color: "#22d3ee" },
+    { pct: 5, color: "#a78bfa" },
+  ];
+  let acc = 0;
+  return (
+    <svg viewBox="0 0 36 36" className="w-20 h-20">
+      {segments.map((s, i) => {
+        const dash = s.pct;
+        const offset = 100 - acc;
+        acc += dash;
+        return (
+          <circle key={i} cx="18" cy="18" r="15.9" fill="none" stroke={s.color} strokeWidth="3.5"
+            strokeDasharray={`${dash} ${100 - dash}`} strokeDashoffset={offset} />
+        );
+      })}
+      <text x="18" y="19" textAnchor="middle" dominantBaseline="middle" fill="white" fontSize="5" fontWeight="bold">100%</text>
+    </svg>
+  );
+};
+
+const TemplateEditorContent = ({ onBack }: { onBack: () => void }) => (
+  <>
+    <div className="flex items-center justify-between mb-3">
+      <div className="flex items-center gap-2">
+        <button onClick={onBack} className="text-gray-400 hover:text-white transition-colors">
+          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
+        </button>
+        <div className="w-6 h-6 rounded-md bg-amber-500/20 flex items-center justify-center">
+          <svg className="w-3.5 h-3.5 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5zm0 7l-9-5 9-5 9 5-9 5z" /></svg>
+        </div>
+        <div>
+          <p className="text-xs font-medium text-white">Dual Degree Business & Data</p>
+          <p className="text-[9px] text-gray-500">Edit grading template</p>
+        </div>
+      </div>
+      <button className="text-[9px] bg-primary hover:bg-primary/90 text-white px-2.5 py-1 rounded-md font-medium transition-colors">Save</button>
+    </div>
+
+    <div className="grid grid-cols-[70px_1fr] gap-2">
+      {/* Donut */}
+      <div>
+        <p className="text-[8px] text-gray-500 mb-1">Weights</p>
+        <MiniDonut />
+        <div className="mt-1 space-y-0.5">
+          {rubricSections.map((s) => (
+            <div key={s.name} className="flex items-center gap-1">
+              <div className={`w-1.5 h-1.5 rounded-full ${s.color}`} />
+              <span className="text-[7px] text-gray-500">{s.name}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Sections */}
+      <div className="space-y-2 overflow-y-auto max-h-[420px] pr-1">
+        {rubricSections.map((section) => (
+          <div key={section.name} className="bg-white/[0.03] border border-white/5 rounded-lg px-2.5 py-2">
+            <div className="flex items-center justify-between mb-1">
+              <div className="flex items-center gap-1.5">
+                <div className={`w-2 h-2 rounded-full ${section.color}`} />
+                <span className="text-[10px] font-semibold text-white">{section.name}</span>
+              </div>
+              <span className={`text-[8px] font-bold px-1.5 py-0.5 rounded border border-amber-500/30 text-amber-400`}>{section.pct}% total</span>
+            </div>
+            <div className={`h-0.5 ${section.color} rounded-full mb-1.5`} style={{ width: `${section.pct * 2}%` }} />
+            <div className="space-y-1">
+              {section.subs.map((sub) => (
+                <div key={sub.label} className="flex items-center gap-2">
+                  <span className="text-[9px] text-gray-400 flex-1">{sub.label}</span>
+                  <div className="w-12 h-1 bg-white/5 rounded-full">
+                    <div className={`h-full ${section.color} rounded-full`} style={{ width: `${sub.weight * 10}%` }} />
+                  </div>
+                  <span className="text-[8px] text-gray-500 w-5 text-right border border-white/10 rounded px-0.5">{sub.weight}%</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </>
+);
+
+const ResumeTemplatesContent = ({ onOpenEditor }: { onOpenEditor: () => void }) => (
   <>
     <p className="text-xs text-gray-500 mb-3">Available Templates</p>
     <div className="grid grid-cols-2 gap-2 mb-4">
@@ -440,7 +551,7 @@ const ResumeTemplatesContent = () => (
         </div>
       ))}
     </div>
-    <button className="w-full bg-white/[0.03] hover:bg-white/[0.06] border border-white/5 text-gray-400 text-xs font-medium py-2.5 rounded-lg transition-colors">
+    <button onClick={onOpenEditor} className="w-full bg-white/[0.03] hover:bg-white/[0.06] border border-white/5 text-gray-400 text-xs font-medium py-2.5 rounded-lg transition-colors">
       + Upload New Template
     </button>
   </>
@@ -480,6 +591,7 @@ const DashboardMockup = () => {
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
   const [activeTab, setActiveTab] = useState(0);
   const [selectedStudent, setSelectedStudent] = useState<typeof studentsData[0] | null>(null);
+  const [showTemplateEditor, setShowTemplateEditor] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
   const handleMouseMove = (e: React.MouseEvent) => {
@@ -496,13 +608,16 @@ const DashboardMockup = () => {
     if (activeTab === 1 && selectedStudent) {
       return <StudentDetailContent student={selectedStudent} onBack={() => setSelectedStudent(null)} />;
     }
+    if (activeTab === 5 && showTemplateEditor) {
+      return <TemplateEditorContent onBack={() => setShowTemplateEditor(false)} />;
+    }
     switch (activeTab) {
       case 0: return <OverviewContent />;
       case 1: return <StudentsContent onSelectStudent={setSelectedStudent} />;
       case 2: return <AnalyticsContent />;
       case 3: return <QualificationInsightsContent />;
       case 4: return <MarketInsightsContent />;
-      case 5: return <ResumeTemplatesContent />;
+      case 5: return <ResumeTemplatesContent onOpenEditor={() => setShowTemplateEditor(true)} />;
       case 6: return <JobEventPostingsContent />;
       default: return <OverviewContent />;
     }
@@ -540,7 +655,7 @@ const DashboardMockup = () => {
             {navItems.map((item, i) => (
               <div
                 key={item}
-                onClick={() => { setActiveTab(i); setSelectedStudent(null); }}
+                onClick={() => { setActiveTab(i); setSelectedStudent(null); setShowTemplateEditor(false); }}
                 className={`text-[11px] px-3 py-2 rounded-md transition-colors cursor-pointer ${
                   i === activeTab
                     ? "bg-primary text-white font-medium"
