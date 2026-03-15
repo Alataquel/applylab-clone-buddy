@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { LayoutGrid, ClipboardList, FileText, ChevronDown, Briefcase, CalendarDays, Video, User, Settings, UserCircle, Mail, Search, MapPin, Clock, Bookmark, ExternalLink, Eye, Pencil, Trash2, ArrowRight, RotateCcw, FileCheck, Sparkles, GraduationCap, X } from "lucide-react";
+import { LayoutGrid, ClipboardList, FileText, ChevronDown, Briefcase, CalendarDays, Video, User, Settings, UserCircle, Mail, Search, MapPin, Clock, Bookmark, ExternalLink, Eye, Pencil, Trash2, ArrowRight, RotateCcw, FileCheck, Sparkles, GraduationCap, X, Check } from "lucide-react";
 
 const navIcons = [
   { label: "Dashboard", icon: LayoutGrid },
@@ -1147,19 +1147,23 @@ const JobBoardContent = () => {
         <div className="mb-3">
           <p className="text-[7px] font-semibold text-foreground mb-1">Location</p>
           {locations.map((l) => (
-            <label key={l} className="flex items-center gap-1.5 mb-0.5 cursor-pointer" onClick={() => toggleFilter(selectedLocations, l, setSelectedLocations)}>
-              <input type="checkbox" checked={selectedLocations.includes(l)} readOnly className="w-2 h-2 rounded accent-primary pointer-events-none" />
+            <div key={l} className="flex items-center gap-1.5 mb-0.5 cursor-pointer" onClick={() => toggleFilter(selectedLocations, l, setSelectedLocations)}>
+              <div className={`w-2.5 h-2.5 rounded border flex items-center justify-center shrink-0 transition-colors ${selectedLocations.includes(l) ? "bg-primary border-primary" : "border-muted-foreground/40 bg-transparent"}`}>
+                {selectedLocations.includes(l) && <Check className="w-1.5 h-1.5 text-primary-foreground" />}
+              </div>
               <span className="text-[7px] text-foreground">{l}</span>
-            </label>
+            </div>
           ))}
         </div>
         <div className="mb-3">
           <p className="text-[7px] font-semibold text-foreground mb-1">Experience Level</p>
           {levels.map((l) => (
-            <label key={l} className="flex items-center gap-1.5 mb-0.5 cursor-pointer" onClick={() => toggleFilter(selectedLevels, l, setSelectedLevels)}>
-              <input type="checkbox" checked={selectedLevels.includes(l)} readOnly className="w-2 h-2 rounded accent-primary pointer-events-none" />
+            <div key={l} className="flex items-center gap-1.5 mb-0.5 cursor-pointer" onClick={() => toggleFilter(selectedLevels, l, setSelectedLevels)}>
+              <div className={`w-2.5 h-2.5 rounded border flex items-center justify-center shrink-0 transition-colors ${selectedLevels.includes(l) ? "bg-primary border-primary" : "border-muted-foreground/40 bg-transparent"}`}>
+                {selectedLevels.includes(l) && <Check className="w-1.5 h-1.5 text-primary-foreground" />}
+              </div>
               <span className="text-[7px] text-foreground">{l}</span>
-            </label>
+            </div>
           ))}
         </div>
         {(selectedLocations.length > 0 || selectedLevels.length > 0) && (
