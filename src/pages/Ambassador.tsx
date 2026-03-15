@@ -51,7 +51,7 @@ const steps = [
 
 const Ambassador = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <GridBackground>
       <Navbar />
 
       {/* Hero */}
