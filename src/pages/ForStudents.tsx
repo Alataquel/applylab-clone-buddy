@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
 import Navbar from "@/components/landing/Navbar";
 import Footer from "@/components/landing/Footer";
-import { ArrowRight, FileText, BarChart3, Search, Calendar, UserCheck, ExternalLink, CheckCircle, AlertCircle } from "lucide-react";
+import StudentDashboardMockup from "@/components/landing/StudentDashboardMockup";
+import { ArrowRight, FileText, BarChart3, Search, Calendar, UserCheck, ExternalLink, CheckCircle, AlertCircle, Monitor } from "lucide-react";
 
 const ForStudents = () => {
   return (
