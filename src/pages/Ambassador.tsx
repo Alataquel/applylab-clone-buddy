@@ -98,7 +98,7 @@ const Ambassador = () => {
       </section>
 
       {/* What ambassadors do — stats bar */}
-      <section className="py-14 px-6 lg:px-12 bg-secondary">
+      <section className="py-14 px-6 lg:px-12 bg-gray-50">
         <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
           {[
             { value: "4", label: "Universities currently active" },
