@@ -1,12 +1,10 @@
-const matches = [
-  { initials: "FG", color: "bg-purple-500", role: "Product Designer", company: "Figma", score: "98%" },
-  { initials: "LN", color: "bg-blue-500", role: "Frontend Engineer", company: "Linear", score: "95%" },
-  { initials: "SP", color: "bg-green-500", role: "Growth Analyst", company: "Spotify", score: "91%" },
-  { initials: "MK", color: "bg-amber-500", role: "Strategy Associate", company: "McKinsey", score: "88%" },
-  { initials: "DM", color: "bg-rose-500", role: "Data Scientist", company: "DeepMind", score: "85%" },
-];
+const navItems = ["Overview", "Students", "Qualifications", "Market", "Reports"];
 
-const navItems = ["Dashboard", "Internship Board", "My CVs", "Tracking", "Analytics"];
+const cohorts = [
+  { name: "Business 2026", students: 342, placed: "68%", trend: "+12%" },
+  { name: "Engineering 2026", students: 218, placed: "74%", trend: "+8%" },
+  { name: "Arts & Design 2026", students: 156, placed: "61%", trend: "+15%" },
+];
 
 const DashboardMockup = () => {
   return (
@@ -14,11 +12,11 @@ const DashboardMockup = () => {
       {/* Browser chrome */}
       <div className="flex items-center gap-2 px-4 py-3 bg-secondary/50">
         <div className="flex gap-1.5">
-          <div className="w-3 h-3 rounded-full bg-red-500/80" />
-          <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-          <div className="w-3 h-3 rounded-full bg-green-500/80" />
+          <div className="w-3 h-3 rounded-full bg-destructive/80" />
+          <div className="w-3 h-3 rounded-full bg-amber-500/80" />
+          <div className="w-3 h-3 rounded-full bg-emerald-500/80" />
         </div>
-        <div className="flex-1 text-center text-xs text-muted-foreground">applylab.software</div>
+        <div className="flex-1 text-center text-xs text-muted-foreground">applylab.software/dashboard</div>
       </div>
 
       {/* App content */}
@@ -41,23 +39,53 @@ const DashboardMockup = () => {
         </div>
 
         {/* Main content */}
-        <div className="flex-1 p-4 space-y-3">
-          <p className="text-xs text-muted-foreground">Top matches · Today</p>
-          {matches.map((m) => (
-            <div key={m.initials} className="flex items-center gap-3 py-2">
-              <div className={`w-8 h-8 rounded-lg ${m.color} flex items-center justify-center text-xs font-bold text-foreground`}>
-                {m.initials}
+        <div className="flex-1 p-4 space-y-4">
+          {/* Stats row */}
+          <div className="grid grid-cols-3 gap-2">
+            {[
+              { label: "Active students", value: "716" },
+              { label: "Placement rate", value: "68%" },
+              { label: "Avg. applications", value: "14.2" },
+            ].map((s) => (
+              <div key={s.label} className="bg-secondary rounded-lg p-2.5 text-center">
+                <p className="text-lg font-bold text-foreground leading-tight">{s.value}</p>
+                <p className="text-[10px] text-muted-foreground">{s.label}</p>
               </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium text-foreground">{m.role}</p>
-                <p className="text-xs text-muted-foreground">{m.company}</p>
-              </div>
-              <span className="text-xs font-semibold text-emerald-400">{m.score}</span>
+            ))}
+          </div>
+
+          {/* Cohort table */}
+          <div>
+            <p className="text-xs text-muted-foreground mb-2">Cohort performance</p>
+            <div className="space-y-2">
+              {cohorts.map((c) => (
+                <div key={c.name} className="flex items-center gap-3 bg-secondary/50 rounded-lg px-3 py-2.5">
+                  <div className="flex-1 min-w-0">
+                    <p className="text-xs font-medium text-foreground">{c.name}</p>
+                    <p className="text-[10px] text-muted-foreground">{c.students} students</p>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-xs font-semibold text-foreground">{c.placed}</p>
+                    <p className="text-[10px] text-emerald-400">{c.trend}</p>
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
-          <button className="w-full mt-2 py-2.5 rounded-lg text-sm font-medium text-foreground bg-gradient-to-r from-cyan-500 to-blue-500 hover:opacity-90 transition-opacity">
-            Optimise Resume
-          </button>
+          </div>
+
+          {/* Mini bar chart */}
+          <div>
+            <p className="text-xs text-muted-foreground mb-2">Weekly application volume</p>
+            <div className="flex items-end gap-1 h-12">
+              {[35, 50, 42, 65, 58, 72, 68, 80, 75, 90, 85, 95].map((h, i) => (
+                <div
+                  key={i}
+                  className="flex-1 rounded-sm bg-primary/40"
+                  style={{ height: `${h}%` }}
+                />
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </div>
