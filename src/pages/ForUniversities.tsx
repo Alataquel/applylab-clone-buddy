@@ -46,7 +46,7 @@ const ForUniversities = () => {
         </div>
       </section>
 
-      <SolutionSection />
+      <SolutionSection variant="light" />
 
       {/* Interactive Demo */}
       <section className="py-20 px-6 lg:px-12 bg-background">
