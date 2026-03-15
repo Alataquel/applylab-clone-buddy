@@ -338,7 +338,7 @@ const ResumeGraderContent = () => (
         ))}
       </div>
       <div className="bg-primary/5 border border-primary/20 rounded-md px-2 py-1.5 mt-2">
-        <p className="text-[7px] text-muted-foreground">💡 Keep descriptions concise and quantifiable. Adding measurable results is a great way to make your experiences more impactful.</p>
+        <p className="text-[7px] text-muted-foreground flex items-start gap-1"><Sparkles className="w-2.5 h-2.5 shrink-0 mt-0.5" /> Keep descriptions concise and quantifiable. Adding measurable results is a great way to make your experiences more impactful.</p>
       </div>
     </div>
   </>
