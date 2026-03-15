@@ -746,7 +746,7 @@ const MeetingsContent = () => {
           <p className="text-[6px] text-muted-foreground text-center mt-1">Please complete all selections above.</p>
         </div>
         <div className="mt-2 border border-border rounded-lg p-2">
-          <span className="text-[7px] text-primary font-medium">👤 2 advisors available</span>
+          <span className="text-[7px] text-primary font-medium flex items-center gap-0.5"><User className="w-2.5 h-2.5" /> 2 advisors available</span>
         </div>
       </div>
     </div>
