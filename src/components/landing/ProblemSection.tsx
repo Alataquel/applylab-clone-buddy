@@ -112,7 +112,7 @@ const ProblemSection = () => {
             </p>
 
             <div className="flex gap-2 mt-5 flex-wrap">
-              {["Spreadsheets", "Job boards", "PDFs", "Email"].map((tool) => (
+              {["Job boards", "Resume help", "Application tracking", "Spreadsheets"].map((tool) => (
                 <span key={tool} className="text-[10px] px-3 py-1.5 rounded-full bg-white/5 text-gray-400 border border-white/10">
                   {tool}
                 </span>
