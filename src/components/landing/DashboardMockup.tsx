@@ -1973,10 +1973,10 @@ const ResumeTemplatesContent = ({ onOpenEditor }: { onOpenEditor: () => void }) 
     <p className="text-xs text-gray-500 mb-3">Available Templates</p>
     <div className="grid grid-cols-2 gap-2 mb-4">
       {[
-        { name: "Classic Professional", uses: 482, color: "bg-blue-500" },
-        { name: "Modern Minimal", uses: 356, color: "bg-purple-500" },
-        { name: "Creative Portfolio", uses: 198, color: "bg-emerald-500" },
-        { name: "Executive", uses: 134, color: "bg-rose-500" },
+        { name: "Business Administration", uses: 482, color: "bg-blue-500" },
+        { name: "International Relations", uses: 356, color: "bg-purple-500" },
+        { name: "Computer Science", uses: 198, color: "bg-emerald-500" },
+        { name: "Marketing", uses: 134, color: "bg-rose-500" },
       ].map((t) => (
         <div key={t.name} onClick={onOpenEditor} className="bg-white/[0.03] border border-white/5 rounded-lg p-3 hover:bg-white/[0.06] transition-colors cursor-pointer">
           <div className={`w-full h-16 ${t.color}/15 rounded-md mb-2 flex items-center justify-center`}>
