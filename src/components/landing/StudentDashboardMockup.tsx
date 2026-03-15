@@ -1,12 +1,13 @@
 import { useState } from "react";
+import { LayoutGrid, ClipboardList, FileText, ChevronDown, Briefcase, CalendarDays, Video, User, Settings } from "lucide-react";
 
 const navIcons = [
-  { label: "Dashboard", icon: "grid" },
-  { label: "Tracker", icon: "clipboard" },
-  { label: "Resume", icon: "file" },
-  { label: "Job Board", icon: "briefcase" },
-  { label: "Events", icon: "calendar" },
-  { label: "Meetings", icon: "video" },
+  { label: "Dashboard", icon: LayoutGrid },
+  { label: "Tracker", icon: ClipboardList },
+  { label: "Resume", icon: FileText, hasDropdown: true },
+  { label: "Job Board", icon: Briefcase },
+  { label: "Events", icon: CalendarDays },
+  { label: "Meetings", icon: Video },
 ];
 
 /* ─── Dashboard Tab ─── */
