@@ -852,27 +852,6 @@ const ResumeBody = ({ accentColor, summary, sectionStyle, minimal }: { accentCol
       </div>
       <p className="text-[6px] text-gray-500 ml-2 mt-0.5">GPA: 3.7/4.0 · Dean's List 2022, 2023 · Thesis: "Real-time Object Detection with Edge Computing"</p>
     </div>
-    <div className={sectionStyle}>
-      <p className="text-[7px] font-bold uppercase tracking-wider mb-1" style={{ color: accentColor }}>Projects</p>
-      <div className="mb-1.5">
-        <div className="flex justify-between">
-          <p className="text-[7px] font-semibold text-gray-800">CareerTrack — Job Application Manager</p>
-          <p className="text-[6px]" style={{ color: accentColor }}>React, Node.js, PostgreSQL</p>
-        </div>
-        <ul className="text-[6px] text-gray-600 ml-2 mt-0.5 space-y-0.5">
-          <li>• Full-stack app tracking 1,000+ applications with automated status updates and analytics</li>
-        </ul>
-      </div>
-      <div>
-        <div className="flex justify-between">
-          <p className="text-[7px] font-semibold text-gray-800">SmartBudget — Personal Finance Tool</p>
-          <p className="text-[6px]" style={{ color: accentColor }}>Python, Flask, Chart.js</p>
-        </div>
-        <ul className="text-[6px] text-gray-600 ml-2 mt-0.5 space-y-0.5">
-          <li>• Budget tracking app with ML-powered spending predictions and category insights</li>
-        </ul>
-      </div>
-    </div>
     {!minimal && (
       <>
         <div className={sectionStyle}>
