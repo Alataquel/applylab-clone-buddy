@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
 import Navbar from "@/components/landing/Navbar";
 import Footer from "@/components/landing/Footer";
-import { ArrowRight, Users, BookOpen, Globe, AlertTriangle, TrendingUp, ArrowUpRight, Shield, ClipboardCheck, Sliders, Calendar, Briefcase } from "lucide-react";
+import { ArrowRight, Users, BookOpen, Globe, AlertTriangle, TrendingUp, ArrowUpRight, Shield, ClipboardCheck, Calendar, Briefcase } from "lucide-react";
+import RubricDonut from "@/components/landing/RubricDonut";
 
 const containerVariants = {
   hidden: {},
