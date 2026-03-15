@@ -72,7 +72,7 @@ const Navbar = () => {
                 { label: "For Students", href: "/students" },
                 { label: "For Universities", href: "/universities" },
                 { label: "About", href: "/about" },
-                { label: "Log In", href: "#" },
+                { label: "Log In", href: "/login" },
               ].map((link) => (
                 <a
                   key={link.label}
