@@ -838,17 +838,6 @@ const ResumeBody = ({ accentColor, summary, sectionStyle, minimal }: { accentCol
           <li>• Integrated payment systems (Stripe) and CMS platforms for e-commerce clients</li>
         </ul>
       </div>
-      <div>
-        <div className="flex justify-between">
-          <div><p className="text-[7px] font-semibold text-gray-800">Data Analyst Intern</p><p className="text-[6px]" style={{ color: accentColor }}>Accenture</p></div>
-          <div className="text-right"><p className="text-[6px] text-gray-500">Jun 2023 – Dec 2023</p><p className="text-[6px] text-gray-400">Rome, Italy</p></div>
-        </div>
-        <ul className="text-[6px] text-gray-600 ml-2 mt-0.5 space-y-0.5">
-          <li>• Developed Python-based ETL pipelines processing 500K+ records daily for client reporting</li>
-          <li>• Created Tableau dashboards adopted by 4 business units for quarterly performance reviews</li>
-          <li>• Conducted A/B testing analysis that drove a 18% improvement in user conversion rates</li>
-        </ul>
-      </div>
     </div>
     <div className={sectionStyle}>
       <p className="text-[7px] font-bold uppercase tracking-wider mb-1" style={{ color: accentColor }}>Education</p>
