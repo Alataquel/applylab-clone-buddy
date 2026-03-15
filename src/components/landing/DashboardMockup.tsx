@@ -655,7 +655,7 @@ const DashboardMockup = () => {
             {navItems.map((item, i) => (
               <div
                 key={item}
-                onClick={() => { setActiveTab(i); setSelectedStudent(null); }}
+                onClick={() => { setActiveTab(i); setSelectedStudent(null); setShowTemplateEditor(false); }}
                 className={`text-[11px] px-3 py-2 rounded-md transition-colors cursor-pointer ${
                   i === activeTab
                     ? "bg-primary text-white font-medium"
