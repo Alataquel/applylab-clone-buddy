@@ -77,20 +77,20 @@ const StudentToolsSection = () => {
               </p>
             </div>
             <div className="px-6 lg:px-8 pb-6 lg:pb-8">
-              <div className="bg-secondary rounded-lg p-4">
+              <div className="bg-gray-100 rounded-lg p-4">
                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-4">
-                  <div className="bg-card rounded-md p-3 text-center">
-                    <p className="text-2xl font-bold text-foreground">92</p>
-                    <p className="text-[10px] text-muted-foreground">Overall Score</p>
+                  <div className="bg-white rounded-md p-3 text-center">
+                    <p className="text-2xl font-bold text-gray-900">92</p>
+                    <p className="text-[10px] text-gray-400">Overall Score</p>
                   </div>
                   {[
-                    { label: "Impact", value: "88%", color: "text-amber-400" },
-                    { label: "Keywords", value: "95%", color: "text-emerald-400" },
+                    { label: "Impact", value: "88%", color: "text-amber-500" },
+                    { label: "Keywords", value: "95%", color: "text-emerald-500" },
                     { label: "Format", value: "92%", color: "text-primary" },
                   ].map((m) => (
-                    <div key={m.label} className="bg-card rounded-md p-3 text-center">
+                    <div key={m.label} className="bg-white rounded-md p-3 text-center">
                       <p className={`text-lg font-bold ${m.color}`}>{m.value}</p>
-                      <p className="text-[10px] text-muted-foreground">{m.label}</p>
+                      <p className="text-[10px] text-gray-400">{m.label}</p>
                     </div>
                   ))}
                 </div>
