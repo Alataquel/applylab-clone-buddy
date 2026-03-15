@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import Navbar from "@/components/landing/Navbar";
 import Footer from "@/components/landing/Footer";
+import GridBackground from "@/components/landing/GridBackground";
 
 const containerVariants = {
   hidden: {},
