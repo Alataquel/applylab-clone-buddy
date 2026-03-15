@@ -1,6 +1,6 @@
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
-import { Users, BookOpen, Globe, AlertTriangle, TrendingUp, ArrowUpRight, ClipboardCheck, Calendar, Briefcase } from "lucide-react";
+import { Users, BookOpen, Globe, AlertTriangle, TrendingUp, ArrowUpRight, ClipboardCheck, Calendar, Briefcase, Building2, GraduationCap, Search, FileText, BarChart3, UserCheck, ExternalLink, CheckCircle, AlertCircle, ArrowRight } from "lucide-react";
 import RubricDonut from "./RubricDonut";
 
 const useCountUp = (end: number, isInView: boolean, duration = 1200, delay = 0) => {
