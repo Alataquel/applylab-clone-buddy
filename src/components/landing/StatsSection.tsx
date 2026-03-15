@@ -48,12 +48,6 @@ const CountUpStat = ({ config, isInView, delay }: { config: typeof statConfig[0]
   );
 };
 
-const stats = [
-  { value: "12+", label: "University partners" },
-  { value: "3x", label: "More visibility into career activity" },
-  { value: "< 2 weeks", label: "Average onboarding time" },
-];
-
 const StatsSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
@@ -61,8 +55,8 @@ const StatsSection = () => {
   return (
     <section ref={ref} className="py-20 px-6 lg:px-12 bg-white border-t border-b border-gray-200">
       <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-8">
-        {stats.map((stat, i) => (
-          <CountUpStat key={stat.label} stat={stat} isInView={isInView} delay={i * 0.15} />
+        {statConfig.map((config, i) => (
+          <CountUpStat key={config.label} config={config} isInView={isInView} delay={i * 0.15} />
         ))}
       </div>
     </section>
