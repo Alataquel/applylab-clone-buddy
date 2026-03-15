@@ -242,7 +242,7 @@ const SpiderChart = ({ data }: { data: { certifications: number; languages: numb
   const dataPath = dataPoints.map((p, i) => `${i === 0 ? "M" : "L"}${p.x},${p.y}`).join(" ") + "Z";
 
   return (
-    <svg viewBox="0 0 160 160" className="w-full max-w-[160px]">
+    <svg viewBox="0 0 160 160" className="w-full max-w-[220px]">
       {/* Grid */}
       {gridLevels.map((level) => {
         const pts = Array.from({ length: 6 }, (_, i) => getPoint(i, level));
