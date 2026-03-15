@@ -273,7 +273,7 @@ const TrackerContent = () => {
           </div>
         ))}
       </div>
-    </div>
+    </>
   );
 };
 
