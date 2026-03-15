@@ -27,7 +27,7 @@ const PlatformSection = () => {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="bg-card rounded-xl p-6 shadow-precision group hover:-translate-y-0.5 transition-transform"
           >
-            <p className="text-xs text-primary font-medium mb-2">Smart Matching</p>
+            <p className="text-xs text-primary font-medium mb-2">Internship Board</p>
             <h3 className="text-lg font-semibold text-foreground mb-2">
               Roles ranked by <span className="text-gradient">real fit</span>, not keywords
             </h3>
@@ -66,7 +66,7 @@ const PlatformSection = () => {
           >
             <p className="text-xs text-primary font-medium mb-2">Resume Lab</p>
             <h3 className="text-lg font-semibold text-foreground mb-2">
-              Beat ATS. <span className="text-gradient">Impress humans.</span>
+              Optimise your CV. <span className="text-gradient">Impress humans.</span>
             </h3>
             <p className="text-sm text-muted-foreground mb-6">
               AI-driven, line-by-line CV feedback that raises the baseline quality of every student application your university produces.
@@ -92,7 +92,7 @@ const PlatformSection = () => {
 
             <div className="bg-primary/10 rounded-lg px-4 py-3 text-center">
               <p className="text-2xl font-bold text-primary">94%</p>
-              <p className="text-xs text-muted-foreground">ATS pass rate</p>
+              <p className="text-xs text-muted-foreground">CV optimisation rate</p>
               <p className="text-[10px] text-muted-foreground/60">Across all student CVs</p>
             </div>
           </motion.div>
@@ -104,7 +104,7 @@ const PlatformSection = () => {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="bg-card rounded-xl p-6 shadow-precision group hover:-translate-y-0.5 transition-transform"
           >
-            <p className="text-xs text-primary font-medium mb-2">Command Centre</p>
+            <p className="text-xs text-primary font-medium mb-2">Automatic Tracker</p>
             <h3 className="text-lg font-semibold text-foreground mb-2">
               Every application, <span className="text-gradient">one place.</span>
             </h3>

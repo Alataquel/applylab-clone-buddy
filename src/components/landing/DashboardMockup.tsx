@@ -6,7 +6,7 @@ const matches = [
   { initials: "DM", color: "bg-rose-500", role: "Data Scientist", company: "DeepMind", score: "85%" },
 ];
 
-const navItems = ["Dashboard", "Job Board", "My CVs", "Tracking", "Analytics"];
+const navItems = ["Dashboard", "Internship Board", "My CVs", "Tracking", "Analytics"];
 
 const DashboardMockup = () => {
   return (
