@@ -31,26 +31,26 @@ const HeroSection = () => {
           </motion.h1>
 
           <motion.p variants={itemVariants} className="text-lg text-muted-foreground max-w-md leading-relaxed">
-            The platform that powers how universities track, support, and improve student career outcomes — from first application to first job.
+            Real-time visibility into student career activity. Placement analytics your team can act on. The operating system for university career services.
           </motion.p>
 
-          <motion.div variants={itemVariants} className="flex items-center gap-3">
+          <motion.div variants={itemVariants} className="flex items-center gap-3 flex-wrap">
             <a
-              href="#cta"
+              href="/request-pilot"
               className="inline-flex items-center gap-2 bg-foreground text-background font-medium px-6 py-3 rounded-full text-sm hover:opacity-90 transition-opacity"
             >
-              Request access <ArrowRight className="w-4 h-4" />
+              Request a pilot <ArrowRight className="w-4 h-4" />
             </a>
             <a
-              href="#cta"
+              href="/universities"
               className="inline-flex items-center gap-2 text-muted-foreground font-medium px-6 py-3 rounded-full text-sm border border-muted hover:text-foreground transition-colors"
             >
-              Request a pilot
+              How it works
             </a>
           </motion.div>
 
           <motion.div variants={itemVariants} className="space-y-2">
-            <p className="text-xs uppercase tracking-widest text-muted-foreground font-medium">Partnered with</p>
+            <p className="text-xs uppercase tracking-widest text-muted-foreground font-medium">Trusted by</p>
             <div className="flex flex-wrap gap-2">
               {["Saint Louis University", "German UDS", "XU Exponential", "IE University"].map((name) => (
                 <span key={name} className="text-xs text-muted-foreground bg-secondary px-3 py-1.5 rounded-md">

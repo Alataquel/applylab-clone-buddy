@@ -4,8 +4,8 @@ import { useRef } from "react";
 
 const stats = [
   { value: "12+", label: "University partners" },
-  { value: "94%", label: "CV optimisation rate" },
-  { value: "3x", label: "Improvement in placement visibility" },
+  { value: "3x", label: "More visibility into career activity" },
+  { value: "< 2 weeks", label: "Average onboarding time" },
 ];
 
 const StatsSection = () => {
@@ -13,7 +13,7 @@ const StatsSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section ref={ref} className="py-20 px-6 lg:px-12">
+    <section ref={ref} className="py-20 px-6 lg:px-12 border-t border-b border-border/30">
       <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-8">
         {stats.map((stat, i) => (
           <motion.div

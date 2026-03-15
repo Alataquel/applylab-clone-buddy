@@ -4,24 +4,24 @@ import { ChevronDown } from "lucide-react";
 
 const faqs = [
   {
-    q: "How do I get access to ApplyLab?",
-    a: "ApplyLab is currently running as a closed pilot with select partner universities. If your institution is already a partner, you'll receive access through them. If not, you can request a pilot for your university—we'll be in touch.",
+    q: "How does the pilot work?",
+    a: "We onboard your institution in under two weeks. Our partnerships team configures the platform for your programmes, handles student rollout, and provides ongoing support. No IT integration required.",
   },
   {
-    q: "How does the AI Resume Builder work?",
-    a: "Our AI analyses your resume line by line, checking for impact statement quality, keyword coverage, formatting, and overall coherence. It provides specific, actionable suggestions to improve your CV.",
+    q: "What data do career teams see?",
+    a: "Your team gets a live dashboard with student analysis, qualifications insights, and market insights — all aggregated and anonymised. Individual student data is never shared without explicit student consent.",
   },
   {
-    q: "Can I track applications from any job board?",
-    a: "Yes. You can add applications from any source and track them through your personal pipeline, from applied to offer stage.",
+    q: "How do students access the platform?",
+    a: "Students receive access through your institution. They get an internship board, resume lab, and automatic application tracker — and every interaction feeds data back into your institutional dashboard.",
   },
   {
-    q: "Do you share my data with employers?",
-    a: "No. Your personal data is never shared with employers without your explicit consent. Your university sees only aggregated, anonymized analytics.",
+    q: "Is student data safe?",
+    a: "Yes. We're GDPR-compliant and privacy-by-design. Students own their data. Universities see only aggregated analytics. No personal application details are shared with employers or third parties.",
   },
   {
-    q: "How do universities access the analytics dashboard?",
-    a: "University career teams receive a dedicated admin dashboard during onboarding. It provides real-time visibility into student engagement and placement outcomes.",
+    q: "What does it cost?",
+    a: "Pricing depends on institution size and scope. We work with universities on a partnership basis — contact our team for a tailored proposal.",
   },
 ];
 
