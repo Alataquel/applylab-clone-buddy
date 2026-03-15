@@ -177,8 +177,8 @@ const StudentToolsSection = () => {
                           </div>
                         ))}
                         {col.items.length === 0 && (
-                          <div className="border border-dashed border-border/30 rounded-md p-2 text-center">
-                            <p className="text-[9px] text-muted-foreground/40">—</p>
+                          <div className="border border-dashed border-gray-200 rounded-md p-2 text-center">
+                            <p className="text-[9px] text-gray-300">—</p>
                           </div>
                         )}
                       </div>
