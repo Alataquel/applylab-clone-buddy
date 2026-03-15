@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import GridBackground from "@/components/landing/GridBackground";
 import Navbar from "@/components/landing/Navbar";
 import Footer from "@/components/landing/Footer";
 import StudentDashboardMockup from "@/components/landing/StudentDashboardMockup";
@@ -6,7 +7,7 @@ import { ArrowRight, FileText, BarChart3, Search, Calendar, UserCheck, ExternalL
 
 const ForStudents = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <GridBackground>
       <Navbar />
 
       {/* Hero */}
@@ -420,7 +421,7 @@ const ForStudents = () => {
       </section>
 
       <Footer />
-    </div>
+    </GridBackground>
   );
 };
 

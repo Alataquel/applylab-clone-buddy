@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import GridBackground from "@/components/landing/GridBackground";
 import Navbar from "@/components/landing/Navbar";
 import Footer from "@/components/landing/Footer";
 import { ArrowRight, Megaphone, Users, Zap, Gift, Star, CheckCircle2 } from "lucide-react";
@@ -50,7 +51,7 @@ const steps = [
 
 const Ambassador = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <GridBackground>
       <Navbar />
 
       {/* Hero */}
@@ -267,7 +268,7 @@ const Ambassador = () => {
       </section>
 
       <Footer />
-    </div>
+    </GridBackground>
   );
 };
 

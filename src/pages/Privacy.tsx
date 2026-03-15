@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import Navbar from "@/components/landing/Navbar";
 import Footer from "@/components/landing/Footer";
+import GridBackground from "@/components/landing/GridBackground";
 
 const containerVariants = {
   hidden: {},
@@ -30,7 +31,7 @@ const Privacy = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <GridBackground>
       <Navbar />
       <section className="pt-32 pb-20 px-6 lg:px-12">
         <div className="max-w-3xl mx-auto">
@@ -62,7 +63,7 @@ const Privacy = () => {
         </div>
       </section>
       <Footer />
-    </div>
+    </GridBackground>
   );
 };
 
