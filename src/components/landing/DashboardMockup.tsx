@@ -304,51 +304,161 @@ const StudentsContent = ({ onSelectStudent }: { onSelectStudent: (student: typeo
   </>
 );
 
-const AnalyticsContent = () => (
-  <>
-    <div className="grid grid-cols-3 gap-2 mb-4">
-      {[
-        { label: "Active Students", value: "1,284", change: "+12%", up: true },
-        { label: "Placement Rate", value: "71%", change: "+4.2%", up: true },
-        { label: "Avg. Engagement", value: "83%", change: "-2.1%", up: false },
-      ].map((m) => (
-        <div key={m.label} className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5">
-          <p className="text-[10px] text-gray-500 mb-1">{m.label}</p>
-          <div className="flex items-baseline gap-1.5">
-            <span className="text-lg font-bold text-white">{m.value}</span>
-            <span className={`text-[10px] font-medium ${m.up ? "text-emerald-400" : "text-rose-400"}`}>{m.change}</span>
+const AnalyticsContent = () => {
+  const statCards = [
+    { label: "Total Students", value: "1,284", change: "+5% vs last year", icon: (
+      <svg className="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+    )},
+    { label: "Total Applications", value: "4,821", change: "+15% vs last year", icon: (
+      <svg className="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+    )},
+    { label: "Students Who Applied", value: "912", change: "+8% vs last year", icon: (
+      <svg className="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>
+    )},
+    { label: "Placed Students", value: "648", change: "+12% vs last year", icon: (
+      <svg className="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
+    )},
+    { label: "Avg. Applications per Student", value: "5.3", change: "+20% vs last month", icon: (
+      <svg className="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>
+    )},
+    { label: "Average Salary", value: "$68,400", change: "+8% vs last year", icon: (
+      <svg className="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+    )},
+  ];
+
+  const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  const placedByMonth = [12, 18, 22, 35, 48, 56, 62, 71, 85, 94, 102, 110];
+  const maxPlaced = Math.max(...placedByMonth);
+
+  const degreeData = [
+    { degree: "CS", placed: 230, rate: 92 },
+    { degree: "Eng", placed: 210, rate: 88 },
+    { degree: "Biz", placed: 185, rate: 78 },
+    { degree: "Sci", placed: 105, rate: 72 },
+    { degree: "Arts", placed: 85, rate: 65 },
+    { degree: "Other", placed: 70, rate: 60 },
+  ];
+  const maxDegree = 250;
+
+  const funnelData = [
+    { label: "Total Applications", value: 4821, pct: "100%" },
+    { label: "Application Submitted", value: 3842, pct: "79.7%" },
+    { label: "Under Review", value: 2156, pct: "44.7%" },
+    { label: "Interview Stage", value: 1284, pct: "26.6%" },
+    { label: "Offer Received", value: 648, pct: "13.4%" },
+  ];
+
+  return (
+    <>
+      {/* Stat Cards - 2 rows of 3 */}
+      <div className="grid grid-cols-3 gap-2 mb-3">
+        {statCards.slice(0, 3).map((s) => (
+          <div key={s.label} className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5">
+            <div className="w-7 h-7 rounded-lg bg-white/[0.06] flex items-center justify-center mb-2">{s.icon}</div>
+            <div className="w-5 h-[2px] bg-primary/40 rounded mb-1.5" />
+            <p className="text-[10px] text-gray-400 mb-0.5">{s.label}</p>
+            <p className="text-[9px] text-emerald-400 font-medium">{s.change}</p>
           </div>
+        ))}
+      </div>
+      <div className="grid grid-cols-3 gap-2 mb-4">
+        {statCards.slice(3).map((s) => (
+          <div key={s.label} className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5">
+            <div className="w-7 h-7 rounded-lg bg-white/[0.06] flex items-center justify-center mb-2">{s.icon}</div>
+            <div className="w-5 h-[2px] bg-primary/40 rounded mb-1.5" />
+            <p className="text-[10px] text-gray-400 mb-0.5">{s.label}</p>
+            <p className="text-[9px] text-emerald-400 font-medium">{s.change}</p>
+          </div>
+        ))}
+      </div>
+
+      {/* Charts Row */}
+      <div className="grid grid-cols-2 gap-2 mb-3">
+        {/* Line Chart - Distinct Students Placed by Month */}
+        <div className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5">
+          <p className="text-[10px] font-semibold text-white mb-0.5">Distinct Students Placed by Month</p>
+          <div className="flex items-center gap-2 mb-2">
+            <div className="flex items-center gap-1"><div className="w-3 h-[2px] bg-primary rounded" /><span className="text-[8px] text-gray-500">Distinct Students Placed</span></div>
+          </div>
+          <svg viewBox="0 0 220 80" className="w-full">
+            {/* Y grid lines */}
+            {[0, 20, 40, 60, 80].map((y) => (
+              <line key={y} x1="25" y1={70 - (y / maxPlaced) * 60} x2="215" y2={70 - (y / maxPlaced) * 60} stroke="rgba(255,255,255,0.05)" strokeWidth="0.5" />
+            ))}
+            {/* Y labels */}
+            {[0, 30, 60, 90, 120].map((v, i) => (
+              <text key={v} x="22" y={70 - (i * 15)} textAnchor="end" fill="#6b7280" fontSize="4">{v}</text>
+            ))}
+            {/* Line */}
+            <polyline
+              fill="none"
+              stroke="hsl(217, 91%, 60%)"
+              strokeWidth="1.5"
+              points={placedByMonth.map((v, i) => `${25 + i * (190 / 11)},${70 - (v / maxPlaced) * 60}`).join(" ")}
+            />
+            {/* Dots */}
+            {placedByMonth.map((v, i) => (
+              <circle key={i} cx={25 + i * (190 / 11)} cy={70 - (v / maxPlaced) * 60} r="2" fill="hsl(217, 91%, 60%)" />
+            ))}
+            {/* X labels */}
+            {months.map((m, i) => (
+              <text key={m} x={25 + i * (190 / 11)} y="78" textAnchor="middle" fill="#6b7280" fontSize="4">{m}</text>
+            ))}
+          </svg>
         </div>
-      ))}
-    </div>
-    <p className="text-xs text-gray-500 mb-3">Cohort Breakdown</p>
-    <div className="space-y-2">
-      {[
-        { name: "Business 2026", students: 342, placed: "68%", risk: 12, color: "bg-purple-500", letter: "B2" },
-        { name: "Engineering 2026", students: 218, placed: "74%", risk: 5, color: "bg-blue-500", letter: "E2" },
-        { name: "Arts & Design 2026", students: 156, placed: "61%", risk: 23, color: "bg-emerald-500", letter: "A2" },
-        { name: "Finance 2026", students: 198, placed: "72%", risk: 8, color: "bg-rose-500", letter: "F2" },
-      ].map((c) => (
-        <div key={c.name} className="flex items-center gap-3 bg-white/[0.03] hover:bg-white/[0.06] border border-white/5 rounded-lg px-4 py-3 transition-colors">
-          <div className={`w-9 h-9 rounded-lg ${c.color} flex items-center justify-center text-[10px] font-bold text-white flex-shrink-0`}>{c.letter}</div>
-          <div className="flex-1 min-w-0">
-            <p className="text-sm font-medium text-white">{c.name}</p>
-            <p className="text-[11px] text-gray-500">{c.students} students</p>
+
+        {/* Bar Chart - Placement & Employability by Degree */}
+        <div className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5">
+          <p className="text-[10px] font-semibold text-white mb-0.5">Placement & Employability by Degree</p>
+          <div className="flex items-center gap-3 mb-2">
+            <div className="flex items-center gap-1"><div className="w-3 h-2 bg-primary rounded-sm" /><span className="text-[8px] text-gray-500">Placed Students</span></div>
+            <div className="flex items-center gap-1"><div className="w-3 h-2 bg-primary/40 rounded-sm" /><span className="text-[8px] text-gray-500">Employability Rate (%)</span></div>
           </div>
-          <div className="text-right">
-            <span className="text-sm font-semibold text-emerald-400">{c.placed}</span>
-            <p className="text-[10px] text-gray-500">{c.risk} at risk</p>
-          </div>
+          <svg viewBox="0 0 220 80" className="w-full">
+            {/* Y grid */}
+            {[0, 50, 100, 150, 200, 250].map((v) => (
+              <g key={v}>
+                <line x1="25" y1={70 - (v / maxDegree) * 60} x2="215" y2={70 - (v / maxDegree) * 60} stroke="rgba(255,255,255,0.05)" strokeWidth="0.5" />
+                <text x="22" y={72 - (v / maxDegree) * 60} textAnchor="end" fill="#6b7280" fontSize="4">{v}</text>
+              </g>
+            ))}
+            {/* Bars */}
+            {degreeData.map((d, i) => {
+              const x = 35 + i * 30;
+              const barH1 = (d.placed / maxDegree) * 60;
+              const barH2 = (d.rate / maxDegree) * 60;
+              return (
+                <g key={d.degree}>
+                  <rect x={x} y={70 - barH1} width="8" height={barH1} fill="hsl(217, 91%, 60%)" rx="1" />
+                  <rect x={x + 10} y={70 - barH2} width="8" height={barH2} fill="hsl(217, 91%, 60%, 0.4)" rx="1" />
+                  <text x={x + 9} y="78" textAnchor="middle" fill="#6b7280" fontSize="3.5">{d.degree}</text>
+                </g>
+              );
+            })}
+          </svg>
         </div>
-      ))}
-    </div>
-    <div className="mt-4">
-      <button className="w-full bg-primary hover:bg-primary/90 text-white text-sm font-medium py-2.5 rounded-lg transition-colors">
-        Generate Report
-      </button>
-    </div>
-  </>
-);
+      </div>
+
+      {/* Application Funnel */}
+      <div className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5">
+        <p className="text-[10px] font-semibold text-white mb-2">Application Funnel by Stage & Status</p>
+        <div className="space-y-1.5">
+          {funnelData.map((f) => (
+            <div key={f.label} className="flex items-center gap-2">
+              <span className="text-[8px] text-gray-400 w-24 shrink-0">{f.label}</span>
+              <div className="flex-1 h-3 bg-white/5 rounded-full overflow-hidden">
+                <div className="h-full bg-primary/50 rounded-full flex items-center justify-center" style={{ width: f.pct }}>
+                  <span className="text-[6px] text-white font-medium">{f.value.toLocaleString()}</span>
+                </div>
+              </div>
+              <span className="text-[8px] text-gray-500 w-8 text-right">{f.pct}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </>
+  );
+};
 
 const QualificationInsightsContent = () => (
   <>
