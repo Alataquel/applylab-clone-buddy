@@ -47,15 +47,15 @@ const StudentToolsSection = () => {
                   { letter: "S", color: "bg-emerald-500", role: "Growth Marketing Intern", company: "Spotify", match: "92%", location: "Stockholm" },
                   { letter: "M", color: "bg-amber-500", role: "Strategy Analyst Intern", company: "McKinsey", match: "88%", location: "Madrid" },
                 ].map((job) => (
-                  <div key={job.role} className="flex items-center gap-3 bg-card rounded-md px-3 py-3">
-                    <div className={`w-8 h-8 rounded-md ${job.color} flex items-center justify-center text-[10px] font-bold text-foreground`}>
+                  <div key={job.role} className="flex items-center gap-3 bg-white rounded-md px-3 py-3">
+                    <div className={`w-8 h-8 rounded-md ${job.color} flex items-center justify-center text-[10px] font-bold text-white`}>
                       {job.letter}
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="text-xs font-medium text-foreground">{job.role}</p>
-                      <p className="text-[10px] text-muted-foreground">{job.company} · {job.location}</p>
+                      <p className="text-xs font-medium text-gray-900">{job.role}</p>
+                      <p className="text-[10px] text-gray-400">{job.company} · {job.location}</p>
                     </div>
-                    <span className="text-xs font-semibold text-emerald-400">{job.match}</span>
+                    <span className="text-xs font-semibold text-emerald-500">{job.match}</span>
                   </div>
                 ))}
               </div>
