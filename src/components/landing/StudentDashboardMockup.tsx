@@ -731,10 +731,10 @@ const MeetingsContent = () => {
           <p className="text-[9px] font-bold text-foreground mb-2">Booking Summary</p>
           <div className="space-y-2">
             {[
-              { icon: "👤", label: "Advisor", value: selectedAdvisor || "Not selected" },
-              { icon: "📅", label: "Date", value: "Not selected" },
-              { icon: "⏰", label: "Time", value: "Not selected" },
-              { icon: "📹", label: "Meeting Type", value: "30 min Video call" },
+              { IconComp: User, label: "Advisor", value: selectedAdvisor || "Not selected" },
+              { IconComp: CalendarDays, label: "Date", value: "Not selected" },
+              { IconComp: Clock, label: "Time", value: "Not selected" },
+              { IconComp: Video, label: "Meeting Type", value: "30 min Video call" },
             ].map((item) => (
               <div key={item.label}>
                 <p className="text-[6px] text-primary font-medium">{item.label}</p>
