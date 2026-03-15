@@ -260,7 +260,7 @@ const About = () => {
               {[
                 "ApplyLab started with a simple observation: talented students were losing out on great opportunities not because of lack of ability, but because of broken tools and invisible processes. Spreadsheets for tracking applications. Generic resume templates. Career centres with no visibility into what students were actually doing until it was too late.",
                 "We set out to build the platform we wished we'd had. One that understands your skills, surfaces the right opportunities, and gives your university the real-time data it needs to actually help — not just at graduation, but throughout your entire journey.",
-                "Today, ApplyLab is running as an active pilot with universities in Spain and Germany — Saint Louis University, German UDS, XU Exponential University, and IE University. We're building carefully, and we're just getting started.",
+                "Today, ApplyLab is running with universities in Spain and Germany — Saint Louis University, German UDS, XU Exponential University, and IE University. We're building carefully, and we're just getting started.",
               ].map((text, i) => (
                 <motion.p
                   key={i}
