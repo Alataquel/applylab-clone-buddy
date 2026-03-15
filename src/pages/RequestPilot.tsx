@@ -146,7 +146,7 @@ const RequestPilot = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.4 }}
               >
-                <label className="text-xs text-muted-foreground font-medium mb-2 block">Email</label>
+                <label className="text-xs text-gray-500 font-medium mb-2 block">Email</label>
                 <input
                   type="email"
                   value={form.email || ""}
