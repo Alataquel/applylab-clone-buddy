@@ -69,7 +69,7 @@ const PlatformSection = () => {
               Beat ATS. <span className="text-gradient">Impress humans.</span>
             </h3>
             <p className="text-sm text-muted-foreground mb-6">
-              Line-by-line AI feedback that turns a generic CV into a targeted, high-scoring one.
+              AI-driven, line-by-line CV feedback that raises the baseline quality of every student application your university produces.
             </p>
 
             <div className="bg-secondary rounded-lg p-4 mb-4">
