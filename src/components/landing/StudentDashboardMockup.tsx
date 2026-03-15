@@ -157,42 +157,9 @@ const TrackerContent = () => {
 };
 
 /* ─── Resume Tab (with sub-tabs) ─── */
-const ResumeContent = () => {
-  const [subTab, setSubTab] = useState<"grader" | "builder" | "coverLetters">("grader");
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-
-  const labels: Record<string, string> = { grader: "Resume Grader", builder: "Resume Builder", coverLetters: "Cover Letter Maker" };
-
+const ResumeContent = ({ subTab }: { subTab: "grader" | "builder" | "coverLetters" }) => {
   return (
     <>
-      {/* Dropdown selector */}
-      <div className="relative w-fit mb-4">
-        <button
-          onClick={() => setDropdownOpen(!dropdownOpen)}
-          className="flex items-center gap-2 bg-[hsl(var(--secondary))] border border-[hsl(var(--border))] rounded-md px-3 py-1.5 text-[9px] font-medium text-[hsl(var(--foreground))]"
-        >
-          📄 {labels[subTab]}
-          <span className="text-[8px] text-[hsl(var(--muted-foreground))]">▾</span>
-        </button>
-        {dropdownOpen && (
-          <div className="absolute top-full left-0 mt-1 bg-[hsl(var(--card))] border border-[hsl(var(--border))] rounded-md shadow-lg z-10 min-w-[160px]">
-            {(["grader", "builder", "coverLetters"] as const).map((key) => (
-              <button
-                key={key}
-                onClick={() => { setSubTab(key); setDropdownOpen(false); }}
-                className={`block w-full text-left px-3 py-1.5 text-[8px] transition-colors ${
-                  subTab === key
-                    ? "bg-[hsl(var(--primary)/0.1)] text-[hsl(var(--primary))] font-semibold"
-                    : "text-[hsl(var(--foreground))] hover:bg-[hsl(var(--secondary))]"
-                }`}
-              >
-                {labels[key]}
-              </button>
-            ))}
-          </div>
-        )}
-      </div>
-
       {subTab === "grader" && <ResumeGraderContent />}
       {subTab === "builder" && <ResumeBuilderContent />}
       {subTab === "coverLetters" && <CoverLettersContent />}
