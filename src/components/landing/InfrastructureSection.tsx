@@ -138,7 +138,7 @@ const InfrastructureSection = () => {
 
   return (
     <section className="py-24 px-6 lg:px-12 bg-white">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
