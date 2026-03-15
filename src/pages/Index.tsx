@@ -5,6 +5,7 @@ import CompanyMarquee from "@/components/landing/CompanyMarquee";
 import StatsSection from "@/components/landing/StatsSection";
 import ProblemSection from "@/components/landing/ProblemSection";
 import SolutionSection from "@/components/landing/SolutionSection";
+import DemoToggleSection from "@/components/landing/DemoToggleSection";
 import InfrastructureSection from "@/components/landing/InfrastructureSection";
 import SocialProofSection from "@/components/landing/SocialProofSection";
 
@@ -21,6 +22,7 @@ const Index = () => {
         <StatsSection />
         <ProblemSection />
         <SolutionSection />
+        <DemoToggleSection />
         <InfrastructureSection />
         
         <SocialProofSection />
