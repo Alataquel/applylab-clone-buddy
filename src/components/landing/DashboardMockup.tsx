@@ -157,22 +157,25 @@ const OverviewContent = () => (
   </>
 );
 
+const appStages = ["Applied", "Technical Test", "Case Study", "1st Interview", "2nd Interview", "Offered", "Rejected"] as const;
+type AppStatus = typeof appStages[number];
+
 const studentsData = [
   { name: "Sarah Chen", email: "s.chen@uni.edu", degree: "BSc Business Admin", phone: "+44 7911 123456", status: "placed" as const, avatar: "SC",
     spider: { certifications: 4, languages: 3, projects: 5, skills: 4, experience: 3, gpa: 4 },
     applications: [
-      { company: "Deloitte", role: "Analyst", status: "Offered" },
-      { company: "McKinsey", role: "Associate", status: "Interview" },
-      { company: "Goldman Sachs", role: "Intern", status: "Applied" },
-      { company: "PwC", role: "Consultant", status: "Submitted" },
-      { company: "BCG", role: "Associate", status: "Rejected" },
+      { company: "Deloitte", role: "Analyst", status: "Offered" as AppStatus },
+      { company: "McKinsey", role: "Associate", status: "2nd Interview" as AppStatus },
+      { company: "Goldman Sachs", role: "Intern", status: "Technical Test" as AppStatus },
+      { company: "PwC", role: "Consultant", status: "Applied" as AppStatus },
+      { company: "BCG", role: "Associate", status: "Rejected" as AppStatus },
     ]},
   { name: "James Miller", email: "j.miller@uni.edu", degree: "MEng Computer Science", phone: "+44 7922 234567", status: "in_progress" as const, avatar: "JM",
     spider: { certifications: 2, languages: 4, projects: 3, skills: 5, experience: 2, gpa: 3 },
     applications: [
-      { company: "Google", role: "SWE Intern", status: "Interview" },
-      { company: "Meta", role: "Engineer", status: "Applied" },
-      { company: "Amazon", role: "SDE Intern", status: "Submitted" },
+      { company: "Google", role: "SWE Intern", status: "Case Study" as AppStatus },
+      { company: "Meta", role: "Engineer", status: "1st Interview" as AppStatus },
+      { company: "Amazon", role: "SDE Intern", status: "Applied" as AppStatus },
     ]},
   { name: "Priya Patel", email: "p.patel@uni.edu", degree: "BA Fine Arts", phone: "+44 7933 345678", status: "nothing" as const, avatar: "PP",
     spider: { certifications: 1, languages: 2, projects: 2, skills: 3, experience: 1, gpa: 3 },
@@ -180,29 +183,29 @@ const studentsData = [
   { name: "Lucas Wang", email: "l.wang@uni.edu", degree: "MSc Finance", phone: "+44 7944 456789", status: "placed" as const, avatar: "LW",
     spider: { certifications: 3, languages: 3, projects: 4, skills: 4, experience: 4, gpa: 5 },
     applications: [
-      { company: "JP Morgan", role: "Analyst", status: "Offered" },
-      { company: "HSBC", role: "Graduate", status: "Offered" },
-      { company: "Barclays", role: "Analyst", status: "Interview" },
-      { company: "Citi", role: "Associate", status: "Rejected" },
+      { company: "JP Morgan", role: "Analyst", status: "Offered" as AppStatus },
+      { company: "HSBC", role: "Graduate", status: "2nd Interview" as AppStatus },
+      { company: "Barclays", role: "Analyst", status: "1st Interview" as AppStatus },
+      { company: "Citi", role: "Associate", status: "Rejected" as AppStatus },
     ]},
   { name: "Emma Johnson", email: "e.johnson@uni.edu", degree: "Dual Bachelors in Business & Data Analytics", phone: "+44 7955 567890", status: "in_progress" as const, avatar: "EJ",
     spider: { certifications: 3, languages: 2, projects: 3, skills: 3, experience: 2, gpa: 4 },
     applications: [
-      { company: "PwC", role: "Consultant", status: "Interview" },
-      { company: "EY", role: "Analyst", status: "Applied" },
-      { company: "Accenture", role: "Analyst", status: "Submitted" },
+      { company: "PwC", role: "Consultant", status: "Case Study" as AppStatus },
+      { company: "EY", role: "Analyst", status: "Technical Test" as AppStatus },
+      { company: "Accenture", role: "Analyst", status: "Applied" as AppStatus },
     ]},
   { name: "Omar Hassan", email: "o.hassan@uni.edu", degree: "MEng Electrical Engineering", phone: "+44 7966 678901", status: "placed" as const, avatar: "OH",
     spider: { certifications: 4, languages: 5, projects: 4, skills: 5, experience: 3, gpa: 4 },
     applications: [
-      { company: "Siemens", role: "Engineer", status: "Offered" },
-      { company: "Tesla", role: "Hardware Eng", status: "Interview" },
+      { company: "Siemens", role: "Engineer", status: "Offered" as AppStatus },
+      { company: "Tesla", role: "Hardware Eng", status: "1st Interview" as AppStatus },
     ]},
   { name: "Mia Thompson", email: "m.thompson@uni.edu", degree: "BA Graphic Design", phone: "+44 7977 789012", status: "in_progress" as const, avatar: "MT",
     spider: { certifications: 2, languages: 2, projects: 5, skills: 4, experience: 2, gpa: 3 },
     applications: [
-      { company: "Pentagram", role: "Junior Designer", status: "Interview" },
-      { company: "IDEO", role: "Design Intern", status: "Applied" },
+      { company: "Pentagram", role: "Junior Designer", status: "2nd Interview" as AppStatus },
+      { company: "IDEO", role: "Design Intern", status: "Technical Test" as AppStatus },
     ]},
   { name: "Daniel Kim", email: "d.kim@uni.edu", degree: "BSc Economics", phone: "+44 7988 890123", status: "nothing" as const, avatar: "DK",
     spider: { certifications: 1, languages: 1, projects: 1, skills: 2, experience: 1, gpa: 2 },
@@ -210,9 +213,9 @@ const studentsData = [
   { name: "Aisha Begum", email: "a.begum@uni.edu", degree: "M.Sc. Data Science", phone: "+44 7999 901234", status: "placed" as const, avatar: "AB",
     spider: { certifications: 5, languages: 3, projects: 4, skills: 5, experience: 4, gpa: 5 },
     applications: [
-      { company: "Amazon", role: "Data Scientist", status: "Offered" },
-      { company: "Netflix", role: "ML Engineer", status: "Interview" },
-      { company: "Spotify", role: "Data Analyst", status: "Rejected" },
+      { company: "Amazon", role: "Data Scientist", status: "Offered" as AppStatus },
+      { company: "Netflix", role: "ML Engineer", status: "Case Study" as AppStatus },
+      { company: "Spotify", role: "Data Analyst", status: "Rejected" as AppStatus },
     ]},
 ];
 
@@ -318,77 +321,82 @@ const StudentDetailContent = ({ student, onBack }: { student: typeof studentsDat
             <>
               {/* Funnel summary */}
               {(() => {
-                const stages = [
-                  { label: "Submitted", key: "Submitted", color: "bg-gray-400" },
-                  { label: "Applied", key: "Applied", color: "bg-blue-400" },
-                  { label: "Interview", key: "Interview", color: "bg-amber-400" },
-                  { label: "Offered", key: "Offered", color: "bg-emerald-400" },
-                  { label: "Rejected", key: "Rejected", color: "bg-rose-400" },
-                ];
+                const stageColors: Record<string, { bar: string; badge: string }> = {
+                  "Applied": { bar: "bg-gray-400", badge: "bg-gray-500/20 text-gray-400" },
+                  "Technical Test": { bar: "bg-blue-400", badge: "bg-blue-500/20 text-blue-400" },
+                  "Case Study": { bar: "bg-cyan-400", badge: "bg-cyan-500/20 text-cyan-400" },
+                  "1st Interview": { bar: "bg-amber-400", badge: "bg-amber-500/20 text-amber-400" },
+                  "2nd Interview": { bar: "bg-orange-400", badge: "bg-orange-500/20 text-orange-400" },
+                  "Offered": { bar: "bg-emerald-400", badge: "bg-emerald-500/20 text-emerald-400" },
+                  "Rejected": { bar: "bg-rose-400", badge: "bg-rose-500/20 text-rose-400" },
+                };
+                const progressStages = ["Applied", "Technical Test", "Case Study", "1st Interview", "2nd Interview", "Offered"];
                 const total = student.applications.length;
-                const counts = stages.map(s => ({
-                  ...s,
-                  count: student.applications.filter(a => a.status === s.key).length,
-                })).filter(s => s.count > 0);
 
                 return (
                   <div className="mb-3">
-                    {/* Funnel bars */}
-                    <div className="space-y-1 mb-2">
-                      {counts.map((s) => (
-                        <div key={s.label} className="flex items-center gap-2">
-                          <span className="text-[8px] text-gray-500 w-14 text-right">{s.label}</span>
-                          <div className="flex-1 h-3 bg-white/5 rounded-full overflow-hidden">
-                            <div className={`h-full ${s.color} rounded-full flex items-center pl-1.5`} style={{ width: `${(s.count / total) * 100}%`, minWidth: '20%' }}>
-                              <span className="text-[7px] text-white font-bold">{s.count}</span>
-                            </div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                    <div className="flex items-center gap-1 mb-2">
-                      <span className="text-[9px] text-gray-500">Total: {total} applications</span>
-                    </div>
-
-                    {/* Application list */}
-                    <div className="space-y-1">
+                    {/* Application list with full pipeline */}
+                    <div className="space-y-1.5">
                       {student.applications.map((app) => {
-                        const stageOrder = ["Submitted", "Applied", "Interview", "Offered", "Rejected"];
-                        const stageIdx = stageOrder.indexOf(app.status);
+                        const stageIdx = progressStages.indexOf(app.status);
                         const isRejected = app.status === "Rejected";
+                        const colors = stageColors[app.status] || stageColors["Applied"];
+                        // For rejected, find how far they got (use the stage before rejection — assume at least Applied)
+                        const rejectedAtIdx = isRejected ? Math.max(0, 1) : stageIdx;
+                        
                         return (
-                          <div key={app.company + app.role} className="bg-white/[0.03] border border-white/5 rounded-md px-2 py-1.5">
-                            <div className="flex items-center justify-between mb-1">
+                          <div key={app.company + app.role} className="bg-white/[0.03] border border-white/5 rounded-lg px-2.5 py-2">
+                            <div className="flex items-center justify-between mb-1.5">
                               <div>
-                                <p className="text-[10px] font-medium text-white">{app.role}</p>
+                                <p className="text-[10px] font-semibold text-white">{app.role}</p>
                                 <p className="text-[8px] text-gray-500">{app.company}</p>
                               </div>
-                              <span className={`text-[8px] font-semibold px-1.5 py-0.5 rounded ${
-                                app.status === "Offered" ? "bg-emerald-500/20 text-emerald-400" :
-                                app.status === "Interview" ? "bg-amber-500/20 text-amber-400" :
-                                app.status === "Rejected" ? "bg-rose-500/20 text-rose-400" :
-                                app.status === "Applied" ? "bg-blue-500/20 text-blue-400" :
-                                "bg-gray-500/20 text-gray-400"
-                              }`}>{app.status}</span>
+                              <span className={`text-[7px] font-bold px-1.5 py-0.5 rounded-md ${colors.badge}`}>{app.status}</span>
                             </div>
-                            {/* Stage progress dots */}
+                            {/* Stage pipeline */}
                             <div className="flex items-center gap-0.5">
-                              {["Submitted", "Applied", "Interview", "Offered"].map((stage, i) => (
-                                <div key={stage} className="flex items-center">
-                                  <div className={`w-1.5 h-1.5 rounded-full ${
-                                    isRejected ? (i <= Math.min(stageIdx, 2) ? "bg-rose-400" : "bg-white/10") :
-                                    i <= stageIdx ? "bg-primary" : "bg-white/10"
-                                  }`} />
-                                  {i < 3 && <div className={`w-3 h-[1px] ${
-                                    isRejected ? (i < Math.min(stageIdx, 2) ? "bg-rose-400/50" : "bg-white/5") :
-                                    i < stageIdx ? "bg-primary/50" : "bg-white/5"
-                                  }`} />}
+                              {progressStages.map((stage, i) => {
+                                const isActive = isRejected
+                                  ? i <= rejectedAtIdx
+                                  : i <= stageIdx;
+                                const isCurrent = isRejected ? false : i === stageIdx;
+                                const dotColor = isRejected
+                                  ? (i <= rejectedAtIdx ? "bg-rose-400" : "bg-white/10")
+                                  : isActive ? stageColors[stage]?.bar || "bg-primary" : "bg-white/10";
+                                const lineColor = isRejected
+                                  ? (i < rejectedAtIdx ? "bg-rose-400/50" : "bg-white/5")
+                                  : (i < stageIdx ? `${stageColors[progressStages[i]]?.bar || "bg-primary"}/50` : "bg-white/5");
+
+                                return (
+                                  <div key={stage} className="flex items-center flex-1">
+                                    <div className="relative flex flex-col items-center">
+                                      <div className={`w-2 h-2 rounded-full ${dotColor} ${isCurrent ? "ring-1 ring-white/30" : ""} transition-all`} />
+                                      <span className={`text-[5px] mt-0.5 whitespace-nowrap ${isActive ? "text-gray-300" : "text-gray-600"}`}>
+                                        {stage.replace("1st ", "1st\u00A0").replace("2nd ", "2nd\u00A0")}
+                                      </span>
+                                    </div>
+                                    {i < progressStages.length - 1 && (
+                                      <div className={`flex-1 h-[1.5px] mx-0.5 rounded ${lineColor}`} />
+                                    )}
+                                  </div>
+                                );
+                              })}
+                              {/* Rejected X marker */}
+                              {isRejected && (
+                                <div className="flex flex-col items-center ml-0.5">
+                                  <div className="w-2 h-2 rounded-full bg-rose-500 flex items-center justify-center">
+                                    <span className="text-[5px] text-white font-bold">✕</span>
+                                  </div>
+                                  <span className="text-[5px] mt-0.5 text-rose-400">Rejected</span>
                                 </div>
-                              ))}
+                              )}
                             </div>
                           </div>
                         );
                       })}
+                    </div>
+                    <div className="flex items-center gap-1 mt-2">
+                      <span className="text-[9px] text-gray-500">Total: {total} applications</span>
                     </div>
                   </div>
                 );
