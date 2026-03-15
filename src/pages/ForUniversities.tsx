@@ -567,7 +567,7 @@ const ForUniversities = () => {
       </section>
 
       <Footer />
-    </div>
+    </GridBackground>
   );
 };
 

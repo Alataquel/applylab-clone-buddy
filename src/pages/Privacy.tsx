@@ -63,7 +63,7 @@ const Privacy = () => {
         </div>
       </section>
       <Footer />
-    </div>
+    </GridBackground>
   );
 };
 

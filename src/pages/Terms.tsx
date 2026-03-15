@@ -63,7 +63,7 @@ const Terms = () => {
         </div>
       </section>
       <Footer />
-    </div>
+    </GridBackground>
   );
 };
 

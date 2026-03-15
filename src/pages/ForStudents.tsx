@@ -421,7 +421,7 @@ const ForStudents = () => {
       </section>
 
       <Footer />
-    </div>
+    </GridBackground>
   );
 };
 

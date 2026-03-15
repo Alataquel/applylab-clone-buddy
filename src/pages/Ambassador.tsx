@@ -268,7 +268,7 @@ const Ambassador = () => {
       </section>
 
       <Footer />
-    </div>
+    </GridBackground>
   );
 };
 
