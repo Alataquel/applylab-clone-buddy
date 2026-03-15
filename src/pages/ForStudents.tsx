@@ -7,7 +7,7 @@ import { ArrowRight, FileText, BarChart3, Search, Calendar, UserCheck, ExternalL
 
 const ForStudents = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <GridBackground>
       <Navbar />
 
       {/* Hero */}
