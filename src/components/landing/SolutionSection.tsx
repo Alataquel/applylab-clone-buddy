@@ -15,7 +15,7 @@ const solutions = [
     icon: BarChart3,
     number: "02",
     title: "Institutional analytics & reporting",
-    description: "Auto-generated placement reports, programme-level comparisons, and cohort analytics. Everything accreditation bodies and leadership need — without the manual work.",
+    description: "Track placement rates, compare programme performance, and surface cohort-level trends — all in real time. From qualification benchmarks to market-fit scores, every metric your accreditation bodies and leadership need is generated automatically.",
     color: "text-amber-400",
     bgColor: "bg-amber-400/10",
   },
