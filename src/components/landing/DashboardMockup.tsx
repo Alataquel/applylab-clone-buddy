@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 
-const navItems = ["Overview", "Students", "Analytics", "Qualification Insights", "Market Insights", "Resume Templates", "Job & Event Postings"];
+const navItems = ["Overview", "Students", "Analytics", "Qualification Insights", "Resume Templates", "Job & Event Postings"];
 
 const OverviewContent = () => (
   <>
