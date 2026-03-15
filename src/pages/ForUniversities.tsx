@@ -347,13 +347,19 @@ const ForUniversities = () => {
                     </motion.span>
                   ))}
                 </div>
-                <div className="bg-[#232942] rounded-md p-3">
+                <motion.div
+                  initial={{ opacity: 0, y: 12 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.7 }}
+                  className="bg-[#232942] rounded-md p-3"
+                >
                   <p className="text-[10px] text-white/40 mb-1">Avg. graduate salary (region)</p>
                   <p className="text-xl font-bold text-white">€38,200</p>
                   <p className="text-[10px] text-emerald-400 flex items-center gap-0.5">
                     <TrendingUp className="w-2.5 h-2.5" /> +6% vs. last year
                   </p>
-                </div>
+                </motion.div>
               </div>
             </motion.div>
 
