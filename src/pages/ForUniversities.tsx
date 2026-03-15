@@ -31,7 +31,7 @@ const ForUniversities = () => {
             <motion.p variants={itemVariants} className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed mb-10">
               One platform that connects student career activity, employer data, and reporting — so your team can intervene early, prove impact, and improve outcomes year over year.
             </motion.p>
-            <motion.div variants={itemVariants} className="flex flex-wrap gap-3">
+            <motion.div variants={itemVariants} className="flex flex-wrap gap-3 justify-center">
               <motion.a
                 href="/request-pilot"
                 className="inline-flex items-center gap-2 bg-foreground text-background font-medium px-6 py-3 rounded-full text-sm hover:opacity-90 transition-opacity"
