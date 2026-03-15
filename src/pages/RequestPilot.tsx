@@ -112,7 +112,7 @@ const RequestPilot = () => {
                       className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                         form.role === r.value
                           ? "bg-primary/10 text-primary"
-                          : "bg-secondary text-muted-foreground hover:text-foreground"
+                          : "bg-gray-100 text-gray-500 hover:text-gray-900"
                       }`}
                       whileHover={{ scale: 1.04 }}
                       whileTap={{ scale: 0.96 }}
