@@ -30,7 +30,7 @@ const Navbar = () => {
             English
             <ChevronDown className="w-3 h-3" />
           </button>
-          <a href="#" className="hidden md:inline text-sm text-muted-foreground hover:text-foreground transition-colors">Log In</a>
+          <a href="/login" className="hidden md:inline text-sm text-muted-foreground hover:text-foreground transition-colors">Log In</a>
           <a
             href="/request-pilot"
             className="hidden md:inline text-sm font-medium bg-foreground text-background px-4 py-2 rounded-full hover:opacity-90 transition-opacity"
@@ -72,7 +72,7 @@ const Navbar = () => {
                 { label: "For Students", href: "/students" },
                 { label: "For Universities", href: "/universities" },
                 { label: "About", href: "/about" },
-                { label: "Log In", href: "#" },
+                { label: "Log In", href: "/login" },
               ].map((link) => (
                 <a
                   key={link.label}
