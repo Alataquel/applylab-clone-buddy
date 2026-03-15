@@ -6,35 +6,35 @@
 
 @layer base {
   :root {
-    --background: 195 53% 6%;
+    --background: 230 45% 10%;
     --foreground: 0 0% 98%;
-    --card: 195 45% 10%;
+    --card: 230 40% 13%;
     --card-foreground: 0 0% 98%;
-    --popover: 195 45% 10%;
+    --popover: 230 40% 13%;
     --popover-foreground: 0 0% 98%;
-    --primary: 195 53% 45%;
+    --primary: 230 45% 20%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 195 40% 13%;
+    --secondary: 230 38% 15%;
     --secondary-foreground: 0 0% 98%;
-    --muted: 195 35% 17%;
-    --muted-foreground: 195 12% 62%;
-    --accent: 195 53% 45%;
+    --muted: 230 32% 19%;
+    --muted-foreground: 230 12% 62%;
+    --accent: 230 45% 20%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
-    --border: 195 30% 17%;
-    --input: 195 30% 17%;
-    --ring: 195 53% 45%;
+    --border: 230 30% 19%;
+    --input: 230 30% 19%;
+    --ring: 230 45% 20%;
     --radius: 0.75rem;
 
-    --surface-1: 195 45% 10%;
-    --surface-2: 195 42% 12%;
-    --surface-3: 195 38% 15%;
+    --surface-1: 230 40% 13%;
+    --surface-2: 230 38% 15%;
+    --surface-3: 230 34% 18%;
     --text-primary: 0 0% 100%;
-    --text-secondary: 195 10% 65%;
-    --text-muted: 195 8% 46%;
-    --gradient-primary: linear-gradient(135deg, hsl(195 53% 45%), hsl(190 55% 55%));
-    --gradient-cta: linear-gradient(135deg, hsl(195 53% 45%), hsl(200 50% 52%));
+    --text-secondary: 230 10% 65%;
+    --text-muted: 230 8% 46%;
+    --gradient-primary: linear-gradient(135deg, hsl(230 45% 20%), hsl(225 50% 28%));
+    --gradient-cta: linear-gradient(135deg, hsl(230 45% 20%), hsl(235 45% 26%));
     --shadow-sm: 0 0 0 1px rgba(255,255,255,0.05), 0 1px 2px rgba(0,0,0,0.4);
     --shadow-md: 0 0 0 1px rgba(255,255,255,0.08), 0 4px 12px rgba(0,0,0,0.5);
     --shadow-lg: 0 0 0 1px rgba(255,255,255,0.06), 0 8px 30px rgba(0,0,0,0.6);
