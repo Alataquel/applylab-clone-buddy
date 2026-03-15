@@ -1,6 +1,74 @@
 import { useState, useRef } from "react";
 
-const navItems = ["Students", "Analytics", "Qualification Insights", "Market Insights", "Resume Templates", "Job & Event Postings"];
+const navItems = ["Overview", "Students", "Analytics", "Qualification Insights", "Market Insights", "Resume Templates", "Job & Event Postings"];
+
+const OverviewContent = () => (
+  <>
+    <div className="grid grid-cols-3 gap-2 mb-4">
+      {[
+        { label: "Total Students", value: "1,284", change: "+12%", up: true },
+        { label: "Placement Rate", value: "71%", change: "+4.2%", up: true },
+        { label: "Avg. Engagement", value: "83%", change: "-2.1%", up: false },
+      ].map((m) => (
+        <div key={m.label} className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5">
+          <p className="text-[10px] text-gray-500 mb-1">{m.label}</p>
+          <div className="flex items-baseline gap-1.5">
+            <span className="text-lg font-bold text-white">{m.value}</span>
+            <span className={`text-[10px] font-medium ${m.up ? "text-emerald-400" : "text-rose-400"}`}>{m.change}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div className="grid grid-cols-2 gap-2 mb-4">
+      <div className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5">
+        <p className="text-[10px] text-gray-500 mb-1">Applications Sent</p>
+        <span className="text-lg font-bold text-white">4,821</span>
+        <div className="mt-2 flex gap-1">
+          {[65, 45, 80, 55, 70, 90, 60, 75, 85, 50].map((h, i) => (
+            <div key={i} className="flex-1 bg-primary/30 rounded-sm" style={{ height: `${h * 0.3}px` }}>
+              <div className="w-full bg-primary rounded-sm" style={{ height: `${h * 0.2}px`, marginTop: `${(h * 0.3) - (h * 0.2)}px` }} />
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5">
+        <p className="text-[10px] text-gray-500 mb-1">Interviews This Month</p>
+        <span className="text-lg font-bold text-white">186</span>
+        <div className="mt-2 space-y-1.5">
+          {[
+            { label: "Scheduled", pct: 42, color: "bg-primary" },
+            { label: "Completed", pct: 35, color: "bg-emerald-500" },
+            { label: "Pending", pct: 23, color: "bg-amber-500" },
+          ].map((b) => (
+            <div key={b.label} className="flex items-center gap-2">
+              <span className="text-[8px] text-gray-500 w-14">{b.label}</span>
+              <div className="flex-1 h-1.5 bg-white/5 rounded-full">
+                <div className={`h-full ${b.color} rounded-full`} style={{ width: `${b.pct}%` }} />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <p className="text-xs text-gray-500 mb-2">Recent Activity</p>
+    <div className="space-y-1.5">
+      {[
+        { text: "Sarah Chen received an offer from Deloitte", time: "2h ago", icon: "🎉" },
+        { text: "3 new students joined Engineering 2026", time: "5h ago", icon: "👥" },
+        { text: "Resume Workshop event starts tomorrow", time: "1d ago", icon: "📄" },
+        { text: "Monthly placement report is ready", time: "1d ago", icon: "📊" },
+      ].map((a) => (
+        <div key={a.text} className="flex items-center gap-2 bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2">
+          <span className="text-xs">{a.icon}</span>
+          <p className="text-[10px] text-gray-300 flex-1">{a.text}</p>
+          <span className="text-[9px] text-gray-600">{a.time}</span>
+        </div>
+      ))}
+    </div>
+  </>
+);
 
 const studentsData = [
   { name: "Sarah Chen", email: "s.chen@uni.edu", degree: "BSc Business Admin", phone: "+44 7911 123456", status: "placed" as const, avatar: "SC",
