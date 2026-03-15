@@ -81,8 +81,8 @@ const RequestPilot = () => {
               >
                 <ArrowRight className="w-5 h-5 text-primary" />
               </motion.div>
-              <h2 className="text-xl font-semibold text-foreground mb-2">Request received.</h2>
-              <p className="text-sm text-muted-foreground">We'll be in touch within 48 hours.</p>
+              <h2 className="text-xl font-semibold text-gray-900 mb-2">Request received.</h2>
+              <p className="text-sm text-gray-500">We'll be in touch within 48 hours.</p>
             </motion.div>
           ) : (
             <motion.form
