@@ -144,16 +144,45 @@ const FeaturesSection = () => {
             ))}
           </div>
         ) : (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="bg-card rounded-xl p-12 shadow-precision text-center"
-          >
-            <h3 className="text-xl font-semibold text-foreground mb-3">Outcomes Dashboard</h3>
-            <p className="text-sm text-muted-foreground max-w-md mx-auto">
-              Real-time visibility into placement rates, student engagement, and career outcomes — so your team can intervene early and report with confidence.
-            </p>
-          </motion.div>
+          <div className="space-y-8">
+            {[
+              {
+                num: "01",
+                title: "Student Analysis",
+                desc: "Deep, individual-level insights into every student's career journey — application activity, engagement patterns, and progress over time. Identify at-risk students before they disengage.",
+                detail: "Track application volumes, response rates, and conversion metrics per student and across cohorts.",
+              },
+              {
+                num: "02",
+                title: "Qualifications Insights",
+                desc: "Understand how your programmes translate into employability. See which qualifications, modules, and skill sets correlate with stronger career outcomes.",
+                detail: "Compare placement rates across degrees, identify curriculum gaps, and benchmark against peer institutions.",
+              },
+              {
+                num: "03",
+                title: "Market Insights",
+                desc: "Real-time labour market intelligence tailored to your student population. See which industries are hiring, what skills are in demand, and where your graduates are most competitive.",
+                detail: "Regional and sector-level trends, employer demand signals, and salary benchmarking — updated continuously.",
+              },
+            ].map((feature, i) => (
+              <motion.div
+                key={feature.num}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="grid lg:grid-cols-2 gap-8 items-center bg-card rounded-xl p-8 shadow-precision"
+              >
+                <div>
+                  <span className="text-xs text-muted-foreground font-mono">{feature.num}</span>
+                  <h3 className="text-xl font-semibold text-foreground mt-1 mb-3">{feature.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{feature.desc}</p>
+                </div>
+                <div className="bg-secondary rounded-lg p-6">
+                  <p className="text-sm text-muted-foreground leading-relaxed">{feature.detail}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         )}
       </div>
     </section>
