@@ -28,7 +28,7 @@ const Navbar = () => {
         </button>
         <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Log In</a>
         <a
-          href="#cta"
+          href="/request-pilot"
           className="text-sm font-medium bg-foreground text-background px-4 py-2 rounded-full hover:opacity-90 transition-opacity"
         >
           Request pilot
