@@ -10,6 +10,7 @@ import ForUniversities from "./pages/ForUniversities.tsx";
 import RequestPilot from "./pages/RequestPilot.tsx";
 import Terms from "./pages/Terms.tsx";
 import Privacy from "./pages/Privacy.tsx";
+import Login from "./pages/Login.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
