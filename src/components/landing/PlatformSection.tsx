@@ -27,7 +27,7 @@ const PlatformSection = () => {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="bg-card rounded-xl p-6 shadow-precision group hover:-translate-y-0.5 transition-transform"
           >
-            <p className="text-xs text-primary font-medium mb-2">Smart Matching</p>
+            <p className="text-xs text-primary font-medium mb-2">Internship Board</p>
             <h3 className="text-lg font-semibold text-foreground mb-2">
               Roles ranked by <span className="text-gradient">real fit</span>, not keywords
             </h3>
