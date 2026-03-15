@@ -824,9 +824,10 @@ const ResumeBody = ({ accentColor, summary, sectionStyle, minimal }: { accentCol
           <li>• Built reusable React component library used across 3 client projects, reducing dev time by 40%</li>
           <li>• Implemented responsive dashboards with real-time data visualization using D3.js and Chart.js</li>
           <li>• Collaborated with UX team to improve accessibility scores from 72 to 96 (Lighthouse)</li>
+          <li>• Led migration from REST to GraphQL APIs, improving data fetching efficiency by 35%</li>
         </ul>
       </div>
-      <div>
+      <div className="mb-2">
         <div className="flex justify-between">
           <div><p className="text-[7px] font-semibold text-gray-800">Web Developer (Freelance)</p><p className="text-[6px]" style={{ color: accentColor }}>Self-Employed</p></div>
           <div className="text-right"><p className="text-[6px] text-gray-500">Jan 2024 – May 2025</p><p className="text-[6px] text-gray-400">Remote</p></div>
@@ -834,6 +835,18 @@ const ResumeBody = ({ accentColor, summary, sectionStyle, minimal }: { accentCol
         <ul className="text-[6px] text-gray-600 ml-2 mt-0.5 space-y-0.5">
           <li>• Designed and developed 12+ responsive websites for small businesses and startups</li>
           <li>• Achieved 95+ PageSpeed scores through image optimization and lazy loading</li>
+          <li>• Integrated payment systems (Stripe) and CMS platforms for e-commerce clients</li>
+        </ul>
+      </div>
+      <div>
+        <div className="flex justify-between">
+          <div><p className="text-[7px] font-semibold text-gray-800">Data Analyst Intern</p><p className="text-[6px]" style={{ color: accentColor }}>Accenture</p></div>
+          <div className="text-right"><p className="text-[6px] text-gray-500">Jun 2023 – Dec 2023</p><p className="text-[6px] text-gray-400">Rome, Italy</p></div>
+        </div>
+        <ul className="text-[6px] text-gray-600 ml-2 mt-0.5 space-y-0.5">
+          <li>• Developed Python-based ETL pipelines processing 500K+ records daily for client reporting</li>
+          <li>• Created Tableau dashboards adopted by 4 business units for quarterly performance reviews</li>
+          <li>• Conducted A/B testing analysis that drove a 18% improvement in user conversion rates</li>
         </ul>
       </div>
     </div>
@@ -843,9 +856,32 @@ const ResumeBody = ({ accentColor, summary, sectionStyle, minimal }: { accentCol
         <div><p className="text-[7px] font-semibold text-gray-800">MSc Computer Science</p><p className="text-[6px]" style={{ color: accentColor }}>Politecnico di Milano</p></div>
         <p className="text-[6px] text-gray-500">Sep 2024 – Present</p>
       </div>
+      <p className="text-[6px] text-gray-500 ml-2 mt-0.5">GPA: 3.8/4.0 · Relevant coursework: Machine Learning, Distributed Systems, Cloud Computing</p>
       <div className="flex justify-between mt-1.5">
         <div><p className="text-[7px] font-semibold text-gray-800">BSc Computer Engineering</p><p className="text-[6px]" style={{ color: accentColor }}>Università degli Studi di Milano</p></div>
         <p className="text-[6px] text-gray-500">Sep 2021 – Jul 2024</p>
+      </div>
+      <p className="text-[6px] text-gray-500 ml-2 mt-0.5">GPA: 3.7/4.0 · Dean's List 2022, 2023 · Thesis: "Real-time Object Detection with Edge Computing"</p>
+    </div>
+    <div className={sectionStyle}>
+      <p className="text-[7px] font-bold uppercase tracking-wider mb-1" style={{ color: accentColor }}>Projects</p>
+      <div className="mb-1.5">
+        <div className="flex justify-between">
+          <p className="text-[7px] font-semibold text-gray-800">CareerTrack — Job Application Manager</p>
+          <p className="text-[6px]" style={{ color: accentColor }}>React, Node.js, PostgreSQL</p>
+        </div>
+        <ul className="text-[6px] text-gray-600 ml-2 mt-0.5 space-y-0.5">
+          <li>• Full-stack app tracking 1,000+ applications with automated status updates and analytics</li>
+        </ul>
+      </div>
+      <div>
+        <div className="flex justify-between">
+          <p className="text-[7px] font-semibold text-gray-800">SmartBudget — Personal Finance Tool</p>
+          <p className="text-[6px]" style={{ color: accentColor }}>Python, Flask, Chart.js</p>
+        </div>
+        <ul className="text-[6px] text-gray-600 ml-2 mt-0.5 space-y-0.5">
+          <li>• Budget tracking app with ML-powered spending predictions and category insights</li>
+        </ul>
       </div>
     </div>
     {!minimal && (
