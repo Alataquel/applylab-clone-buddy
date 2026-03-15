@@ -35,7 +35,7 @@ const StudentToolsSection = () => {
             <div className="p-6 lg:p-8">
               <Search className="w-5 h-5 text-primary mb-3" />
               <h3 className="text-lg font-semibold text-gray-900 mb-2">Internship Board</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed max-w-lg">
+              <p className="text-sm text-gray-500 leading-relaxed max-w-lg">
                 Intelligent matching surfaces roles where students are genuinely competitive — improving application quality and reducing noise across your institution.
               </p>
             </div>
