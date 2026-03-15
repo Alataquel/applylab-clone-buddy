@@ -1278,59 +1278,87 @@ const MiniDonut = () => {
 
 const TemplateEditorContent = ({ onBack }: { onBack: () => void }) => (
   <>
-    <div className="flex items-center justify-between mb-3">
-      <div className="flex items-center gap-2">
-        <button onClick={onBack} className="text-gray-400 hover:text-white transition-colors">
-          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
+    {/* Header */}
+    <div className="flex items-center justify-between mb-4 pb-3 border-b border-white/5">
+      <div className="flex items-center gap-3">
+        <button onClick={onBack} className="text-primary hover:text-primary/80 transition-colors flex items-center gap-1 text-[10px]">
+          <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
+          Back to Templates
         </button>
+        <div className="w-px h-4 bg-white/10" />
         <div className="w-6 h-6 rounded-md bg-amber-500/20 flex items-center justify-center">
           <svg className="w-3.5 h-3.5 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5zm0 7l-9-5 9-5 9 5-9 5z" /></svg>
         </div>
         <div>
-          <p className="text-xs font-medium text-white">Dual Degree Business & Data</p>
+          <p className="text-xs font-semibold text-white">Dual Degree Business Administration and Data Analysis</p>
           <p className="text-[9px] text-gray-500">Edit grading template</p>
         </div>
       </div>
-      <button className="text-[9px] bg-primary hover:bg-primary/90 text-white px-2.5 py-1 rounded-md font-medium transition-colors">Save</button>
+      <div className="flex items-center gap-2">
+        <button onClick={onBack} className="text-[9px] bg-white/[0.05] hover:bg-white/[0.1] text-gray-300 px-3 py-1.5 rounded-md font-medium transition-colors border border-white/10">Cancel</button>
+        <button className="text-[9px] bg-primary hover:bg-primary/90 text-white px-3 py-1.5 rounded-md font-medium transition-colors">Save Changes</button>
+      </div>
     </div>
 
-    <div className="grid grid-cols-[70px_1fr] gap-2">
-      {/* Donut */}
-      <div>
-        <p className="text-[8px] text-gray-500 mb-1">Weights</p>
-        <MiniDonut />
-        <div className="mt-1 space-y-0.5">
+    <div className="grid grid-cols-[140px_1fr] gap-4">
+      {/* Left: Weight Distribution Donut */}
+      <div className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-3">
+        <p className="text-[10px] text-gray-400 font-semibold mb-2">Weight Distribution</p>
+        <div className="flex justify-center">
+          <MiniDonut />
+        </div>
+        <div className="mt-3 grid grid-cols-2 gap-x-2 gap-y-1">
           {rubricSections.map((s) => (
-            <div key={s.name} className="flex items-center gap-1">
-              <div className={`w-1.5 h-1.5 rounded-full ${s.color}`} />
-              <span className="text-[7px] text-gray-500">{s.name}</span>
+            <div key={s.name} className="flex items-center gap-1.5">
+              <div className={`w-2 h-2 rounded-full ${s.color}`} />
+              <span className="text-[8px] text-gray-400">{s.name}</span>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Sections */}
-      <div className="space-y-2 overflow-y-auto max-h-[420px] pr-1">
+      {/* Right: Rubric Sections */}
+      <div className="space-y-3 overflow-y-auto max-h-[480px] pr-1">
         {rubricSections.map((section) => (
-          <div key={section.name} className="bg-white/[0.03] border border-white/5 rounded-lg px-2.5 py-2">
-            <div className="flex items-center justify-between mb-1">
-              <div className="flex items-center gap-1.5">
-                <div className={`w-2 h-2 rounded-full ${section.color}`} />
-                <span className="text-[10px] font-semibold text-white">{section.name}</span>
+          <div key={section.name} className="bg-white/[0.03] border border-white/5 rounded-lg px-4 py-3">
+            {/* Section header */}
+            <div className="flex items-center justify-between mb-2">
+              <div className="flex items-center gap-2">
+                <div className={`w-2.5 h-2.5 rounded-full ${section.color}`} />
+                <span className="text-[11px] font-bold text-white">{section.name}</span>
               </div>
-              <span className={`text-[8px] font-bold px-1.5 py-0.5 rounded border border-amber-500/30 text-amber-400`}>{section.pct}% total</span>
+              <span className="text-[9px] font-bold px-2 py-0.5 rounded-md border border-amber-500/30 text-amber-400 bg-amber-500/10">{section.pct}% total</span>
             </div>
-            <div className={`h-0.5 ${section.color} rounded-full mb-1.5`} style={{ width: `${section.pct * 2}%` }} />
-            <div className="space-y-1">
+            {/* Color bar */}
+            <div className={`h-[3px] ${section.color} rounded-full mb-3`} style={{ width: `${section.pct * 2.5}%` }} />
+
+            {/* Sub-criteria header */}
+            <div className="grid grid-cols-[1fr_80px_50px] gap-2 mb-1.5 pb-1 border-b border-white/5">
+              <span className="text-[7px] text-gray-500 uppercase tracking-wider font-semibold">Sub-Criterion</span>
+              <span className="text-[7px] text-gray-500 uppercase tracking-wider font-semibold text-center">Impact</span>
+              <span className="text-[7px] text-gray-500 uppercase tracking-wider font-semibold text-center">Weight</span>
+            </div>
+
+            {/* Sub-criteria rows */}
+            <div className="space-y-1.5">
               {section.subs.map((sub) => (
-                <div key={sub.label} className="flex items-center gap-2">
-                  <span className="text-[9px] text-gray-400 flex-1">{sub.label}</span>
-                  <div className="w-12 h-1 bg-white/5 rounded-full">
-                    <div className={`h-full ${section.color} rounded-full`} style={{ width: `${sub.weight * 10}%` }} />
+                <div key={sub.label} className="grid grid-cols-[1fr_80px_50px] gap-2 items-center">
+                  <span className="text-[10px] text-gray-300">{sub.label}</span>
+                  <div className="h-1.5 bg-white/5 rounded-full">
+                    <div className={`h-full ${section.color} rounded-full transition-all`} style={{ width: `${sub.weight * 10}%` }} />
                   </div>
-                  <span className="text-[8px] text-gray-500 w-5 text-right border border-white/10 rounded px-0.5">{sub.weight}%</span>
+                  <div className="flex items-center justify-center gap-0.5">
+                    <span className="text-[10px] text-white font-semibold bg-white/[0.05] border border-white/10 rounded px-1.5 py-0.5 min-w-[22px] text-center">{sub.weight}</span>
+                    <span className="text-[8px] text-gray-500">%</span>
+                  </div>
                 </div>
               ))}
+            </div>
+
+            {/* Section total */}
+            <div className="flex items-center justify-between mt-2 pt-1.5 border-t border-white/5">
+              <span className="text-[9px] text-gray-500">Section total</span>
+              <span className="text-[10px] font-bold text-amber-400">{section.pct}%</span>
             </div>
           </div>
         ))}
