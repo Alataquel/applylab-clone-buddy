@@ -54,7 +54,7 @@ const FAQSection = () => {
               initial={{ opacity: 0, y: 12 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.4, delay: i * 0.05 }}
-              className="border border-border/50 rounded-lg overflow-hidden"
+              className="border border-gray-200 rounded-lg overflow-hidden"
             >
               <button
                 onClick={() => setOpen(open === i ? null : i)}
