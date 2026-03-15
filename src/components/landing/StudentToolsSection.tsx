@@ -128,7 +128,7 @@ const StudentToolsSection = () => {
               </p>
             </div>
             <div className="px-6 lg:px-8 pb-6 lg:pb-8">
-              <div className="bg-secondary rounded-lg p-4">
+              <div className="bg-gray-100 rounded-lg p-4">
                 {/* Pipeline columns */}
                 <div className="grid grid-cols-4 gap-2">
                   {[
