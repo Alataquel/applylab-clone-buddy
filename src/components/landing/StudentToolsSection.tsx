@@ -7,7 +7,7 @@ const StudentToolsSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section ref={ref} className="py-24 px-6 lg:px-12 border-t border-border/30">
+    <section ref={ref} className="py-24 px-6 lg:px-12 bg-white">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -16,10 +16,10 @@ const StudentToolsSection = () => {
           className="mb-16 max-w-2xl"
         >
           <p className="text-xs uppercase tracking-widest text-primary font-medium mb-3">Student-facing tools</p>
-          <h2 className="text-3xl lg:text-4xl font-bold text-foreground tracking-tight mb-4">
+          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 tracking-tight mb-4">
             Better tools for students. Better data for you.
           </h2>
-          <p className="text-sm text-muted-foreground leading-relaxed">
+          <p className="text-sm text-gray-500 leading-relaxed">
             Students get a modern career toolkit — and every interaction feeds back into your institutional dashboard.
           </p>
         </motion.div>
