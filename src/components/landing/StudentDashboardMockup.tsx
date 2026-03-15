@@ -288,61 +288,262 @@ const ResumeContent = ({ subTab }: { subTab: "grader" | "builder" | "coverLetter
   );
 };
 
-const ResumeGraderContent = () => (
-  <>
-    <h3 className="text-sm font-bold text-foreground italic mb-0.5">How good is your Resume?</h3>
-    <p className="text-[7px] text-muted-foreground mb-3">Upload your resume as PDF and get an instant review and suggestions.</p>
+const ResumeGraderContent = () => {
+  const [graderState, setGraderState] = useState<"idle" | "uploading" | "grading" | "done">("idle");
+  const [progress, setProgress] = useState(0);
 
-    {/* Step 1 */}
-    <div className="border border-primary/30 rounded-lg p-3 mb-3">
-      <div className="flex items-center justify-between mb-2">
-        <div>
-          <span className="text-[6px] bg-primary text-primary-foreground rounded px-1.5 py-0.5 font-bold mr-1.5">STEP 1</span>
-          <span className="text-[8px] font-semibold text-foreground">Choose your degree template scope</span>
+  const startGrading = () => {
+    setGraderState("uploading");
+    setProgress(0);
+    setTimeout(() => {
+      setGraderState("grading");
+      let p = 0;
+      const interval = setInterval(() => {
+        p += Math.random() * 18 + 5;
+        if (p >= 100) { p = 100; clearInterval(interval); setTimeout(() => setGraderState("done"), 400); }
+        setProgress(Math.min(p, 100));
+      }, 300);
+    }, 1200);
+  };
+
+  const resetGrader = () => { setGraderState("idle"); setProgress(0); };
+
+  if (graderState === "done") {
+    const categories = [
+      {
+        name: "Education", weight: 20, score: 11.7, max: 20, color: "bg-amber-400", dotColor: "text-amber-500",
+        summary: "The student has a relevant degree, but lacks GPA/grades and field of study relevance.",
+        subs: [
+          { name: "Degree level", desc: "The student has a dual degree in Business Administration and Data Analysis, which is highly relevant to the diploma.", wt: 9, raw: 90, weighted: 8.10, barColor: "bg-amber-400" },
+          { name: "GPA / grades", desc: "The student does not provide GPA/grades information.", wt: 5, raw: 0, weighted: 0.00, barColor: "bg-gray-300" },
+          { name: "Field of study relevance", desc: "The student's degree is relevant, but lacks specific details about the field of study.", wt: 6, raw: 60, weighted: 3.60, barColor: "bg-amber-400" },
+        ],
+      },
+      {
+        name: "Experience", weight: 35, score: 18.6, max: 35, color: "bg-orange-400", dotColor: "text-orange-500",
+        summary: "The student has relevant work experience, but lacks quantifiable impact and career progression.",
+        subs: [
+          { name: "Number of experiences", desc: "The student has 5 relevant work experiences.", wt: 7, raw: 80, weighted: 5.60, barColor: "bg-amber-400" },
+          { name: "Relevance to target role", desc: "The student's work experiences are highly relevant to the diploma.", wt: 8, raw: 80, weighted: 6.40, barColor: "bg-amber-400" },
+          { name: "Quantifiable impact", desc: "The student does not provide quantifiable impact information.", wt: 7, raw: 20, weighted: 1.40, barColor: "bg-orange-300" },
+          { name: "Career progression", desc: "The student's work experiences lack clear career progression.", wt: 5, raw: 40, weighted: 2.00, barColor: "bg-orange-300" },
+        ],
+      },
+      {
+        name: "Skills", weight: 20, score: 9.4, max: 20, color: "bg-amber-400", dotColor: "text-amber-500",
+        summary: "The student has relevant technical skills, but lacks skill diversity and proficiency levels.",
+        subs: [
+          { name: "Relevant technical skills", desc: "The student has relevant technical skills such as Python and Financial Modeling.", wt: 8, raw: 80, weighted: 6.40, barColor: "bg-amber-400" },
+          { name: "Skill proficiency levels", desc: "The student does not provide proficiency levels for their skills.", wt: 6, raw: 20, weighted: 1.20, barColor: "bg-orange-300" },
+          { name: "Skill diversity", desc: "The student's skills lack diversity, with most being related to programming and tools.", wt: 3, raw: 20, weighted: 0.60, barColor: "bg-orange-300" },
+          { name: "Soft skills", desc: "The student has some soft skills such as Chess and National Basketball.", wt: 3, raw: 40, weighted: 1.20, barColor: "bg-amber-400" },
+        ],
+      },
+      {
+        name: "Languages", weight: 5, score: 3.2, max: 5, color: "bg-emerald-500", dotColor: "text-emerald-500",
+        summary: "The student has relevant languages, but lacks language certifications.",
+        subs: [
+          { name: "Number of languages", desc: "The student has 2 relevant languages.", wt: 2, raw: 80, weighted: 1.60, barColor: "bg-emerald-500" },
+          { name: "Proficiency level", desc: "The student has native proficiency in English and Spanish.", wt: 2, raw: 80, weighted: 1.60, barColor: "bg-emerald-500" },
+          { name: "Language certifications", desc: "The student does not provide language certifications.", wt: 1, raw: 0, weighted: 0.00, barColor: "bg-gray-300" },
+        ],
+      },
+      {
+        name: "Projects", weight: 8, score: 3.2, max: 8, color: "bg-emerald-500", dotColor: "text-emerald-500",
+        summary: "The student has relevant projects, but lacks technical complexity and project relevance.",
+        subs: [
+          { name: "Number of projects", desc: "The student has 2 relevant projects.", wt: 3, raw: 60, weighted: 1.80, barColor: "bg-emerald-500" },
+          { name: "Technical complexity", desc: "Projects show moderate technical depth.", wt: 3, raw: 40, weighted: 1.20, barColor: "bg-orange-300" },
+          { name: "Project relevance", desc: "Projects are somewhat relevant to the target field.", wt: 2, raw: 10, weighted: 0.20, barColor: "bg-gray-300" },
+        ],
+      },
+    ];
+
+    return (
+      <div className="max-h-[460px] overflow-y-auto pr-1">
+        {/* Header */}
+        <div className="flex items-center justify-between mb-3">
+          <div>
+            <h3 className="text-sm font-bold text-foreground">Resume Grading Results</h3>
+            <p className="text-[7px] text-muted-foreground">Evaluated against the <span className="text-primary font-semibold">Dual Degree Business Administration and Data Analysis</span> template</p>
+          </div>
+          <div className="flex items-center gap-2">
+            <button onClick={resetGrader} className="text-[7px] border border-border rounded px-2 py-1 text-muted-foreground flex items-center gap-0.5"><RotateCcw className="w-2 h-2" /> Grade Again</button>
+            <div className="border-2 border-orange-400 rounded-lg px-3 py-1.5 text-center">
+              <p className="text-lg font-bold text-orange-500">48</p>
+              <p className="text-[6px] text-muted-foreground uppercase tracking-wider font-semibold">Overall Score</p>
+            </div>
+          </div>
         </div>
-        <span className="text-[6px] text-primary bg-primary/10 rounded-full px-2 py-0.5">Selected: Dual Degree Business Administration and Data Analysis</span>
-      </div>
-      <p className="text-[7px] text-muted-foreground mb-1.5">Select your degree before grading so your review uses the right university rubric.</p>
-      <div className="bg-secondary rounded-md px-2 py-1.5">
-        <p className="text-[7px] text-muted-foreground mb-0.5">Degree</p>
-        <div className="bg-card border border-border rounded px-2 py-1 text-[8px] text-foreground">Dual Degree Business Administration and Data Analysis</div>
-        <p className="text-[6px] text-muted-foreground mt-1">Your selected degree is saved for your next upload.</p>
-        <p className="text-[6px] text-primary mt-0.5">Using Dual Degree Business Administration and Data Analysis template</p>
-      </div>
-    </div>
 
-    {/* Upload area + preview */}
-    <div className="grid grid-cols-2 gap-2 mb-3">
-      <div className="border border-dashed border-border rounded-lg p-4 text-center">
-        <div className="bg-primary text-primary-foreground rounded-md px-3 py-1.5 text-[8px] font-medium inline-block mb-1">Upload your Resume (PDF)</div>
-        <p className="text-[7px] text-primary">or drop it here</p>
-        <button className="w-full bg-primary text-primary-foreground rounded-md py-1.5 text-[8px] font-medium mt-3">Review my resume</button>
-      </div>
-      <div className="border border-border rounded-lg p-4 flex items-center justify-center">
-        <div className="text-center">
-          <ExternalLink className="w-4 h-4 text-muted-foreground mb-1" />
-          <p className="text-[8px] text-muted-foreground">Upload a PDF to preview.</p>
+        {/* Diploma Alignment */}
+        <div className="bg-gradient-to-r from-primary/10 to-primary/5 border-l-4 border-primary rounded-r-lg px-3 py-2 mb-3">
+          <p className="text-[7px] font-bold text-primary uppercase tracking-wider mb-0.5">🎓 Diploma Alignment</p>
+          <p className="text-[7px] text-primary">The student's diploma is highly relevant to the Dual Degree Business Administration and Data Analysis program.</p>
         </div>
-      </div>
-    </div>
 
-    {/* What we check */}
-    <div className="border border-border rounded-lg p-3">
-      <p className="text-[9px] font-semibold text-foreground mb-2 flex items-center gap-1"><FileCheck className="w-3 h-3" /> What we check</p>
-      <div className="grid grid-cols-2 gap-1.5">
-        {["Contact", "Experiences", "Education", "Skills", "Summary", "Format"].map((c) => (
-          <div key={c} className="flex items-center gap-1.5">
-            <span className="text-[8px] text-muted-foreground">•</span>
-            <span className="text-[8px] text-foreground">{c}</span>
+        {/* Summary */}
+        <div className="bg-card border border-border rounded-lg px-3 py-2 mb-3">
+          <p className="text-[7px] font-semibold text-muted-foreground uppercase tracking-wider mb-1">Summary</p>
+          <p className="text-[7px] text-foreground">The student has a good foundation, but lacks specific details and quantifiable impact in some areas.</p>
+        </div>
+
+        {/* Strengths */}
+        <div className="bg-emerald-50 border border-emerald-200 rounded-lg px-3 py-2 mb-3">
+          <p className="text-[7px] font-bold text-emerald-700 mb-1">✓ Strengths</p>
+          <ul className="text-[7px] text-emerald-700 space-y-0.5 ml-2">
+            <li>Relevant work experience</li>
+            <li>Technical skills such as Python and Financial Modeling</li>
+            <li>Native proficiency in English and Spanish</li>
+          </ul>
+        </div>
+
+        {/* Category Sections */}
+        {categories.map((cat) => (
+          <div key={cat.name} className="mb-3">
+            {/* Category header */}
+            <div className="bg-gradient-to-r from-orange-50 to-transparent border-l-4 border-orange-400 rounded-r-lg px-3 py-2 flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <span className={`w-2 h-2 rounded-full ${cat.color}`} />
+                <span className="text-[9px] font-bold text-foreground">{cat.name}</span>
+                <span className="text-[6px] text-orange-500 bg-orange-100 rounded-full px-1.5 py-0.5 font-semibold">{cat.weight}% weight</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-16 h-1.5 bg-gray-200 rounded-full overflow-hidden">
+                  <div className={`h-full rounded-full ${cat.color}`} style={{ width: `${(cat.score / cat.max) * 100}%` }} />
+                </div>
+                <span className="text-[8px] font-bold text-orange-500">{cat.score} / {cat.max}</span>
+              </div>
+            </div>
+
+            {/* Category summary */}
+            <p className="text-[7px] text-muted-foreground italic px-3 py-1.5">{cat.summary}</p>
+
+            {/* Sub-criteria table */}
+            <div className="px-3">
+              <div className="grid grid-cols-[2fr_0.4fr_0.6fr_0.5fr] gap-1 mb-1">
+                <span className="text-[6px] text-muted-foreground uppercase tracking-wider font-semibold">Sub-Criterion</span>
+                <span className="text-[6px] text-muted-foreground uppercase tracking-wider font-semibold text-right">Wt.</span>
+                <span className="text-[6px] text-muted-foreground uppercase tracking-wider font-semibold text-right">Raw Score</span>
+                <span className="text-[6px] text-muted-foreground uppercase tracking-wider font-semibold text-right">Weighted</span>
+              </div>
+              {cat.subs.map((sub) => (
+                <div key={sub.name} className="grid grid-cols-[2fr_0.4fr_0.6fr_0.5fr] gap-1 py-1 border-t border-border/50 items-center">
+                  <div>
+                    <p className="text-[7px] font-semibold text-foreground">{sub.name}</p>
+                    <p className="text-[6px] text-muted-foreground">{sub.desc}</p>
+                  </div>
+                  <span className="text-[7px] text-primary font-semibold text-right">{sub.wt}%</span>
+                  <div className="flex items-center justify-end gap-1">
+                    <div className="w-8 h-1 bg-gray-200 rounded-full overflow-hidden">
+                      <div className={`h-full rounded-full ${sub.barColor}`} style={{ width: `${sub.raw}%` }} />
+                    </div>
+                    <span className="text-[7px] text-foreground">{sub.raw}</span>
+                  </div>
+                  <span className="text-[7px] font-bold text-foreground text-right">{sub.weighted.toFixed(2)}</span>
+                </div>
+              ))}
+            </div>
           </div>
         ))}
       </div>
-      <div className="bg-primary/5 border border-primary/20 rounded-md px-2 py-1.5 mt-2">
-        <p className="text-[7px] text-muted-foreground flex items-start gap-1"><Sparkles className="w-2.5 h-2.5 shrink-0 mt-0.5" /> Keep descriptions concise and quantifiable. Adding measurable results is a great way to make your experiences more impactful.</p>
+    );
+  }
+
+  return (
+    <>
+      <h3 className="text-sm font-bold text-foreground italic mb-0.5">How good is your Resume?</h3>
+      <p className="text-[7px] text-muted-foreground mb-3">Upload your resume as PDF and get an instant review and suggestions.</p>
+
+      {/* Step 1 */}
+      <div className="border border-primary/30 rounded-lg p-3 mb-3">
+        <div className="flex items-center justify-between mb-2">
+          <div>
+            <span className="text-[6px] bg-primary text-primary-foreground rounded px-1.5 py-0.5 font-bold mr-1.5">STEP 1</span>
+            <span className="text-[8px] font-semibold text-foreground">Choose your degree template scope</span>
+          </div>
+          <span className="text-[6px] text-primary bg-primary/10 rounded-full px-2 py-0.5">Selected: Dual Degree Business Administration and Data Analysis</span>
+        </div>
+        <p className="text-[7px] text-muted-foreground mb-1.5">Select your degree before grading so your review uses the right university rubric.</p>
+        <div className="bg-secondary rounded-md px-2 py-1.5">
+          <p className="text-[7px] text-muted-foreground mb-0.5">Degree</p>
+          <div className="bg-card border border-border rounded px-2 py-1 text-[8px] text-foreground">Dual Degree Business Administration and Data Analysis</div>
+          <p className="text-[6px] text-muted-foreground mt-1">Your selected degree is saved for your next upload.</p>
+          <p className="text-[6px] text-primary mt-0.5">Using Dual Degree Business Administration and Data Analysis template</p>
+        </div>
       </div>
-    </div>
-  </>
-);
+
+      {/* Upload area + preview */}
+      <div className="grid grid-cols-2 gap-2 mb-3">
+        <div className="border border-dashed border-border rounded-lg p-4 text-center">
+          {graderState === "idle" && (
+            <>
+              <div className="bg-primary text-primary-foreground rounded-md px-3 py-1.5 text-[8px] font-medium inline-block mb-1">Upload your Resume (PDF)</div>
+              <p className="text-[7px] text-primary">or drop it here</p>
+              <button onClick={startGrading} className="w-full bg-primary text-primary-foreground rounded-md py-1.5 text-[8px] font-medium mt-3 hover:bg-primary/90 transition-colors">Review my resume</button>
+            </>
+          )}
+          {graderState === "uploading" && (
+            <div className="py-4">
+              <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-2" />
+              <p className="text-[8px] font-semibold text-foreground">Uploading Antonio_Rossi_CV.pdf...</p>
+              <p className="text-[7px] text-muted-foreground mt-0.5">Processing document</p>
+            </div>
+          )}
+          {graderState === "grading" && (
+            <div className="py-2">
+              <Sparkles className="w-5 h-5 text-primary mx-auto mb-1.5 animate-pulse" />
+              <p className="text-[8px] font-semibold text-foreground mb-1">Grading your resume...</p>
+              <div className="w-full bg-secondary rounded-full h-1.5 mb-1">
+                <div className="bg-primary h-1.5 rounded-full transition-all duration-300" style={{ width: `${progress}%` }} />
+              </div>
+              <p className="text-[7px] text-muted-foreground">{Math.round(progress)}% — Analyzing against rubric template</p>
+            </div>
+          )}
+        </div>
+        <div className="border border-border rounded-lg p-4 flex items-center justify-center">
+          {graderState === "idle" ? (
+            <div className="text-center">
+              <ExternalLink className="w-4 h-4 text-muted-foreground mb-1 mx-auto" />
+              <p className="text-[8px] text-muted-foreground">Upload a PDF to preview.</p>
+            </div>
+          ) : (
+            <div className="w-full h-full bg-gray-50 rounded p-2">
+              <div className="border-b border-gray-200 pb-1 mb-1.5">
+                <p className="text-[8px] font-bold text-gray-800">Antonio Rossi</p>
+                <p className="text-[6px] text-gray-500">Business & Data Analysis Student</p>
+                <p className="text-[5px] text-gray-400">antonio.rossi@email.com · +34 612 345 678 · Madrid, Spain</p>
+              </div>
+              <p className="text-[5px] text-gray-400 font-semibold uppercase mb-0.5">Experience</p>
+              <p className="text-[5px] text-gray-600">Data Analyst Intern — Deloitte</p>
+              <p className="text-[5px] text-gray-600">Marketing Assistant — L'Oréal</p>
+              <p className="text-[5px] text-gray-400 font-semibold uppercase mt-1 mb-0.5">Education</p>
+              <p className="text-[5px] text-gray-600">Dual Degree Business Admin & Data Analysis</p>
+              <p className="text-[5px] text-gray-400 font-semibold uppercase mt-1 mb-0.5">Skills</p>
+              <p className="text-[5px] text-gray-600">Python, Financial Modeling, SQL, Tableau</p>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* What we check */}
+      <div className="border border-border rounded-lg p-3">
+        <p className="text-[9px] font-semibold text-foreground mb-2 flex items-center gap-1"><FileCheck className="w-3 h-3" /> What we check</p>
+        <div className="grid grid-cols-2 gap-1.5">
+          {["Contact", "Experiences", "Education", "Skills", "Summary", "Format"].map((c) => (
+            <div key={c} className="flex items-center gap-1.5">
+              <span className="text-[8px] text-muted-foreground">•</span>
+              <span className="text-[8px] text-foreground">{c}</span>
+            </div>
+          ))}
+        </div>
+        <div className="bg-primary/5 border border-primary/20 rounded-md px-2 py-1.5 mt-2">
+          <p className="text-[7px] text-muted-foreground flex items-start gap-1"><Sparkles className="w-2.5 h-2.5 shrink-0 mt-0.5" /> Keep descriptions concise and quantifiable. Adding measurable results is a great way to make your experiences more impactful.</p>
+        </div>
+      </div>
+    </>
+  );
+};
 
 const ResumeBuilderContent = () => (
   <div className="grid grid-cols-[0.8fr_1.4fr_0.8fr] gap-0">
