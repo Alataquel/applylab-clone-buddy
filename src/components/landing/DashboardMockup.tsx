@@ -411,6 +411,7 @@ const JobEventPostingsContent = () => (
 const DashboardMockup = () => {
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
   const [activeTab, setActiveTab] = useState(0);
+  const [selectedStudent, setSelectedStudent] = useState<typeof studentsData[0] | null>(null);
   const ref = useRef<HTMLDivElement>(null);
 
   const handleMouseMove = (e: React.MouseEvent) => {
@@ -424,14 +425,17 @@ const DashboardMockup = () => {
   const handleMouseLeave = () => setTilt({ x: 0, y: 0 });
 
   const renderContent = () => {
+    if (activeTab === 0 && selectedStudent) {
+      return <StudentDetailContent student={selectedStudent} onBack={() => setSelectedStudent(null)} />;
+    }
     switch (activeTab) {
-      case 0: return <StudentsContent />;
+      case 0: return <StudentsContent onSelectStudent={setSelectedStudent} />;
       case 1: return <AnalyticsContent />;
       case 2: return <QualificationInsightsContent />;
       case 3: return <MarketInsightsContent />;
       case 4: return <ResumeTemplatesContent />;
       case 5: return <JobEventPostingsContent />;
-      default: return <StudentsContent />;
+      default: return <StudentsContent onSelectStudent={setSelectedStudent} />;
     }
   };
 
