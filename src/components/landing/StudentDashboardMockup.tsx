@@ -157,42 +157,9 @@ const TrackerContent = () => {
 };
 
 /* ─── Resume Tab (with sub-tabs) ─── */
-const ResumeContent = () => {
-  const [subTab, setSubTab] = useState<"grader" | "builder" | "coverLetters">("grader");
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-
-  const labels: Record<string, string> = { grader: "Resume Grader", builder: "Resume Builder", coverLetters: "Cover Letter Maker" };
-
+const ResumeContent = ({ subTab }: { subTab: "grader" | "builder" | "coverLetters" }) => {
   return (
     <>
-      {/* Dropdown selector */}
-      <div className="relative w-fit mb-4">
-        <button
-          onClick={() => setDropdownOpen(!dropdownOpen)}
-          className="flex items-center gap-2 bg-[hsl(var(--secondary))] border border-[hsl(var(--border))] rounded-md px-3 py-1.5 text-[9px] font-medium text-[hsl(var(--foreground))]"
-        >
-          📄 {labels[subTab]}
-          <span className="text-[8px] text-[hsl(var(--muted-foreground))]">▾</span>
-        </button>
-        {dropdownOpen && (
-          <div className="absolute top-full left-0 mt-1 bg-[hsl(var(--card))] border border-[hsl(var(--border))] rounded-md shadow-lg z-10 min-w-[160px]">
-            {(["grader", "builder", "coverLetters"] as const).map((key) => (
-              <button
-                key={key}
-                onClick={() => { setSubTab(key); setDropdownOpen(false); }}
-                className={`block w-full text-left px-3 py-1.5 text-[8px] transition-colors ${
-                  subTab === key
-                    ? "bg-[hsl(var(--primary)/0.1)] text-[hsl(var(--primary))] font-semibold"
-                    : "text-[hsl(var(--foreground))] hover:bg-[hsl(var(--secondary))]"
-                }`}
-              >
-                {labels[key]}
-              </button>
-            ))}
-          </div>
-        )}
-      </div>
-
       {subTab === "grader" && <ResumeGraderContent />}
       {subTab === "builder" && <ResumeBuilderContent />}
       {subTab === "coverLetters" && <CoverLettersContent />}
@@ -639,12 +606,14 @@ const MeetingsContent = () => {
 /* ─── Main Component ─── */
 const StudentDashboardMockup = () => {
   const [activeTab, setActiveTab] = useState(0);
+  const [resumeSubTab, setResumeSubTab] = useState<"grader" | "builder" | "coverLetters">("grader");
+  const [resumeDropdownOpen, setResumeDropdownOpen] = useState(false);
 
   const renderContent = () => {
     switch (activeTab) {
       case 0: return <DashboardContent />;
       case 1: return <TrackerContent />;
-      case 2: return <ResumeContent />;
+      case 2: return <ResumeContent subTab={resumeSubTab} />;
       case 3: return <JobBoardContent />;
       case 4: return <EventsContent />;
       case 5: return <MeetingsContent />;
@@ -695,23 +664,59 @@ const StudentDashboardMockup = () => {
         </div>
         <div className="flex items-center gap-1">
           {navIcons.map((nav, i) => (
-            <button
-              key={nav.label}
-              onClick={() => setActiveTab(i)}
-              className={`w-7 h-7 rounded-md flex items-center justify-center text-[10px] transition-colors ${
-                activeTab === i
-                  ? "bg-primary/10 text-primary border border-primary/30"
-                  : "text-muted-foreground hover:bg-secondary"
-              }`}
-              title={nav.label}
-            >
-              {nav.icon === "grid" && "⊞"}
-              {nav.icon === "clipboard" && "📋"}
-              {nav.icon === "file" && "📄"}
-              {nav.icon === "briefcase" && "💼"}
-              {nav.icon === "calendar" && "📅"}
-              {nav.icon === "video" && "📹"}
-            </button>
+            <div key={nav.label} className="relative">
+              <button
+                onClick={() => {
+                  if (nav.icon === "file") {
+                    setResumeDropdownOpen(!resumeDropdownOpen);
+                  } else {
+                    setActiveTab(i);
+                    setResumeDropdownOpen(false);
+                  }
+                }}
+                className={`w-7 h-7 rounded-md flex items-center justify-center text-[10px] transition-colors ${
+                  activeTab === i
+                    ? "bg-primary/10 text-primary border border-primary/30"
+                    : "text-muted-foreground hover:bg-secondary"
+                }`}
+                title={nav.label}
+              >
+                {nav.icon === "grid" && "⊞"}
+                {nav.icon === "clipboard" && "📋"}
+                {nav.icon === "file" && (
+                  <span className="flex items-center gap-0.5">📄<span className="text-[6px]">▾</span></span>
+                )}
+                {nav.icon === "briefcase" && "💼"}
+                {nav.icon === "calendar" && "📅"}
+                {nav.icon === "video" && "📹"}
+              </button>
+              {/* Resume dropdown */}
+              {nav.icon === "file" && resumeDropdownOpen && (
+                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1 bg-[hsl(0,0%,100%)] border border-[hsl(214.3,31.8%,91.4%)] rounded-md shadow-lg z-20 min-w-[140px]">
+                  {([
+                    ["grader", "Resume Grader"],
+                    ["builder", "Resume Builder"],
+                    ["coverLetters", "Cover Letter Maker"],
+                  ] as const).map(([key, label]) => (
+                    <button
+                      key={key}
+                      onClick={() => {
+                        setResumeSubTab(key);
+                        setActiveTab(2);
+                        setResumeDropdownOpen(false);
+                      }}
+                      className={`block w-full text-left px-3 py-1.5 text-[8px] transition-colors ${
+                        activeTab === 2 && resumeSubTab === key
+                          ? "bg-primary/10 text-primary font-semibold"
+                          : "text-foreground hover:bg-secondary"
+                      }`}
+                    >
+                      {label}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
           ))}
         </div>
         <div className="flex items-center gap-1.5">
@@ -720,7 +725,7 @@ const StudentDashboardMockup = () => {
       </div>
 
       {/* Content */}
-      <div className="p-4 min-h-[400px] max-h-[500px] overflow-y-auto">
+      <div className="p-4 min-h-[400px] max-h-[500px] overflow-y-auto" onClick={() => setResumeDropdownOpen(false)}>
         {renderContent()}
       </div>
     </div>
