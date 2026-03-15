@@ -1164,7 +1164,7 @@ const levels = ["Internship", "Entry level"];
 
 const JobBoardContent = () => {
   const [search, setSearch] = useState("");
-  const [selectedLocations, setSelectedLocations] = useState<string[]>(["Spain"]);
+  const [selectedLocations, setSelectedLocations] = useState<string[]>([]);
   const [selectedLevels, setSelectedLevels] = useState<string[]>(["Internship"]);
   const [sortBy, setSortBy] = useState<"recent" | "alpha">("recent");
 
