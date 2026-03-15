@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import GridBackground from "@/components/landing/GridBackground";
 import { motion } from "framer-motion";
 import Navbar from "@/components/landing/Navbar";
 import Footer from "@/components/landing/Footer";
