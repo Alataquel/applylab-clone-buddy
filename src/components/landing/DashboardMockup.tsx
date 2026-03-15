@@ -1439,7 +1439,7 @@ const MarketInsightsContent = () => {
         </div>
         <svg viewBox="0 0 220 60" className="w-full">
           {[2.0, 3.0, 4.0, 5.0].map((v) => (
-            <g key={v}><line x1="25" y1={55 - ((v - 2) / 3) * 45} x2="215" y2={55 - ((v - 2) / 3) * 45} stroke="rgba(255,255,255,0.05)" strokeWidth="0.5" /><text x="22" y={57 - ((v - 2) / 3) * 45} textAnchor="end" fill="#6b7280" fontSize="4">{v.toFixed(1)}</text></g>
+            <g key={v}><line x1="20" y1={55 - ((v - 2) / 3) * 45} x2="215" y2={55 - ((v - 2) / 3) * 45} stroke="rgba(255,255,255,0.05)" strokeWidth="0.5" /><text x="17" y={57 - ((v - 2) / 3) * 45} textAnchor="end" fill="#6b7280" fontSize="2.8">{v.toFixed(1)}</text></g>
           ))}
           {/* Tech line - rising */}
           <polyline fill="none" stroke="hsl(217, 91%, 60%)" strokeWidth="1.5" points={[3.5,3.6,3.7,3.8,3.9,4.0,4.1,4.1,4.2,4.3,4.3,4.2].map((v,i) => `${25+i*(190/11)},${55-((v-2)/3)*45}`).join(" ")} />
