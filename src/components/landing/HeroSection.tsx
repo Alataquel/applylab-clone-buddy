@@ -77,7 +77,7 @@ const HeroSection = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.2 }}
-            className="text-center text-xs text-muted-foreground mt-4"
+            className="text-center text-base font-medium text-muted-foreground mt-6"
           >
             ↑ This is a live demo — click around and explore the tabs
           </motion.p>
