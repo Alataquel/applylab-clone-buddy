@@ -163,7 +163,7 @@ const RequestPilot = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.45 }}
               >
-                <label className="text-xs text-muted-foreground font-medium mb-2 block">Institution (optional)</label>
+                <label className="text-xs text-gray-500 font-medium mb-2 block">Institution (optional)</label>
                 <input
                   type="text"
                   value={form.institution || ""}
