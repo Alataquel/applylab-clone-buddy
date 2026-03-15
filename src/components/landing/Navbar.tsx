@@ -10,9 +10,9 @@ const Navbar = () => {
       className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 lg:px-12 py-4 bg-background/80 backdrop-blur-xl"
       style={{ boxShadow: "0 1px 0 rgba(255,255,255,0.05)" }}
     >
-      <div className="flex items-center gap-2">
+      <a href="/" className="flex items-center gap-2">
         <span className="text-foreground font-bold text-xl tracking-tight">applylab</span>
-      </div>
+      </a>
 
       <div className="hidden md:flex items-center gap-8">
         <a href="/students" className="text-sm text-muted-foreground hover:text-foreground transition-colors">For Students</a>
