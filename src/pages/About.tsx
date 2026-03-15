@@ -140,7 +140,7 @@ const About = () => {
                 className="bg-card rounded-xl overflow-hidden shadow-precision"
               >
                 <div className="aspect-square overflow-hidden">
-                  <img src={t.photo} alt={t.name} className="w-full h-full object-cover" />
+                  <img src={t.photo} alt={t.name} className={`w-full h-full object-cover ${t.name === "Antonio Larrucea" ? "object-[center_30%]" : ""}`} />
                 </div>
                 <div className="p-4">
                   <p className="text-xs text-primary font-medium mb-1">{t.role}</p>
