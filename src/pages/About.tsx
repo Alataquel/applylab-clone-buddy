@@ -173,7 +173,7 @@ const About = () => {
             className="mb-12"
           >
             <p className="text-xs uppercase tracking-widest text-primary font-medium mb-3">Our values</p>
-            <h2 className="text-3xl lg:text-4xl font-bold text-foreground tracking-tight">
+            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 tracking-tight">
               What we <span className="text-gradient italic">stand for.</span>
             </h2>
           </motion.div>
@@ -185,11 +185,11 @@ const About = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.08 }}
-                className="bg-card rounded-xl p-6 shadow-precision hover:-translate-y-0.5 transition-transform"
+                className="bg-gray-50 rounded-xl p-6 hover:-translate-y-0.5 transition-transform border border-gray-100"
               >
                 <v.icon className="w-5 h-5 text-primary mb-4" />
-                <h3 className="text-sm font-semibold text-foreground mb-2">{v.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{v.desc}</p>
+                <h3 className="text-sm font-semibold text-gray-900 mb-2">{v.title}</h3>
+                <p className="text-sm text-gray-500 leading-relaxed">{v.desc}</p>
               </motion.div>
             ))}
           </div>
