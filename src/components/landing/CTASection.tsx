@@ -15,7 +15,7 @@ const CTASection = () => {
           transition={{ duration: 0.5 }}
         >
           <p className="text-xs uppercase tracking-widest text-primary font-medium mb-3">Get started</p>
-          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 tracking-tight mb-6">
+          <h2 className="text-3xl lg:text-4xl font-bold text-foreground tracking-tight mb-6">
             See what visibility <span className="text-gradient italic">looks like.</span>
           </h2>
         </motion.div>
