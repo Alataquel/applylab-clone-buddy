@@ -24,7 +24,7 @@ const CTASection = () => {
           initial={{ opacity: 0, y: 12 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-sm text-gray-500 mb-10 max-w-lg mx-auto"
+          className="text-sm text-muted-foreground mb-10 max-w-lg mx-auto"
         >
           We onboard universities in under two weeks. Request a pilot and our partnerships team will walk you through the platform.
         </motion.p>
