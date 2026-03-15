@@ -46,7 +46,7 @@ const RequestPilot = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-white">
       <Navbar />
 
       <section className="pt-32 pb-20 px-6 lg:px-12">
@@ -58,10 +58,10 @@ const RequestPilot = () => {
             className="mb-12"
           >
             <motion.p variants={itemVariants} className="text-xs uppercase tracking-widest text-primary font-medium mb-3">Get started</motion.p>
-            <motion.h1 variants={itemVariants} className="text-3xl lg:text-4xl font-bold text-foreground tracking-tight leading-[1.1] mb-4">
+            <motion.h1 variants={itemVariants} className="text-3xl lg:text-4xl font-bold text-gray-900 tracking-tight leading-[1.1] mb-4">
               Request a pilot.
             </motion.h1>
-            <motion.p variants={itemVariants} className="text-sm text-muted-foreground leading-relaxed max-w-md">
+            <motion.p variants={itemVariants} className="text-sm text-gray-500 leading-relaxed max-w-md">
               Whether you're a student looking for early access or a university exploring a partnership — we'd like to hear from you.
             </motion.p>
           </motion.div>
