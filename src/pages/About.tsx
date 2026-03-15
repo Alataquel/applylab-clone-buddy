@@ -194,7 +194,7 @@ const About = () => {
       </section>
 
       {/* Our story */}
-      <section className="py-20 px-6 lg:px-12 border-t border-border/30">
+      <section className="py-20 px-6 lg:px-12 bg-white">
         <div className="max-w-4xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -203,10 +203,10 @@ const About = () => {
             transition={{ duration: 0.5 }}
           >
             <p className="text-xs uppercase tracking-widest text-primary font-medium mb-3">Our story</p>
-            <h2 className="text-2xl lg:text-3xl font-bold text-foreground tracking-tight mb-6">
+            <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 tracking-tight mb-6">
               Why we built this.
             </h2>
-            <div className="space-y-4 text-sm text-muted-foreground leading-relaxed">
+            <div className="space-y-4 text-sm text-gray-500 leading-relaxed">
               <p>
                 ApplyLab started with a simple observation: talented students were losing out on great opportunities not because of lack of ability, but because of broken tools and invisible processes. Spreadsheets for tracking applications. Generic resume templates. Career centres with no visibility into what students were actually doing until it was too late.
               </p>
