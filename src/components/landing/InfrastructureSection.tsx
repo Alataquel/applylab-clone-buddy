@@ -194,7 +194,7 @@ const InfrastructureSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.5 }}
-            className="bg-[hsl(220,25%,10%)] rounded-xl overflow-hidden"
+            className="bg-[#0e1226] rounded-xl overflow-hidden"
           >
             <div className="p-6 lg:p-8">
               <BookOpen className="w-5 h-5 text-primary mb-3" />
