@@ -51,7 +51,7 @@ const HeroSection = () => {
 
           <motion.div variants={itemVariants} className="flex items-center gap-2 text-xs text-muted-foreground flex-wrap">
             <span>As listed in</span>
-            <span className="font-semibold text-foreground">Forbes Italy</span>
+            <span className="font-semibold text-foreground">Forbes Italy Future Leaders</span>
             <span>·</span>
             <span>Used by</span>
             <span className="font-semibold text-foreground">Saint Louis University</span>
