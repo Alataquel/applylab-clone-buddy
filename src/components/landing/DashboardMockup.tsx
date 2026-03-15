@@ -1571,6 +1571,9 @@ const DashboardMockup = () => {
     if (activeTab === 5 && showTemplateEditor) {
       return <TemplateEditorContent onBack={() => setShowTemplateEditor(false)} />;
     }
+    if (activeTab === 6 && selectedPosting) {
+      return <PostingDetailContent posting={selectedPosting} onBack={() => setSelectedPosting(null)} />;
+    }
     switch (activeTab) {
       case 0: return <OverviewContent />;
       case 1: return <StudentsContent onSelectStudent={setSelectedStudent} />;
@@ -1578,7 +1581,7 @@ const DashboardMockup = () => {
       case 3: return <QualificationInsightsContent />;
       case 4: return <MarketInsightsContent />;
       case 5: return <ResumeTemplatesContent onOpenEditor={() => setShowTemplateEditor(true)} />;
-      case 6: return <JobEventPostingsContent />;
+      case 6: return <JobEventPostingsContent onSelectPosting={setSelectedPosting} />;
       default: return <OverviewContent />;
     }
   };
