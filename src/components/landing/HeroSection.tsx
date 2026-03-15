@@ -27,7 +27,7 @@ const HeroSection = () => {
 
           <motion.h1 variants={itemVariants} className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] text-balance text-foreground">
             Career outcomes{" "}
-            <span className="italic font-bold text-sky-400">infrastructure.</span>
+            <span className="text-gradient italic font-bold">infrastructure.</span>
           </motion.h1>
 
           <motion.p variants={itemVariants} className="text-lg text-muted-foreground max-w-md leading-relaxed">
