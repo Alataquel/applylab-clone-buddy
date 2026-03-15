@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import Navbar from "@/components/landing/Navbar";
 import Footer from "@/components/landing/Footer";
 import DashboardMockup from "@/components/landing/DashboardMockup";
+import SolutionSection from "@/components/landing/SolutionSection";
 import { ArrowRight, Users, BookOpen, Globe, AlertTriangle, TrendingUp, ArrowUpRight, Shield, ClipboardCheck, Calendar, Briefcase, Monitor } from "lucide-react";
 import RubricDonut from "@/components/landing/RubricDonut";
 
@@ -45,7 +46,9 @@ const ForUniversities = () => {
         </div>
       </section>
 
-      {/* Interactive Demo - moved to top */}
+      <SolutionSection />
+
+      {/* Interactive Demo */}
       <section className="py-20 px-6 lg:px-12 bg-background">
         <div className="max-w-7xl mx-auto">
           <motion.div
