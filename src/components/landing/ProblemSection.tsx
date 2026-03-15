@@ -44,14 +44,24 @@ const ProblemSection = () => {
             {/* Mini visualization */}
             <div className="mt-8 space-y-3">
               <div className="flex items-center gap-3">
-                <div className="h-2 rounded-full bg-white/10 flex-1">
-                  <div className="h-2 rounded-full bg-primary/60 w-[15%]" />
+                <div className="h-2 rounded-full bg-white/10 flex-1 overflow-hidden">
+                  <motion.div
+                    className="h-2 rounded-full bg-primary/60"
+                    initial={{ width: "0%" }}
+                    animate={isInView ? { width: "15%" } : { width: "0%" }}
+                    transition={{ duration: 1.2, delay: 0.6, ease: "easeOut" }}
+                  />
                 </div>
                 <span className="text-xs text-gray-500">15% tracked</span>
               </div>
               <div className="flex items-center gap-3">
-                <div className="h-2 rounded-full bg-white/10 flex-1">
-                  <div className="h-2 rounded-full bg-primary/60 w-[8%]" />
+                <div className="h-2 rounded-full bg-white/10 flex-1 overflow-hidden">
+                  <motion.div
+                    className="h-2 rounded-full bg-primary/60"
+                    initial={{ width: "0%" }}
+                    animate={isInView ? { width: "8%" } : { width: "0%" }}
+                    transition={{ duration: 1.2, delay: 0.8, ease: "easeOut" }}
+                  />
                 </div>
                 <span className="text-xs text-gray-500">8% engaged</span>
               </div>
