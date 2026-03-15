@@ -142,13 +142,13 @@ const Ambassador = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
                 whileHover={{ y: -4, transition: { duration: 0.2 } }}
-                className="bg-gray-50 rounded-xl p-6 shadow-sm border border-gray-100 group"
+                className="bg-card rounded-xl p-6 shadow-precision border border-border/30 group"
               >
                 <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
                   <perk.icon className="w-5 h-5 text-primary" />
                 </div>
-                <h3 className="text-sm font-semibold text-gray-900 mb-2">{perk.title}</h3>
-                <p className="text-sm text-gray-500 leading-relaxed">{perk.description}</p>
+                <h3 className="text-sm font-semibold text-foreground mb-2">{perk.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{perk.description}</p>
               </motion.div>
             ))}
           </div>
