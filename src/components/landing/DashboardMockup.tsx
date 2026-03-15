@@ -927,37 +927,212 @@ const QualificationInsightsContent = () => {
   );
 };
 
-const MarketInsightsContent = () => (
-  <>
-    <p className="text-xs text-gray-500 mb-3">Industry Demand Trends</p>
-    <div className="space-y-2 mb-4">
-      {[
-        { industry: "Technology", demand: "Very High", growth: "+18%", bar: "w-[90%]" },
-        { industry: "Finance", demand: "High", growth: "+12%", bar: "w-[75%]" },
-        { industry: "Healthcare", demand: "High", growth: "+15%", bar: "w-[78%]" },
-        { industry: "Consulting", demand: "Medium", growth: "+6%", bar: "w-[55%]" },
-        { industry: "Education", demand: "Medium", growth: "+4%", bar: "w-[48%]" },
-      ].map((ind) => (
-        <div key={ind.industry} className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5">
-          <div className="flex items-center justify-between mb-1.5">
-            <p className="text-xs font-medium text-white">{ind.industry}</p>
-            <span className="text-[10px] font-medium text-emerald-400">{ind.growth}</span>
+const MarketInsightsContent = () => {
+  const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  const demand = [45, 52, 58, 72, 85, 95, 120, 135, 150, 165, 180, 210];
+  const supply = [60, 68, 75, 90, 110, 130, 155, 170, 185, 195, 205, 220];
+  const maxVal = 230;
+
+  const concentrationByIndustry = [
+    { name: "Tech", val: 4.2, color: "hsl(217, 91%, 60%)" },
+    { name: "Fin", val: 3.8, color: "hsl(142, 71%, 45%)" },
+    { name: "Health", val: 3.5, color: "hsl(0, 84%, 60%)" },
+    { name: "Mfg", val: 2.8, color: "hsl(271, 91%, 65%)" },
+    { name: "Consult", val: 4.3, color: "hsl(45, 93%, 47%)" },
+    { name: "Edu", val: 1.8, color: "hsl(330, 81%, 60%)" },
+    { name: "Retail", val: 1.5, color: "hsl(142, 71%, 45%)" },
+    { name: "Media", val: 3.0, color: "hsl(25, 95%, 53%)" },
+  ];
+  const maxConc = 4.5;
+
+  return (
+    <>
+      {/* Summary Cards */}
+      <div className="grid grid-cols-4 gap-1.5 mb-3">
+        {[
+          { label: "Market Concentration Index", value: "3.2", sub: "Moderately concentrated market", color: "bg-blue-500/10 border-blue-500/20", iconColor: "text-blue-400", valueColor: "text-blue-400" },
+          { label: "Market Growth", value: "+12.5%", sub: "vs last quarter", color: "bg-emerald-500/10 border-emerald-500/20", iconColor: "text-emerald-400", valueColor: "text-emerald-400" },
+          { label: "Geographic Reach", value: "24", sub: "Active hire regions", color: "bg-purple-500/10 border-purple-500/20", iconColor: "text-purple-400", valueColor: "text-purple-400" },
+          { label: "Industry Diversity", value: "18", sub: "Active sectors", color: "bg-orange-500/10 border-orange-500/20", iconColor: "text-orange-400", valueColor: "text-orange-400" },
+        ].map((c) => (
+          <div key={c.label} className={`${c.color} border rounded-lg px-2 py-2`}>
+            <p className={`text-[7px] ${c.valueColor} font-medium`}>{c.label.split(" ").slice(-2).join(" ")}</p>
+            <p className={`text-sm font-bold ${c.valueColor}`}>{c.value}</p>
+            <p className="text-[10px] text-white font-semibold mt-0.5">{c.label}</p>
+            <p className="text-[7px] text-gray-500">{c.sub}</p>
           </div>
-          <div className="w-full h-1.5 bg-white/5 rounded-full">
-            <div className={`h-full bg-primary rounded-full ${ind.bar}`} />
+        ))}
+      </div>
+
+      {/* Demand vs Supply + Concentration by Industry */}
+      <div className="grid grid-cols-2 gap-2 mb-3">
+        <div className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5">
+          <p className="text-[10px] font-semibold text-white mb-0.5">Demand vs Supply Trends</p>
+          <div className="flex items-center gap-3 mb-2">
+            <div className="flex items-center gap-1"><div className="w-3 h-[2px] bg-primary rounded" /><span className="text-[7px] text-gray-500">Job Demand</span></div>
+            <div className="flex items-center gap-1"><div className="w-3 h-[2px] bg-emerald-400 rounded" /><span className="text-[7px] text-gray-500">Student Supply</span></div>
           </div>
-          <p className="text-[9px] text-gray-500 mt-1">Demand: {ind.demand}</p>
+          <svg viewBox="0 0 220 80" className="w-full">
+            {[0, 50, 100, 150, 200].map((v) => (
+              <g key={v}><line x1="25" y1={70 - (v / maxVal) * 60} x2="215" y2={70 - (v / maxVal) * 60} stroke="rgba(255,255,255,0.05)" strokeWidth="0.5" /><text x="22" y={72 - (v / maxVal) * 60} textAnchor="end" fill="#6b7280" fontSize="4">{v}</text></g>
+            ))}
+            <polyline fill="none" stroke="hsl(217, 91%, 60%)" strokeWidth="1.5" points={demand.map((v, i) => `${25 + i * (190 / 11)},${70 - (v / maxVal) * 60}`).join(" ")} />
+            <polyline fill="none" stroke="hsl(142, 71%, 45%)" strokeWidth="1.5" points={supply.map((v, i) => `${25 + i * (190 / 11)},${70 - (v / maxVal) * 60}`).join(" ")} />
+            {demand.map((v, i) => <circle key={`d${i}`} cx={25 + i * (190 / 11)} cy={70 - (v / maxVal) * 60} r="1.5" fill="hsl(217, 91%, 60%)" />)}
+            {supply.map((v, i) => <circle key={`s${i}`} cx={25 + i * (190 / 11)} cy={70 - (v / maxVal) * 60} r="1.5" fill="hsl(142, 71%, 45%)" />)}
+            {months.map((m, i) => <text key={m} x={25 + i * (190 / 11)} y="78" textAnchor="middle" fill="#6b7280" fontSize="3.5">{m}</text>)}
+          </svg>
         </div>
-      ))}
-    </div>
-    <p className="text-xs text-gray-500 mb-2">Top Hiring Locations</p>
-    <div className="flex flex-wrap gap-1.5">
-      {["London", "New York", "Singapore", "Berlin", "Toronto", "Sydney"].map((loc) => (
-        <span key={loc} className="text-[10px] bg-white/[0.05] text-gray-300 px-2.5 py-1 rounded-md">{loc}</span>
-      ))}
-    </div>
-  </>
-);
+
+        <div className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5">
+          <p className="text-[10px] font-semibold text-white mb-2">Concentration Index by Industry</p>
+          <svg viewBox="0 0 220 80" className="w-full">
+            {[0, 1.5, 3.0, 4.5].map((v) => (
+              <g key={v}><line x1="25" y1={70 - (v / maxConc) * 60} x2="215" y2={70 - (v / maxConc) * 60} stroke="rgba(255,255,255,0.05)" strokeWidth="0.5" /><text x="22" y={72 - (v / maxConc) * 60} textAnchor="end" fill="#6b7280" fontSize="4">{v}</text></g>
+            ))}
+            {concentrationByIndustry.map((d, i) => {
+              const barH = (d.val / maxConc) * 60;
+              const x = 30 + i * 23;
+              return (
+                <g key={d.name}>
+                  <rect x={x} y={70 - barH} width="14" height={barH} fill={d.color} rx="1.5" />
+                  <text x={x + 7} y="78" textAnchor="middle" fill="#6b7280" fontSize="3.5">{d.name}</text>
+                </g>
+              );
+            })}
+          </svg>
+        </div>
+      </div>
+
+      {/* Geographic Concentration Heatmap */}
+      <div className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5 mb-3">
+        <p className="text-[10px] font-semibold text-white mb-1">Geographic Concentration Heatmap</p>
+        <div className="flex items-center justify-center gap-1 mb-2">
+          <span className="text-[7px] text-gray-500">Low Concentration</span>
+          <div className="flex h-1.5 rounded-full overflow-hidden w-16">
+            <div className="flex-1 bg-pink-300" /><div className="flex-1 bg-pink-400" /><div className="flex-1 bg-rose-400" /><div className="flex-1 bg-red-500" />
+          </div>
+          <span className="text-[7px] text-gray-500">High Concentration</span>
+        </div>
+        <div className="grid grid-cols-6 gap-1 mb-2">
+          {[
+            { city: "San Francisco", val: 4.8, color: "bg-purple-500" },
+            { city: "New York", val: 4.2, color: "bg-blue-500" },
+            { city: "Seattle", val: 3.9, color: "bg-blue-400" },
+            { city: "Austin", val: 3.5, color: "bg-emerald-500" },
+            { city: "Boston", val: 3.2, color: "bg-emerald-400" },
+            { city: "Chicago", val: 2.8, color: "bg-amber-500" },
+            { city: "Los Angeles", val: 2.5, color: "bg-amber-400" },
+            { city: "Denver", val: 2.2, color: "bg-orange-400" },
+            { city: "Atlanta", val: 1.9, color: "bg-orange-500" },
+            { city: "Miami", val: 1.6, color: "bg-rose-400" },
+            { city: "Dallas", val: 1.3, color: "bg-rose-500" },
+            { city: "Phoenix", val: 1.0, color: "bg-pink-400" },
+          ].map((c) => (
+            <div key={c.city} className={`${c.color} rounded-md px-1.5 py-1.5 text-center`}>
+              <span className="text-[6px] text-white font-bold block">{c.city}</span>
+              <span className="text-[7px] text-white/80 font-medium">{c.val}</span>
+            </div>
+          ))}
+        </div>
+        <div className="grid grid-cols-3 gap-1.5">
+          {[
+            { label: "Highest Concentration", city: "San Francisco", val: "4.8 concentration index", color: "bg-purple-500/15 border-purple-500/30", dot: "bg-purple-500" },
+            { label: "Balanced Market", city: "Boston", val: "3.2 concentration index", color: "bg-emerald-500/15 border-emerald-500/30", dot: "bg-emerald-500" },
+            { label: "Low Concentration", city: "Phoenix", val: "1.0 concentration index", color: "bg-rose-500/15 border-rose-500/30", dot: "bg-rose-500" },
+          ].map((c) => (
+            <div key={c.city} className={`${c.color} border rounded-lg px-2 py-1.5`}>
+              <div className="flex items-center gap-1 mb-0.5">
+                <div className={`w-2 h-2 rounded-full ${c.dot}`} />
+                <span className="text-[7px] text-gray-400">{c.label}</span>
+              </div>
+              <p className="text-[10px] text-white font-semibold">{c.city}</p>
+              <p className="text-[7px] text-gray-500">{c.val}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Market Opportunity Matrix */}
+      <div className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5 mb-3">
+        <p className="text-[10px] font-semibold text-white mb-2">Market Opportunity Matrix</p>
+        <div className="grid grid-cols-3 gap-1.5 mb-2">
+          {[
+            { industry: "Technology", assessment: "Strong Market", conc: "High", success: "High", color: "bg-emerald-500/10 border-emerald-500/20" },
+            { industry: "Finance", assessment: "Consider Diversification", conc: "High", success: "Medium", color: "bg-amber-500/10 border-amber-500/20" },
+            { industry: "Healthcare", assessment: "Growth Opportunity", conc: "Medium", success: "High", color: "bg-blue-500/10 border-blue-500/20" },
+            { industry: "Manufacturing", assessment: "Balanced Market", conc: "Medium", success: "Medium", color: "bg-gray-500/10 border-gray-500/20" },
+            { industry: "Consulting", assessment: "High Risk", conc: "High", success: "Low", color: "bg-rose-500/10 border-rose-500/20" },
+            { industry: "Education", assessment: "Emerging Market", conc: "Low", success: "High", color: "bg-purple-500/10 border-purple-500/20" },
+          ].map((m) => (
+            <div key={m.industry} className={`${m.color} border rounded-lg px-2 py-1.5`}>
+              <div className="flex items-center justify-between mb-1">
+                <span className="text-[9px] text-white font-semibold">{m.industry}</span>
+                <span className="text-[7px] text-gray-400">{m.assessment}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-[7px] text-gray-500">Conc: <span className={`font-semibold ${m.conc === "High" ? "text-rose-400" : m.conc === "Medium" ? "text-amber-400" : "text-emerald-400"}`}>{m.conc}</span></span>
+                <span className="text-[7px] text-gray-500">Success: <span className={`font-semibold ${m.success === "High" ? "text-emerald-400" : m.success === "Medium" ? "text-amber-400" : "text-rose-400"}`}>{m.success}</span></span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Detailed Market Concentration Analysis */}
+      <div className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5 mb-3">
+        <p className="text-[10px] font-semibold text-white mb-2">Detailed Market Concentration Analysis</p>
+        <div className="grid grid-cols-7 gap-1 pb-1 border-b border-white/5 mb-1">
+          {["Industry", "Conc. Index", "Total Jobs", "Applications", "Success Rate", "Avg Salary", "Assessment"].map((h) => (
+            <span key={h} className="text-[6px] text-gray-500 font-semibold">{h}</span>
+          ))}
+        </div>
+        {[
+          { industry: "Technology", letter: "T", color: "bg-rose-500", conc: 4.2, jobs: 245, apps: 1029, rate: "78.5%", salary: "$85,000", assessment: "Strong Market", assessColor: "text-emerald-400 bg-emerald-500/20" },
+          { industry: "Finance", letter: "F", color: "bg-blue-500", conc: 3.8, jobs: 189, apps: 718, rate: "72.3%", salary: "$82,000", assessment: "Diversify", assessColor: "text-amber-400 bg-amber-500/20" },
+          { industry: "Healthcare", letter: "H", color: "bg-emerald-500", conc: 3.5, jobs: 156, apps: 542, rate: "81.2%", salary: "$78,000", assessment: "Growth", assessColor: "text-blue-400 bg-blue-500/20" },
+          { industry: "Consulting", letter: "C", color: "bg-amber-500", conc: 4.3, jobs: 98, apps: 412, rate: "45.8%", salary: "$75,000", assessment: "High Risk", assessColor: "text-rose-400 bg-rose-500/20" },
+          { industry: "Education", letter: "E", color: "bg-purple-500", conc: 1.8, jobs: 67, apps: 124, rate: "68.4%", salary: "$52,000", assessment: "Emerging", assessColor: "text-purple-400 bg-purple-500/20" },
+        ].map((d) => (
+          <div key={d.industry} className="grid grid-cols-7 gap-1 py-1 border-b border-white/[0.03] items-center">
+            <div className="flex items-center gap-1">
+              <div className={`w-3 h-3 ${d.color} rounded-full flex items-center justify-center text-[6px] font-bold text-white`}>{d.letter}</div>
+              <span className="text-[8px] text-gray-300">{d.industry}</span>
+            </div>
+            <span className="text-[8px] text-amber-400 font-semibold">{d.conc}</span>
+            <span className="text-[8px] text-gray-400">{d.jobs}</span>
+            <span className="text-[8px] text-gray-400">{d.apps}</span>
+            <span className="text-[8px] text-emerald-400 font-semibold">{d.rate}</span>
+            <span className="text-[8px] text-gray-300">{d.salary}</span>
+            <span className={`text-[6px] font-bold px-1 py-0.5 rounded ${d.assessColor}`}>{d.assessment}</span>
+          </div>
+        ))}
+      </div>
+
+      {/* Concentration Trends Over Time */}
+      <div className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5">
+        <p className="text-[10px] font-semibold text-white mb-0.5">Concentration Trends Over Time</p>
+        <div className="flex items-center gap-3 mb-2">
+          <div className="flex items-center gap-1"><div className="w-3 h-[2px] bg-primary rounded" /><span className="text-[7px] text-gray-500">Technology</span></div>
+          <div className="flex items-center gap-1"><div className="w-3 h-[2px] bg-emerald-400 rounded" /><span className="text-[7px] text-gray-500">Finance</span></div>
+          <div className="flex items-center gap-1"><div className="w-3 h-[2px] bg-amber-400 rounded" /><span className="text-[7px] text-gray-500">Healthcare</span></div>
+        </div>
+        <svg viewBox="0 0 220 60" className="w-full">
+          {[2.0, 3.0, 4.0, 5.0].map((v) => (
+            <g key={v}><line x1="25" y1={55 - ((v - 2) / 3) * 45} x2="215" y2={55 - ((v - 2) / 3) * 45} stroke="rgba(255,255,255,0.05)" strokeWidth="0.5" /><text x="22" y={57 - ((v - 2) / 3) * 45} textAnchor="end" fill="#6b7280" fontSize="4">{v.toFixed(1)}</text></g>
+          ))}
+          {/* Tech line - rising */}
+          <polyline fill="none" stroke="hsl(217, 91%, 60%)" strokeWidth="1.5" points={[3.5,3.6,3.7,3.8,3.9,4.0,4.1,4.1,4.2,4.3,4.3,4.2].map((v,i) => `${25+i*(190/11)},${55-((v-2)/3)*45}`).join(" ")} />
+          {/* Finance line - stable */}
+          <polyline fill="none" stroke="hsl(142, 71%, 45%)" strokeWidth="1.5" points={[3.2,3.3,3.4,3.5,3.5,3.6,3.6,3.7,3.7,3.8,3.8,3.8].map((v,i) => `${25+i*(190/11)},${55-((v-2)/3)*45}`).join(" ")} />
+          {/* Healthcare line - gradual */}
+          <polyline fill="none" stroke="hsl(45, 93%, 47%)" strokeWidth="1.5" points={[2.8,2.9,3.0,3.0,3.1,3.1,3.2,3.2,3.3,3.4,3.5,3.5].map((v,i) => `${25+i*(190/11)},${55-((v-2)/3)*45}`).join(" ")} />
+          {months.map((m, i) => <text key={m} x={25 + i * (190 / 11)} y="62" textAnchor="middle" fill="#6b7280" fontSize="3.5">{m}</text>)}
+        </svg>
+      </div>
+    </>
+  );
+};
 
 const rubricSections = [
   { name: "Education", color: "bg-amber-400", pct: 20, subs: [
