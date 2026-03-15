@@ -244,22 +244,22 @@ const About = () => {
             viewport={{ once: true }}
           >
             <p className="text-xs uppercase tracking-widest text-primary font-medium mb-3">Get involved</p>
-            <h2 className="text-2xl lg:text-3xl font-bold text-foreground tracking-tight mb-4">
+            <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 tracking-tight mb-4">
               Be part of the <span className="text-gradient italic">mission.</span>
             </h2>
-            <p className="text-sm text-muted-foreground mb-8 max-w-md mx-auto">
+            <p className="text-sm text-gray-500 mb-8 max-w-md mx-auto">
               Whether you're a university looking to give your students a real edge, or a partner who wants to help — we'd love to hear from you.
             </p>
             <div className="flex justify-center gap-3">
               <a
                 href="/request-pilot"
-                className="inline-flex items-center gap-2 bg-foreground text-background font-medium px-6 py-3 rounded-full text-sm hover:opacity-90 transition-opacity"
+                className="inline-flex items-center gap-2 bg-gray-900 text-white font-medium px-6 py-3 rounded-full text-sm hover:opacity-90 transition-opacity"
               >
                 Request a pilot <ArrowRight className="w-4 h-4" />
               </a>
               <a
                 href="/request-pilot"
-                className="inline-flex items-center gap-2 text-muted-foreground font-medium px-6 py-3 rounded-full text-sm border border-muted hover:text-foreground transition-colors"
+                className="inline-flex items-center gap-2 text-gray-500 font-medium px-6 py-3 rounded-full text-sm border border-gray-200 hover:text-gray-900 transition-colors"
               >
                 Get in touch
               </a>
