@@ -1299,7 +1299,7 @@ const JobBoardContent = () => {
               <button onClick={resetFilters} className="text-[7px] text-primary font-medium mt-2">Reset all filters</button>
             </div>
           ) : (
-            <div className="grid grid-cols-4 gap-1.5">
+            <div className="grid grid-cols-3 gap-1.5">
               {sorted.map((job, idx) => (
                 <div key={`${job.company}-${job.title}-${idx}`} className="bg-card border border-border rounded-lg p-2 hover:border-primary/30 transition-colors">
                   <div className="flex items-center justify-between mb-1.5">
