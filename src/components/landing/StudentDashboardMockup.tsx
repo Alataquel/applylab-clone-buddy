@@ -541,7 +541,7 @@ const JobBoardContent = () => (
     <div className="w-28 shrink-0">
       <div className="flex items-center justify-between mb-2">
         <p className="text-[9px] font-bold text-foreground">Filters</p>
-        <button className="text-[6px] text-primary">↻ Reset</button>
+        <button className="text-[6px] text-primary flex items-center gap-0.5"><RotateCcw className="w-2 h-2" /> Reset</button>
       </div>
       <div className="mb-3">
         <p className="text-[7px] font-semibold text-foreground mb-1">Location</p>
