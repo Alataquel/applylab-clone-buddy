@@ -165,15 +165,15 @@ const StudentToolsSection = () => {
                     <div key={col.stage}>
                       <div className="flex items-center gap-1.5 mb-2">
                         <div className={`w-2 h-2 rounded-full ${col.color}`} />
-                        <span className="text-[10px] font-medium text-foreground">{col.stage}</span>
-                        <span className="text-[10px] text-muted-foreground">{col.items.length}</span>
+                        <span className="text-[10px] font-medium text-gray-900">{col.stage}</span>
+                        <span className="text-[10px] text-gray-400">{col.items.length}</span>
                       </div>
                       <div className="space-y-1.5">
                         {col.items.map((item) => (
-                          <div key={item.company} className="bg-card rounded-md p-2">
-                            <p className="text-[10px] font-medium text-foreground">{item.company}</p>
-                            <p className="text-[9px] text-muted-foreground">{item.role}</p>
-                            <p className="text-[9px] text-muted-foreground/60 mt-0.5">{item.days}</p>
+                          <div key={item.company} className="bg-white rounded-md p-2">
+                            <p className="text-[10px] font-medium text-gray-900">{item.company}</p>
+                            <p className="text-[9px] text-gray-400">{item.role}</p>
+                            <p className="text-[9px] text-gray-300 mt-0.5">{item.days}</p>
                           </div>
                         ))}
                         {col.items.length === 0 && (
