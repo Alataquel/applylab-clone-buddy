@@ -179,7 +179,7 @@ const RequestPilot = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.5 }}
               >
-                <label className="text-xs text-muted-foreground font-medium mb-2 block">Message (optional)</label>
+                <label className="text-xs text-gray-500 font-medium mb-2 block">Message (optional)</label>
                 <textarea
                   rows={3}
                   value={form.message || ""}
