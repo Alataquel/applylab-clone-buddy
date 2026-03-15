@@ -491,12 +491,12 @@ const CoverLettersContent = () => (
     {/* Stats */}
     <div className="grid grid-cols-3 gap-2 mb-4">
       {[
-        { icon: "📄", value: "6", label: "Total Cover Letters" },
-        { icon: "✨", value: "6", label: "AI Generated" },
-        { icon: "🔍", value: "0", label: "Drafts" },
+        { IconComp: FileText, value: "6", label: "Total Cover Letters" },
+        { IconComp: Sparkles, value: "6", label: "AI Generated" },
+        { IconComp: Search, value: "0", label: "Drafts" },
       ].map((s) => (
         <div key={s.label} className="bg-card border border-border rounded-lg px-3 py-2.5 flex items-center gap-2">
-          <span className="text-sm">{s.icon}</span>
+          <s.IconComp className="w-4 h-4" style={{ color: "hsl(228, 76%, 35%)" }} strokeWidth={1.8} />
           <div>
             <p className="text-sm font-bold text-foreground">{s.value}</p>
             <p className="text-[7px] text-muted-foreground">{s.label}</p>
