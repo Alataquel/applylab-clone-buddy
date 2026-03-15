@@ -241,14 +241,27 @@ const ForUniversities = () => {
                     { name: "Finance", width: 78 },
                     { name: "Business Admin", width: 74 },
                     { name: "Marketing", width: 61 },
-                  ].map((b) => (
-                    <div key={b.name} className="flex items-center gap-3">
+                  ].map((b, i) => (
+                    <motion.div
+                      key={b.name}
+                      initial={{ opacity: 0, x: -10 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: 0.5 + i * 0.1 }}
+                      className="flex items-center gap-3"
+                    >
                       <span className="text-[10px] text-white/40 w-24 text-right">{b.name}</span>
                       <div className="flex-1 h-2 bg-white/10 rounded-full overflow-hidden">
-                        <div className="h-full bg-primary/60 rounded-full" style={{ width: `${b.width}%` }} />
+                        <motion.div
+                          className="h-full bg-primary/60 rounded-full"
+                          initial={{ width: 0 }}
+                          whileInView={{ width: `${b.width}%` }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.8, delay: 0.6 + i * 0.1, ease: "easeOut" }}
+                        />
                       </div>
                       <span className="text-[10px] text-white w-8">{b.width}%</span>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
               </div>
@@ -321,17 +334,32 @@ const ForUniversities = () => {
                 </div>
                 <p className="text-[10px] text-white/40 mb-2 uppercase tracking-wider">In-demand skills</p>
                 <div className="flex flex-wrap gap-1.5 mb-3">
-                  {["Python", "Data Analysis", "SQL", "Communication", "React", "Project Management", "Strategic Thinking"].map((skill) => (
-                    <span key={skill} className="text-[10px] px-2.5 py-1 rounded-md bg-primary/10 text-primary">{skill}</span>
+                  {["Python", "Data Analysis", "SQL", "Communication", "React", "Project Management", "Strategic Thinking"].map((skill, i) => (
+                    <motion.span
+                      key={skill}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.3, delay: 0.4 + i * 0.06 }}
+                      className="text-[10px] px-2.5 py-1 rounded-md bg-primary/10 text-primary"
+                    >
+                      {skill}
+                    </motion.span>
                   ))}
                 </div>
-                <div className="bg-[#232942] rounded-md p-3">
+                <motion.div
+                  initial={{ opacity: 0, y: 12 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.7 }}
+                  className="bg-[#232942] rounded-md p-3"
+                >
                   <p className="text-[10px] text-white/40 mb-1">Avg. graduate salary (region)</p>
                   <p className="text-xl font-bold text-white">€38,200</p>
                   <p className="text-[10px] text-emerald-400 flex items-center gap-0.5">
                     <TrendingUp className="w-2.5 h-2.5" /> +6% vs. last year
                   </p>
-                </div>
+                </motion.div>
               </div>
             </motion.div>
 
@@ -360,8 +388,15 @@ const ForUniversities = () => {
                     {[
                       { name: "Emma Torres", score: 87, status: "Pass" },
                       { name: "Liam Chen", score: 72, status: "Needs revision" },
-                    ].map((s) => (
-                      <div key={s.name} className="bg-[#232942] rounded-md p-3 flex items-center gap-3">
+                    ].map((s, i) => (
+                      <motion.div
+                        key={s.name}
+                        initial={{ opacity: 0, y: 12 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.4, delay: 0.5 + i * 0.12 }}
+                        className="bg-[#232942] rounded-md p-3 flex items-center gap-3"
+                      >
                         <div>
                           <p className="text-xs font-medium text-white">{s.name}</p>
                           <p className="text-[10px] text-white/40">Rubric score: <span className="font-semibold text-white">{s.score}/100</span></p>
@@ -369,7 +404,7 @@ const ForUniversities = () => {
                         <span className={`ml-auto text-[10px] font-medium rounded-full px-2 py-0.5 ${
                           s.status === "Pass" ? "bg-emerald-500/10 text-emerald-400" : "bg-amber-500/10 text-amber-400"
                         }`}>{s.status}</span>
-                      </div>
+                      </motion.div>
                     ))}
                   </div>
                 </div>
