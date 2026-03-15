@@ -49,15 +49,9 @@ const HeroSection = () => {
             </a>
           </motion.div>
 
-          <motion.div variants={itemVariants} className="space-y-2">
-            <p className="text-xs uppercase tracking-widest text-muted-foreground font-medium">Trusted by</p>
-            <div className="flex flex-wrap gap-2">
-              {["Saint Louis University", "German UDS", "XU Exponential", "IE University"].map((name) => (
-                <span key={name} className="text-xs text-muted-foreground bg-secondary px-3 py-1.5 rounded-md">
-                  {name}
-                </span>
-              ))}
-            </div>
+          <motion.div variants={itemVariants} className="flex items-center gap-2 text-xs text-muted-foreground">
+            <span>As listed in</span>
+            <span className="font-semibold text-foreground">Forbes Italy</span>
           </motion.div>
         </motion.div>
 
