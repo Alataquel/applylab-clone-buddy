@@ -4,66 +4,153 @@ const navItems = ["Overview", "Students", "Analytics", "Qualification Insights",
 
 const OverviewContent = () => (
   <>
-    <div className="grid grid-cols-3 gap-2 mb-4">
+    {/* Top KPI Row */}
+    <div className="grid grid-cols-4 gap-2 mb-3">
       {[
-        { label: "Total Students", value: "1,284", change: "+12%", up: true },
-        { label: "Placement Rate", value: "71%", change: "+4.2%", up: true },
-        { label: "Avg. Engagement", value: "83%", change: "-2.1%", up: false },
+        { label: "Total Students", value: "1,284", change: "+12%", up: true, icon: "👥" },
+        { label: "Placement Rate", value: "71%", change: "+4.2%", up: true, icon: "🎯" },
+        { label: "Active Applications", value: "4,821", change: "+18%", up: true, icon: "📄" },
+        { label: "Avg. Engagement", value: "83%", change: "-2.1%", up: false, icon: "📊" },
       ].map((m) => (
         <div key={m.label} className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5">
-          <p className="text-[10px] text-gray-500 mb-1">{m.label}</p>
+          <div className="flex items-center justify-between mb-1">
+            <p className="text-[9px] text-gray-500">{m.label}</p>
+            <span className="text-xs">{m.icon}</span>
+          </div>
           <div className="flex items-baseline gap-1.5">
-            <span className="text-lg font-bold text-white">{m.value}</span>
-            <span className={`text-[10px] font-medium ${m.up ? "text-emerald-400" : "text-rose-400"}`}>{m.change}</span>
+            <span className="text-base font-bold text-white">{m.value}</span>
+            <span className={`text-[9px] font-medium ${m.up ? "text-emerald-400" : "text-rose-400"}`}>{m.change}</span>
           </div>
         </div>
       ))}
     </div>
 
-    <div className="grid grid-cols-2 gap-2 mb-4">
+    {/* Second row: Charts + Top Placements */}
+    <div className="grid grid-cols-[1fr_1fr_1fr] gap-2 mb-3">
+      {/* Mini bar chart - Applications trend */}
       <div className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5">
-        <p className="text-[10px] text-gray-500 mb-1">Applications Sent</p>
-        <span className="text-lg font-bold text-white">4,821</span>
-        <div className="mt-2 flex gap-1">
-          {[65, 45, 80, 55, 70, 90, 60, 75, 85, 50].map((h, i) => (
-            <div key={i} className="flex-1 bg-primary/30 rounded-sm" style={{ height: `${h * 0.3}px` }}>
-              <div className="w-full bg-primary rounded-sm" style={{ height: `${h * 0.2}px`, marginTop: `${(h * 0.3) - (h * 0.2)}px` }} />
+        <p className="text-[9px] text-gray-500 mb-1">Applications This Week</p>
+        <div className="flex items-end gap-1 h-[50px]">
+          {[
+            { day: "Mon", h: 65 }, { day: "Tue", h: 45 }, { day: "Wed", h: 80 },
+            { day: "Thu", h: 55 }, { day: "Fri", h: 90 }, { day: "Sat", h: 30 }, { day: "Sun", h: 40 },
+          ].map((d) => (
+            <div key={d.day} className="flex-1 flex flex-col items-center gap-0.5">
+              <div className="w-full bg-primary/70 rounded-sm" style={{ height: `${d.h * 0.5}px` }} />
+              <span className="text-[6px] text-gray-600">{d.day}</span>
             </div>
           ))}
         </div>
       </div>
+
+      {/* Interviews breakdown */}
       <div className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5">
-        <p className="text-[10px] text-gray-500 mb-1">Interviews This Month</p>
-        <span className="text-lg font-bold text-white">186</span>
-        <div className="mt-2 space-y-1.5">
+        <div className="flex items-center justify-between mb-1">
+          <p className="text-[9px] text-gray-500">Interviews This Month</p>
+          <span className="text-sm font-bold text-white">186</span>
+        </div>
+        <div className="space-y-1.5 mt-1">
           {[
             { label: "Scheduled", pct: 42, color: "bg-primary" },
             { label: "Completed", pct: 35, color: "bg-emerald-500" },
             { label: "Pending", pct: 23, color: "bg-amber-500" },
           ].map((b) => (
             <div key={b.label} className="flex items-center gap-2">
-              <span className="text-[8px] text-gray-500 w-14">{b.label}</span>
+              <span className="text-[7px] text-gray-500 w-14">{b.label}</span>
               <div className="flex-1 h-1.5 bg-white/5 rounded-full">
                 <div className={`h-full ${b.color} rounded-full`} style={{ width: `${b.pct}%` }} />
               </div>
+              <span className="text-[7px] text-gray-400">{b.pct}%</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Placement by industry mini donut */}
+      <div className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5">
+        <p className="text-[9px] text-gray-500 mb-1">Top Industries</p>
+        <div className="space-y-1">
+          {[
+            { name: "Finance", pct: 28, color: "bg-blue-500" },
+            { name: "Consulting", pct: 22, color: "bg-emerald-500" },
+            { name: "Technology", pct: 20, color: "bg-purple-500" },
+            { name: "Healthcare", pct: 15, color: "bg-amber-500" },
+            { name: "Other", pct: 15, color: "bg-gray-500" },
+          ].map((ind) => (
+            <div key={ind.name} className="flex items-center gap-2">
+              <div className={`w-1.5 h-1.5 rounded-full ${ind.color} flex-shrink-0`} />
+              <span className="text-[8px] text-gray-400 flex-1">{ind.name}</span>
+              <div className="w-16 h-1 bg-white/5 rounded-full">
+                <div className={`h-full ${ind.color} rounded-full`} style={{ width: `${ind.pct * 3}%` }} />
+              </div>
+              <span className="text-[8px] text-gray-500 w-6 text-right">{ind.pct}%</span>
             </div>
           ))}
         </div>
       </div>
     </div>
 
-    <p className="text-xs text-gray-500 mb-2">Recent Activity</p>
-    <div className="space-y-1.5">
+    {/* Third row: Active Postings + Recent Students */}
+    <div className="grid grid-cols-2 gap-2 mb-3">
+      {/* Active postings summary */}
+      <div className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5">
+        <div className="flex items-center justify-between mb-2">
+          <p className="text-[9px] text-gray-500 font-semibold">Active Postings</p>
+          <span className="text-[8px] text-primary">View all →</span>
+        </div>
+        {[
+          { title: "Software Engineer Intern", company: "TechCorp", type: "Job", count: 48, color: "bg-blue-500" },
+          { title: "Career Fair 2026", company: "University", type: "Event", count: 312, color: "bg-emerald-500" },
+          { title: "Marketing Analyst", company: "MediaGroup", type: "Job", count: 27, color: "bg-blue-500" },
+        ].map((p) => (
+          <div key={p.title} className="flex items-center gap-2 py-1.5 border-b border-white/[0.03] last:border-0">
+            <div className={`px-1 py-0.5 rounded text-[6px] font-bold text-white ${p.color}`}>{p.type}</div>
+            <div className="flex-1 min-w-0">
+              <p className="text-[9px] text-white font-medium truncate">{p.title}</p>
+              <p className="text-[7px] text-gray-500">{p.company}</p>
+            </div>
+            <span className="text-[10px] font-bold text-white">{p.count}</span>
+          </div>
+        ))}
+      </div>
+
+      {/* Recent placed students */}
+      <div className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5">
+        <div className="flex items-center justify-between mb-2">
+          <p className="text-[9px] text-gray-500 font-semibold">Recently Placed</p>
+          <span className="text-[8px] text-primary">View all →</span>
+        </div>
+        {[
+          { name: "Sarah Chen", company: "Deloitte", role: "Analyst", avatar: "SC" },
+          { name: "James Wilson", company: "Google", role: "SWE Intern", avatar: "JW" },
+          { name: "Maria Garcia", company: "McKinsey", role: "Associate", avatar: "MG" },
+        ].map((s) => (
+          <div key={s.name} className="flex items-center gap-2 py-1.5 border-b border-white/[0.03] last:border-0">
+            <div className="w-5 h-5 rounded-full bg-gradient-to-br from-primary/40 to-primary/20 flex items-center justify-center text-[7px] font-bold text-white flex-shrink-0">{s.avatar}</div>
+            <div className="flex-1 min-w-0">
+              <p className="text-[9px] text-white font-medium">{s.name}</p>
+              <p className="text-[7px] text-gray-500">{s.role} at {s.company}</p>
+            </div>
+            <span className="text-[7px] bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-1.5 py-0.5 rounded-full font-medium">Placed</span>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    {/* Recent Activity */}
+    <p className="text-[9px] text-gray-500 font-semibold mb-1.5">Recent Activity</p>
+    <div className="space-y-1">
       {[
         { text: "Sarah Chen received an offer from Deloitte", time: "2h ago", icon: "🎉" },
         { text: "3 new students joined Engineering 2026", time: "5h ago", icon: "👥" },
         { text: "Resume Workshop event starts tomorrow", time: "1d ago", icon: "📄" },
         { text: "Monthly placement report is ready", time: "1d ago", icon: "📊" },
+        { text: "New job posting: UX Designer at DesignCo", time: "2d ago", icon: "💼" },
       ].map((a) => (
-        <div key={a.text} className="flex items-center gap-2 bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2">
-          <span className="text-xs">{a.icon}</span>
-          <p className="text-[10px] text-gray-300 flex-1">{a.text}</p>
-          <span className="text-[9px] text-gray-600">{a.time}</span>
+        <div key={a.text} className="flex items-center gap-2 bg-white/[0.02] border border-white/[0.03] rounded-lg px-3 py-1.5">
+          <span className="text-[10px]">{a.icon}</span>
+          <p className="text-[9px] text-gray-300 flex-1">{a.text}</p>
+          <span className="text-[8px] text-gray-600">{a.time}</span>
         </div>
       ))}
     </div>
