@@ -234,7 +234,7 @@ const TrackerContent = () => {
   ];
 
   return (
-    <div style={{ zoom: 1.35 }}>
+    <>
       <div className="flex items-center justify-between mb-3">
         <div>
           <h3 className="text-sm font-bold text-foreground italic">Application Tracker</h3>
