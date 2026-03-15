@@ -1147,10 +1147,12 @@ const JobBoardContent = () => {
         <div className="mb-3">
           <p className="text-[7px] font-semibold text-foreground mb-1">Location</p>
           {locations.map((l) => (
-            <label key={l} className="flex items-center gap-1.5 mb-0.5 cursor-pointer" onClick={() => toggleFilter(selectedLocations, l, setSelectedLocations)}>
-              <input type="checkbox" checked={selectedLocations.includes(l)} readOnly className="w-2 h-2 rounded accent-primary pointer-events-none" />
+            <div key={l} className="flex items-center gap-1.5 mb-0.5 cursor-pointer" onClick={() => toggleFilter(selectedLocations, l, setSelectedLocations)}>
+              <div className={`w-2.5 h-2.5 rounded border flex items-center justify-center shrink-0 transition-colors ${selectedLocations.includes(l) ? "bg-primary border-primary" : "border-muted-foreground/40 bg-transparent"}`}>
+                {selectedLocations.includes(l) && <Check className="w-1.5 h-1.5 text-primary-foreground" />}
+              </div>
               <span className="text-[7px] text-foreground">{l}</span>
-            </label>
+            </div>
           ))}
         </div>
         <div className="mb-3">
