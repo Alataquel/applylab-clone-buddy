@@ -225,10 +225,10 @@ const ResumeGraderContent = () => (
 );
 
 const ResumeBuilderContent = () => (
-  <div className="grid grid-cols-[0.8fr_1.4fr_0.8fr] gap-2">
+  <div className="grid grid-cols-[0.8fr_1.4fr_0.8fr] gap-0">
     {/* Left sidebar - Form */}
-    <div className="bg-[hsl(230,40%,14%)] rounded-lg p-2.5 text-white space-y-2">
-      <button className="text-[6px] text-primary bg-primary/10 rounded px-1.5 py-0.5">Autofill from profile</button>
+    <div className="bg-[hsl(228,50%,20%)] rounded-l-lg p-2.5 text-white space-y-2">
+      <button className="text-[6px] text-blue-300 bg-blue-400/10 rounded px-1.5 py-0.5 border border-blue-400/20">Autofill from profile</button>
       <p className="text-[7px] font-bold text-white/80 uppercase tracking-wider">Basics</p>
       {["Headline", "Full name", "Summary", "Email", "Phone", "Website", "Location", "LinkedIn", "GitHub"].map((f) => (
         <div key={f}>
@@ -237,91 +237,120 @@ const ResumeBuilderContent = () => (
         </div>
       ))}
       <p className="text-[7px] font-bold text-white/80 uppercase tracking-wider mt-2">Experience</p>
-      <button className="text-[7px] text-primary border border-primary/30 rounded px-2 py-0.5">+ Add Experience</button>
+      <button className="text-[7px] text-blue-300 border border-blue-400/30 rounded px-2 py-0.5">+ Add Experience</button>
     </div>
 
-    {/* Center - Preview */}
-    <div className="bg-white rounded-lg p-4 shadow-sm">
-      <div className="flex items-center justify-between mb-3">
-        <button className="text-[7px] text-primary">← Back to My CVs</button>
-        <button className="text-[7px] text-primary border border-primary/30 rounded px-2 py-0.5">⬇ Save as PDF</button>
+    {/* Center - Resume Preview (white outlined page on blue bg) */}
+    <div className="bg-[hsl(228,40%,25%)] p-4 flex flex-col items-center">
+      <div className="flex items-center justify-between w-full mb-3">
+        <button className="text-[7px] text-blue-300">← Back to My CVs</button>
+        <button className="text-[7px] text-blue-300 border border-blue-400/30 rounded px-2 py-0.5">⬇ Save as PDF</button>
       </div>
-      <div className="border-b border-gray-200 pb-2 mb-3">
-        <h4 className="text-xs font-bold text-gray-900">Your Name</h4>
-        <p className="text-[7px] text-gray-500">Your Professional Title</p>
-        <p className="text-[6px] text-gray-400 text-right">your.email@example.com</p>
-      </div>
-      <div className="space-y-2">
-        <div>
-          <p className="text-[7px] font-bold text-primary uppercase tracking-wider mb-1">Professional Summary</p>
-          <p className="text-[6px] text-gray-500">Brief professional summary...</p>
+      {/* The resume "page" */}
+      <div className="bg-white rounded shadow-lg p-4 w-full border border-white/20">
+        <div className="border-b border-primary pb-2 mb-3">
+          <h4 className="text-xs font-bold text-gray-900">Your Name</h4>
+          <p className="text-[7px] text-gray-500">Your Professional Title</p>
+          <p className="text-[6px] text-gray-400 text-right">your.email@example.com</p>
         </div>
-        <div>
-          <p className="text-[7px] font-bold text-primary uppercase tracking-wider mb-1">Professional Experience</p>
-          <div className="flex justify-between">
-            <div>
-              <p className="text-[7px] font-semibold text-gray-800">Your Job Title</p>
-              <p className="text-[6px] text-primary">Company Name</p>
-            </div>
-            <div className="text-right">
-              <p className="text-[6px] text-gray-500">2023-01 - Present</p>
-              <p className="text-[6px] text-gray-400">City, Country</p>
-            </div>
+        <div className="space-y-2">
+          <div>
+            <p className="text-[7px] font-bold text-primary uppercase tracking-wider mb-1">Professional Summary</p>
+            <p className="text-[6px] text-gray-500">Brief professional summary...</p>
           </div>
-          <ul className="text-[6px] text-gray-500 ml-2 mt-0.5 space-y-0.5">
-            <li>• Achievement 1</li>
-            <li>• Achievement 2</li>
-          </ul>
-        </div>
-        <div>
-          <p className="text-[7px] font-bold text-primary uppercase tracking-wider mb-1">Education</p>
-          <div className="flex justify-between">
-            <div>
-              <p className="text-[7px] font-semibold text-gray-800">Bachelor's in Your Field</p>
-              <p className="text-[6px] text-primary">University Name</p>
+          <div>
+            <p className="text-[7px] font-bold text-primary uppercase tracking-wider mb-1">Professional Experience</p>
+            <div className="flex justify-between">
+              <div>
+                <p className="text-[7px] font-semibold text-gray-800">Your Job Title</p>
+                <p className="text-[6px] text-primary">Company Name</p>
+              </div>
+              <div className="text-right">
+                <p className="text-[6px] text-gray-500">2023-01 - Present</p>
+                <p className="text-[6px] text-gray-400">City, Country</p>
+              </div>
             </div>
-            <p className="text-[6px] text-gray-500">2019-09 - 2023-06</p>
+            <ul className="text-[6px] text-gray-500 ml-2 mt-0.5 space-y-0.5">
+              <li>• Achievement 1</li>
+              <li>• Achievement 2</li>
+              <li>• Achievement 3</li>
+            </ul>
+          </div>
+          <div>
+            <p className="text-[7px] font-bold text-primary uppercase tracking-wider mb-1">Education</p>
+            <div className="flex justify-between">
+              <div>
+                <p className="text-[7px] font-semibold text-gray-800">Bachelor's in Your Field</p>
+                <p className="text-[6px] text-primary">University Name</p>
+              </div>
+              <p className="text-[6px] text-gray-500">2019-09 - 2023-06</p>
+            </div>
+            <ul className="text-[6px] text-gray-500 ml-2 mt-0.5 space-y-0.5">
+              <li>• Relevant coursework</li>
+              <li>• Academic achievement</li>
+              <li>• Project work</li>
+            </ul>
           </div>
         </div>
       </div>
     </div>
 
     {/* Right sidebar - Settings */}
-    <div className="bg-card border border-border rounded-lg p-2.5 space-y-2.5">
+    <div className="bg-[hsl(228,50%,20%)] rounded-r-lg p-2.5 space-y-2.5 text-white">
       <div>
-        <p className="text-[7px] font-bold text-foreground uppercase tracking-wider">Preview</p>
+        <p className="text-[7px] font-bold text-white/80 uppercase tracking-wider">Preview</p>
         <label className="flex items-center gap-1.5 mt-1">
           <input type="checkbox" className="w-2.5 h-2.5 rounded" />
-          <span className="text-[7px] text-muted-foreground">Enforce one page</span>
+          <span className="text-[7px] text-white/60">Enforce one page</span>
         </label>
-      </div>
-      <div>
-        <p className="text-[7px] font-bold text-foreground uppercase tracking-wider">Template</p>
-        <div className="bg-secondary rounded px-1.5 py-1 text-[7px] text-foreground mt-0.5">Modern</div>
-      </div>
-      <div>
-        <p className="text-[7px] font-bold text-foreground uppercase tracking-wider">Colors</p>
-        <p className="text-[6px] text-muted-foreground">Primary Color</p>
-        <div className="flex items-center gap-1 mt-0.5">
-          <div className="w-4 h-4 rounded bg-primary" />
-          <span className="text-[7px] text-foreground">#1f6feb</span>
+        <div className="text-[6px] text-white/40 mt-1 space-y-0.5">
+          <p>• Changes are saved automatically</p>
+          <p>• Preview updates in real-time</p>
+          <p>• Use Ctrl+P to print</p>
         </div>
-        <div className="flex gap-1 mt-1">
-          {["bg-primary", "bg-rose-500", "bg-emerald-500", "bg-blue-500", "bg-amber-500", "bg-orange-500"].map((c, i) => (
-            <div key={i} className={`w-3 h-3 rounded ${c} ${i === 0 ? "ring-1 ring-primary ring-offset-1" : ""}`} />
+      </div>
+      <div>
+        <p className="text-[7px] font-bold text-white/80 uppercase tracking-wider">Template</p>
+        <div className="bg-white/10 rounded px-1.5 py-1 text-[7px] text-white/70 mt-0.5">Modern</div>
+      </div>
+      <div>
+        <p className="text-[7px] font-bold text-white/80 uppercase tracking-wider">Colors</p>
+        <p className="text-[6px] text-white/50">Primary Color</p>
+        <div className="flex items-center gap-1 mt-0.5">
+          <div className="w-4 h-4 rounded bg-blue-500" />
+          <span className="text-[7px] text-white/70">#1f6feb</span>
+        </div>
+        <p className="text-[6px] text-white/50 mt-1">Quick Colors</p>
+        <div className="flex gap-1 mt-0.5">
+          {["bg-blue-500", "bg-rose-500", "bg-emerald-500", "bg-teal-500", "bg-amber-500", "bg-orange-500", "bg-pink-500", "bg-purple-500", "bg-cyan-500"].map((c, i) => (
+            <div key={i} className={`w-3 h-3 rounded ${c} ${i === 0 ? "ring-1 ring-blue-300 ring-offset-1 ring-offset-[hsl(228,50%,20%)]" : ""}`} />
           ))}
         </div>
       </div>
       <div>
-        <p className="text-[7px] font-bold text-foreground uppercase tracking-wider">Typography</p>
-        <div className="bg-secondary rounded px-1.5 py-1 text-[7px] text-foreground mt-0.5">Inter</div>
+        <p className="text-[7px] font-bold text-white/80 uppercase tracking-wider">Typography</p>
+        <p className="text-[6px] text-white/50">Font Family</p>
+        <div className="bg-white/10 rounded px-1.5 py-1 text-[7px] text-white/70 mt-0.5">Inter</div>
+        <div className="grid grid-cols-2 gap-1 mt-1">
+          <div>
+            <p className="text-[6px] text-white/50">Font Size (px)</p>
+            <div className="bg-white/10 rounded px-1.5 py-0.5 text-[7px] text-white/70">12</div>
+          </div>
+          <div>
+            <p className="text-[6px] text-white/50">Line Height</p>
+            <div className="bg-white/10 rounded px-1.5 py-0.5 text-[7px] text-white/70">1.35</div>
+          </div>
+        </div>
       </div>
       <div>
-        <p className="text-[7px] font-bold text-foreground uppercase tracking-wider">Page Layout</p>
-        <div className="bg-secondary rounded px-1.5 py-1 text-[7px] text-foreground mt-0.5">A4 (210 × 297 mm)</div>
+        <p className="text-[7px] font-bold text-white/80 uppercase tracking-wider">Page Layout</p>
+        <p className="text-[6px] text-white/50">Page Size</p>
+        <div className="bg-white/10 rounded px-1.5 py-1 text-[7px] text-white/70 mt-0.5">A4 (210 × 297 mm)</div>
+        <p className="text-[6px] text-white/50 mt-1">Margins</p>
+        <div className="bg-white/10 rounded px-1.5 py-0.5 text-[7px] text-white/70">36</div>
         <div className="flex gap-1 mt-1">
           {["Small", "Medium", "Large"].map((s) => (
-            <button key={s} className={`text-[6px] border border-border rounded px-1.5 py-0.5 ${s === "Medium" ? "bg-primary text-primary-foreground" : "text-muted-foreground"}`}>{s}</button>
+            <button key={s} className={`text-[6px] border rounded px-1.5 py-0.5 ${s === "Medium" ? "bg-blue-500 text-white border-blue-500" : "border-white/20 text-white/60"}`}>{s}</button>
           ))}
         </div>
       </div>
