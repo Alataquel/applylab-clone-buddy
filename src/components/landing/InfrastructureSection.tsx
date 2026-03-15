@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
-import { Users, BookOpen, Globe, AlertTriangle, TrendingUp, ArrowUpRight } from "lucide-react";
+import { Users, BookOpen, Globe, AlertTriangle, TrendingUp, ArrowUpRight, ClipboardCheck, Sliders, Calendar, Briefcase } from "lucide-react";
 
 const useCountUp = (end: number, isInView: boolean, duration = 1200, delay = 0) => {
   const [count, setCount] = useState(0);
@@ -325,6 +325,185 @@ const InfrastructureSection = () => {
               </div>
             </div>
           </motion.div>
+
+          {/* Resume Rubric Grading */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.5 }}
+            className="bg-[#0e1226] rounded-xl overflow-hidden"
+          >
+            <div className="p-6 lg:p-8">
+              <ClipboardCheck className="w-5 h-5 text-primary mb-3" />
+              <h3 className="text-lg font-semibold text-white mb-2">Resume Rubric Grading</h3>
+              <p className="text-sm text-gray-400 leading-relaxed max-w-lg">
+                Define your own grading rubric by programme and degree. When students use Resume Lab, their CV is automatically scored against your institution's criteria — consistent, scalable, and advisor-free.
+              </p>
+            </div>
+            <div className="px-6 lg:px-8 pb-6 lg:pb-8">
+              <div className="bg-white/5 border border-white/10 rounded-lg p-4">
+                <div className="flex items-center gap-2 mb-4">
+                  <Sliders className="w-3.5 h-3.5 text-primary" />
+                  <p className="text-[10px] text-gray-500 uppercase tracking-wider">Business Admin 2026 — Rubric Template</p>
+                </div>
+                <div className="space-y-3 mb-5">
+                  {[
+                    { criterion: "Quantified impact statements", weight: 30 },
+                    { criterion: "Relevant skills & keywords", weight: 25 },
+                    { criterion: "Formatting & structure", weight: 20 },
+                    { criterion: "Tailored to target sector", weight: 15 },
+                    { criterion: "Extracurriculars & leadership", weight: 10 },
+                  ].map((r, i) => (
+                    <motion.div
+                      key={r.criterion}
+                      initial={{ opacity: 0, x: -16 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: 0.2 + i * 0.08 }}
+                      className="flex items-center gap-3"
+                    >
+                      <span className="text-xs text-white flex-1">{r.criterion}</span>
+                      <div className="w-24 h-1.5 bg-white/10 rounded-full overflow-hidden">
+                        <motion.div
+                          className="h-full rounded-full bg-primary/60"
+                          initial={{ width: 0 }}
+                          whileInView={{ width: `${r.weight * 3}%` }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.8, delay: 0.3 + i * 0.1 }}
+                        />
+                      </div>
+                      <span className="text-[10px] text-gray-400 w-8 text-right">{r.weight}%</span>
+                    </motion.div>
+                  ))}
+                </div>
+                <div className="border-t border-white/10 pt-4">
+                  <p className="text-[10px] text-gray-500 uppercase tracking-wider mb-3">Student result preview</p>
+                  <div className="grid grid-cols-2 gap-3">
+                    {[
+                      { name: "Emma Torres", score: 87, status: "Pass" },
+                      { name: "Liam Chen", score: 72, status: "Needs revision" },
+                    ].map((s, i) => (
+                      <motion.div
+                        key={s.name}
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.4, delay: 0.4 + i * 0.1 }}
+                        className="bg-white/5 rounded-md p-3 flex items-center gap-3"
+                      >
+                        <div>
+                          <p className="text-xs font-medium text-white">{s.name}</p>
+                          <p className="text-[10px] text-gray-400">Rubric score: <span className="font-semibold text-white">{s.score}/100</span></p>
+                        </div>
+                        <span className={`ml-auto text-[10px] font-medium rounded-full px-2 py-0.5 ${
+                          s.status === "Pass" ? "bg-emerald-500/10 text-emerald-400" : "bg-amber-500/10 text-amber-400"
+                        }`}>{s.status}</span>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Post Events & Job Openings */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Post Events */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5 }}
+              className="bg-[#0e1226] rounded-xl overflow-hidden"
+            >
+              <div className="p-6 lg:p-8">
+                <Calendar className="w-5 h-5 text-primary mb-3" />
+                <h3 className="text-lg font-semibold text-white mb-2">Post Events</h3>
+                <p className="text-sm text-gray-400 leading-relaxed">
+                  Publish career fairs, workshops, and networking sessions. Students see them instantly on their Event Board, with RSVP tracking built in.
+                </p>
+              </div>
+              <div className="px-6 lg:px-8 pb-6 lg:pb-8">
+                <div className="bg-white/5 border border-white/10 rounded-lg p-4 space-y-2">
+                  {[
+                    { title: "Spring Career Fair 2026", date: "Mar 28", rsvps: 142, status: "Live" },
+                    { title: "CV Masterclass", date: "Apr 03", rsvps: 56, status: "Scheduled" },
+                    { title: "Alumni Panel: Tech", date: "Apr 10", rsvps: 0, status: "Draft" },
+                  ].map((ev, i) => (
+                    <motion.div
+                      key={ev.title}
+                      initial={{ opacity: 0, x: -16 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: 0.2 + i * 0.08 }}
+                      className="flex items-center gap-3 bg-white/5 rounded-md px-3 py-2.5"
+                    >
+                      <div className="w-10 h-10 rounded-md bg-primary/10 flex flex-col items-center justify-center">
+                        <span className="text-[9px] text-primary font-medium leading-none">{ev.date.split(" ")[0]}</span>
+                        <span className="text-xs text-primary font-bold leading-none">{ev.date.split(" ")[1]}</span>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xs font-medium text-white">{ev.title}</p>
+                        <p className="text-[10px] text-gray-500">{ev.rsvps} RSVPs</p>
+                      </div>
+                      <span className={`text-[10px] font-medium rounded-full px-2 py-0.5 ${
+                        ev.status === "Live" ? "bg-emerald-500/10 text-emerald-400"
+                          : ev.status === "Scheduled" ? "bg-primary/10 text-primary"
+                          : "bg-white/10 text-gray-400"
+                      }`}>{ev.status}</span>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Post Job Openings */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="bg-[#0e1226] rounded-xl overflow-hidden"
+            >
+              <div className="p-6 lg:p-8">
+                <Briefcase className="w-5 h-5 text-primary mb-3" />
+                <h3 className="text-lg font-semibold text-white mb-2">Post Job Openings</h3>
+                <p className="text-sm text-gray-400 leading-relaxed">
+                  Share exclusive roles from employer partners directly to your students' Internship Board. Track views, applications, and placement outcomes.
+                </p>
+              </div>
+              <div className="px-6 lg:px-8 pb-6 lg:pb-8">
+                <div className="bg-white/5 border border-white/10 rounded-lg p-4 space-y-2">
+                  {[
+                    { role: "Marketing Analyst Intern", company: "Partner: Deloitte", views: 234, apps: 18, status: "Active" },
+                    { role: "Software Intern", company: "Partner: Revolut", views: 189, apps: 12, status: "Active" },
+                    { role: "Research Assistant", company: "Internal", views: 95, apps: 7, status: "Closing soon" },
+                  ].map((job, i) => (
+                    <motion.div
+                      key={job.role}
+                      initial={{ opacity: 0, x: -16 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: 0.2 + i * 0.08 }}
+                      className="flex items-center gap-3 bg-white/5 rounded-md px-3 py-2.5"
+                    >
+                      <div className="w-8 h-8 rounded-md bg-primary/10 flex items-center justify-center">
+                        <Briefcase className="w-3.5 h-3.5 text-primary" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xs font-medium text-white">{job.role}</p>
+                        <p className="text-[10px] text-gray-500">{job.company} · {job.views} views · {job.apps} apps</p>
+                      </div>
+                      <span className={`text-[10px] font-medium rounded-full px-2 py-0.5 ${
+                        job.status === "Active" ? "bg-emerald-500/10 text-emerald-400" : "bg-amber-500/10 text-amber-400"
+                      }`}>{job.status}</span>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </div>
     </section>
