@@ -71,7 +71,7 @@ const RequestPilot = () => {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5 }}
-              className="bg-card rounded-xl p-10 shadow-precision text-center"
+              className="bg-gray-50 rounded-xl p-10 shadow-md text-center"
             >
               <motion.div
                 initial={{ scale: 0 }}
