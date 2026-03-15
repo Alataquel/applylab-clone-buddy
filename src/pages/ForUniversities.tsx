@@ -404,7 +404,7 @@ const ForUniversities = () => {
       </section>
 
       {/* Post Events & Job Openings */}
-      <section className="py-20 px-6 lg:px-12">
+      <section className="py-20 px-6 lg:px-12 bg-white">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -414,7 +414,7 @@ const ForUniversities = () => {
             className="mb-12"
           >
             <p className="text-xs uppercase tracking-widest text-primary font-medium mb-3">Engage students</p>
-            <h2 className="text-2xl lg:text-3xl font-bold text-foreground tracking-tight">Post directly to your students.</h2>
+            <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 tracking-tight">Post directly to your students.</h2>
           </motion.div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
