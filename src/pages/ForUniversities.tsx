@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import Navbar from "@/components/landing/Navbar";
 import Footer from "@/components/landing/Footer";
 import DashboardMockup from "@/components/landing/DashboardMockup";
+import SolutionSection from "@/components/landing/SolutionSection";
 import { ArrowRight, Users, BookOpen, Globe, AlertTriangle, TrendingUp, ArrowUpRight, Shield, ClipboardCheck, Calendar, Briefcase, Monitor } from "lucide-react";
 import RubricDonut from "@/components/landing/RubricDonut";
 
