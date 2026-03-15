@@ -63,10 +63,10 @@ const ForUniversities = () => {
               <Monitor className="w-3.5 h-3.5" />
               Interactive Demo
             </div>
-            <h2 className="text-2xl lg:text-3xl font-bold text-foreground tracking-tight mb-3">
+            <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 tracking-tight mb-3">
               See the platform in action.
             </h2>
-            <p className="text-sm text-muted-foreground max-w-xl mx-auto leading-relaxed">
+            <p className="text-sm text-gray-500 max-w-xl mx-auto leading-relaxed">
               Explore a fully interactive preview of the institutional dashboard — click through tabs, drill into student profiles, and see how data flows in real time.
             </p>
           </motion.div>

@@ -66,10 +66,10 @@ const ForStudents = () => {
               <Monitor className="w-3.5 h-3.5" />
               Interactive Demo
             </div>
-            <h2 className="text-2xl lg:text-3xl font-bold text-foreground tracking-tight mb-3">
+            <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 tracking-tight mb-3">
               Experience the student portal.
             </h2>
-            <p className="text-sm text-muted-foreground max-w-xl mx-auto leading-relaxed">
+            <p className="text-sm text-gray-500 max-w-xl mx-auto leading-relaxed">
               Explore the full student experience — browse jobs, build your resume, track applications, discover events, and book advisor meetings.
             </p>
           </motion.div>
