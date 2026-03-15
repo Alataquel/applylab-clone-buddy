@@ -431,6 +431,121 @@ const ForUniversities = () => {
         </div>
       </section>
 
+      {/* Post Events & Job Openings */}
+      <section className="py-20 px-6 lg:px-12">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="mb-12"
+          >
+            <p className="text-xs uppercase tracking-widest text-primary font-medium mb-3">Engage students</p>
+            <h2 className="text-2xl lg:text-3xl font-bold text-foreground tracking-tight">Post directly to your students.</h2>
+          </motion.div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Post Events */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.6 }}
+              className="bg-card rounded-xl shadow-precision overflow-hidden"
+            >
+              <div className="p-6 lg:p-8">
+                <Calendar className="w-5 h-5 text-primary mb-3" />
+                <h3 className="text-lg font-semibold text-foreground mb-2">Post Events</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Publish career fairs, workshops, and networking sessions. Students see them instantly on their Event Board, with RSVP tracking built in.
+                </p>
+              </div>
+              <div className="px-6 lg:px-8 pb-6 lg:pb-8">
+                <div className="bg-secondary rounded-lg p-4 space-y-2">
+                  {[
+                    { title: "Spring Career Fair 2026", date: "Mar 28", rsvps: 142, status: "Live" },
+                    { title: "CV Masterclass", date: "Apr 03", rsvps: 56, status: "Scheduled" },
+                    { title: "Alumni Panel: Tech", date: "Apr 10", rsvps: 0, status: "Draft" },
+                  ].map((ev, i) => (
+                    <motion.div
+                      key={ev.title}
+                      initial={{ opacity: 0, x: -16 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: 0.3 + i * 0.08 }}
+                      whileHover={{ x: 4, transition: { duration: 0.2 } }}
+                      className="flex items-center gap-3 bg-card rounded-md px-3 py-2.5"
+                    >
+                      <div className="w-10 h-10 rounded-md bg-primary/10 flex flex-col items-center justify-center">
+                        <span className="text-[9px] text-primary font-medium leading-none">{ev.date.split(" ")[0]}</span>
+                        <span className="text-xs text-primary font-bold leading-none">{ev.date.split(" ")[1]}</span>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xs font-medium text-foreground">{ev.title}</p>
+                        <p className="text-[10px] text-muted-foreground">{ev.rsvps} RSVPs</p>
+                      </div>
+                      <span className={`text-[10px] font-medium rounded-full px-2 py-0.5 ${
+                        ev.status === "Live" ? "bg-emerald-500/10 text-emerald-400"
+                          : ev.status === "Scheduled" ? "bg-primary/10 text-primary"
+                          : "bg-muted text-muted-foreground"
+                      }`}>{ev.status}</span>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Post Job Openings */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="bg-card rounded-xl shadow-precision overflow-hidden"
+            >
+              <div className="p-6 lg:p-8">
+                <Briefcase className="w-5 h-5 text-primary mb-3" />
+                <h3 className="text-lg font-semibold text-foreground mb-2">Post Job Openings</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Share exclusive roles from employer partners directly to your students' Internship Board. Track views, applications, and placement outcomes.
+                </p>
+              </div>
+              <div className="px-6 lg:px-8 pb-6 lg:pb-8">
+                <div className="bg-secondary rounded-lg p-4 space-y-2">
+                  {[
+                    { role: "Marketing Analyst Intern", company: "Partner: Deloitte", views: 234, apps: 18, status: "Active" },
+                    { role: "Software Intern", company: "Partner: Revolut", views: 189, apps: 12, status: "Active" },
+                    { role: "Research Assistant", company: "Internal", views: 95, apps: 7, status: "Closing soon" },
+                  ].map((job, i) => (
+                    <motion.div
+                      key={job.role}
+                      initial={{ opacity: 0, x: -16 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: 0.3 + i * 0.08 }}
+                      whileHover={{ x: 4, transition: { duration: 0.2 } }}
+                      className="flex items-center gap-3 bg-card rounded-md px-3 py-2.5"
+                    >
+                      <div className="w-8 h-8 rounded-md bg-primary/10 flex items-center justify-center">
+                        <Briefcase className="w-3.5 h-3.5 text-primary" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xs font-medium text-foreground">{job.role}</p>
+                        <p className="text-[10px] text-muted-foreground">{job.company} · {job.views} views · {job.apps} apps</p>
+                      </div>
+                      <span className={`text-[10px] font-medium rounded-full px-2 py-0.5 ${
+                        job.status === "Active" ? "bg-emerald-500/10 text-emerald-400" : "bg-amber-500/10 text-amber-400"
+                      }`}>{job.status}</span>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* How it works + GDPR */}
       <section className="py-20 px-6 lg:px-12 bg-secondary">
         <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-12 items-start">
