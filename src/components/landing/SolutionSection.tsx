@@ -67,7 +67,7 @@ const SolutionSection = () => {
               <h3 className="text-xl font-bold text-white mb-3">{s.title}</h3>
               <p className="text-sm text-gray-400 leading-relaxed">{s.description}</p>
               <div className="mt-5 flex items-center gap-1 text-xs text-primary font-medium opacity-0 group-hover:opacity-100 transition-opacity">
-                Learn more <ArrowRight className="w-3 h-3" />
+                Explore in demo <ArrowRight className="w-3 h-3" />
               </div>
             </motion.div>
           ))}
