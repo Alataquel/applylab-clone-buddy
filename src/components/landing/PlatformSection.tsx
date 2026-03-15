@@ -32,7 +32,7 @@ const PlatformSection = () => {
               Roles ranked by <span className="text-gradient">real fit</span>, not keywords
             </h3>
             <p className="text-sm text-muted-foreground mb-6">
-              Our model reads your full profile and surfaces only the roles where you're genuinely in the top tier of candidates.
+              Students see only the roles where they're genuinely competitive — reducing noise and improving application quality institution-wide.
             </p>
             <div className="space-y-3 mb-6">
               {[
