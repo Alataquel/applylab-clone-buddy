@@ -566,9 +566,9 @@ const JobBoardContent = () => (
     {/* Job listings */}
     <div className="flex-1">
       <h3 className="text-sm font-bold text-foreground italic mb-0.5">Job Board</h3>
-      <p className="text-[7px] text-primary mb-2">💼 303 total opportunities</p>
+      <p className="text-[7px] text-primary mb-2 flex items-center gap-0.5"><Briefcase className="w-2.5 h-2.5" /> 303 total opportunities</p>
       <div className="flex items-center gap-2 mb-3">
-        <div className="flex-1 bg-secondary rounded-md px-2 py-1.5 text-[8px] text-muted-foreground">🔍 Search jobs...</div>
+        <div className="flex-1 bg-secondary rounded-md px-2 py-1.5 text-[8px] text-muted-foreground flex items-center gap-1"><Search className="w-2.5 h-2.5" /> Search jobs...</div>
         <button className="bg-primary text-primary-foreground rounded-md px-3 py-1.5 text-[8px] font-medium">Search</button>
       </div>
       <div className="flex items-center justify-between mb-2">
