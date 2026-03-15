@@ -17,24 +17,25 @@ const itemVariants = {
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex items-center py-20 px-4 lg:px-8 overflow-hidden">
-      <div className="max-w-[110rem] w-full mx-auto grid lg:grid-cols-[0.6fr_2.2fr] gap-10 items-center">
-        <motion.div variants={containerVariants} initial="hidden" animate="visible" className="space-y-8">
-          <motion.div variants={itemVariants} className="flex items-center gap-2 text-sm text-muted-foreground">
+    <section className="relative min-h-screen flex flex-col justify-center pt-28 pb-16 px-4 lg:px-8 overflow-hidden">
+      <div className="max-w-[110rem] w-full mx-auto">
+        {/* Top: headline + CTA centered */}
+        <motion.div variants={containerVariants} initial="hidden" animate="visible" className="text-center mb-10 space-y-5">
+          <motion.div variants={itemVariants} className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
             <span className="w-2 h-2 rounded-full bg-emerald-500" />
             Now in beta · Partnering with universities across Europe
           </motion.div>
 
-          <motion.h1 variants={itemVariants} className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] text-balance text-foreground">
+          <motion.h1 variants={itemVariants} className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight leading-[1.05] text-foreground">
             Career outcomes{" "}
             <span className="text-gradient italic font-bold">infrastructure.</span>
           </motion.h1>
 
-          <motion.p variants={itemVariants} className="text-lg text-muted-foreground max-w-md leading-relaxed">
+          <motion.p variants={itemVariants} className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             Real-time visibility into student career activity. Placement analytics your team can act on. The operating system for university career services.
           </motion.p>
 
-          <motion.div variants={itemVariants} className="flex items-center gap-3 flex-wrap">
+          <motion.div variants={itemVariants} className="flex items-center justify-center gap-3 flex-wrap">
             <a
               href="/request-pilot"
               className="inline-flex items-center gap-2 bg-foreground text-background font-medium px-6 py-3 rounded-full text-sm hover:opacity-90 transition-opacity"
@@ -49,7 +50,7 @@ const HeroSection = () => {
             </a>
           </motion.div>
 
-          <motion.div variants={itemVariants} className="flex items-center gap-2 text-xs text-muted-foreground flex-wrap">
+          <motion.div variants={itemVariants} className="flex items-center justify-center gap-2 text-xs text-muted-foreground flex-wrap">
             <span>As listed in</span>
             <span className="font-semibold text-foreground">Forbes Italy Future Leaders</span>
             <span>·</span>
@@ -62,9 +63,10 @@ const HeroSection = () => {
           </motion.div>
         </motion.div>
 
+        {/* Dashboard below */}
         <motion.div
-          initial={{ opacity: 0, x: 40 }}
-          animate={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.3, ease: [0.2, 0, 0, 1] }}
           className="relative"
         >
