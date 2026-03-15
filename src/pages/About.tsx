@@ -125,6 +125,9 @@ const About = () => {
             className="mb-12"
           >
             <p className="text-xs uppercase tracking-widest text-primary font-medium mb-3">The team</p>
+            <h2 className="text-3xl lg:text-4xl font-bold text-foreground tracking-tight">
+              Small team. <span className="text-gradient italic">Big mission.</span>
+            </h2>
           </motion.div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {team.map((t, i) => (
