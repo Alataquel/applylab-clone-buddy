@@ -30,11 +30,11 @@ const StudentToolsSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="bg-card rounded-xl shadow-precision overflow-hidden"
+            className="bg-gray-50 rounded-xl border border-gray-100 overflow-hidden"
           >
             <div className="p-6 lg:p-8">
               <Search className="w-5 h-5 text-primary mb-3" />
-              <h3 className="text-lg font-semibold text-foreground mb-2">Internship Board</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Internship Board</h3>
               <p className="text-sm text-muted-foreground leading-relaxed max-w-lg">
                 Intelligent matching surfaces roles where students are genuinely competitive — improving application quality and reducing noise across your institution.
               </p>
