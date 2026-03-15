@@ -272,9 +272,9 @@ const ForUniversities = () => {
             viewport={{ once: true }}
           >
             <Shield className="w-6 h-6 text-primary mx-auto mb-4" />
-            <h2 className="text-xl font-bold text-foreground tracking-tight mb-3">Student data sovereignty</h2>
+            <h2 className="text-xl font-bold text-foreground tracking-tight mb-3">GDPR compliant</h2>
             <p className="text-sm text-muted-foreground max-w-md mx-auto leading-relaxed">
-              Students own their data. Universities see only aggregated, anonymised analytics. No personal application details are shared without explicit student consent.
+              ApplyLab is fully GDPR compliant. We take data privacy seriously and ensure all student and institutional data is handled in accordance with European data protection regulations.
             </p>
           </motion.div>
         </div>
