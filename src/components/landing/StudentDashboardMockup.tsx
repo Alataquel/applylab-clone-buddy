@@ -522,11 +522,11 @@ const CoverLettersContent = () => (
           </div>
           <p className="text-[7px] text-muted-foreground mb-1">{cl.company} · {cl.role}</p>
           <p className="text-[6px] text-muted-foreground truncate mb-2">Antonio Larrucea Madrid, Comunidad de Madrid...</p>
-          <p className="text-[6px] text-muted-foreground">📅 Created {cl.date}</p>
+          <p className="text-[6px] text-muted-foreground flex items-center gap-0.5"><CalendarDays className="w-2 h-2" /> Created {cl.date}</p>
           <div className="flex gap-1 mt-2">
-            <button className="flex-1 text-[6px] border border-border rounded py-0.5 text-muted-foreground">👁 View</button>
-            <button className="flex-1 text-[6px] border border-border rounded py-0.5 text-muted-foreground">✏️ Edit</button>
-            <button className="text-[6px] text-rose-400 px-1">🗑</button>
+            <button className="flex-1 text-[6px] border border-border rounded py-0.5 text-muted-foreground flex items-center justify-center gap-0.5"><Eye className="w-2 h-2" /> View</button>
+            <button className="flex-1 text-[6px] border border-border rounded py-0.5 text-muted-foreground flex items-center justify-center gap-0.5"><Pencil className="w-2 h-2" /> Edit</button>
+            <button className="text-[6px] text-rose-400 px-1"><Trash2 className="w-2.5 h-2.5" /></button>
           </div>
         </div>
       ))}
