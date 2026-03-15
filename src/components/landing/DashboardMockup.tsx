@@ -485,7 +485,7 @@ const DashboardMockup = () => {
         </div>
 
         {/* Main content */}
-        <div className="flex-1 p-5 overflow-y-auto max-h-[460px]">
+        <div className="flex-1 p-5 overflow-y-auto max-h-[540px]">
           {renderContent()}
         </div>
       </div>
