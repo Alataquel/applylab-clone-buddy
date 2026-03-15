@@ -155,6 +155,41 @@ const InfrastructureSection = () => {
           </p>
         </motion.div>
 
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="mb-16 grid grid-cols-1 sm:grid-cols-3 gap-4"
+        >
+          {[
+            {
+              title: "See what's happening",
+              desc: "Real-time visibility into student career activity — applications, interviews, and placements.",
+            },
+            {
+              title: "Spot who needs help",
+              desc: "Early-warning signals flag disengaged students so counsellors can intervene before it's too late.",
+            },
+            {
+              title: "Prove your impact",
+              desc: "Auto-generated reports with placement rates, employer data, and outcome trends — no more spreadsheets.",
+            },
+          ].map((item, i) => (
+            <motion.div
+              key={item.title}
+              initial={{ opacity: 0, y: 16, scale: 0.97 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: 0.15 + i * 0.1 }}
+              className="bg-card rounded-xl p-6 border border-border/30 shadow-precision"
+            >
+              <h3 className="text-sm font-semibold text-foreground mb-1.5">{item.title}</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
+            </motion.div>
+          ))}
+        </motion.div>
+
         <div className="space-y-8">
           {/* Student Analysis */}
           <motion.div

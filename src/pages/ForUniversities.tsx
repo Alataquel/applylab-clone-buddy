@@ -94,17 +94,14 @@ const ForUniversities = () => {
           >
             {[
               {
-                emoji: "👁️",
                 title: "See what's happening",
                 desc: "Real-time visibility into student career activity — applications, interviews, and placements.",
               },
               {
-                emoji: "🎯",
                 title: "Spot who needs help",
                 desc: "Early-warning signals flag disengaged students so counsellors can intervene before it's too late.",
               },
               {
-                emoji: "📊",
                 title: "Prove your impact",
                 desc: "Auto-generated reports with placement rates, employer data, and outcome trends — no more spreadsheets.",
               },
@@ -117,7 +114,6 @@ const ForUniversities = () => {
                 transition={{ duration: 0.4, delay: 0.15 + i * 0.1 }}
                 className="bg-card rounded-xl p-6 border border-border/30 shadow-precision"
               >
-                <span className="text-2xl mb-3 block">{item.emoji}</span>
                 <h3 className="text-sm font-semibold text-foreground mb-1.5">{item.title}</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
               </motion.div>
