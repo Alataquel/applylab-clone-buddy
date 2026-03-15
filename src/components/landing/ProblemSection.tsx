@@ -32,8 +32,8 @@ const ProblemSection = () => {
             className="lg:col-span-5 lg:row-span-2 bg-[hsl(220,25%,10%)] rounded-2xl p-8 flex flex-col justify-between min-h-[420px] hover:-translate-y-1 transition-transform duration-300"
           >
             <div>
-              <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mb-5">
-                <Eye className="w-5 h-5 text-primary" />
+              <div className="w-10 h-10 rounded-xl bg-sky-400/10 flex items-center justify-center mb-5">
+                <Eye className="w-5 h-5 text-sky-400" />
               </div>
               <h3 className="text-2xl font-bold text-white mb-3 leading-tight">No visibility</h3>
               <p className="text-sm text-gray-400 leading-relaxed">
