@@ -163,7 +163,7 @@ const About = () => {
       </section>
 
       {/* Values */}
-      <section className="py-20 px-6 lg:px-12 border-t border-border/30">
+      <section className="py-20 px-6 lg:px-12 bg-white text-gray-900">
         <div className="max-w-5xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -173,7 +173,7 @@ const About = () => {
             className="mb-12"
           >
             <p className="text-xs uppercase tracking-widest text-primary font-medium mb-3">Our values</p>
-            <h2 className="text-3xl lg:text-4xl font-bold text-foreground tracking-tight">
+            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 tracking-tight">
               What we <span className="text-gradient italic">stand for.</span>
             </h2>
           </motion.div>
@@ -185,11 +185,11 @@ const About = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.08 }}
-                className="bg-card rounded-xl p-6 shadow-precision hover:-translate-y-0.5 transition-transform"
+                className="bg-gray-50 rounded-xl p-6 hover:-translate-y-0.5 transition-transform border border-gray-100"
               >
                 <v.icon className="w-5 h-5 text-primary mb-4" />
-                <h3 className="text-sm font-semibold text-foreground mb-2">{v.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{v.desc}</p>
+                <h3 className="text-sm font-semibold text-gray-900 mb-2">{v.title}</h3>
+                <p className="text-sm text-gray-500 leading-relaxed">{v.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -236,7 +236,7 @@ const About = () => {
       </section>
 
       {/* CTA */}
-      <section className="py-20 px-6 lg:px-12 border-t border-border/30">
+      <section className="py-20 px-6 lg:px-12 bg-white text-gray-900">
         <div className="max-w-3xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -244,22 +244,22 @@ const About = () => {
             viewport={{ once: true }}
           >
             <p className="text-xs uppercase tracking-widest text-primary font-medium mb-3">Get involved</p>
-            <h2 className="text-2xl lg:text-3xl font-bold text-foreground tracking-tight mb-4">
+            <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 tracking-tight mb-4">
               Be part of the <span className="text-gradient italic">mission.</span>
             </h2>
-            <p className="text-sm text-muted-foreground mb-8 max-w-md mx-auto">
+            <p className="text-sm text-gray-500 mb-8 max-w-md mx-auto">
               Whether you're a university looking to give your students a real edge, or a partner who wants to help — we'd love to hear from you.
             </p>
             <div className="flex justify-center gap-3">
               <a
                 href="/request-pilot"
-                className="inline-flex items-center gap-2 bg-foreground text-background font-medium px-6 py-3 rounded-full text-sm hover:opacity-90 transition-opacity"
+                className="inline-flex items-center gap-2 bg-gray-900 text-white font-medium px-6 py-3 rounded-full text-sm hover:opacity-90 transition-opacity"
               >
                 Request a pilot <ArrowRight className="w-4 h-4" />
               </a>
               <a
                 href="/request-pilot"
-                className="inline-flex items-center gap-2 text-muted-foreground font-medium px-6 py-3 rounded-full text-sm border border-muted hover:text-foreground transition-colors"
+                className="inline-flex items-center gap-2 text-gray-500 font-medium px-6 py-3 rounded-full text-sm border border-gray-200 hover:text-gray-900 transition-colors"
               >
                 Get in touch
               </a>
