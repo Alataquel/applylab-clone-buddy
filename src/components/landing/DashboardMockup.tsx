@@ -1560,7 +1560,6 @@ const QualificationInsightsContent = () => {
   );
 };
 
-const MarketInsightsContent = () => {
   const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
   const demand = [45, 52, 58, 72, 85, 95, 120, 135, 150, 165, 180, 210];
   const supply = [60, 68, 75, 90, 110, 130, 155, 170, 185, 195, 205, 220];
