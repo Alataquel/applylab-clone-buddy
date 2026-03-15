@@ -275,14 +275,99 @@ const SpiderChart = ({ data }: { data: { certifications: number; languages: numb
 
 const StudentDetailContent = ({ student, onBack }: { student: typeof studentsData[0]; onBack: () => void }) => {
   const cfg = statusConfig[student.status];
+  const [viewingDoc, setViewingDoc] = useState<string | null>(null);
+
+  if (viewingDoc) {
+    return (
+      <>
+        <div className="flex items-center gap-3 mb-4">
+          <button onClick={() => setViewingDoc(null)} className="text-gray-400 hover:text-white transition-colors">
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
+          </button>
+          <svg className="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+          <p className="text-sm font-semibold text-white">{student.name} — {viewingDoc}</p>
+        </div>
+        {/* Mock document viewer */}
+        <div className="bg-white rounded-lg p-6 max-w-lg mx-auto shadow-lg text-gray-900 text-[10px] leading-relaxed">
+          {viewingDoc === "Resume" ? (
+            <>
+              <div className="text-center mb-4 border-b border-gray-200 pb-3">
+                <p className="text-sm font-bold text-gray-900">{student.name}</p>
+                <p className="text-[9px] text-gray-500 mt-0.5">{student.email} · {student.phone}</p>
+                <p className="text-[9px] text-gray-500">{student.degree}</p>
+              </div>
+              <div className="mb-3">
+                <p className="text-[9px] font-bold uppercase tracking-wider text-gray-700 mb-1.5 border-b border-gray-300 pb-0.5">Education</p>
+                <div className="flex justify-between">
+                  <div>
+                    <p className="font-semibold text-gray-800">Saint Louis University</p>
+                    <p className="text-gray-500">{student.degree}</p>
+                  </div>
+                  <p className="text-gray-500">2022 – 2025</p>
+                </div>
+                <p className="text-gray-500 mt-0.5">GPA: 3.7/4.0 · Dean's List 2023, 2024</p>
+              </div>
+              <div className="mb-3">
+                <p className="text-[9px] font-bold uppercase tracking-wider text-gray-700 mb-1.5 border-b border-gray-300 pb-0.5">Experience</p>
+                <div className="mb-2">
+                  <div className="flex justify-between">
+                    <p className="font-semibold text-gray-800">Strategy Intern — McKinsey & Company</p>
+                    <p className="text-gray-500">Jun – Aug 2024</p>
+                  </div>
+                  <ul className="list-disc ml-3 mt-0.5 space-y-0.5 text-gray-600">
+                    <li>Conducted market analysis for a €2B consumer goods client</li>
+                    <li>Built financial models for growth strategy recommendations</li>
+                    <li>Presented findings to senior partners and client C-suite</li>
+                  </ul>
+                </div>
+                <div>
+                  <div className="flex justify-between">
+                    <p className="font-semibold text-gray-800">Research Assistant — Dept. of Economics</p>
+                    <p className="text-gray-500">Sep 2023 – May 2024</p>
+                  </div>
+                  <ul className="list-disc ml-3 mt-0.5 space-y-0.5 text-gray-600">
+                    <li>Analyzed labour market datasets using Python and R</li>
+                    <li>Co-authored working paper on youth unemployment trends</li>
+                  </ul>
+                </div>
+              </div>
+              <div className="mb-3">
+                <p className="text-[9px] font-bold uppercase tracking-wider text-gray-700 mb-1.5 border-b border-gray-300 pb-0.5">Skills</p>
+                <p className="text-gray-600">Python · R · SQL · Tableau · Financial Modelling · PowerPoint · Fluent in English, Mandarin</p>
+              </div>
+              <div>
+                <p className="text-[9px] font-bold uppercase tracking-wider text-gray-700 mb-1.5 border-b border-gray-300 pb-0.5">Certifications</p>
+                <p className="text-gray-600">CFA Level I Candidate · Google Data Analytics Certificate</p>
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="mb-4">
+                <p className="text-right text-gray-500 mb-4">{new Date().toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })}</p>
+                <p className="mb-2">Dear Hiring Manager,</p>
+                <p className="mb-2">I am writing to express my strong interest in the Analyst position at Deloitte. As a {student.degree} student at Saint Louis University with a passion for strategic problem-solving, I believe my academic background and internship experience make me a strong candidate.</p>
+                <p className="mb-2">During my internship at McKinsey & Company, I gained hands-on experience in market analysis and financial modelling, working directly with senior partners on high-impact client engagements. This experience sharpened my analytical thinking and ability to distil complex data into actionable recommendations.</p>
+                <p className="mb-2">My research work in the Department of Economics further developed my quantitative skills, where I used Python and R to analyse large-scale labour market datasets. I am confident these skills would translate well to Deloitte's analytical frameworks.</p>
+                <p className="mb-2">I am particularly drawn to Deloitte's collaborative culture and commitment to developing early-career talent. I would welcome the opportunity to contribute my skills and grow within your team.</p>
+                <p className="mb-4">Thank you for your consideration. I look forward to hearing from you.</p>
+                <p>Sincerely,</p>
+                <p className="font-semibold">{student.name}</p>
+              </div>
+            </>
+          )}
+        </div>
+      </>
+    );
+  }
+
   return (
     <>
       {/* Header */}
-      <div className={`flex items-center gap-3 mb-4 ${cfg.bg} ${cfg.border} border rounded-lg px-3 py-3`}>
+      <div className={`flex items-center gap-3 mb-5 ${cfg.bg} ${cfg.border} border rounded-lg px-4 py-3`}>
         <button onClick={onBack} className="text-gray-400 hover:text-white transition-colors">
           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
         </button>
-        <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-[10px] font-bold text-primary flex-shrink-0">{student.avatar}</div>
+        <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-xs font-bold text-primary flex-shrink-0">{student.avatar}</div>
         <div className="flex-1">
           <p className="text-sm font-semibold text-white">{student.name}</p>
           <p className="text-[10px] text-gray-400">{student.email}</p>
@@ -290,36 +375,53 @@ const StudentDetailContent = ({ student, onBack }: { student: typeof studentsDat
         <span className={`text-[9px] font-semibold ${cfg.labelColor}`}>{cfg.label}</span>
       </div>
 
-      <div className="grid grid-cols-2 gap-3">
-        {/* Left: Info + Spider */}
+      <div className="grid grid-cols-[1fr_1.5fr] gap-5">
+        {/* Left: Info + Spider + Documents */}
         <div>
-          <p className="text-[10px] text-gray-500 mb-2">Information</p>
-          <div className="space-y-1.5 mb-3">
-            <div className="flex items-center gap-1.5">
-              <svg className="w-3 h-3 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
-              <span className="text-[10px] text-gray-300">{student.email}</span>
+          <p className="text-[11px] text-gray-500 mb-2 font-medium">Information</p>
+          <div className="space-y-2 mb-5 bg-white/[0.02] border border-white/5 rounded-lg p-3">
+            <div className="flex items-center gap-2">
+              <svg className="w-3.5 h-3.5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+              <span className="text-[11px] text-gray-300">{student.email}</span>
             </div>
-            <div className="flex items-center gap-1.5">
-              <svg className="w-3 h-3 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
-              <span className="text-[10px] text-gray-300">{student.phone}</span>
+            <div className="flex items-center gap-2">
+              <svg className="w-3.5 h-3.5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
+              <span className="text-[11px] text-gray-300">{student.phone}</span>
             </div>
-            <div className="flex items-center gap-1.5">
-              <svg className="w-3 h-3 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
-              <span className="text-[10px] text-gray-300">{student.degree}</span>
+            <div className="flex items-center gap-2">
+              <svg className="w-3.5 h-3.5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
+              <span className="text-[11px] text-gray-300">{student.degree}</span>
             </div>
           </div>
-          <p className="text-[10px] text-gray-500 mb-1">Profile Report</p>
-          <SpiderChart data={student.spider} />
+
+          <p className="text-[11px] text-gray-500 mb-2 font-medium">Profile Report</p>
+          <div className="mb-5">
+            <SpiderChart data={student.spider} />
+          </div>
+
+          <p className="text-[11px] text-gray-500 mb-2 font-medium">Documents</p>
+          <div className="space-y-1.5">
+            {["Resume", "Cover Letter"].map((doc) => (
+              <div
+                key={doc}
+                onClick={() => setViewingDoc(doc)}
+                className="flex items-center gap-2.5 bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5 cursor-pointer hover:bg-white/[0.06] hover:border-primary/30 transition-all group"
+              >
+                <svg className="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                <p className="text-[11px] text-white font-medium flex-1">{doc}</p>
+                <span className="text-[8px] text-gray-500 group-hover:text-primary transition-colors">View →</span>
+              </div>
+            ))}
+          </div>
         </div>
 
-        {/* Right: Applications + Documents */}
+        {/* Right: Applications */}
         <div>
-          <p className="text-[10px] text-gray-500 mb-2">Application Tracker</p>
+          <p className="text-[11px] text-gray-500 mb-2 font-medium">Application Tracker</p>
           {student.applications.length === 0 ? (
-            <p className="text-[10px] text-gray-600 italic mb-3">No applications yet</p>
+            <p className="text-[11px] text-gray-600 italic mb-3">No applications yet</p>
           ) : (
             <>
-              {/* Funnel summary */}
               {(() => {
                 const stageColors: Record<string, { bar: string; badge: string }> = {
                   "Applied": { bar: "bg-gray-400", badge: "bg-gray-500/20 text-gray-400" },
@@ -334,31 +436,26 @@ const StudentDetailContent = ({ student, onBack }: { student: typeof studentsDat
                 const total = student.applications.length;
 
                 return (
-                  <div className="mb-3">
-                    {/* Application list with full pipeline */}
-                    <div className="space-y-1.5">
+                  <div>
+                    <div className="space-y-2">
                       {student.applications.map((app) => {
                         const stageIdx = progressStages.indexOf(app.status);
                         const isRejected = app.status === "Rejected";
                         const colors = stageColors[app.status] || stageColors["Applied"];
-                        // For rejected, find how far they got (use the stage before rejection — assume at least Applied)
                         const rejectedAtIdx = isRejected ? Math.max(0, 1) : stageIdx;
                         
                         return (
-                          <div key={app.company + app.role} className="bg-white/[0.03] border border-white/5 rounded-lg px-2.5 py-2">
-                            <div className="flex items-center justify-between mb-1.5">
+                          <div key={app.company + app.role} className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5">
+                            <div className="flex items-center justify-between mb-2">
                               <div>
-                                <p className="text-[10px] font-semibold text-white">{app.role}</p>
-                                <p className="text-[8px] text-gray-500">{app.company}</p>
+                                <p className="text-[11px] font-semibold text-white">{app.role}</p>
+                                <p className="text-[9px] text-gray-500">{app.company}</p>
                               </div>
-                              <span className={`text-[7px] font-bold px-1.5 py-0.5 rounded-md ${colors.badge}`}>{app.status}</span>
+                              <span className={`text-[8px] font-bold px-2 py-0.5 rounded-md ${colors.badge}`}>{app.status}</span>
                             </div>
-                            {/* Stage pipeline */}
                             <div className="flex items-center gap-0.5">
                               {progressStages.map((stage, i) => {
-                                const isActive = isRejected
-                                  ? i <= rejectedAtIdx
-                                  : i <= stageIdx;
+                                const isActive = isRejected ? i <= rejectedAtIdx : i <= stageIdx;
                                 const isCurrent = isRejected ? false : i === stageIdx;
                                 const dotColor = isRejected
                                   ? (i <= rejectedAtIdx ? "bg-rose-400" : "bg-white/10")
@@ -370,8 +467,8 @@ const StudentDetailContent = ({ student, onBack }: { student: typeof studentsDat
                                 return (
                                   <div key={stage} className="flex items-center flex-1">
                                     <div className="relative flex flex-col items-center">
-                                      <div className={`w-2 h-2 rounded-full ${dotColor} ${isCurrent ? "ring-1 ring-white/30" : ""} transition-all`} />
-                                      <span className={`text-[5px] mt-0.5 whitespace-nowrap ${isActive ? "text-gray-300" : "text-gray-600"}`}>
+                                      <div className={`w-2.5 h-2.5 rounded-full ${dotColor} ${isCurrent ? "ring-1 ring-white/30" : ""} transition-all`} />
+                                      <span className={`text-[6px] mt-0.5 whitespace-nowrap ${isActive ? "text-gray-300" : "text-gray-600"}`}>
                                         {stage.replace("1st ", "1st\u00A0").replace("2nd ", "2nd\u00A0")}
                                       </span>
                                     </div>
@@ -381,13 +478,12 @@ const StudentDetailContent = ({ student, onBack }: { student: typeof studentsDat
                                   </div>
                                 );
                               })}
-                              {/* Rejected X marker */}
                               {isRejected && (
                                 <div className="flex flex-col items-center ml-0.5">
-                                  <div className="w-2 h-2 rounded-full bg-rose-500 flex items-center justify-center">
-                                    <span className="text-[5px] text-white font-bold">✕</span>
+                                  <div className="w-2.5 h-2.5 rounded-full bg-rose-500 flex items-center justify-center">
+                                    <span className="text-[6px] text-white font-bold">✕</span>
                                   </div>
-                                  <span className="text-[5px] mt-0.5 text-rose-400">Rejected</span>
+                                  <span className="text-[6px] mt-0.5 text-rose-400">Rejected</span>
                                 </div>
                               )}
                             </div>
@@ -395,25 +491,14 @@ const StudentDetailContent = ({ student, onBack }: { student: typeof studentsDat
                         );
                       })}
                     </div>
-                    <div className="flex items-center gap-1 mt-2">
-                      <span className="text-[9px] text-gray-500">Total: {total} applications</span>
+                    <div className="flex items-center gap-1 mt-3">
+                      <span className="text-[10px] text-gray-500">Total: {total} applications</span>
                     </div>
                   </div>
                 );
               })()}
             </>
           )}
-
-          <p className="text-[10px] text-gray-500 mb-2">Documents</p>
-          <div className="space-y-1">
-            {["Resume", "Cover Letter"].map((doc) => (
-              <div key={doc} className="flex items-center gap-2 bg-white/[0.03] border border-white/5 rounded-md px-2 py-1.5 cursor-pointer hover:bg-white/[0.06] transition-colors">
-                <svg className="w-3.5 h-3.5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
-                <p className="text-[10px] text-white">{doc}</p>
-                <svg className="w-3 h-3 text-gray-500 ml-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
-              </div>
-            ))}
-          </div>
         </div>
       </div>
     </>
