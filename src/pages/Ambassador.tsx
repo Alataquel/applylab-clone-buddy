@@ -166,7 +166,7 @@ const Ambassador = () => {
             className="mb-12"
           >
             <p className="text-xs uppercase tracking-widest text-primary font-medium mb-3">Ideal candidate</p>
-            <h2 className="text-2xl lg:text-3xl font-bold text-foreground tracking-tight">What we look for.</h2>
+            <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 tracking-tight">What we look for.</h2>
           </motion.div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
