@@ -328,8 +328,7 @@ const About = () => {
       </section>
 
       <Footer />
-      </div>
-    </div>
+    </GridBackground>
   );
 };
 
