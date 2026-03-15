@@ -234,7 +234,7 @@ const TrackerContent = () => {
   ];
 
   return (
-    <div style={{ zoom: 1.35 }}>
+    <>
       <div className="flex items-center justify-between mb-3">
         <div>
           <h3 className="text-sm font-bold text-foreground italic">Application Tracker</h3>
@@ -273,7 +273,7 @@ const TrackerContent = () => {
           </div>
         ))}
       </div>
-    </div>
+    </>
   );
 };
 
@@ -1299,7 +1299,7 @@ const JobBoardContent = () => {
               <button onClick={resetFilters} className="text-[7px] text-primary font-medium mt-2">Reset all filters</button>
             </div>
           ) : (
-            <div className="grid grid-cols-4 gap-1.5">
+            <div className="grid grid-cols-3 gap-1.5">
               {sorted.map((job, idx) => (
                 <div key={`${job.company}-${job.title}-${idx}`} className="bg-card border border-border rounded-lg p-2 hover:border-primary/30 transition-colors">
                   <div className="flex items-center justify-between mb-1.5">
@@ -1332,24 +1332,10 @@ const JobBoardContent = () => {
 const allEvents = [
   { type: "In-Person", title: "NVIDIA GTC 2026", desc: "The premier global AI conference featuring keynotes, workshops, and demos", date: "Mon, Mar 16, 8 AM", time: "8:00 AM - 6:00 PM", location: "San Jose, CA", publisher: "NVIDIA", typeColor: "bg-rose-500" },
   { type: "In-Person", title: "Student & Community Voice AI Summit", desc: "K12 educators, students and communities exploring voice AI applications", date: "Thu, Mar 19, 5 PM", time: "5:00 PM - 12:00 PM", location: "Austin, TX", publisher: "web.cvent.com", typeColor: "bg-rose-500" },
-  { type: "Virtual", title: "HYBRID Workshop Vestibular Rehabilitation", desc: "Rehabilitation & Concussion Certification for healthcare professionals", date: "Sat, Mar 21", time: "12:00 PM - 4:00 PM", location: "Online", publisher: "Emedevents.com", typeColor: "bg-emerald-600" },
-  { type: "Virtual", title: "31st International Conference on Nutrition", desc: "Scientific Conferences Global Events on nutrition and dietetics research", date: "Thu, Apr 2 - Fri, Apr 3", time: "9:00 AM - 5:00 PM", location: "Online", publisher: "Nutrition & Dietetics", typeColor: "bg-emerald-600" },
-  { type: "In-Person", title: "HumanX 2026", desc: "Leading human-centered AI conference in San Francisco", date: "Mon, Apr 6, 8 AM", time: "8:00 AM - 6:00 PM", location: "San Francisco, CA", publisher: "HumanX", typeColor: "bg-rose-500" },
   { type: "Virtual", title: "Women in Tech Global Summit", desc: "Empowering women in technology through talks, panels, and mentorship sessions", date: "Wed, Apr 9, 10 AM", time: "10:00 AM - 4:00 PM", location: "Online", publisher: "WomenTech Network", typeColor: "bg-emerald-600" },
   { type: "In-Person", title: "European Career Fair 2026", desc: "Connect with top European employers across finance, consulting, and tech", date: "Sat, Apr 12, 9 AM", time: "9:00 AM - 5:00 PM", location: "Paris, France", publisher: "EuroCareers", typeColor: "bg-rose-500" },
   { type: "Virtual", title: "Data Science Bootcamp Weekend", desc: "Hands-on workshops in Python, machine learning, and data visualization", date: "Sat, Apr 19 - Sun, Apr 20", time: "10:00 AM - 6:00 PM", location: "Online", publisher: "DataCamp", typeColor: "bg-emerald-600" },
   { type: "In-Person", title: "TechCrunch Disrupt 2026", desc: "Startup showcase, pitch competitions, and networking with VCs and founders", date: "Mon, Apr 21, 9 AM", time: "9:00 AM - 7:00 PM", location: "San Francisco, CA", publisher: "TechCrunch", typeColor: "bg-rose-500" },
-  { type: "In-Person", title: "MIT Career & Internship Fair", desc: "Hundreds of employers recruiting for internships and full-time roles", date: "Thu, Apr 24, 10 AM", time: "10:00 AM - 4:00 PM", location: "Cambridge, MA", publisher: "MIT CAPD", typeColor: "bg-rose-500" },
-  { type: "Virtual", title: "Resume & Interview Prep Workshop", desc: "Get expert feedback on your resume and practice common interview questions", date: "Tue, Apr 29, 2 PM", time: "2:00 PM - 4:30 PM", location: "Online", publisher: "ApplyLab", typeColor: "bg-emerald-600" },
-  { type: "In-Person", title: "London FinTech Week", desc: "A week-long festival exploring innovation in financial technology", date: "Mon, May 5 - Fri, May 9", time: "9:00 AM - 6:00 PM", location: "London, UK", publisher: "FinTech Alliance", typeColor: "bg-rose-500" },
-  { type: "Virtual", title: "Product Management Masterclass", desc: "Learn PM frameworks, roadmapping, and stakeholder management from industry leaders", date: "Wed, May 7, 6 PM", time: "6:00 PM - 8:00 PM", location: "Online", publisher: "Product School", typeColor: "bg-emerald-600" },
-  { type: "In-Person", title: "Berlin Startup Night", desc: "Pitch night and networking event connecting students with Berlin's startup ecosystem", date: "Fri, May 9, 7 PM", time: "7:00 PM - 11:00 PM", location: "Berlin, Germany", publisher: "Startup Nights", typeColor: "bg-rose-500" },
-  { type: "Virtual", title: "AI Ethics & Governance Symposium", desc: "Exploring responsible AI practices, bias mitigation, and regulatory frameworks", date: "Tue, May 13, 1 PM", time: "1:00 PM - 5:00 PM", location: "Online", publisher: "IEEE", typeColor: "bg-emerald-600" },
-  { type: "In-Person", title: "Spring Graduate Recruitment Fair", desc: "Meet top graduate employers from consulting, banking, and tech sectors", date: "Wed, May 14, 10 AM", time: "10:00 AM - 4:00 PM", location: "Madrid, Spain", publisher: "IE University", typeColor: "bg-rose-500" },
-  { type: "Virtual", title: "UX Design Portfolio Review", desc: "Submit your portfolio for live feedback from senior UX designers at Google and Meta", date: "Sat, May 17, 3 PM", time: "3:00 PM - 5:00 PM", location: "Online", publisher: "UX Collective", typeColor: "bg-emerald-600" },
-  { type: "In-Person", title: "Web Summit 2026 — Early Access", desc: "Early registration event for the world's largest technology conference", date: "Mon, May 19, 9 AM", time: "9:00 AM - 1:00 PM", location: "Lisbon, Portugal", publisher: "Web Summit", typeColor: "bg-rose-500" },
-  { type: "Virtual", title: "Intro to Cloud Computing with AWS", desc: "Beginner-friendly workshop covering EC2, S3, Lambda, and cloud architecture basics", date: "Thu, May 22, 11 AM", time: "11:00 AM - 1:00 PM", location: "Online", publisher: "AWS Training", typeColor: "bg-emerald-600" },
-  { type: "In-Person", title: "Barcelona Innovation Week", desc: "Tech talks, hackathons, and startup demos across Barcelona's innovation district", date: "Mon, Jun 2 - Fri, Jun 6", time: "9:00 AM - 8:00 PM", location: "Barcelona, Spain", publisher: "Barcelona Activa", typeColor: "bg-rose-500" },
 ];
 
 const EventsContent = () => {
@@ -1389,7 +1375,7 @@ const EventsContent = () => {
             <p className="text-[7px] text-muted-foreground">Try adjusting your search or filters</p>
           </div>
         ) : (
-          <div className="grid grid-cols-5 gap-1.5">
+          <div className="grid grid-cols-3 gap-1.5">
             {filtered.map((ev) => (
               <div key={ev.title} className="bg-card border border-border rounded-lg p-2 hover:border-primary/30 transition-colors">
                 <span className={`text-[5px] text-white font-bold rounded px-1 py-0.5 ${ev.typeColor} inline-block mb-1.5`}>{ev.type} Event</span>
@@ -1644,7 +1630,7 @@ const StudentDashboardMockup = () => {
         "--border": "214.3 31.8% 91.4%",
         backgroundColor: "hsl(0 0% 100%)",
         color: "hsl(222.2 84% 4.9%)",
-        zoom: 1.25,
+        zoom: 1.5,
       } as React.CSSProperties}
     >
       {/* Browser chrome */}
