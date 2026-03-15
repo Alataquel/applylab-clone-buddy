@@ -615,7 +615,7 @@ const ResumeBuilderContent = () => {
   return (
     <div className="grid grid-cols-[0.8fr_1.4fr_0.8fr] gap-0">
       {/* Left sidebar - Editable Form */}
-      <div className="bg-[hsl(228,50%,20%)] rounded-l-lg p-2.5 text-white space-y-2 max-h-[560px] overflow-y-auto">
+      <div className="bg-[hsl(228,50%,20%)] rounded-l-lg p-2.5 text-white space-y-2 overflow-y-auto">
         <button onClick={autofillAll} className="w-full text-[6px] text-blue-300 bg-blue-400/10 rounded px-1.5 py-1 border border-blue-400/20 hover:bg-blue-400/20 transition-colors font-medium">⚡ Autofill from profile</button>
         <p className="text-[7px] font-bold text-white/80 uppercase tracking-wider">Basics</p>
         {([
@@ -736,7 +736,7 @@ const ResumeBuilderContent = () => {
       </div>
 
       {/* Right sidebar - Settings */}
-      <div className="bg-[hsl(228,50%,20%)] rounded-r-lg p-2.5 space-y-2.5 text-white max-h-[560px] overflow-y-auto">
+      <div className="bg-[hsl(228,50%,20%)] rounded-r-lg p-2.5 space-y-2.5 text-white overflow-y-auto">
         <div>
           <p className="text-[7px] font-bold text-white/80 uppercase tracking-wider">Preview</p>
           <label className="flex items-center gap-1.5 mt-1">
