@@ -74,7 +74,7 @@ const About = () => {
           >
             <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
               <span className="w-2 h-2 rounded-full bg-emerald-500" />
-              Founded 2023 · Remote-first team
+              Founded 2024 · Remote-first team
             </div>
             <p className="text-xs uppercase tracking-widest text-primary font-medium mb-3">About ApplyLab</p>
             <h1 className="text-4xl lg:text-5xl font-bold text-foreground tracking-tight leading-[1.1] mb-6">
