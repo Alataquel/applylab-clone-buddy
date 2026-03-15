@@ -595,8 +595,18 @@ const ResumeBuilderContent = () => {
   const [templateDropdownOpen, setTemplateDropdownOpen] = useState(false);
 
   const updateField = (key: string, value: string) => setFields(prev => ({ ...prev, [key]: value }));
+  const autofillAll = () => setFields({
+    headline: "Frontend Developer & UX Designer",
+    fullName: "Antonio Rossi",
+    summary: "Creative frontend developer with 2+ years of experience building responsive web applications. Passionate about clean code, accessibility, and user-centered design. Proficient in React, TypeScript, and modern CSS frameworks.",
+    email: "antonio.rossi@email.com",
+    phone: "+39 345 678 9012",
+    website: "antoniorossi.dev",
+    location: "Milan, Italy",
+    linkedin: "linkedin.com/in/antoniorossi",
+    github: "github.com/arossi",
+  });
   const accentColor = colorOptions[selectedColor].hex;
-  const accentHsl = colorOptions[selectedColor].hsl;
 
   const isClassic = selectedTemplate === "Classic";
   const isMinimal = selectedTemplate === "Minimal";
@@ -606,7 +616,7 @@ const ResumeBuilderContent = () => {
     <div className="grid grid-cols-[0.8fr_1.4fr_0.8fr] gap-0">
       {/* Left sidebar - Editable Form */}
       <div className="bg-[hsl(228,50%,20%)] rounded-l-lg p-2.5 text-white space-y-2 max-h-[560px] overflow-y-auto">
-        <button className="text-[6px] text-blue-300 bg-blue-400/10 rounded px-1.5 py-0.5 border border-blue-400/20">Autofill from profile</button>
+        <button onClick={autofillAll} className="w-full text-[6px] text-blue-300 bg-blue-400/10 rounded px-1.5 py-1 border border-blue-400/20 hover:bg-blue-400/20 transition-colors font-medium">⚡ Autofill from profile</button>
         <p className="text-[7px] font-bold text-white/80 uppercase tracking-wider">Basics</p>
         {([
           ["headline", "Headline"],
@@ -648,7 +658,7 @@ const ResumeBuilderContent = () => {
           <button className="text-[7px] text-blue-300">← Back to My CVs</button>
           <button className="text-[7px] text-blue-300 border border-blue-400/30 rounded px-2 py-0.5">⬇ Save as PDF</button>
         </div>
-        <div className="bg-white rounded shadow-lg w-full border border-white/20 max-h-[520px] overflow-y-auto scrollbar-thin" style={{ fontFamily: isClassic ? "Georgia, serif" : isExecutive ? "Garamond, serif" : "Inter, sans-serif" }}>
+        <div className="bg-white rounded shadow-lg w-full border border-white/20 overflow-y-auto scrollbar-thin" style={{ fontFamily: isClassic ? "Georgia, serif" : isExecutive ? "Garamond, serif" : "Inter, sans-serif" }}>
           
           {/* MODERN template */}
           {!isClassic && !isMinimal && !isExecutive && (
