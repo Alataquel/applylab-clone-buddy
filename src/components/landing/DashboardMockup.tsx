@@ -224,25 +224,89 @@ const StudentDetailContent = ({ student, onBack }: { student: typeof studentsDat
 
         {/* Right: Applications + Documents */}
         <div>
-          <p className="text-[10px] text-gray-500 mb-2">Job Applications</p>
+          <p className="text-[10px] text-gray-500 mb-2">Application Tracker</p>
           {student.applications.length === 0 ? (
             <p className="text-[10px] text-gray-600 italic mb-3">No applications yet</p>
           ) : (
-            <div className="space-y-1 mb-3">
-              {student.applications.map((app) => (
-                <div key={app.company + app.role} className="flex items-center justify-between bg-white/[0.03] border border-white/5 rounded-md px-2 py-1.5">
-                  <div>
-                    <p className="text-[10px] font-medium text-white">{app.role}</p>
-                    <p className="text-[9px] text-gray-500">{app.company}</p>
+            <>
+              {/* Funnel summary */}
+              {(() => {
+                const stages = [
+                  { label: "Submitted", key: "Submitted", color: "bg-gray-400" },
+                  { label: "Applied", key: "Applied", color: "bg-blue-400" },
+                  { label: "Interview", key: "Interview", color: "bg-amber-400" },
+                  { label: "Offered", key: "Offered", color: "bg-emerald-400" },
+                  { label: "Rejected", key: "Rejected", color: "bg-rose-400" },
+                ];
+                const total = student.applications.length;
+                const counts = stages.map(s => ({
+                  ...s,
+                  count: student.applications.filter(a => a.status === s.key).length,
+                })).filter(s => s.count > 0);
+
+                return (
+                  <div className="mb-3">
+                    {/* Funnel bars */}
+                    <div className="space-y-1 mb-2">
+                      {counts.map((s) => (
+                        <div key={s.label} className="flex items-center gap-2">
+                          <span className="text-[8px] text-gray-500 w-14 text-right">{s.label}</span>
+                          <div className="flex-1 h-3 bg-white/5 rounded-full overflow-hidden">
+                            <div className={`h-full ${s.color} rounded-full flex items-center pl-1.5`} style={{ width: `${(s.count / total) * 100}%`, minWidth: '20%' }}>
+                              <span className="text-[7px] text-white font-bold">{s.count}</span>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="flex items-center gap-1 mb-2">
+                      <span className="text-[9px] text-gray-500">Total: {total} applications</span>
+                    </div>
+
+                    {/* Application list */}
+                    <div className="space-y-1">
+                      {student.applications.map((app) => {
+                        const stageOrder = ["Submitted", "Applied", "Interview", "Offered", "Rejected"];
+                        const stageIdx = stageOrder.indexOf(app.status);
+                        const isRejected = app.status === "Rejected";
+                        return (
+                          <div key={app.company + app.role} className="bg-white/[0.03] border border-white/5 rounded-md px-2 py-1.5">
+                            <div className="flex items-center justify-between mb-1">
+                              <div>
+                                <p className="text-[10px] font-medium text-white">{app.role}</p>
+                                <p className="text-[8px] text-gray-500">{app.company}</p>
+                              </div>
+                              <span className={`text-[8px] font-semibold px-1.5 py-0.5 rounded ${
+                                app.status === "Offered" ? "bg-emerald-500/20 text-emerald-400" :
+                                app.status === "Interview" ? "bg-amber-500/20 text-amber-400" :
+                                app.status === "Rejected" ? "bg-rose-500/20 text-rose-400" :
+                                app.status === "Applied" ? "bg-blue-500/20 text-blue-400" :
+                                "bg-gray-500/20 text-gray-400"
+                              }`}>{app.status}</span>
+                            </div>
+                            {/* Stage progress dots */}
+                            <div className="flex items-center gap-0.5">
+                              {["Submitted", "Applied", "Interview", "Offered"].map((stage, i) => (
+                                <div key={stage} className="flex items-center">
+                                  <div className={`w-1.5 h-1.5 rounded-full ${
+                                    isRejected ? (i <= Math.min(stageIdx, 2) ? "bg-rose-400" : "bg-white/10") :
+                                    i <= stageIdx ? "bg-primary" : "bg-white/10"
+                                  }`} />
+                                  {i < 3 && <div className={`w-3 h-[1px] ${
+                                    isRejected ? (i < Math.min(stageIdx, 2) ? "bg-rose-400/50" : "bg-white/5") :
+                                    i < stageIdx ? "bg-primary/50" : "bg-white/5"
+                                  }`} />}
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
                   </div>
-                  <span className={`text-[8px] font-semibold px-1.5 py-0.5 rounded ${
-                    app.status === "Offered" ? "bg-emerald-500/20 text-emerald-400" :
-                    app.status === "Interview" ? "bg-amber-500/20 text-amber-400" :
-                    "bg-blue-500/20 text-blue-400"
-                  }`}>{app.status}</span>
-                </div>
-              ))}
-            </div>
+                );
+              })()}
+            </>
           )}
 
           <p className="text-[10px] text-gray-500 mb-2">Documents</p>
