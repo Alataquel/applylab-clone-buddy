@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import Navbar from "@/components/landing/Navbar";
 import Footer from "@/components/landing/Footer";
-import { ArrowRight, Zap, FileText, BarChart3, Search } from "lucide-react";
+import { ArrowRight, FileText, BarChart3, Search } from "lucide-react";
 
 const features = [
   {
