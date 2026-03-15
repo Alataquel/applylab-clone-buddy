@@ -1665,7 +1665,7 @@ const ResumeTemplatesContent = ({ onOpenEditor }: { onOpenEditor: () => void }) 
         { name: "Creative Portfolio", uses: 198, color: "bg-emerald-500" },
         { name: "Executive", uses: 134, color: "bg-rose-500" },
       ].map((t) => (
-        <div key={t.name} className="bg-white/[0.03] border border-white/5 rounded-lg p-3 hover:bg-white/[0.06] transition-colors cursor-pointer">
+        <div key={t.name} onClick={onOpenEditor} className="bg-white/[0.03] border border-white/5 rounded-lg p-3 hover:bg-white/[0.06] transition-colors cursor-pointer">
           <div className={`w-full h-16 ${t.color}/15 rounded-md mb-2 flex items-center justify-center`}>
             <svg className={`w-6 h-6 ${t.color.replace("bg-", "text-")}`} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
           </div>
