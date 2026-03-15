@@ -702,17 +702,27 @@ const DashboardMockup = () => {
   const [activeTab, setActiveTab] = useState(0);
   const [selectedStudent, setSelectedStudent] = useState<typeof studentsData[0] | null>(null);
   const [showTemplateEditor, setShowTemplateEditor] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
   const handleMouseMove = (e: React.MouseEvent) => {
-    if (!ref.current) return;
+    if (!ref.current || isExpanded) return;
     const rect = ref.current.getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width - 0.5;
     const y = (e.clientY - rect.top) / rect.height - 0.5;
     setTilt({ x: y * -8, y: x * 8 });
   };
 
-  const handleMouseLeave = () => setTilt({ x: 0, y: 0 });
+  const handleMouseLeave = () => {
+    if (!isExpanded) setTilt({ x: 0, y: 0 });
+  };
+
+  const handleFirstClick = () => {
+    if (!isExpanded) {
+      setIsExpanded(true);
+      setTilt({ x: 0, y: 0 });
+    }
+  };
 
   const renderContent = () => {
     if (activeTab === 1 && selectedStudent) {
@@ -734,56 +744,93 @@ const DashboardMockup = () => {
   };
 
   return (
-    <div
-      ref={ref}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      className="rounded-xl overflow-hidden shadow-precision-lg bg-[hsl(230,40%,11%)] border border-white/5 transition-transform duration-300 ease-out"
-      style={{
-        transform: `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) scale(1.02)`,
-      }}
-    >
-      {/* Browser chrome */}
-      <div className="flex items-center gap-2 px-4 py-2.5 bg-[hsl(230,38%,9%)] border-b border-white/5">
-        <div className="flex gap-1.5">
-          <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
-          <div className="w-2.5 h-2.5 rounded-full bg-[#febc2e]" />
-          <div className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
-        </div>
-        <div className="flex-1 text-center">
-          <span className="text-[11px] text-gray-500 bg-white/5 px-4 py-1 rounded-md">applylab.software/careers-team</span>
-        </div>
-      </div>
+    <>
+      {/* Overlay backdrop when expanded */}
+      {isExpanded && (
+        <div
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[99] animate-fade-in cursor-pointer"
+          onClick={() => setIsExpanded(false)}
+        />
+      )}
 
-      {/* App content */}
-      <div className="flex min-h-[540px]">
-        {/* Sidebar */}
-        <div className="w-44 border-r border-white/5 p-4 hidden sm:block">
-          <p className="text-sm font-bold text-white mb-5">ApplyLab</p>
-          <p className="text-[10px] uppercase tracking-wider text-gray-500 mb-2">Careers Team</p>
-          <div className="space-y-0.5">
-            {navItems.map((item, i) => (
-              <div
-                key={item}
-                onClick={() => { setActiveTab(i); setSelectedStudent(null); setShowTemplateEditor(false); }}
-                className={`text-[11px] px-3 py-2 rounded-md transition-colors cursor-pointer ${
-                  i === activeTab
-                    ? "bg-primary text-white font-medium"
-                    : "text-gray-500 hover:text-gray-300"
-                }`}
-              >
-                {item}
-              </div>
-            ))}
+      <div
+        ref={ref}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        onClick={handleFirstClick}
+        className={`rounded-xl overflow-hidden shadow-precision-lg bg-[hsl(230,40%,11%)] border border-white/5 transition-all duration-500 ease-out ${
+          isExpanded
+            ? "fixed top-[3%] left-[5%] right-[5%] bottom-[3%] z-[100] cursor-default"
+            : "relative cursor-pointer"
+        }`}
+        style={
+          isExpanded
+            ? { transform: "none" }
+            : {
+                transform: `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) scale(1.02)`,
+              }
+        }
+      >
+        {/* Expand hint when not expanded */}
+        {!isExpanded && (
+          <div className="absolute inset-0 z-20 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300 bg-black/20 rounded-xl">
+            <div className="bg-black/70 backdrop-blur-sm text-white text-sm font-medium px-4 py-2 rounded-lg border border-white/10 flex items-center gap-2">
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" /></svg>
+              Click to explore live demo
+            </div>
+          </div>
+        )}
+
+        {/* Browser chrome */}
+        <div className="flex items-center gap-2 px-4 py-2.5 bg-[hsl(230,38%,9%)] border-b border-white/5">
+          <div className="flex gap-1.5">
+            <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
+            <div className="w-2.5 h-2.5 rounded-full bg-[#febc2e]" />
+            <div className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
+          </div>
+          <div className="flex-1 text-center">
+            <span className="text-[11px] text-gray-500 bg-white/5 px-4 py-1 rounded-md">applylab.software/careers-team</span>
+          </div>
+          {isExpanded && (
+            <button
+              onClick={(e) => { e.stopPropagation(); setIsExpanded(false); }}
+              className="text-gray-500 hover:text-white transition-colors"
+            >
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+            </button>
+          )}
+        </div>
+
+        {/* App content */}
+        <div className={`flex ${isExpanded ? "h-[calc(100%-40px)]" : "min-h-[540px]"}`}>
+          {/* Sidebar */}
+          <div className={`${isExpanded ? "w-52" : "w-44"} border-r border-white/5 p-4 hidden sm:block`}>
+            <p className="text-sm font-bold text-white mb-5">ApplyLab</p>
+            <p className="text-[10px] uppercase tracking-wider text-gray-500 mb-2">Careers Team</p>
+            <div className="space-y-0.5">
+              {navItems.map((item, i) => (
+                <div
+                  key={item}
+                  onClick={(e) => { e.stopPropagation(); setActiveTab(i); setSelectedStudent(null); setShowTemplateEditor(false); }}
+                  className={`text-[11px] px-3 py-2 rounded-md transition-colors cursor-pointer ${
+                    i === activeTab
+                      ? "bg-primary text-white font-medium"
+                      : "text-gray-500 hover:text-gray-300"
+                  }`}
+                >
+                  {item}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Main content */}
+          <div className={`flex-1 p-5 overflow-y-auto ${isExpanded ? "max-h-full" : "max-h-[540px]"}`}>
+            {renderContent()}
           </div>
         </div>
-
-        {/* Main content */}
-        <div className="flex-1 p-5 overflow-y-auto max-h-[540px]">
-          {renderContent()}
-        </div>
       </div>
-    </div>
+    </>
   );
 };
 
