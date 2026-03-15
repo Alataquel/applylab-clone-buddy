@@ -104,7 +104,7 @@ const PlatformSection = () => {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="bg-card rounded-xl p-6 shadow-precision group hover:-translate-y-0.5 transition-transform"
           >
-            <p className="text-xs text-primary font-medium mb-2">Command Centre</p>
+            <p className="text-xs text-primary font-medium mb-2">Automatic Tracker</p>
             <h3 className="text-lg font-semibold text-foreground mb-2">
               Every application, <span className="text-gradient">one place.</span>
             </h3>
