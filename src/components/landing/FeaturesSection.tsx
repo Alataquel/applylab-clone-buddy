@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 const studentFeatures = [
   {
     num: "01",
-    title: "Job Board",
+    title: "Internship Board",
     desc: "Intelligent matching surfaces roles where students are genuinely competitive — improving application quality and reducing wasted effort across your cohort.",
     items: [
       { letter: "L", color: "bg-blue-500", role: "Product Designer", company: "Linear", score: "98% Match" },
@@ -15,8 +15,8 @@ const studentFeatures = [
   {
     num: "02",
     title: "Resume Lab",
-    desc: "AI-powered, line-by-line CV feedback that raises ATS pass rates, strengthens impact statements, and closes keyword gaps — at scale.",
-    atsScore: 92,
+    desc: "AI-powered, line-by-line CV feedback that strengthens impact statements, improves formatting, and closes keyword gaps — at scale.",
+    resumeScore: 92,
     suggestions: [
       "Suggestion: Add metrics to your 2nd bullet point.",
       "Skills section optimized for Tech roles.",
@@ -24,7 +24,7 @@ const studentFeatures = [
   },
   {
     num: "03",
-    title: "Application Tracker",
+    title: "Automatic Tracker",
     desc: "A visual pipeline that automatically tracks every student's application status — giving career teams and students a shared, real-time view.",
     pipeline: ["Applied", "Interview", "Offer", "Accepted!"],
   },
