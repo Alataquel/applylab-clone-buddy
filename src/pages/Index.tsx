@@ -26,9 +26,8 @@ const Index = () => {
         <SocialProofSection />
         <FAQSection />
         <CTASection />
-        <Footer />
-      </div>
-    </div>
+      <Footer />
+    </GridBackground>
   );
 };
 
