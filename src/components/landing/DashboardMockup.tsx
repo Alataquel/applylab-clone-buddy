@@ -420,6 +420,8 @@ const AnalyticsContent = () => {
     { label: "Offer Received", value: 648, pct: "13.4%" },
   ];
 
+  const [hoveredPin, setHoveredPin] = useState<number | null>(null);
+
   return (
     <>
       {/* Stat Cards - 2 rows of 3 */}
@@ -427,7 +429,7 @@ const AnalyticsContent = () => {
         {statCards.slice(0, 3).map((s) => (
           <div key={s.label} className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5">
             <div className="w-7 h-7 rounded-lg bg-white/[0.06] flex items-center justify-center mb-2">{s.icon}</div>
-            <div className="w-5 h-[2px] bg-primary/40 rounded mb-1.5" />
+            <span className="text-lg font-bold text-white">{s.value}</span>
             <p className="text-[10px] text-gray-400 mb-0.5">{s.label}</p>
             <p className="text-[9px] text-emerald-400 font-medium">{s.change}</p>
           </div>
@@ -437,7 +439,7 @@ const AnalyticsContent = () => {
         {statCards.slice(3).map((s) => (
           <div key={s.label} className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5">
             <div className="w-7 h-7 rounded-lg bg-white/[0.06] flex items-center justify-center mb-2">{s.icon}</div>
-            <div className="w-5 h-[2px] bg-primary/40 rounded mb-1.5" />
+            <span className="text-lg font-bold text-white">{s.value}</span>
             <p className="text-[10px] text-gray-400 mb-0.5">{s.label}</p>
             <p className="text-[9px] text-emerald-400 font-medium">{s.change}</p>
           </div>
@@ -556,50 +558,6 @@ const AnalyticsContent = () => {
         </div>
       </div>
 
-      {/* Gender-Based Placement Analytics */}
-      <div className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5 mt-3">
-        <div className="flex items-center gap-1.5 mb-2">
-          <span className="text-pink-400 text-[10px]">♀</span>
-          <span className="text-blue-400 text-[10px]">♂</span>
-          <p className="text-[10px] font-semibold text-white">Gender-Based Placement Analytics</p>
-        </div>
-        <div className="grid grid-cols-3 gap-2">
-          {/* Student Distribution */}
-          <div className="bg-white/[0.02] border border-white/5 rounded-md px-2 py-2">
-            <p className="text-[8px] text-gray-500 mb-1.5 text-center">Student Distribution</p>
-            <svg viewBox="0 0 80 50" className="w-full">
-              <rect x="15" y={50 - 38} width="18" height="38" fill="#f472b6" rx="2" opacity="0.8" />
-              <rect x="47" y={50 - 22} width="18" height="22" fill="#818cf8" rx="2" opacity="0.8" />
-              <text x="24" y="48" textAnchor="middle" fill="#9ca3af" fontSize="5">Female</text>
-              <text x="56" y="48" textAnchor="middle" fill="#9ca3af" fontSize="5">Male</text>
-            </svg>
-          </div>
-          {/* Placement Rate */}
-          <div className="bg-white/[0.02] border border-white/5 rounded-md px-2 py-2">
-            <p className="text-[8px] text-gray-500 mb-1.5 text-center">Placement Rate</p>
-            <svg viewBox="0 0 80 50" className="w-full">
-              <rect x="15" y={50 - 42} width="18" height="42" fill="#f472b6" rx="2" opacity="0.8" />
-              <rect x="47" y={50 - 30} width="18" height="30" fill="#818cf8" rx="2" opacity="0.8" />
-              <text x="24" y="48" textAnchor="middle" fill="#9ca3af" fontSize="5">68%</text>
-              <text x="56" y="48" textAnchor="middle" fill="#9ca3af" fontSize="5">52%</text>
-            </svg>
-          </div>
-          {/* Average Salary */}
-          <div className="bg-white/[0.02] border border-white/5 rounded-md px-2 py-2">
-            <p className="text-[8px] text-gray-500 mb-1.5 text-center">Average Salary</p>
-            <svg viewBox="0 0 80 50" className="w-full">
-              <rect x="15" y={50 - 35} width="18" height="35" fill="#f472b6" rx="2" opacity="0.8" />
-              <rect x="47" y={50 - 40} width="18" height="40" fill="#818cf8" rx="2" opacity="0.8" />
-              <text x="24" y="48" textAnchor="middle" fill="#9ca3af" fontSize="5">$62K</text>
-              <text x="56" y="48" textAnchor="middle" fill="#9ca3af" fontSize="5">$72K</text>
-            </svg>
-          </div>
-        </div>
-        <div className="flex items-center justify-center gap-4 mt-2">
-          <div className="flex items-center gap-1"><div className="w-2 h-2 rounded-sm bg-pink-400" /><span className="text-[8px] text-gray-500">Female</span></div>
-          <div className="flex items-center gap-1"><div className="w-2 h-2 rounded-sm bg-indigo-400" /><span className="text-[8px] text-gray-500">Male</span></div>
-        </div>
-      </div>
 
       {/* Placement Speed */}
       <div className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5 mt-3">
@@ -619,7 +577,6 @@ const AnalyticsContent = () => {
             </div>
           ))}
         </div>
-        {/* Speed distribution bar */}
         <div className="flex h-2 rounded-full overflow-hidden mb-2">
           <div className="bg-emerald-500" style={{ width: "35%" }} />
           <div className="bg-blue-500" style={{ width: "48%" }} />
@@ -640,45 +597,104 @@ const AnalyticsContent = () => {
         </div>
       </div>
 
-      {/* Global Placement Distribution */}
+      {/* Interactive Global Placement Distribution */}
       <div className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5 mt-3">
         <div className="flex items-center gap-1.5 mb-2">
           <svg className="w-3.5 h-3.5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
           <p className="text-[10px] font-semibold text-white">Global Placement Distribution</p>
+          <span className="text-[7px] text-gray-500 ml-auto">Hover over pins for details</span>
         </div>
-        {/* Simplified world map with dots */}
-        <div className="relative bg-white/[0.02] rounded-lg overflow-hidden" style={{ height: 120 }}>
-          {/* Continent outlines - simplified SVG */}
-          <svg viewBox="0 0 360 180" className="w-full h-full opacity-20">
-            {/* Simplified continent shapes */}
-            <ellipse cx="80" cy="70" rx="35" ry="30" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="0.5" />
-            <ellipse cx="160" cy="65" rx="30" ry="35" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="0.5" />
-            <ellipse cx="170" cy="120" rx="15" ry="20" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="0.5" />
-            <ellipse cx="240" cy="80" rx="40" ry="30" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="0.5" />
-            <ellipse cx="310" cy="90" rx="20" ry="15" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="0.5" />
-            <ellipse cx="300" cy="140" rx="12" ry="10" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="0.5" />
+        <div className="relative bg-[hsl(210,30%,12%)] rounded-lg overflow-hidden" style={{ height: 180 }}>
+          {/* SVG World Map */}
+          <svg viewBox="0 0 800 400" className="w-full h-full">
+            {/* Ocean background */}
+            <rect width="800" height="400" fill="hsl(210,30%,15%)" />
+            {/* Simplified continent paths */}
+            {/* North America */}
+            <path d="M80,60 L120,45 L180,50 L200,70 L210,100 L200,130 L180,150 L160,160 L140,155 L120,170 L100,160 L80,130 L70,100 Z" fill="hsl(210,25%,22%)" stroke="hsl(210,20%,28%)" strokeWidth="0.5" />
+            {/* South America */}
+            <path d="M140,180 L170,175 L190,200 L200,240 L195,280 L180,310 L160,330 L145,320 L130,290 L125,250 L130,220 Z" fill="hsl(210,25%,22%)" stroke="hsl(210,20%,28%)" strokeWidth="0.5" />
+            {/* Europe */}
+            <path d="M340,50 L380,45 L420,55 L430,80 L420,100 L400,110 L370,105 L350,95 L340,80 Z" fill="hsl(210,25%,22%)" stroke="hsl(210,20%,28%)" strokeWidth="0.5" />
+            {/* Africa */}
+            <path d="M360,120 L400,115 L420,130 L430,170 L425,220 L410,260 L390,280 L370,275 L355,250 L350,210 L345,170 Z" fill="hsl(210,25%,22%)" stroke="hsl(210,20%,28%)" strokeWidth="0.5" />
+            {/* Asia */}
+            <path d="M440,40 L520,35 L600,50 L660,70 L680,100 L670,140 L640,160 L600,170 L550,160 L500,140 L460,120 L440,90 Z" fill="hsl(210,25%,22%)" stroke="hsl(210,20%,28%)" strokeWidth="0.5" />
+            {/* Australia */}
+            <path d="M620,240 L680,235 L720,250 L730,280 L710,300 L670,305 L640,290 L625,270 Z" fill="hsl(210,25%,22%)" stroke="hsl(210,20%,28%)" strokeWidth="0.5" />
+            {/* Grid lines */}
+            {[100,200,300].map(y => <line key={`h${y}`} x1="0" y1={y} x2="800" y2={y} stroke="hsl(210,20%,18%)" strokeWidth="0.3" />)}
+            {[160,320,480,640].map(x => <line key={`v${x}`} x1={x} y1="0" x2={x} y2="400" stroke="hsl(210,20%,18%)" strokeWidth="0.3" />)}
           </svg>
-          {/* Placement pins */}
+          {/* Interactive pins */}
           {[
-            { x: "22%", y: "35%", count: 15, color: "bg-blue-500" },
-            { x: "28%", y: "50%", count: 8, color: "bg-emerald-500" },
-            { x: "42%", y: "30%", count: 42, color: "bg-primary" },
-            { x: "46%", y: "35%", count: 18, color: "bg-purple-500" },
-            { x: "50%", y: "40%", count: 12, color: "bg-amber-500" },
-            { x: "65%", y: "45%", count: 6, color: "bg-rose-500" },
-            { x: "72%", y: "35%", count: 9, color: "bg-orange-500" },
-            { x: "78%", y: "50%", count: 14, color: "bg-cyan-500" },
-            { x: "85%", y: "70%", count: 5, color: "bg-pink-500" },
+            { x: "15%", y: "28%", city: "San Francisco", count: 28, salary: "$92K", color: "bg-purple-500", industry: "Technology" },
+            { x: "20%", y: "25%", city: "New York", count: 42, salary: "$88K", color: "bg-blue-500", industry: "Finance" },
+            { x: "18%", y: "32%", city: "Toronto", count: 15, salary: "$76K", color: "bg-emerald-500", industry: "Consulting" },
+            { x: "44%", y: "22%", city: "London", count: 56, salary: "$85K", color: "bg-primary", industry: "Finance" },
+            { x: "47%", y: "25%", city: "Berlin", count: 18, salary: "$72K", color: "bg-amber-500", industry: "Technology" },
+            { x: "50%", y: "28%", city: "Dubai", count: 12, salary: "$95K", color: "bg-orange-500", industry: "Consulting" },
+            { x: "62%", y: "22%", city: "Singapore", count: 24, salary: "$82K", color: "bg-cyan-500", industry: "Finance" },
+            { x: "68%", y: "25%", city: "Tokyo", count: 19, salary: "$78K", color: "bg-rose-500", industry: "Technology" },
+            { x: "72%", y: "30%", city: "Hong Kong", count: 16, salary: "$90K", color: "bg-amber-400", industry: "Finance" },
+            { x: "80%", y: "62%", city: "Sydney", count: 14, salary: "$74K", color: "bg-emerald-400", industry: "Healthcare" },
+            { x: "46%", y: "42%", city: "Lagos", count: 8, salary: "$45K", color: "bg-pink-500", industry: "Technology" },
+            { x: "16%", y: "55%", city: "São Paulo", count: 11, salary: "$52K", color: "bg-violet-500", industry: "Finance" },
           ].map((pin, i) => (
-            <div key={i} className="absolute flex flex-col items-center" style={{ left: pin.x, top: pin.y, transform: "translate(-50%, -100%)" }}>
-              <div className={`${pin.color} text-white text-[6px] font-bold px-1 py-0.5 rounded-full min-w-[14px] text-center`}>{pin.count}</div>
-              <div className={`w-0 h-0 border-l-[3px] border-r-[3px] border-t-[4px] border-transparent ${pin.color.replace("bg-", "border-t-")}`} />
+            <div
+              key={i}
+              className="absolute cursor-pointer group"
+              style={{ left: pin.x, top: pin.y, transform: "translate(-50%, -50%)" }}
+              onMouseEnter={() => setHoveredPin(i)}
+              onMouseLeave={() => setHoveredPin(null)}
+            >
+              {/* Pulse ring */}
+              <div className={`absolute inset-0 ${pin.color} rounded-full animate-ping opacity-20`} style={{ width: 16, height: 16, margin: "auto" }} />
+              {/* Pin dot */}
+              <div className={`relative w-4 h-4 ${pin.color} rounded-full border-2 border-white/30 flex items-center justify-center shadow-lg transition-transform ${hoveredPin === i ? "scale-150 z-20" : "scale-100"}`}>
+                <span className="text-[5px] text-white font-bold">{pin.count}</span>
+              </div>
+              {/* Tooltip on hover */}
+              {hoveredPin === i && (
+                <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-[hsl(230,40%,13%)] border border-white/10 rounded-lg px-2.5 py-2 shadow-xl z-30 whitespace-nowrap animate-fade-in">
+                  <p className="text-[10px] font-bold text-white">{pin.city}</p>
+                  <div className="flex items-center gap-1 mt-0.5">
+                    <span className={`w-1.5 h-1.5 rounded-full ${pin.color}`} />
+                    <span className="text-[8px] text-gray-400">{pin.industry}</span>
+                  </div>
+                  <div className="grid grid-cols-2 gap-2 mt-1 pt-1 border-t border-white/5">
+                    <div>
+                      <p className="text-[7px] text-gray-500">Placements</p>
+                      <p className="text-[10px] font-bold text-white">{pin.count}</p>
+                    </div>
+                    <div>
+                      <p className="text-[7px] text-gray-500">Avg Salary</p>
+                      <p className="text-[10px] font-bold text-emerald-400">{pin.salary}</p>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           ))}
         </div>
         <div className="flex items-center justify-between mt-2">
-          <span className="text-[8px] text-gray-500">Total placements across 12 countries</span>
-          <span className="text-[9px] text-primary font-medium">129 international</span>
+          <div className="flex items-center gap-2">
+            <span className="text-[8px] text-gray-500">12 countries</span>
+            <span className="text-[8px] text-gray-600">•</span>
+            <span className="text-[8px] text-gray-500">263 placements</span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            {[
+              { color: "bg-primary", label: "Finance" },
+              { color: "bg-purple-500", label: "Tech" },
+              { color: "bg-emerald-500", label: "Other" },
+            ].map((l) => (
+              <div key={l.label} className="flex items-center gap-0.5">
+                <div className={`w-1.5 h-1.5 rounded-full ${l.color}`} />
+                <span className="text-[7px] text-gray-500">{l.label}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </>
