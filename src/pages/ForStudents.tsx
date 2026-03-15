@@ -58,7 +58,7 @@ const ForStudents = () => {
       </section>
 
       {/* Features with Visuals */}
-      <section className="py-20 px-6 lg:px-12 bg-secondary">
+      <section className="py-20 px-6 lg:px-12 bg-white">
         <div className="max-w-7xl mx-auto space-y-8">
           {/* Internship Board */}
           <motion.div
