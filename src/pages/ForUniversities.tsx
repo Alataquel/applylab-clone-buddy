@@ -82,6 +82,9 @@ const ForUniversities = () => {
           >
             <p className="text-xs uppercase tracking-widest text-primary font-medium mb-3">The platform</p>
             <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 tracking-tight">Your institutional dashboard.</h2>
+            <p className="text-base text-gray-500 mt-4 max-w-2xl leading-relaxed">
+              One platform that connects student career activity, employer data, and institutional reporting — so your team can see what's working, spot who needs help, and prove impact without chasing spreadsheets.
+            </p>
           </motion.div>
 
           <div className="space-y-8">
