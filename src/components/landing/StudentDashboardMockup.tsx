@@ -774,61 +774,245 @@ const ResumeBuilderContent = () => (
   </div>
 );
 
-const CoverLettersContent = () => (
-  <>
-    <div className="flex items-center justify-between mb-3">
-      <div>
-        <h3 className="text-sm font-bold text-foreground italic">Cover Letter Maker</h3>
-        <p className="text-[7px] text-muted-foreground">AI-powered professional cover letters</p>
+const fakeCoverLetter = `Dear Hiring Manager,
+
+I am writing to express my strong interest in the Software Engineer position at Google Inc. As a dual degree student in Business Administration and Data Analysis with hands-on experience in full-stack development, I am confident in my ability to contribute meaningfully to your engineering team.
+
+During my internship at Deloitte Digital, I built reusable React component libraries used across 3 client projects, reducing development time by 40%. I implemented responsive dashboards with real-time data visualization and collaborated closely with UX teams to improve accessibility scores from 72 to 96. These experiences have sharpened both my technical skills and my ability to deliver user-centered solutions at scale.
+
+My technical proficiency spans TypeScript, React, Node.js, Python, and cloud platforms including AWS and Supabase. I am particularly drawn to Google's commitment to building products that impact billions of users, and I believe my background in both business analysis and software engineering gives me a unique perspective on solving complex problems.
+
+I would welcome the opportunity to discuss how my skills and experiences align with your team's goals.
+
+Sincerely,
+Antonio Rossi
+Madrid, Spain | antonio.rossi@email.com | +34 612 345 678`;
+
+const CoverLettersContent = () => {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [jobTitle, setJobTitle] = useState("Software Engineer");
+  const [companyName, setCompanyName] = useState("Google Inc.");
+  const [jobDesc, setJobDesc] = useState("We are looking for a Software Engineer to join our team. You will work on large-scale distributed systems, collaborate with cross-functional teams, and build products used by billions of users worldwide.");
+  const [tone, setTone] = useState("Professional");
+  const [generatingState, setGeneratingState] = useState<"idle" | "generating" | "done">("idle");
+  const [displayedLetter, setDisplayedLetter] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const coverLetters = [
+    { title: "Software Engineer at Apple", company: "Apple", role: "Software Engineer", date: "Mar 5, 2026" },
+    { title: "Software Engineer at Apple", company: "Apple", role: "Software Engineer", date: "Feb 26, 2026" },
+    { title: "Junior Analyst at Accenture", company: "Accenture", role: "Junior Analyst", date: "Feb 26, 2026" },
+    { title: "Software Engineering at Apple", company: "apple", role: "software engineering", date: "Feb 25, 2026" },
+    { title: "Backend Developer at Apple", company: "Apple", role: "Backend developer", date: "Feb 24, 2026" },
+    { title: "Senior Data Analyst at Accenture", company: "Accenture", role: "Senior Data Analyst", date: "Feb 19, 2026" },
+  ];
+
+  const filteredLetters = coverLetters.filter(cl =>
+    searchQuery === "" || cl.title.toLowerCase().includes(searchQuery.toLowerCase()) || cl.company.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const startGeneration = () => {
+    setGeneratingState("generating");
+    setDisplayedLetter("");
+    let i = 0;
+    const interval = setInterval(() => {
+      i += Math.floor(Math.random() * 3) + 1;
+      if (i >= fakeCoverLetter.length) {
+        setDisplayedLetter(fakeCoverLetter);
+        setGeneratingState("done");
+        clearInterval(interval);
+      } else {
+        setDisplayedLetter(fakeCoverLetter.slice(0, i));
+      }
+    }, 20);
+  };
+
+  const openModal = () => {
+    setModalOpen(true);
+    setGeneratingState("idle");
+    setDisplayedLetter("");
+  };
+
+  return (
+    <>
+      <div className="flex items-center justify-between mb-3">
+        <div>
+          <h3 className="text-sm font-bold text-foreground italic">Cover Letter Maker</h3>
+          <p className="text-[7px] text-muted-foreground">AI-powered professional cover letters</p>
+        </div>
+        <button onClick={openModal} className="text-[7px] bg-primary text-primary-foreground rounded px-2 py-1 font-medium hover:bg-primary/90 transition-colors">+ Create New Letter</button>
       </div>
-      <button className="text-[7px] bg-primary text-primary-foreground rounded px-2 py-1 font-medium">+ Create New Letter</button>
-    </div>
 
-    {/* Stats */}
-    <div className="grid grid-cols-3 gap-2 mb-4">
-      {[
-        { IconComp: FileText, value: "6", label: "Total Cover Letters" },
-        { IconComp: Sparkles, value: "6", label: "AI Generated" },
-        { IconComp: Search, value: "0", label: "Drafts" },
-      ].map((s) => (
-        <div key={s.label} className="bg-card border border-border rounded-lg px-3 py-2.5 flex items-center gap-2">
-          <s.IconComp className="w-4 h-4" style={{ color: "hsl(228, 76%, 35%)" }} strokeWidth={1.8} />
-          <div>
-            <p className="text-sm font-bold text-foreground">{s.value}</p>
-            <p className="text-[7px] text-muted-foreground">{s.label}</p>
+      {/* Stats */}
+      <div className="grid grid-cols-3 gap-2 mb-3">
+        {[
+          { IconComp: FileText, value: "6", label: "Total Cover Letters" },
+          { IconComp: Sparkles, value: "6", label: "AI Generated" },
+          { IconComp: Search, value: "0", label: "Drafts" },
+        ].map((s) => (
+          <div key={s.label} className="bg-card border border-border rounded-lg px-3 py-2.5 flex items-center gap-2">
+            <s.IconComp className="w-4 h-4" style={{ color: "hsl(228, 76%, 35%)" }} strokeWidth={1.8} />
+            <div>
+              <p className="text-sm font-bold text-foreground">{s.value}</p>
+              <p className="text-[7px] text-muted-foreground">{s.label}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Search */}
+      <div className="flex items-center gap-2 mb-3">
+        <div className="flex-1 bg-secondary rounded-md px-2 py-1.5 text-[8px] flex items-center gap-1">
+          <Search className="w-2.5 h-2.5 text-muted-foreground shrink-0" />
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Search cover letters..."
+            className="bg-transparent outline-none w-full text-foreground placeholder:text-muted-foreground text-[8px]"
+          />
+        </div>
+      </div>
+
+      {/* Cover letter cards */}
+      <div className="grid grid-cols-3 gap-2">
+        {filteredLetters.map((cl, i) => (
+          <div key={i} className="bg-card border border-border rounded-lg p-3 hover:border-primary/30 transition-colors">
+            <div className="flex items-center justify-between mb-1.5">
+              <p className="text-[8px] font-semibold text-foreground">{cl.title}</p>
+              <span className="text-[6px] bg-emerald-500/10 text-emerald-600 rounded-full px-1.5 py-0.5 font-medium">Generated</span>
+            </div>
+            <p className="text-[7px] text-muted-foreground mb-1">{cl.company} · {cl.role}</p>
+            <p className="text-[6px] text-muted-foreground truncate mb-2">Antonio Larrucea Madrid, Comunidad de Madrid...</p>
+            <p className="text-[6px] text-muted-foreground flex items-center gap-0.5"><CalendarDays className="w-2 h-2" /> Created {cl.date}</p>
+            <div className="flex gap-1 mt-2">
+              <button className="flex-1 text-[6px] border border-border rounded py-0.5 text-muted-foreground flex items-center justify-center gap-0.5 hover:border-primary/30 transition-colors"><Eye className="w-2 h-2" /> View</button>
+              <button className="flex-1 text-[6px] border border-border rounded py-0.5 text-muted-foreground flex items-center justify-center gap-0.5 hover:border-primary/30 transition-colors"><Pencil className="w-2 h-2" /> Edit</button>
+              <button className="text-[6px] text-rose-400 px-1 hover:text-rose-500 transition-colors"><Trash2 className="w-2.5 h-2.5" /></button>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Modal */}
+      {modalOpen && (
+        <div className="absolute inset-0 bg-black/40 z-30 flex items-center justify-center p-6" onClick={() => setModalOpen(false)}>
+          <div className="bg-card border border-border rounded-xl shadow-xl w-full max-w-[520px] max-h-[420px] overflow-hidden" onClick={(e) => e.stopPropagation()}>
+            {/* Modal header */}
+            <div className="flex items-center justify-between px-4 py-3 border-b border-border">
+              <div className="flex items-center gap-2">
+                <div className="w-6 h-6 rounded-md bg-primary flex items-center justify-center">
+                  <Sparkles className="w-3 h-3 text-primary-foreground" />
+                </div>
+                <div>
+                  <p className="text-[10px] font-bold text-foreground">Create Cover Letter</p>
+                  <p className="text-[7px] text-muted-foreground">AI-powered professional cover letter generation</p>
+                </div>
+              </div>
+              <button onClick={() => setModalOpen(false)} className="text-muted-foreground hover:text-foreground transition-colors">
+                <X className="w-3.5 h-3.5" />
+              </button>
+            </div>
+
+            {/* Modal body */}
+            <div className="p-4 overflow-y-auto max-h-[340px]">
+              {/* Tab pills */}
+              <div className="flex items-center gap-2 mb-3">
+                <span className="text-[7px] bg-primary text-primary-foreground rounded-full px-2 py-0.5 font-semibold">Job Information</span>
+                <span className="text-[7px] bg-emerald-600 text-white rounded-full px-2 py-0.5 font-semibold">Generated Cover Letter</span>
+                <div className="ml-auto">
+                  <button
+                    onClick={startGeneration}
+                    disabled={generatingState === "generating"}
+                    className="text-[7px] bg-primary text-primary-foreground rounded px-2.5 py-1 font-medium flex items-center gap-1 hover:bg-primary/90 transition-colors disabled:opacity-50"
+                  >
+                    <Sparkles className="w-2.5 h-2.5" /> {generatingState === "generating" ? "Generating..." : "Generate"}
+                  </button>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                {/* Left: form */}
+                <div className="space-y-2">
+                  <div>
+                    <p className="text-[7px] font-semibold text-foreground mb-0.5">Job Title *</p>
+                    <input
+                      type="text"
+                      value={jobTitle}
+                      onChange={(e) => setJobTitle(e.target.value)}
+                      placeholder="e.g., Software Engineer"
+                      className="w-full bg-background border border-border rounded px-2 py-1 text-[7px] text-foreground placeholder:text-muted-foreground outline-none focus:border-primary transition-colors"
+                    />
+                  </div>
+                  <div>
+                    <p className="text-[7px] font-semibold text-foreground mb-0.5">Company Name *</p>
+                    <input
+                      type="text"
+                      value={companyName}
+                      onChange={(e) => setCompanyName(e.target.value)}
+                      placeholder="e.g., Google Inc."
+                      className="w-full bg-background border border-border rounded px-2 py-1 text-[7px] text-foreground placeholder:text-muted-foreground outline-none focus:border-primary transition-colors"
+                    />
+                  </div>
+                  <div>
+                    <p className="text-[7px] font-semibold text-foreground mb-0.5">Job Description</p>
+                    <textarea
+                      value={jobDesc}
+                      onChange={(e) => setJobDesc(e.target.value)}
+                      placeholder="Paste the job description here to get a more tailored cover letter..."
+                      rows={4}
+                      className="w-full bg-background border border-border rounded px-2 py-1 text-[7px] text-foreground placeholder:text-muted-foreground outline-none focus:border-primary transition-colors resize-none"
+                    />
+                  </div>
+                  <div>
+                    <p className="text-[7px] font-semibold text-foreground mb-0.5">Tone</p>
+                    <select
+                      value={tone}
+                      onChange={(e) => setTone(e.target.value)}
+                      className="w-full bg-background border border-border rounded px-2 py-1 text-[7px] text-foreground outline-none focus:border-primary transition-colors"
+                    >
+                      <option>Professional</option>
+                      <option>Enthusiastic</option>
+                      <option>Formal</option>
+                      <option>Creative</option>
+                    </select>
+                  </div>
+                </div>
+
+                {/* Right: generated letter */}
+                <div className="border border-border rounded-lg p-2.5 bg-background min-h-[200px] max-h-[260px] overflow-y-auto">
+                  {generatingState === "idle" && (
+                    <div className="flex flex-col items-center justify-center h-full text-center py-8">
+                      <Sparkles className="w-5 h-5 text-muted-foreground mb-1.5" />
+                      <p className="text-[8px] text-muted-foreground">Your generated cover letter will appear here</p>
+                    </div>
+                  )}
+                  {(generatingState === "generating" || generatingState === "done") && (
+                    <div className="text-[7px] text-foreground leading-relaxed whitespace-pre-wrap">
+                      {displayedLetter}
+                      {generatingState === "generating" && <span className="inline-block w-1 h-3 bg-primary animate-pulse ml-0.5" />}
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+
+            {/* Modal footer */}
+            <div className="flex items-center justify-end gap-2 px-4 py-2.5 border-t border-border">
+              <button onClick={() => setModalOpen(false)} className="text-[7px] border border-border rounded px-3 py-1 text-muted-foreground hover:text-foreground transition-colors">Cancel</button>
+              <button
+                className={`text-[7px] rounded px-3 py-1 font-medium transition-colors ${generatingState === "done" ? "bg-primary text-primary-foreground hover:bg-primary/90" : "bg-primary/30 text-primary-foreground cursor-not-allowed opacity-50"}`}
+                onClick={() => generatingState === "done" && setModalOpen(false)}
+              >
+                Save Cover Letter
+              </button>
+            </div>
           </div>
         </div>
-      ))}
-    </div>
-
-    {/* Cover letter cards */}
-    <div className="grid grid-cols-3 gap-2">
-      {[
-        { title: "Software Engineer at Apple", company: "Apple", role: "Software Engineer", date: "Mar 5, 2026" },
-        { title: "Software Engineer at Apple", company: "Apple", role: "Software Engineer", date: "Feb 26, 2026" },
-        { title: "Junior Analyst at Accenture", company: "Accenture", role: "Junior Analyst", date: "Feb 26, 2026" },
-        { title: "Software Engineering at Apple", company: "apple", role: "software engineering", date: "Feb 25, 2026" },
-        { title: "Backend Developer at Apple", company: "Apple", role: "Backend developer", date: "Feb 24, 2026" },
-        { title: "Senior Data Analyst at Accenture", company: "Accenture", role: "Senior Data Analyst", date: "Feb 19, 2026" },
-      ].map((cl, i) => (
-        <div key={i} className="bg-card border border-border rounded-lg p-3">
-          <div className="flex items-center justify-between mb-1.5">
-            <p className="text-[8px] font-semibold text-foreground">{cl.title}</p>
-            <span className="text-[6px] bg-emerald-500/10 text-emerald-600 rounded-full px-1.5 py-0.5 font-medium">Generated</span>
-          </div>
-          <p className="text-[7px] text-muted-foreground mb-1">{cl.company} · {cl.role}</p>
-          <p className="text-[6px] text-muted-foreground truncate mb-2">Antonio Larrucea Madrid, Comunidad de Madrid...</p>
-          <p className="text-[6px] text-muted-foreground flex items-center gap-0.5"><CalendarDays className="w-2 h-2" /> Created {cl.date}</p>
-          <div className="flex gap-1 mt-2">
-            <button className="flex-1 text-[6px] border border-border rounded py-0.5 text-muted-foreground flex items-center justify-center gap-0.5"><Eye className="w-2 h-2" /> View</button>
-            <button className="flex-1 text-[6px] border border-border rounded py-0.5 text-muted-foreground flex items-center justify-center gap-0.5"><Pencil className="w-2 h-2" /> Edit</button>
-            <button className="text-[6px] text-rose-400 px-1"><Trash2 className="w-2.5 h-2.5" /></button>
-          </div>
-        </div>
-      ))}
-    </div>
-  </>
-);
+      )}
+    </>
+  );
+};
 
 /* ─── Job Board Tab ─── */
 const allJobs = [
