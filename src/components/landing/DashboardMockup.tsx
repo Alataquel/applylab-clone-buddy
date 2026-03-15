@@ -528,6 +528,159 @@ const AnalyticsContent = () => {
           ))}
         </div>
       </div>
+
+      {/* Top Employers Table */}
+      <div className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5 mt-3">
+        <p className="text-[10px] font-semibold text-white mb-2">Top Employers</p>
+        <div className="space-y-0">
+          <div className="grid grid-cols-4 gap-2 pb-1 border-b border-white/5">
+            <span className="text-[8px] text-primary font-semibold">Employer</span>
+            <span className="text-[8px] text-primary font-semibold">Industry</span>
+            <span className="text-[8px] text-primary font-semibold text-center">Hires</span>
+            <span className="text-[8px] text-primary font-semibold text-center">Rating</span>
+          </div>
+          {[
+            { name: "Deloitte", industry: "Finance", hires: 12, rating: "★★★★★" },
+            { name: "Google", industry: "Technology", hires: 9, rating: "★★★★★" },
+            { name: "McKinsey & Co.", industry: "Consulting", hires: 8, rating: "★★★★☆" },
+            { name: "JP Morgan", industry: "Finance", hires: 7, rating: "★★★★☆" },
+            { name: "Siemens", industry: "Manufacturing", hires: 6, rating: "★★★★☆" },
+          ].map((e) => (
+            <div key={e.name} className="grid grid-cols-4 gap-2 py-1.5 border-b border-white/[0.03]">
+              <span className="text-[9px] text-gray-300">{e.name}</span>
+              <span className="text-[9px] text-gray-500">{e.industry}</span>
+              <span className="text-[9px] text-white text-center font-medium">{e.hires}</span>
+              <span className="text-[8px] text-amber-400 text-center">{e.rating}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Gender-Based Placement Analytics */}
+      <div className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5 mt-3">
+        <div className="flex items-center gap-1.5 mb-2">
+          <span className="text-pink-400 text-[10px]">♀</span>
+          <span className="text-blue-400 text-[10px]">♂</span>
+          <p className="text-[10px] font-semibold text-white">Gender-Based Placement Analytics</p>
+        </div>
+        <div className="grid grid-cols-3 gap-2">
+          {/* Student Distribution */}
+          <div className="bg-white/[0.02] border border-white/5 rounded-md px-2 py-2">
+            <p className="text-[8px] text-gray-500 mb-1.5 text-center">Student Distribution</p>
+            <svg viewBox="0 0 80 50" className="w-full">
+              <rect x="15" y={50 - 38} width="18" height="38" fill="#f472b6" rx="2" opacity="0.8" />
+              <rect x="47" y={50 - 22} width="18" height="22" fill="#818cf8" rx="2" opacity="0.8" />
+              <text x="24" y="48" textAnchor="middle" fill="#9ca3af" fontSize="5">Female</text>
+              <text x="56" y="48" textAnchor="middle" fill="#9ca3af" fontSize="5">Male</text>
+            </svg>
+          </div>
+          {/* Placement Rate */}
+          <div className="bg-white/[0.02] border border-white/5 rounded-md px-2 py-2">
+            <p className="text-[8px] text-gray-500 mb-1.5 text-center">Placement Rate</p>
+            <svg viewBox="0 0 80 50" className="w-full">
+              <rect x="15" y={50 - 42} width="18" height="42" fill="#f472b6" rx="2" opacity="0.8" />
+              <rect x="47" y={50 - 30} width="18" height="30" fill="#818cf8" rx="2" opacity="0.8" />
+              <text x="24" y="48" textAnchor="middle" fill="#9ca3af" fontSize="5">68%</text>
+              <text x="56" y="48" textAnchor="middle" fill="#9ca3af" fontSize="5">52%</text>
+            </svg>
+          </div>
+          {/* Average Salary */}
+          <div className="bg-white/[0.02] border border-white/5 rounded-md px-2 py-2">
+            <p className="text-[8px] text-gray-500 mb-1.5 text-center">Average Salary</p>
+            <svg viewBox="0 0 80 50" className="w-full">
+              <rect x="15" y={50 - 35} width="18" height="35" fill="#f472b6" rx="2" opacity="0.8" />
+              <rect x="47" y={50 - 40} width="18" height="40" fill="#818cf8" rx="2" opacity="0.8" />
+              <text x="24" y="48" textAnchor="middle" fill="#9ca3af" fontSize="5">$62K</text>
+              <text x="56" y="48" textAnchor="middle" fill="#9ca3af" fontSize="5">$72K</text>
+            </svg>
+          </div>
+        </div>
+        <div className="flex items-center justify-center gap-4 mt-2">
+          <div className="flex items-center gap-1"><div className="w-2 h-2 rounded-sm bg-pink-400" /><span className="text-[8px] text-gray-500">Female</span></div>
+          <div className="flex items-center gap-1"><div className="w-2 h-2 rounded-sm bg-indigo-400" /><span className="text-[8px] text-gray-500">Male</span></div>
+        </div>
+      </div>
+
+      {/* Placement Speed */}
+      <div className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5 mt-3">
+        <p className="text-[10px] font-semibold text-white mb-3">Placement Speed</p>
+        <div className="flex items-center justify-around mb-3">
+          {[
+            { value: 18, label: "Fastest", sub: "Average days", color: "bg-emerald-500", textColor: "text-emerald-400" },
+            { value: 23, label: "Average", sub: "Overall average", color: "bg-purple-500", textColor: "text-purple-400" },
+            { value: 45, label: "Slowest", sub: "Maximum days", color: "bg-orange-500", textColor: "text-orange-400" },
+          ].map((s) => (
+            <div key={s.label} className="flex flex-col items-center">
+              <div className={`w-10 h-10 rounded-full ${s.color} flex items-center justify-center mb-1`}>
+                <span className="text-sm font-bold text-white">{s.value}</span>
+              </div>
+              <span className={`text-[9px] font-semibold ${s.textColor}`}>{s.label}</span>
+              <span className="text-[7px] text-gray-500">{s.sub}</span>
+            </div>
+          ))}
+        </div>
+        {/* Speed distribution bar */}
+        <div className="flex h-2 rounded-full overflow-hidden mb-2">
+          <div className="bg-emerald-500" style={{ width: "35%" }} />
+          <div className="bg-blue-500" style={{ width: "48%" }} />
+          <div className="bg-orange-500" style={{ width: "17%" }} />
+        </div>
+        <div className="flex items-center justify-between">
+          {[
+            { color: "bg-emerald-500", label: "0-15 days", pct: "35%" },
+            { color: "bg-blue-500", label: "16-30 days", pct: "48%" },
+            { color: "bg-orange-500", label: "31+ days", pct: "17%" },
+          ].map((d) => (
+            <div key={d.label} className="flex items-center gap-1">
+              <div className={`w-1.5 h-1.5 rounded-full ${d.color}`} />
+              <span className="text-[8px] text-gray-500">{d.label}</span>
+              <span className="text-[8px] text-emerald-400 font-medium">{d.pct}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Global Placement Distribution */}
+      <div className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5 mt-3">
+        <div className="flex items-center gap-1.5 mb-2">
+          <svg className="w-3.5 h-3.5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          <p className="text-[10px] font-semibold text-white">Global Placement Distribution</p>
+        </div>
+        {/* Simplified world map with dots */}
+        <div className="relative bg-white/[0.02] rounded-lg overflow-hidden" style={{ height: 120 }}>
+          {/* Continent outlines - simplified SVG */}
+          <svg viewBox="0 0 360 180" className="w-full h-full opacity-20">
+            {/* Simplified continent shapes */}
+            <ellipse cx="80" cy="70" rx="35" ry="30" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="0.5" />
+            <ellipse cx="160" cy="65" rx="30" ry="35" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="0.5" />
+            <ellipse cx="170" cy="120" rx="15" ry="20" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="0.5" />
+            <ellipse cx="240" cy="80" rx="40" ry="30" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="0.5" />
+            <ellipse cx="310" cy="90" rx="20" ry="15" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="0.5" />
+            <ellipse cx="300" cy="140" rx="12" ry="10" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="0.5" />
+          </svg>
+          {/* Placement pins */}
+          {[
+            { x: "22%", y: "35%", count: 15, color: "bg-blue-500" },
+            { x: "28%", y: "50%", count: 8, color: "bg-emerald-500" },
+            { x: "42%", y: "30%", count: 42, color: "bg-primary" },
+            { x: "46%", y: "35%", count: 18, color: "bg-purple-500" },
+            { x: "50%", y: "40%", count: 12, color: "bg-amber-500" },
+            { x: "65%", y: "45%", count: 6, color: "bg-rose-500" },
+            { x: "72%", y: "35%", count: 9, color: "bg-orange-500" },
+            { x: "78%", y: "50%", count: 14, color: "bg-cyan-500" },
+            { x: "85%", y: "70%", count: 5, color: "bg-pink-500" },
+          ].map((pin, i) => (
+            <div key={i} className="absolute flex flex-col items-center" style={{ left: pin.x, top: pin.y, transform: "translate(-50%, -100%)" }}>
+              <div className={`${pin.color} text-white text-[6px] font-bold px-1 py-0.5 rounded-full min-w-[14px] text-center`}>{pin.count}</div>
+              <div className={`w-0 h-0 border-l-[3px] border-r-[3px] border-t-[4px] border-transparent ${pin.color.replace("bg-", "border-t-")}`} />
+            </div>
+          ))}
+        </div>
+        <div className="flex items-center justify-between mt-2">
+          <span className="text-[8px] text-gray-500">Total placements across 12 countries</span>
+          <span className="text-[9px] text-primary font-medium">129 international</span>
+        </div>
+      </div>
     </>
   );
 };
