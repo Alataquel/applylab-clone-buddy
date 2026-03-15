@@ -1502,96 +1502,158 @@ const MiniDonut = () => {
   );
 };
 
-const TemplateEditorContent = ({ onBack }: { onBack: () => void }) => (
-  <>
-    {/* Header */}
-    <div className="flex items-center justify-between mb-4 pb-3 border-b border-white/5">
-      <div className="flex items-center gap-3">
-        <button onClick={onBack} className="text-primary hover:text-primary/80 transition-colors flex items-center gap-1 text-[10px]">
-          <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
-          Back to Templates
-        </button>
-        <div className="w-px h-4 bg-white/10" />
-        <div className="w-6 h-6 rounded-md bg-amber-500/20 flex items-center justify-center">
-          <svg className="w-3.5 h-3.5 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5zm0 7l-9-5 9-5 9 5-9 5z" /></svg>
-        </div>
-        <div>
-          <p className="text-xs font-semibold text-white">Dual Degree Business Administration and Data Analysis</p>
-          <p className="text-[9px] text-gray-500">Edit grading template</p>
-        </div>
-      </div>
-      <div className="flex items-center gap-2">
-        <button onClick={onBack} className="text-[9px] bg-white/[0.05] hover:bg-white/[0.1] text-gray-300 px-3 py-1.5 rounded-md font-medium transition-colors border border-white/10">Cancel</button>
-        <button className="text-[9px] bg-primary hover:bg-primary/90 text-white px-3 py-1.5 rounded-md font-medium transition-colors">Save Changes</button>
-      </div>
-    </div>
+const TemplateEditorContent = ({ onBack }: { onBack: () => void }) => {
+  const [sections, setSections] = useState(
+    rubricSections.map(s => ({ ...s, subs: s.subs.map(sub => ({ ...sub })) }))
+  );
 
-    <div className="grid grid-cols-[140px_1fr] gap-4">
-      {/* Left: Weight Distribution Donut */}
-      <div className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-3">
-        <p className="text-[10px] text-gray-400 font-semibold mb-2">Weight Distribution</p>
-        <div className="flex justify-center">
-          <MiniDonut />
+  const updateWeight = (sectionIdx: number, subIdx: number, delta: number) => {
+    setSections(prev => {
+      const next = prev.map(s => ({ ...s, subs: s.subs.map(sub => ({ ...sub })) }));
+      const newWeight = Math.max(1, Math.min(15, next[sectionIdx].subs[subIdx].weight + delta));
+      next[sectionIdx].subs[subIdx].weight = newWeight;
+      // Recalculate section pct as sum of sub weights
+      next[sectionIdx].pct = next[sectionIdx].subs.reduce((a, b) => a + b.weight, 0);
+      return next;
+    });
+  };
+
+  const totalWeight = sections.reduce((a, s) => a + s.pct, 0);
+
+  const DynamicDonut = () => {
+    const segments = sections.map(s => ({
+      pct: totalWeight > 0 ? (s.pct / totalWeight) * 100 : 0,
+      color: s.color.replace("bg-", ""),
+    }));
+    const colorMap: Record<string, string> = {
+      "amber-400": "#fbbf24", "orange-400": "#fb923c", "amber-500": "#f59e0b",
+      "emerald-400": "#34d399", "cyan-400": "#22d3ee", "purple-400": "#a78bfa",
+    };
+    let acc = 0;
+    return (
+      <svg viewBox="0 0 36 36" className="w-20 h-20">
+        {segments.map((s, i) => {
+          const dash = s.pct;
+          const offset = 100 - acc;
+          acc += dash;
+          return (
+            <circle key={i} cx="18" cy="18" r="15.9" fill="none" stroke={colorMap[s.color] || "#888"} strokeWidth="3.5"
+              strokeDasharray={`${dash} ${100 - dash}`} strokeDashoffset={offset} />
+          );
+        })}
+        <text x="18" y="19" textAnchor="middle" dominantBaseline="middle" fill="white" fontSize="5" fontWeight="bold">{totalWeight}%</text>
+      </svg>
+    );
+  };
+
+  return (
+    <>
+      {/* Header */}
+      <div className="flex items-center justify-between mb-4 pb-3 border-b border-white/5">
+        <div className="flex items-center gap-3">
+          <button onClick={onBack} className="text-primary hover:text-primary/80 transition-colors flex items-center gap-1 text-[10px]">
+            <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
+            Back to Templates
+          </button>
+          <div className="w-px h-4 bg-white/10" />
+          <div className="w-6 h-6 rounded-md bg-amber-500/20 flex items-center justify-center">
+            <svg className="w-3.5 h-3.5 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5zm0 7l-9-5 9-5 9 5-9 5z" /></svg>
+          </div>
+          <div>
+            <p className="text-xs font-semibold text-white">Dual Degree Business Administration and Data Analysis</p>
+            <p className="text-[9px] text-gray-500">Edit grading template</p>
+          </div>
         </div>
-        <div className="mt-3 grid grid-cols-2 gap-x-2 gap-y-1">
-          {rubricSections.map((s) => (
-            <div key={s.name} className="flex items-center gap-1.5">
-              <div className={`w-2 h-2 rounded-full ${s.color}`} />
-              <span className="text-[8px] text-gray-400">{s.name}</span>
+        <div className="flex items-center gap-2">
+          <button onClick={onBack} className="text-[9px] bg-white/[0.05] hover:bg-white/[0.1] text-gray-300 px-3 py-1.5 rounded-md font-medium transition-colors border border-white/10">Cancel</button>
+          <button className="text-[9px] bg-primary hover:bg-primary/90 text-white px-3 py-1.5 rounded-md font-medium transition-colors">Save Changes</button>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-[140px_1fr] gap-4">
+        {/* Left: Weight Distribution Donut */}
+        <div className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-3">
+          <p className="text-[10px] text-gray-400 font-semibold mb-2">Weight Distribution</p>
+          <div className="flex justify-center">
+            <DynamicDonut />
+          </div>
+          {totalWeight !== 100 && (
+            <p className={`text-[8px] text-center mt-1 ${totalWeight > 100 ? "text-rose-400" : "text-amber-400"}`}>
+              {totalWeight > 100 ? `${totalWeight - 100}% over` : `${100 - totalWeight}% remaining`}
+            </p>
+          )}
+          <div className="mt-3 grid grid-cols-2 gap-x-2 gap-y-1">
+            {sections.map((s) => (
+              <div key={s.name} className="flex items-center gap-1.5">
+                <div className={`w-2 h-2 rounded-full ${s.color}`} />
+                <span className="text-[8px] text-gray-400">{s.name}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Right: Rubric Sections */}
+        <div className="space-y-3 overflow-y-auto max-h-[480px] pr-1">
+          {sections.map((section, sIdx) => (
+            <div key={section.name} className="bg-white/[0.03] border border-white/5 rounded-lg px-4 py-3">
+              {/* Section header */}
+              <div className="flex items-center justify-between mb-2">
+                <div className="flex items-center gap-2">
+                  <div className={`w-2.5 h-2.5 rounded-full ${section.color}`} />
+                  <span className="text-[11px] font-bold text-white">{section.name}</span>
+                </div>
+                <span className="text-[9px] font-bold px-2 py-0.5 rounded-md border border-amber-500/30 text-amber-400 bg-amber-500/10">{section.pct}% total</span>
+              </div>
+              {/* Color bar */}
+              <div className={`h-[3px] ${section.color} rounded-full mb-3 transition-all`} style={{ width: `${Math.min(section.pct * 2.5, 100)}%` }} />
+
+              {/* Sub-criteria header */}
+              <div className="grid grid-cols-[1fr_80px_70px] gap-2 mb-1.5 pb-1 border-b border-white/5">
+                <span className="text-[7px] text-gray-500 uppercase tracking-wider font-semibold">Sub-Criterion</span>
+                <span className="text-[7px] text-gray-500 uppercase tracking-wider font-semibold text-center">Impact</span>
+                <span className="text-[7px] text-gray-500 uppercase tracking-wider font-semibold text-center">Weight</span>
+              </div>
+
+              {/* Sub-criteria rows */}
+              <div className="space-y-1.5">
+                {section.subs.map((sub, subIdx) => (
+                  <div key={sub.label} className="grid grid-cols-[1fr_80px_70px] gap-2 items-center">
+                    <span className="text-[10px] text-gray-300">{sub.label}</span>
+                    <div className="h-1.5 bg-white/5 rounded-full">
+                      <div className={`h-full ${section.color} rounded-full transition-all`} style={{ width: `${sub.weight * 10}%` }} />
+                    </div>
+                    <div className="flex items-center justify-center gap-1">
+                      <button
+                        onClick={() => updateWeight(sIdx, subIdx, -1)}
+                        className="w-4 h-4 rounded bg-white/[0.06] hover:bg-white/[0.12] text-gray-400 hover:text-white flex items-center justify-center text-[10px] transition-colors"
+                      >
+                        −
+                      </button>
+                      <span className="text-[10px] text-white font-semibold bg-white/[0.05] border border-white/10 rounded px-1.5 py-0.5 min-w-[22px] text-center">{sub.weight}</span>
+                      <button
+                        onClick={() => updateWeight(sIdx, subIdx, 1)}
+                        className="w-4 h-4 rounded bg-white/[0.06] hover:bg-white/[0.12] text-gray-400 hover:text-white flex items-center justify-center text-[10px] transition-colors"
+                      >
+                        +
+                      </button>
+                      <span className="text-[8px] text-gray-500">%</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Section total */}
+              <div className="flex items-center justify-between mt-2 pt-1.5 border-t border-white/5">
+                <span className="text-[9px] text-gray-500">Section total</span>
+                <span className="text-[10px] font-bold text-amber-400">{section.pct}%</span>
+              </div>
             </div>
           ))}
         </div>
       </div>
-
-      {/* Right: Rubric Sections */}
-      <div className="space-y-3 overflow-y-auto max-h-[480px] pr-1">
-        {rubricSections.map((section) => (
-          <div key={section.name} className="bg-white/[0.03] border border-white/5 rounded-lg px-4 py-3">
-            {/* Section header */}
-            <div className="flex items-center justify-between mb-2">
-              <div className="flex items-center gap-2">
-                <div className={`w-2.5 h-2.5 rounded-full ${section.color}`} />
-                <span className="text-[11px] font-bold text-white">{section.name}</span>
-              </div>
-              <span className="text-[9px] font-bold px-2 py-0.5 rounded-md border border-amber-500/30 text-amber-400 bg-amber-500/10">{section.pct}% total</span>
-            </div>
-            {/* Color bar */}
-            <div className={`h-[3px] ${section.color} rounded-full mb-3`} style={{ width: `${section.pct * 2.5}%` }} />
-
-            {/* Sub-criteria header */}
-            <div className="grid grid-cols-[1fr_80px_50px] gap-2 mb-1.5 pb-1 border-b border-white/5">
-              <span className="text-[7px] text-gray-500 uppercase tracking-wider font-semibold">Sub-Criterion</span>
-              <span className="text-[7px] text-gray-500 uppercase tracking-wider font-semibold text-center">Impact</span>
-              <span className="text-[7px] text-gray-500 uppercase tracking-wider font-semibold text-center">Weight</span>
-            </div>
-
-            {/* Sub-criteria rows */}
-            <div className="space-y-1.5">
-              {section.subs.map((sub) => (
-                <div key={sub.label} className="grid grid-cols-[1fr_80px_50px] gap-2 items-center">
-                  <span className="text-[10px] text-gray-300">{sub.label}</span>
-                  <div className="h-1.5 bg-white/5 rounded-full">
-                    <div className={`h-full ${section.color} rounded-full transition-all`} style={{ width: `${sub.weight * 10}%` }} />
-                  </div>
-                  <div className="flex items-center justify-center gap-0.5">
-                    <span className="text-[10px] text-white font-semibold bg-white/[0.05] border border-white/10 rounded px-1.5 py-0.5 min-w-[22px] text-center">{sub.weight}</span>
-                    <span className="text-[8px] text-gray-500">%</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Section total */}
-            <div className="flex items-center justify-between mt-2 pt-1.5 border-t border-white/5">
-              <span className="text-[9px] text-gray-500">Section total</span>
-              <span className="text-[10px] font-bold text-amber-400">{section.pct}%</span>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </>
-);
+    </>
+  );
+};
 
 const ResumeTemplatesContent = ({ onOpenEditor }: { onOpenEditor: () => void }) => (
   <>
