@@ -15,7 +15,7 @@ const solutions = [
     icon: BarChart3,
     number: "02",
     title: "Institutional analytics & reporting",
-    description: "Auto-generated placement reports, programme-level comparisons, and cohort analytics. Everything accreditation bodies and leadership need — without the manual work.",
+    description: "Track placement rates, compare programme performance, and surface cohort-level trends — all in real time. From qualification benchmarks to market-fit scores, every metric your accreditation bodies and leadership need is generated automatically.",
     color: "text-amber-400",
     bgColor: "bg-amber-400/10",
   },
@@ -67,7 +67,7 @@ const SolutionSection = () => {
               <h3 className="text-xl font-bold text-white mb-3">{s.title}</h3>
               <p className="text-sm text-gray-400 leading-relaxed">{s.description}</p>
               <div className="mt-5 flex items-center gap-1 text-xs text-primary font-medium opacity-0 group-hover:opacity-100 transition-opacity">
-                Learn more <ArrowRight className="w-3 h-3" />
+                Explore in demo <ArrowRight className="w-3 h-3" />
               </div>
             </motion.div>
           ))}
