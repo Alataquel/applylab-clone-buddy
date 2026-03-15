@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Calendar, CheckCircle } from "lucide-react";
+import { ArrowRight, TrendingUp, Users } from "lucide-react";
 import DashboardMockup from "./DashboardMockup";
 
 const containerVariants = {
@@ -70,7 +70,7 @@ const HeroSection = () => {
         >
           <DashboardMockup />
 
-          {/* Floating card - Interview scheduled */}
+          {/* Floating card - Placement rate */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -78,17 +78,14 @@ const HeroSection = () => {
             className="absolute -top-4 -right-4 lg:right-0 bg-card rounded-xl p-4 shadow-precision-md"
           >
             <div className="flex items-center gap-2 text-sm font-medium text-foreground">
-              <Calendar className="w-4 h-4 text-primary" />
-              Interview scheduled
+              <TrendingUp className="w-4 h-4 text-primary" />
+              Placement rate up
             </div>
-            <p className="text-xs text-muted-foreground mt-1">Figma · Tomorrow 10:00 AM</p>
-            <div className="flex items-center gap-1 mt-2">
-              <CheckCircle className="w-3 h-3 text-emerald-500" />
-              <p className="text-[10px] text-emerald-500 font-medium">Confirmed</p>
-            </div>
+            <p className="text-2xl font-bold text-foreground mt-1">+12%</p>
+            <p className="text-[10px] text-muted-foreground">vs. last semester</p>
           </motion.div>
 
-          {/* Floating card - ATS Score */}
+          {/* Floating card - Active students */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -97,11 +94,11 @@ const HeroSection = () => {
           >
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center">
-                <span className="text-lg font-bold text-primary">94</span>
+                <Users className="w-5 h-5 text-primary" />
               </div>
               <div>
-                <p className="text-sm font-medium text-foreground">ATS Score</p>
-                <p className="text-xs text-muted-foreground">Resume ready</p>
+                <p className="text-sm font-medium text-foreground">716 active students</p>
+                <p className="text-xs text-muted-foreground">Across 3 cohorts</p>
               </div>
             </div>
           </motion.div>

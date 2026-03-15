@@ -3,9 +3,10 @@ import Navbar from "@/components/landing/Navbar";
 import HeroSection from "@/components/landing/HeroSection";
 import CompanyMarquee from "@/components/landing/CompanyMarquee";
 import StatsSection from "@/components/landing/StatsSection";
-import PlatformSection from "@/components/landing/PlatformSection";
-import FeaturesSection from "@/components/landing/FeaturesSection";
-import TestimonialsSection from "@/components/landing/TestimonialsSection";
+import ProblemSection from "@/components/landing/ProblemSection";
+import InfrastructureSection from "@/components/landing/InfrastructureSection";
+
+
 import FAQSection from "@/components/landing/FAQSection";
 import CTASection from "@/components/landing/CTASection";
 import Footer from "@/components/landing/Footer";
@@ -34,9 +35,10 @@ const Index = () => {
         <HeroSection />
         <CompanyMarquee />
         <StatsSection />
-        <PlatformSection />
-        <FeaturesSection />
-        <TestimonialsSection />
+        <ProblemSection />
+        <InfrastructureSection />
+        
+        
         <FAQSection />
         <CTASection />
         <Footer />

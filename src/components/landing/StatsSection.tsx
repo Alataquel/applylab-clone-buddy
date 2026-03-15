@@ -20,8 +20,8 @@ const useCountUp = (end: number, duration: number, start: boolean, prefix = "", 
 
 const statConfig = [
   { end: 12, prefix: "", suffix: "+", label: "University partners" },
-  { end: 94, prefix: "", suffix: "%", label: "ATS pass rate" },
-  { end: 5, prefix: "", suffix: "k+", label: "Students helped" },
+  { end: 3, prefix: "", suffix: "x", label: "More visibility into career activity" },
+  { end: 2, prefix: "< ", suffix: " weeks", label: "Average onboarding time" },
 ];
 
 const CountUpStat = ({ config, isInView, delay }: { config: typeof statConfig[0]; isInView: boolean; delay: number }) => {
@@ -42,8 +42,8 @@ const CountUpStat = ({ config, isInView, delay }: { config: typeof statConfig[0]
       transition={{ duration: 0.5, delay, ease: [0.2, 0, 0, 1] }}
       className="text-center"
     >
-      <p className="text-4xl lg:text-5xl font-bold text-foreground tracking-tight">{display}</p>
-      <p className="text-sm text-muted-foreground mt-2">{config.label}</p>
+      <p className="text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight">{display}</p>
+      <p className="text-sm text-gray-500 mt-2">{config.label}</p>
     </motion.div>
   );
 };
@@ -53,7 +53,7 @@ const StatsSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section ref={ref} className="py-20 px-6 lg:px-12 bg-card border-t border-b border-border">
+    <section ref={ref} className="py-20 px-6 lg:px-12 bg-white border-t border-b border-gray-200">
       <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-8">
         {statConfig.map((config, i) => (
           <CountUpStat key={config.label} config={config} isInView={isInView} delay={i * 0.15} />
