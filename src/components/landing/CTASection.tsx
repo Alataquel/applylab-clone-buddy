@@ -43,7 +43,7 @@ const CTASection = () => {
           </a>
           <a
             href="/universities"
-            className="inline-flex items-center justify-center gap-2 text-gray-500 font-medium px-8 py-3.5 rounded-full text-sm border border-gray-200 hover:text-gray-900 transition-colors"
+            className="inline-flex items-center justify-center gap-2 text-muted-foreground font-medium px-8 py-3.5 rounded-full text-sm border border-border hover:text-foreground transition-colors"
           >
             Learn how it works
           </a>
