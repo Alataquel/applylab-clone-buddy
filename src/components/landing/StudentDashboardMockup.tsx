@@ -1159,7 +1159,7 @@ const allJobs = [
   { company: "EY", logo: "EY", color: "bg-yellow-500", title: "Tax Consulting Intern", location: "Zurich, Switzerland", country: "Switzerland", tag: "Professional Services", posted: "5 days ago", level: "Internship" },
 ];
 
-const locations = ["United States", "United Kingdom", "Germany", "France", "Spain", "Italy", "Switzerland", "Singapore", "United Arab Emirates", "Canada"];
+const locations = ["United States", "United Kingdom", "Germany", "France", "Spain", "Italy", "Switzerland", "Singapore", "United Arab Emirates", "Canada", "Netherlands", "Ireland", "South Korea", "Sweden"];
 const levels = ["Internship", "Entry level"];
 
 const JobBoardContent = () => {
