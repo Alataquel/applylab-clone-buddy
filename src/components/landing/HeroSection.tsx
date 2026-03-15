@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Calendar, CheckCircle2 } from "lucide-react";
+import { ArrowRight, TrendingUp, Users } from "lucide-react";
 import DashboardMockup from "./DashboardMockup";
 
 const containerVariants = {
