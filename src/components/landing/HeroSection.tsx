@@ -49,9 +49,16 @@ const HeroSection = () => {
             </a>
           </motion.div>
 
-          <motion.div variants={itemVariants} className="flex items-center gap-2 text-xs text-muted-foreground">
+          <motion.div variants={itemVariants} className="flex items-center gap-2 text-xs text-muted-foreground flex-wrap">
             <span>As listed in</span>
             <span className="font-semibold text-foreground">Forbes Italy</span>
+            <span>·</span>
+            <span>Used by</span>
+            <span className="font-semibold text-foreground">Saint Louis University</span>
+            <span>·</span>
+            <span className="font-semibold text-foreground">German UDS</span>
+            <span>·</span>
+            <span className="font-semibold text-foreground">XU Exponential</span>
           </motion.div>
         </motion.div>
 
