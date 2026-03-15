@@ -598,8 +598,8 @@ const JobBoardContent = () => (
             <p className="text-[5px] text-muted-foreground leading-tight mb-1.5 line-clamp-2">Join our team and contribute to exciting projects in {job.tag.toLowerCase()}...</p>
             <span className="text-[5px] bg-secondary text-muted-foreground rounded px-1 py-0.5 inline-block mb-1.5">{job.tag}</span>
             <div className="flex items-center justify-between">
-              <span className="text-[5px] text-muted-foreground">🟢 Posted {job.posted}</span>
-              <span className="text-[6px] text-primary font-medium cursor-pointer">View ↗</span>
+              <span className="text-[5px] text-emerald-500 flex items-center gap-0.5">● Posted {job.posted}</span>
+              <span className="text-[6px] text-primary font-medium cursor-pointer flex items-center gap-0.5">View <ExternalLink className="w-2 h-2" /></span>
             </div>
           </div>
         ))}
