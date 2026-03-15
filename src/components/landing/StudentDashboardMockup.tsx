@@ -595,8 +595,18 @@ const ResumeBuilderContent = () => {
   const [templateDropdownOpen, setTemplateDropdownOpen] = useState(false);
 
   const updateField = (key: string, value: string) => setFields(prev => ({ ...prev, [key]: value }));
+  const autofillAll = () => setFields({
+    headline: "Frontend Developer & UX Designer",
+    fullName: "Antonio Rossi",
+    summary: "Creative frontend developer with 2+ years of experience building responsive web applications. Passionate about clean code, accessibility, and user-centered design. Proficient in React, TypeScript, and modern CSS frameworks.",
+    email: "antonio.rossi@email.com",
+    phone: "+39 345 678 9012",
+    website: "antoniorossi.dev",
+    location: "Milan, Italy",
+    linkedin: "linkedin.com/in/antoniorossi",
+    github: "github.com/arossi",
+  });
   const accentColor = colorOptions[selectedColor].hex;
-  const accentHsl = colorOptions[selectedColor].hsl;
 
   const isClassic = selectedTemplate === "Classic";
   const isMinimal = selectedTemplate === "Minimal";
