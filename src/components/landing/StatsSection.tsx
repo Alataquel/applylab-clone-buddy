@@ -42,8 +42,8 @@ const CountUpStat = ({ config, isInView, delay }: { config: typeof statConfig[0]
       transition={{ duration: 0.5, delay, ease: [0.2, 0, 0, 1] }}
       className="text-center"
     >
-      <p className="text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight">{display}</p>
-      <p className="text-sm text-gray-500 mt-2">{config.label}</p>
+      <p className="text-4xl lg:text-5xl font-bold tracking-tight text-[hsl(230,40%,11%)]">{display}</p>
+      <p className="text-sm mt-2 text-[hsl(215,16%,47%)]">{config.label}</p>
     </motion.div>
   );
 };
@@ -53,7 +53,7 @@ const StatsSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section ref={ref} className="py-20 px-6 lg:px-12 bg-white border-t border-b border-gray-200">
+    <section ref={ref} className="py-20 px-6 lg:px-12 border-t border-b" style={{ backgroundColor: "hsl(0, 0%, 100%)", borderColor: "hsl(220, 13%, 91%)" }}>
       <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-8">
         {statConfig.map((config, i) => (
           <CountUpStat key={config.label} config={config} isInView={isInView} delay={i * 0.15} />
