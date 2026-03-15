@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Navbar from "@/components/landing/Navbar";
 import HeroSection from "@/components/landing/HeroSection";
+import CompanyMarquee from "@/components/landing/CompanyMarquee";
 import StatsSection from "@/components/landing/StatsSection";
 import ProblemSection from "@/components/landing/ProblemSection";
 import InfrastructureSection from "@/components/landing/InfrastructureSection";
