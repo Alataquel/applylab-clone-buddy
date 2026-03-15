@@ -6,30 +6,30 @@
 
 @layer base {
   :root {
-    --background: 220 30% 7%;
+    --background: 222 65% 8%;
     --foreground: 0 0% 98%;
-    --card: 220 28% 10%;
+    --card: 223 56% 11%;
     --card-foreground: 0 0% 98%;
-    --popover: 220 25% 8%;
+    --popover: 223 56% 11%;
     --popover-foreground: 0 0% 98%;
     --primary: 210 100% 50%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 220 20% 12%;
+    --secondary: 223 45% 14%;
     --secondary-foreground: 0 0% 98%;
-    --muted: 220 15% 15%;
-    --muted-foreground: 220 10% 55%;
+    --muted: 223 40% 18%;
+    --muted-foreground: 220 12% 62%;
     --accent: 210 100% 50%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
-    --border: 220 15% 15%;
-    --input: 220 15% 15%;
+    --border: 223 35% 18%;
+    --input: 223 35% 18%;
     --ring: 210 100% 50%;
     --radius: 0.75rem;
 
-    --surface-1: 220 25% 8%;
-    --surface-2: 220 20% 10%;
-    --surface-3: 220 18% 13%;
+    --surface-1: 223 56% 11%;
+    --surface-2: 223 50% 13%;
+    --surface-3: 223 42% 16%;
     --text-primary: 0 0% 100%;
     --text-secondary: 220 10% 65%;
     --text-muted: 220 8% 46%;
@@ -71,10 +71,11 @@
     background-clip: text;
   }
   .bg-grid {
-    background-image: 
-      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-    background-size: 80px 80px;
+    background-image:
+      radial-gradient(120% 85% at 50% 0%, hsl(var(--primary) / 0.18) 0%, transparent 60%),
+      linear-gradient(hsl(var(--foreground) / 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--foreground) / 0.035) 1px, transparent 1px);
+    background-size: auto, 80px 80px, 80px 80px;
   }
 }
 
