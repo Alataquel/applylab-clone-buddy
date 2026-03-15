@@ -7,7 +7,7 @@ const CTASection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section ref={ref} id="cta" className="py-24 px-6 lg:px-12 bg-white">
+    <section ref={ref} id="cta" className="py-24 px-6 lg:px-12">
       <div className="max-w-4xl mx-auto text-center">
         <motion.div
           initial={{ opacity: 0, y: 16 }}

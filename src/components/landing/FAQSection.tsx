@@ -69,7 +69,7 @@ const FAQSection = () => {
               </button>
               {open === i && (
                 <div className="px-5 pb-4">
-                  <p className="text-sm text-muted-foreground leading-relaxed">{faq.a}</p>
+                  <p className="text-sm text-gray-500 leading-relaxed">{faq.a}</p>
                 </div>
               )}
             </motion.div>
