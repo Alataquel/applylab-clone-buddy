@@ -51,9 +51,9 @@ const ForUniversities = () => {
       <section className="py-16 px-6 lg:px-12 border-t border-border/30">
         <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
           {[
-            { value: "94%", label: "CV optimisation rate" },
-            { value: "3×", label: "More visibility into career activity" },
-            { value: "< 2 weeks", label: "Average onboarding time" },
+            { value: "85%", label: "Reduction in manual reporting" },
+            { value: "100×", label: "More visibility into career activity" },
+            { value: "1 day", label: "Average onboarding time" },
           ].map((s, i) => (
             <motion.div
               key={s.label}
