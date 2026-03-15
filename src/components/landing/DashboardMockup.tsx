@@ -1541,6 +1541,7 @@ const DashboardMockup = () => {
   const [activeTab, setActiveTab] = useState(0);
   const [selectedStudent, setSelectedStudent] = useState<typeof studentsData[0] | null>(null);
   const [showTemplateEditor, setShowTemplateEditor] = useState(false);
+  const [selectedPosting, setSelectedPosting] = useState<typeof postingsData[0] | null>(null);
   const [isExpanded, setIsExpanded] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
