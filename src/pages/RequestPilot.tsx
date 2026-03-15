@@ -98,7 +98,7 @@ const RequestPilot = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.3 }}
               >
-                <label className="text-xs text-muted-foreground font-medium mb-2 block">I am a</label>
+                <label className="text-xs text-gray-500 font-medium mb-2 block">I am a</label>
                 <div className="flex gap-2">
                   {[
                     { value: "student", label: "Student" },
