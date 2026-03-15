@@ -493,17 +493,18 @@ const DashboardMockup = () => {
   const handleMouseLeave = () => setTilt({ x: 0, y: 0 });
 
   const renderContent = () => {
-    if (activeTab === 0 && selectedStudent) {
+    if (activeTab === 1 && selectedStudent) {
       return <StudentDetailContent student={selectedStudent} onBack={() => setSelectedStudent(null)} />;
     }
     switch (activeTab) {
-      case 0: return <StudentsContent onSelectStudent={setSelectedStudent} />;
-      case 1: return <AnalyticsContent />;
-      case 2: return <QualificationInsightsContent />;
-      case 3: return <MarketInsightsContent />;
-      case 4: return <ResumeTemplatesContent />;
-      case 5: return <JobEventPostingsContent />;
-      default: return <StudentsContent onSelectStudent={setSelectedStudent} />;
+      case 0: return <OverviewContent />;
+      case 1: return <StudentsContent onSelectStudent={setSelectedStudent} />;
+      case 2: return <AnalyticsContent />;
+      case 3: return <QualificationInsightsContent />;
+      case 4: return <MarketInsightsContent />;
+      case 5: return <ResumeTemplatesContent />;
+      case 6: return <JobEventPostingsContent />;
+      default: return <OverviewContent />;
     }
   };
 
