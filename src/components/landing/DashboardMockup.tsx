@@ -769,72 +769,118 @@ const AnalyticsContent = () => {
           <p className="text-[10px] font-semibold text-white">Global Placement Distribution</p>
           <span className="text-[7px] text-gray-500 ml-auto">Hover over pins for details</span>
         </div>
-        <div className="relative bg-[hsl(210,30%,12%)] rounded-lg overflow-hidden" style={{ height: 180 }}>
-          {/* SVG World Map */}
-          <svg viewBox="0 0 800 400" className="w-full h-full">
-            {/* Ocean background */}
-            <rect width="800" height="400" fill="hsl(210,30%,15%)" />
-            {/* Simplified continent paths */}
+        <div className="relative bg-[hsl(220,25%,10%)] rounded-lg overflow-hidden" style={{ height: 220 }}>
+          {/* SVG World Map - Natural Earth style */}
+          <svg viewBox="0 0 1000 500" className="w-full h-full" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <linearGradient id="oceanGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="hsl(220,30%,12%)" />
+                <stop offset="100%" stopColor="hsl(220,25%,9%)" />
+              </linearGradient>
+              <filter id="landGlow">
+                <feGaussianBlur stdDeviation="2" result="blur" />
+                <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+              </filter>
+            </defs>
+            <rect width="1000" height="500" fill="url(#oceanGrad)" />
+            {/* Latitude/longitude grid */}
+            {[83,167,250,333,417].map(y => <line key={`h${y}`} x1="0" y1={y} x2="1000" y2={y} stroke="hsl(220,20%,14%)" strokeWidth="0.4" strokeDasharray="4 4" />)}
+            {[100,200,300,400,500,600,700,800,900].map(x => <line key={`v${x}`} x1={x} y1="0" x2={x} y2="500" stroke="hsl(220,20%,14%)" strokeWidth="0.4" strokeDasharray="4 4" />)}
+            
             {/* North America */}
-            <path d="M80,60 L120,45 L180,50 L200,70 L210,100 L200,130 L180,150 L160,160 L140,155 L120,170 L100,160 L80,130 L70,100 Z" fill="hsl(210,25%,22%)" stroke="hsl(210,20%,28%)" strokeWidth="0.5" />
+            <path d="M50,80 Q80,60 130,55 Q160,50 190,55 Q210,50 230,60 Q250,55 260,65 L265,75 Q270,80 268,90 L260,105 Q255,115 250,120 L245,130 Q240,140 230,150 L220,160 Q210,165 200,168 L185,172 Q170,175 155,178 L140,180 Q120,185 110,180 Q95,175 85,165 L75,150 Q65,140 60,125 L55,110 Q50,100 48,90 Z" fill="hsl(220,20%,20%)" stroke="hsl(220,15%,28%)" strokeWidth="0.8" />
+            {/* Greenland */}
+            <path d="M230,35 Q250,30 270,35 Q280,40 275,50 Q270,58 260,55 Q245,50 240,45 Z" fill="hsl(220,20%,20%)" stroke="hsl(220,15%,28%)" strokeWidth="0.6" />
+            {/* Central America */}
+            <path d="M140,180 Q150,182 158,190 Q162,195 165,205 Q160,210 155,208 Q148,200 142,195 Z" fill="hsl(220,20%,20%)" stroke="hsl(220,15%,28%)" strokeWidth="0.6" />
             {/* South America */}
-            <path d="M140,180 L170,175 L190,200 L200,240 L195,280 L180,310 L160,330 L145,320 L130,290 L125,250 L130,220 Z" fill="hsl(210,25%,22%)" stroke="hsl(210,20%,28%)" strokeWidth="0.5" />
+            <path d="M165,210 Q180,205 195,210 Q210,218 220,235 Q228,255 225,280 Q220,310 210,335 Q200,355 185,370 Q170,380 160,375 Q150,365 145,345 Q140,320 138,295 Q136,270 140,245 Q145,225 155,215 Z" fill="hsl(220,20%,20%)" stroke="hsl(220,15%,28%)" strokeWidth="0.8" />
+            
             {/* Europe */}
-            <path d="M340,50 L380,45 L420,55 L430,80 L420,100 L400,110 L370,105 L350,95 L340,80 Z" fill="hsl(210,25%,22%)" stroke="hsl(210,20%,28%)" strokeWidth="0.5" />
+            <path d="M420,50 Q440,42 460,45 Q475,42 490,48 Q500,50 505,58 L508,65 Q510,72 508,80 Q505,88 498,95 L490,100 Q480,105 470,108 L458,110 Q445,112 435,108 Q425,105 420,98 L418,88 Q415,78 418,68 Z" fill="hsl(220,20%,20%)" stroke="hsl(220,15%,28%)" strokeWidth="0.8" />
+            {/* UK & Ireland */}
+            <path d="M405,55 Q412,50 418,52 Q422,55 420,62 Q416,68 410,65 Q405,62 405,58 Z" fill="hsl(220,20%,20%)" stroke="hsl(220,15%,28%)" strokeWidth="0.6" />
+            {/* Scandinavia */}
+            <path d="M458,28 Q465,22 472,25 Q478,30 480,40 Q478,48 474,45 Q468,38 462,35 Z" fill="hsl(220,20%,20%)" stroke="hsl(220,15%,28%)" strokeWidth="0.6" />
+            {/* Italy */}
+            <path d="M462,80 Q468,78 470,85 Q472,92 470,100 Q466,105 462,100 Q460,92 461,85 Z" fill="hsl(220,20%,20%)" stroke="hsl(220,15%,28%)" strokeWidth="0.5" />
+            
             {/* Africa */}
-            <path d="M360,120 L400,115 L420,130 L430,170 L425,220 L410,260 L390,280 L370,275 L355,250 L350,210 L345,170 Z" fill="hsl(210,25%,22%)" stroke="hsl(210,20%,28%)" strokeWidth="0.5" />
-            {/* Asia */}
-            <path d="M440,40 L520,35 L600,50 L660,70 L680,100 L670,140 L640,160 L600,170 L550,160 L500,140 L460,120 L440,90 Z" fill="hsl(210,25%,22%)" stroke="hsl(210,20%,28%)" strokeWidth="0.5" />
+            <path d="M430,120 Q450,115 475,118 Q495,122 510,135 Q520,150 525,170 Q528,195 525,220 Q520,250 510,275 Q498,300 480,315 Q465,325 450,320 Q435,315 425,300 Q415,280 412,255 Q410,230 412,205 Q415,180 420,155 Q425,135 430,125 Z" fill="hsl(220,20%,20%)" stroke="hsl(220,15%,28%)" strokeWidth="0.8" />
+            {/* Madagascar */}
+            <path d="M535,275 Q540,270 543,278 Q545,288 542,295 Q538,298 535,292 Z" fill="hsl(220,20%,20%)" stroke="hsl(220,15%,28%)" strokeWidth="0.5" />
+            
+            {/* Middle East */}
+            <path d="M510,100 Q530,95 545,100 Q555,108 558,118 Q555,128 548,130 Q535,132 525,128 Q515,122 512,112 Z" fill="hsl(220,20%,20%)" stroke="hsl(220,15%,28%)" strokeWidth="0.6" />
+            
+            {/* Russia / Central Asia */}
+            <path d="M500,30 Q550,22 620,25 Q680,28 740,35 Q780,42 800,55 Q810,65 805,75 Q795,82 780,78 Q750,72 720,68 Q680,62 640,58 Q600,55 560,52 Q530,50 510,48 Q502,45 500,38 Z" fill="hsl(220,20%,20%)" stroke="hsl(220,15%,28%)" strokeWidth="0.8" />
+            
+            {/* India */}
+            <path d="M600,110 Q615,105 625,112 Q632,120 635,135 Q636,150 630,165 Q625,175 615,178 Q605,175 600,165 Q595,150 596,135 Q597,120 600,112 Z" fill="hsl(220,20%,20%)" stroke="hsl(220,15%,28%)" strokeWidth="0.7" />
+            
+            {/* Southeast Asia */}
+            <path d="M660,120 Q680,115 700,118 Q715,122 720,132 Q722,142 715,148 Q705,152 695,148 Q680,142 670,135 Q662,128 660,122 Z" fill="hsl(220,20%,20%)" stroke="hsl(220,15%,28%)" strokeWidth="0.6" />
+            {/* Indonesia */}
+            <path d="M680,180 Q700,175 720,178 Q740,182 755,185 Q765,190 760,195 Q750,198 735,195 Q715,192 695,188 Q682,186 680,182 Z" fill="hsl(220,20%,20%)" stroke="hsl(220,15%,28%)" strokeWidth="0.5" />
+            
+            {/* China / East Asia */}
+            <path d="M660,55 Q690,48 720,52 Q745,55 760,65 Q770,75 768,88 Q765,100 755,108 Q742,115 725,112 Q705,108 690,100 Q675,90 668,78 Q662,68 660,58 Z" fill="hsl(220,20%,20%)" stroke="hsl(220,15%,28%)" strokeWidth="0.8" />
+            {/* Japan */}
+            <path d="M780,60 Q788,55 792,62 Q795,72 793,82 Q790,88 785,85 Q781,78 780,68 Z" fill="hsl(220,20%,20%)" stroke="hsl(220,15%,28%)" strokeWidth="0.5" />
+            {/* Korea */}
+            <path d="M770,68 Q775,65 778,70 Q780,76 778,80 Q775,82 772,78 Z" fill="hsl(220,20%,20%)" stroke="hsl(220,15%,28%)" strokeWidth="0.4" />
+            
             {/* Australia */}
-            <path d="M620,240 L680,235 L720,250 L730,280 L710,300 L670,305 L640,290 L625,270 Z" fill="hsl(210,25%,22%)" stroke="hsl(210,20%,28%)" strokeWidth="0.5" />
-            {/* Grid lines */}
-            {[100,200,300].map(y => <line key={`h${y}`} x1="0" y1={y} x2="800" y2={y} stroke="hsl(210,20%,18%)" strokeWidth="0.3" />)}
-            {[160,320,480,640].map(x => <line key={`v${x}`} x1={x} y1="0" x2={x} y2="400" stroke="hsl(210,20%,18%)" strokeWidth="0.3" />)}
+            <path d="M740,260 Q770,250 800,255 Q830,260 850,275 Q860,290 855,310 Q845,325 825,330 Q800,335 775,328 Q755,320 745,305 Q738,290 740,275 Z" fill="hsl(220,20%,20%)" stroke="hsl(220,15%,28%)" strokeWidth="0.8" />
+            {/* New Zealand */}
+            <path d="M880,320 Q885,315 888,322 Q890,332 887,340 Q883,342 880,335 Z" fill="hsl(220,20%,20%)" stroke="hsl(220,15%,28%)" strokeWidth="0.4" />
           </svg>
+          
           {/* Interactive pins */}
           {[
-            { x: "15%", y: "28%", city: "San Francisco", count: 28, salary: "$92K", color: "bg-purple-500", industry: "Technology" },
-            { x: "20%", y: "25%", city: "New York", count: 42, salary: "$88K", color: "bg-blue-500", industry: "Finance" },
-            { x: "18%", y: "32%", city: "Toronto", count: 15, salary: "$76K", color: "bg-emerald-500", industry: "Consulting" },
-            { x: "44%", y: "22%", city: "London", count: 56, salary: "$85K", color: "bg-primary", industry: "Finance" },
-            { x: "47%", y: "25%", city: "Berlin", count: 18, salary: "$72K", color: "bg-amber-500", industry: "Technology" },
-            { x: "50%", y: "28%", city: "Dubai", count: 12, salary: "$95K", color: "bg-orange-500", industry: "Consulting" },
-            { x: "62%", y: "22%", city: "Singapore", count: 24, salary: "$82K", color: "bg-cyan-500", industry: "Finance" },
-            { x: "68%", y: "25%", city: "Tokyo", count: 19, salary: "$78K", color: "bg-rose-500", industry: "Technology" },
-            { x: "72%", y: "30%", city: "Hong Kong", count: 16, salary: "$90K", color: "bg-amber-400", industry: "Finance" },
-            { x: "80%", y: "62%", city: "Sydney", count: 14, salary: "$74K", color: "bg-emerald-400", industry: "Healthcare" },
-            { x: "46%", y: "42%", city: "Lagos", count: 8, salary: "$45K", color: "bg-pink-500", industry: "Technology" },
-            { x: "16%", y: "55%", city: "São Paulo", count: 11, salary: "$52K", color: "bg-violet-500", industry: "Finance" },
+            { x: "13%", y: "30%", city: "San Francisco", count: 28, salary: "$92K", color: "bg-purple-500", industry: "Technology" },
+            { x: "19%", y: "26%", city: "New York", count: 42, salary: "$88K", color: "bg-blue-500", industry: "Finance" },
+            { x: "16%", y: "22%", city: "Toronto", count: 15, salary: "$76K", color: "bg-emerald-500", industry: "Consulting" },
+            { x: "43%", y: "18%", city: "London", count: 56, salary: "$85K", color: "bg-primary", industry: "Finance" },
+            { x: "47%", y: "17%", city: "Berlin", count: 18, salary: "$72K", color: "bg-amber-500", industry: "Technology" },
+            { x: "54%", y: "24%", city: "Dubai", count: 12, salary: "$95K", color: "bg-orange-500", industry: "Consulting" },
+            { x: "72%", y: "30%", city: "Singapore", count: 24, salary: "$82K", color: "bg-cyan-500", industry: "Finance" },
+            { x: "79%", y: "18%", city: "Tokyo", count: 19, salary: "$78K", color: "bg-rose-500", industry: "Technology" },
+            { x: "76%", y: "22%", city: "Hong Kong", count: 16, salary: "$90K", color: "bg-amber-400", industry: "Finance" },
+            { x: "82%", y: "60%", city: "Sydney", count: 14, salary: "$74K", color: "bg-emerald-400", industry: "Healthcare" },
+            { x: "46%", y: "48%", city: "Lagos", count: 8, salary: "$45K", color: "bg-pink-500", industry: "Technology" },
+            { x: "18%", y: "60%", city: "São Paulo", count: 11, salary: "$52K", color: "bg-violet-500", industry: "Finance" },
           ].map((pin, i) => (
             <div
               key={i}
-              className="absolute cursor-pointer group"
+              className="absolute cursor-pointer"
               style={{ left: pin.x, top: pin.y, transform: "translate(-50%, -50%)" }}
               onMouseEnter={() => setHoveredPin(i)}
               onMouseLeave={() => setHoveredPin(null)}
             >
               {/* Pulse ring */}
-              <div className={`absolute inset-0 ${pin.color} rounded-full animate-ping opacity-20`} style={{ width: 16, height: 16, margin: "auto" }} />
+              <div className={`absolute -inset-1.5 ${pin.color} rounded-full animate-ping opacity-15`} />
               {/* Pin dot */}
-              <div className={`relative w-4 h-4 ${pin.color} rounded-full border-2 border-white/30 flex items-center justify-center shadow-lg transition-transform ${hoveredPin === i ? "scale-150 z-20" : "scale-100"}`}>
-                <span className="text-[5px] text-white font-bold">{pin.count}</span>
+              <div className={`relative w-5 h-5 ${pin.color} rounded-full border-2 border-white/40 flex items-center justify-center shadow-lg shadow-black/30 transition-all duration-200 ${hoveredPin === i ? "scale-[1.6] z-20 border-white/60" : "scale-100"}`}>
+                <span className="text-[6px] text-white font-bold">{pin.count}</span>
               </div>
               {/* Tooltip on hover */}
               {hoveredPin === i && (
-                <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-[hsl(230,40%,13%)] border border-white/10 rounded-lg px-2.5 py-2 shadow-xl z-30 whitespace-nowrap animate-fade-in">
-                  <p className="text-[10px] font-bold text-white">{pin.city}</p>
-                  <div className="flex items-center gap-1 mt-0.5">
-                    <span className={`w-1.5 h-1.5 rounded-full ${pin.color}`} />
-                    <span className="text-[8px] text-gray-400">{pin.industry}</span>
+                <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 bg-[hsl(230,35%,15%)] border border-white/15 rounded-xl px-3 py-2.5 shadow-2xl z-30 whitespace-nowrap animate-fade-in backdrop-blur-sm">
+                  <p className="text-xs font-bold text-white">{pin.city}</p>
+                  <div className="flex items-center gap-1.5 mt-0.5">
+                    <span className={`w-2 h-2 rounded-full ${pin.color}`} />
+                    <span className="text-[10px] text-gray-400">{pin.industry}</span>
                   </div>
-                  <div className="grid grid-cols-2 gap-2 mt-1 pt-1 border-t border-white/5">
+                  <div className="grid grid-cols-2 gap-3 mt-1.5 pt-1.5 border-t border-white/10">
                     <div>
-                      <p className="text-[7px] text-gray-500">Placements</p>
-                      <p className="text-[10px] font-bold text-white">{pin.count}</p>
+                      <p className="text-[8px] text-gray-500">Placements</p>
+                      <p className="text-xs font-bold text-white">{pin.count}</p>
                     </div>
                     <div>
-                      <p className="text-[7px] text-gray-500">Avg Salary</p>
-                      <p className="text-[10px] font-bold text-emerald-400">{pin.salary}</p>
+                      <p className="text-[8px] text-gray-500">Avg Salary</p>
+                      <p className="text-xs font-bold text-emerald-400">{pin.salary}</p>
                     </div>
                   </div>
                 </div>
