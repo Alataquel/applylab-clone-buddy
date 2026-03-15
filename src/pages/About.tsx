@@ -65,8 +65,8 @@ const About = () => {
       <Navbar />
 
       {/* Hero */}
-      <section className="pt-48 pb-48 px-6 lg:px-12">
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+      <section className="px-6 lg:px-12 pt-40 pb-28 lg:pt-48 lg:pb-36 min-h-[calc(100svh-4.5rem)] flex items-center">
+        <div className="w-full max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
