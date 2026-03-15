@@ -52,7 +52,7 @@ const DashboardMockup = () => {
       </div>
 
       {/* App content */}
-      <div className="flex min-h-[420px]">
+      <div className="flex min-h-[460px]">
         {/* Sidebar */}
         <div className="w-36 border-r border-white/5 p-4 hidden sm:block">
           <p className="text-sm font-bold text-white mb-5">ApplyLab</p>
