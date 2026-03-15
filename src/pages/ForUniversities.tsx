@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import GridBackground from "@/components/landing/GridBackground";
 import Navbar from "@/components/landing/Navbar";
 import Footer from "@/components/landing/Footer";
 import DashboardMockup from "@/components/landing/DashboardMockup";
