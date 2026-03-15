@@ -129,23 +129,23 @@ const About = () => {
               Small team. <span className="text-gradient italic">Big mission.</span>
             </h2>
           </motion.div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid sm:grid-cols-2 gap-8">
             {team.map((t, i) => (
               <motion.div
                 key={t.name}
-                initial={{ opacity: 0, y: 16 }}
+                initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.08 }}
-                className="bg-card rounded-xl overflow-hidden shadow-precision"
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.6, delay: i * 0.15 }}
+                className="bg-card rounded-xl overflow-hidden shadow-precision group"
               >
-                <div className="aspect-square overflow-hidden">
-                  <img src={t.photo} alt={t.name} className={`w-full h-full object-cover ${t.name === "Antonio Larrucea" ? "object-[center_30%]" : ""}`} />
+                <div className="aspect-[4/3] overflow-hidden">
+                  <img src={t.photo} alt={t.name} className={`w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ${t.name === "Antonio Larrucea" ? "object-[center_30%]" : ""}`} />
                 </div>
-                <div className="p-4">
+                <div className="p-5">
                   <p className="text-xs text-primary font-medium mb-1">{t.role}</p>
-                  <p className="text-sm font-semibold text-foreground mb-2">{t.name}</p>
-                  <p className="text-xs text-muted-foreground leading-relaxed">{t.desc}</p>
+                  <p className="text-base font-semibold text-foreground mb-2">{t.name}</p>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{t.desc}</p>
                 </div>
               </motion.div>
             ))}
@@ -219,7 +219,7 @@ const About = () => {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="flex justify-center"
           >
-            <div className="rounded-xl overflow-hidden shadow-precision-md max-w-xs">
+            <div className="rounded-xl overflow-hidden shadow-precision-md max-w-xs bg-white p-6">
               <img src={applylabLogo} alt="ApplyLab" className="w-full h-auto" />
             </div>
           </motion.div>
