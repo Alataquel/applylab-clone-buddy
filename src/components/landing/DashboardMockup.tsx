@@ -325,56 +325,134 @@ const StudentDetailContent = ({ student, onBack }: { student: typeof studentsDat
   );
 };
 
-const StudentsContent = ({ onSelectStudent }: { onSelectStudent: (student: typeof studentsData[0]) => void }) => (
-  <>
-    <div className="flex items-center justify-between mb-3">
-      <p className="text-xs text-gray-500">All Students</p>
-      <div className="flex gap-1.5">
-        <div className="bg-white/[0.03] border border-white/5 rounded-md px-2.5 py-1">
-          <span className="text-[10px] text-gray-400">Search...</span>
-        </div>
-        <div className="bg-white/[0.03] border border-white/5 rounded-md px-2.5 py-1">
-          <span className="text-[10px] text-gray-400">All degrees</span>
+const StudentsContent = ({ onSelectStudent }: { onSelectStudent: (student: typeof studentsData[0]) => void }) => {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [degreeFilter, setDegreeFilter] = useState("All");
+  const [statusFilter, setStatusFilter] = useState("All");
+  const [showDegreeDropdown, setShowDegreeDropdown] = useState(false);
+  const [showStatusDropdown, setShowStatusDropdown] = useState(false);
+
+  const degrees = ["All", ...Array.from(new Set(studentsData.map(s => s.degree)))];
+  const statuses = ["All", "Placed", "In Progress", "No Activity"];
+  const statusMap: Record<string, string> = { "Placed": "placed", "In Progress": "in_progress", "No Activity": "nothing" };
+
+  const filtered = studentsData.filter((s) => {
+    const matchesSearch = searchQuery === "" || s.name.toLowerCase().includes(searchQuery.toLowerCase()) || s.email.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesDegree = degreeFilter === "All" || s.degree === degreeFilter;
+    const matchesStatus = statusFilter === "All" || s.status === statusMap[statusFilter];
+    return matchesSearch && matchesDegree && matchesStatus;
+  });
+
+  return (
+    <>
+      <div className="flex items-center justify-between mb-3">
+        <p className="text-xs text-gray-500">All Students <span className="text-primary">({filtered.length})</span></p>
+        <div className="flex gap-1.5">
+          <input
+            type="text"
+            placeholder="Search..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            onClick={(e) => e.stopPropagation()}
+            className="bg-white/[0.03] border border-white/5 rounded-md px-2.5 py-1 text-[10px] text-gray-300 placeholder-gray-500 outline-none focus:border-primary/50 w-24"
+          />
+          {/* Degree filter */}
+          <div className="relative">
+            <div
+              onClick={(e) => { e.stopPropagation(); setShowDegreeDropdown(!showDegreeDropdown); setShowStatusDropdown(false); }}
+              className="bg-white/[0.03] border border-white/5 rounded-md px-2.5 py-1 cursor-pointer hover:bg-white/[0.06] transition-colors flex items-center gap-1"
+            >
+              <span className="text-[10px] text-gray-400 truncate max-w-[80px]">{degreeFilter === "All" ? "All degrees" : degreeFilter.split(" ").slice(0, 2).join(" ")}</span>
+              <svg className="w-2.5 h-2.5 text-gray-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+            </div>
+            {showDegreeDropdown && (
+              <div className="absolute right-0 top-full mt-1 bg-[hsl(230,40%,13%)] border border-white/10 rounded-lg py-1 z-30 w-48 shadow-xl max-h-40 overflow-y-auto">
+                {degrees.map((d) => (
+                  <div key={d} onClick={(e) => { e.stopPropagation(); setDegreeFilter(d); setShowDegreeDropdown(false); }}
+                    className={`px-3 py-1.5 text-[10px] cursor-pointer hover:bg-white/[0.06] transition-colors ${d === degreeFilter ? "text-primary font-semibold" : "text-gray-400"}`}>
+                    {d}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+          {/* Status filter */}
+          <div className="relative">
+            <div
+              onClick={(e) => { e.stopPropagation(); setShowStatusDropdown(!showStatusDropdown); setShowDegreeDropdown(false); }}
+              className="bg-white/[0.03] border border-white/5 rounded-md px-2.5 py-1 cursor-pointer hover:bg-white/[0.06] transition-colors flex items-center gap-1"
+            >
+              <span className="text-[10px] text-gray-400">{statusFilter === "All" ? "All status" : statusFilter}</span>
+              <svg className="w-2.5 h-2.5 text-gray-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+            </div>
+            {showStatusDropdown && (
+              <div className="absolute right-0 top-full mt-1 bg-[hsl(230,40%,13%)] border border-white/10 rounded-lg py-1 z-30 w-32 shadow-xl">
+                {statuses.map((st) => (
+                  <div key={st} onClick={(e) => { e.stopPropagation(); setStatusFilter(st); setShowStatusDropdown(false); }}
+                    className={`px-3 py-1.5 text-[10px] cursor-pointer hover:bg-white/[0.06] transition-colors ${st === statusFilter ? "text-primary font-semibold" : "text-gray-400"}`}>
+                    {st}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
       </div>
-    </div>
-    {/* Legend */}
-    <div className="flex gap-3 mb-3">
-      {[
-        { color: "bg-emerald-400", label: "Placed" },
-        { color: "bg-amber-400", label: "In Progress" },
-        { color: "bg-rose-400", label: "No Activity" },
-      ].map((l) => (
-        <div key={l.label} className="flex items-center gap-1">
-          <div className={`w-2 h-2 rounded-full ${l.color}`} />
-          <span className="text-[9px] text-gray-500">{l.label}</span>
-        </div>
-      ))}
-    </div>
-    <div className="grid grid-cols-3 gap-1.5">
-      {studentsData.map((s) => {
-        const cfg = statusConfig[s.status];
-        return (
-          <div
-            key={s.name}
-            onClick={() => onSelectStudent(s)}
-            className={`${cfg.bg} ${cfg.border} border rounded-lg px-2.5 py-2 cursor-pointer hover:brightness-125 transition-all`}
-          >
-            <p className="text-[10px] font-semibold text-white">{s.name}</p>
-            <div className="flex items-center gap-1 mt-0.5">
-              <svg className="w-2.5 h-2.5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
-              <span className="text-[8px] text-gray-400 truncate">{s.email}</span>
-            </div>
-            <div className="flex items-center gap-1 mt-0.5">
-              <svg className="w-2.5 h-2.5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
-              <span className="text-[8px] text-gray-400 truncate">{s.degree}</span>
-            </div>
+      {/* Legend */}
+      <div className="flex gap-3 mb-3">
+        {[
+          { color: "bg-emerald-400", label: "Placed" },
+          { color: "bg-amber-400", label: "In Progress" },
+          { color: "bg-rose-400", label: "No Activity" },
+        ].map((l) => (
+          <div key={l.label} className="flex items-center gap-1">
+            <div className={`w-2 h-2 rounded-full ${l.color}`} />
+            <span className="text-[9px] text-gray-500">{l.label}</span>
           </div>
-        );
-      })}
-    </div>
-  </>
-);
+        ))}
+      </div>
+      {filtered.length === 0 ? (
+        <div className="flex flex-col items-center justify-center py-8 text-gray-500">
+          <svg className="w-8 h-8 mb-2 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+          <p className="text-[11px]">No students match your filters</p>
+        </div>
+      ) : (
+        <div className="grid grid-cols-2 gap-2">
+          {filtered.map((s) => {
+            const cfg = statusConfig[s.status];
+            return (
+              <div
+                key={s.name}
+                onClick={(e) => { e.stopPropagation(); onSelectStudent(s); }}
+                className={`${cfg.bg} ${cfg.border} border rounded-lg px-3 py-3 cursor-pointer hover:brightness-125 transition-all`}
+              >
+                <div className="flex items-center gap-2 mb-1.5">
+                  <div className="w-7 h-7 rounded-full bg-primary/20 flex items-center justify-center text-[9px] font-bold text-primary shrink-0">{s.avatar}</div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-[11px] font-semibold text-white">{s.name}</p>
+                    <span className={`text-[8px] font-semibold ${cfg.labelColor}`}>{cfg.label}</span>
+                  </div>
+                </div>
+                <div className="flex items-center gap-1 mt-1">
+                  <svg className="w-2.5 h-2.5 text-gray-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                  <span className="text-[9px] text-gray-400 truncate">{s.email}</span>
+                </div>
+                <div className="flex items-center gap-1 mt-0.5">
+                  <svg className="w-2.5 h-2.5 text-gray-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
+                  <span className="text-[9px] text-gray-400 truncate">{s.degree}</span>
+                </div>
+                <div className="flex items-center gap-1 mt-0.5">
+                  <svg className="w-2.5 h-2.5 text-gray-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                  <span className="text-[9px] text-gray-400">{s.applications.length} application{s.applications.length !== 1 ? "s" : ""}</span>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </>
+  );
+};
 
 const AnalyticsContent = () => {
   const statCards = [
