@@ -64,7 +64,7 @@ const SolutionSection = ({ variant = "dark" }: SolutionSectionProps) => {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.15 + i * 0.12 }}
-              className="bg-white/[0.03] border border-white/[0.06] rounded-2xl p-7 hover:-translate-y-1 transition-transform duration-300 group"
+              className={`rounded-2xl p-7 hover:-translate-y-1 transition-transform duration-300 group ${isLight ? "bg-[#0e1226] border border-white/[0.06]" : "bg-white/[0.03] border border-white/[0.06]"}`}
             >
               <div className={`w-10 h-10 rounded-xl ${s.bgColor} flex items-center justify-center mb-5`}>
                 <s.icon className={`w-5 h-5 ${s.color}`} />
