@@ -5,9 +5,9 @@ const Footer = () => {
         <span className="text-sm font-bold text-foreground tracking-tight">applylab</span>
         <p className="text-xs text-muted-foreground">© {new Date().getFullYear()} ApplyLab. All rights reserved.</p>
         <div className="flex gap-6">
-          <a href="#" className="text-xs text-muted-foreground hover:text-foreground transition-colors">Privacy</a>
-          <a href="#" className="text-xs text-muted-foreground hover:text-foreground transition-colors">Terms</a>
-          <a href="#" className="text-xs text-muted-foreground hover:text-foreground transition-colors">Contact</a>
+          <a href="/privacy" className="text-xs text-muted-foreground hover:text-foreground transition-colors">Privacy</a>
+          <a href="/terms" className="text-xs text-muted-foreground hover:text-foreground transition-colors">Terms</a>
+          <a href="/request-pilot" className="text-xs text-muted-foreground hover:text-foreground transition-colors">Contact</a>
         </div>
       </div>
     </footer>
