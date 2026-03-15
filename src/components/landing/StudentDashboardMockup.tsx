@@ -1569,7 +1569,6 @@ const StudentDashboardMockup = () => {
   };
 
   return (
-    <div className="origin-top" style={{ transform: "scale(1.15)", transformOrigin: "top center" }}>
     <div
       className="rounded-xl overflow-hidden shadow-precision-lg border border-gray-200 relative"
       style={{
@@ -1590,6 +1589,7 @@ const StudentDashboardMockup = () => {
         "--border": "214.3 31.8% 91.4%",
         backgroundColor: "hsl(0 0% 100%)",
         color: "hsl(222.2 84% 4.9%)",
+        zoom: 1.12,
       } as React.CSSProperties}
     >
       {/* Browser chrome */}
@@ -1688,7 +1688,6 @@ const StudentDashboardMockup = () => {
       <div className="p-5 min-h-[600px] max-h-[600px] overflow-y-auto" onClick={() => setResumeDropdownOpen(false)}>
         {renderContent()}
       </div>
-    </div>
     </div>
   );
 };
