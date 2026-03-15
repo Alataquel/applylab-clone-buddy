@@ -9,7 +9,7 @@ const faqs = [
   },
   {
     q: "How does the AI Resume Builder work?",
-    a: "Our AI analyzes your resume line by line, checking for ATS compatibility, impact statement strength, keyword coverage, and formatting. It provides specific, actionable suggestions to improve your score.",
+    a: "Our AI analyses your resume line by line, checking for impact statement quality, keyword coverage, formatting, and overall coherence. It provides specific, actionable suggestions to improve your CV.",
   },
   {
     q: "Can I track applications from any job board?",

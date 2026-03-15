@@ -6,27 +6,21 @@ import { ArrowRight, Zap, FileText, BarChart3, Search } from "lucide-react";
 const features = [
   {
     icon: Search,
-    title: "Smart Job Discovery",
+    title: "Internship Board",
     desc: "Roles ranked by genuine fit — not keyword overlap. Our matching model reads your full profile and surfaces only the positions where you'd genuinely stand out.",
     detail: "Powered by contextual AI that understands skills, experience, and career trajectory.",
   },
   {
     icon: FileText,
     title: "Resume Lab",
-    desc: "Line-by-line AI feedback on your CV. Improve your ATS score, strengthen impact statements, and close keyword gaps — in seconds, not hours.",
-    detail: "94% average ATS pass rate across all student CVs.",
+    desc: "Line-by-line AI feedback on your CV. Strengthen impact statements, improve formatting, and close keyword gaps — in seconds, not hours.",
+    detail: "94% average CV optimisation rate across all student CVs.",
   },
   {
     icon: BarChart3,
-    title: "Application Tracker",
-    desc: "A visual pipeline that keeps every application organised. Track status, set reminders, and never lose track of a process again.",
+    title: "Automatic Tracker",
+    desc: "A visual pipeline that automatically keeps every application organised. Track status in real time without lifting a finger.",
     detail: "Automatic status updates and follow-up prompts built in.",
-  },
-  {
-    icon: Zap,
-    title: "One-click Apply",
-    desc: "Pre-fill applications with your optimised profile. Reduce time-per-application from 30 minutes to under 5.",
-    detail: "Works with major job boards and company career pages.",
   },
 ];
 

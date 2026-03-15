@@ -102,11 +102,11 @@ const FeaturesSection = () => {
                     </div>
                   )}
 
-                  {feature.atsScore && (
+                  {feature.resumeScore && (
                     <div className="space-y-3">
                       <div className="flex items-baseline gap-2">
-                        <span className="text-xs text-muted-foreground">ATS Score</span>
-                        <span className="text-2xl font-bold text-foreground">{feature.atsScore}/100</span>
+                        <span className="text-xs text-muted-foreground">Resume Score</span>
+                        <span className="text-2xl font-bold text-foreground">{feature.resumeScore}/100</span>
                       </div>
                       <div className="flex gap-2">
                         {["Impact", "Keywords", "Format"].map((l) => (

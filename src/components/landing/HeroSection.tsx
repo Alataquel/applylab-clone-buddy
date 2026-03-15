@@ -87,7 +87,7 @@ const HeroSection = () => {
             </div>
           </motion.div>
 
-          {/* Floating card - ATS Score */}
+          {/* Floating card - Resume Score */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -99,8 +99,8 @@ const HeroSection = () => {
                 94
               </div>
               <div>
-                <p className="text-sm font-medium text-foreground">ATS Score</p>
-                <p className="text-xs text-muted-foreground">Resume ready</p>
+                <p className="text-sm font-medium text-foreground">Resume Score</p>
+                <p className="text-xs text-muted-foreground">Optimised and ready</p>
               </div>
             </div>
           </motion.div>

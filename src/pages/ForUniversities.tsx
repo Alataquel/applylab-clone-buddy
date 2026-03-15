@@ -68,7 +68,7 @@ const ForUniversities = () => {
       <section className="py-16 px-6 lg:px-12 border-t border-border/30">
         <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
           {[
-            { value: "94%", label: "ATS pass rate on student CVs" },
+            { value: "94%", label: "CV optimisation rate" },
             { value: "3x", label: "More visibility into career activity" },
             { value: "< 2 weeks", label: "Average onboarding time" },
           ].map((s, i) => (
