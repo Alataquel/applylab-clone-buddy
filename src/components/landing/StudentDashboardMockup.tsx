@@ -658,7 +658,7 @@ const ResumeBuilderContent = () => {
           <button className="text-[7px] text-blue-300">← Back to My CVs</button>
           <button className="text-[7px] text-blue-300 border border-blue-400/30 rounded px-2 py-0.5">⬇ Save as PDF</button>
         </div>
-        <div className="bg-white rounded shadow-lg w-full border border-white/20 max-h-[520px] overflow-y-auto scrollbar-thin" style={{ fontFamily: isClassic ? "Georgia, serif" : isExecutive ? "Garamond, serif" : "Inter, sans-serif" }}>
+        <div className="bg-white rounded shadow-lg w-full border border-white/20 overflow-y-auto scrollbar-thin" style={{ fontFamily: isClassic ? "Georgia, serif" : isExecutive ? "Garamond, serif" : "Inter, sans-serif" }}>
           
           {/* MODERN template */}
           {!isClassic && !isMinimal && !isExecutive && (
