@@ -343,6 +343,150 @@ const ForStudents = () => {
               </div>
             </div>
           </motion.div>
+
+          {/* Event Board */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.6, delay: 0.1, ease: [0.25, 0, 0.15, 1] }}
+            className="bg-card rounded-xl shadow-precision overflow-hidden"
+          >
+            <div className="p-6 lg:p-8">
+              <motion.div
+                initial={{ opacity: 0, x: -16 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="flex items-center gap-3 mb-4"
+              >
+                <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center">
+                  <Calendar className="w-4 h-4 text-primary" />
+                </div>
+                <span className="text-xs text-muted-foreground font-mono">04</span>
+              </motion.div>
+              <motion.h3
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: 0.3 }}
+                className="text-xl font-semibold text-foreground mb-3"
+              >
+                Event Board
+              </motion.h3>
+              <motion.p
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: 0.35 }}
+                className="text-sm text-muted-foreground leading-relaxed max-w-lg"
+              >
+                Discover career fairs, networking sessions, and workshops curated for your profile. Never miss an opportunity to connect with employers.
+              </motion.p>
+            </div>
+            <div className="px-6 lg:px-8 pb-6 lg:pb-8">
+              <div className="bg-secondary rounded-lg p-4 space-y-2">
+                {[
+                  { date: "Mar 20", title: "Tech Career Fair 2026", type: "Career Fair", org: "University Events", spots: "120 spots left" },
+                  { date: "Mar 22", title: "Resume Workshop with Google", type: "Workshop", org: "Google Careers", spots: "45 spots left" },
+                  { date: "Mar 25", title: "Finance Networking Evening", type: "Networking", org: "JP Morgan", spots: "30 spots left" },
+                  { date: "Apr 01", title: "Startup Pitch Night", type: "Event", org: "Entrepreneur Society", spots: "80 spots left" },
+                ].map((event, i) => (
+                  <motion.div
+                    key={event.title}
+                    custom={i}
+                    variants={cardChildVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    className="flex items-center gap-3 bg-card rounded-md px-3 py-3"
+                    whileHover={{ x: 4, transition: { duration: 0.2 } }}
+                  >
+                    <div className="w-10 h-10 rounded-md bg-primary/10 flex flex-col items-center justify-center text-center">
+                      <span className="text-[9px] text-primary font-medium leading-none">{event.date.split(" ")[0]}</span>
+                      <span className="text-xs text-primary font-bold leading-none">{event.date.split(" ")[1]}</span>
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-xs font-medium text-foreground">{event.title}</p>
+                      <p className="text-[10px] text-muted-foreground">{event.org} · {event.type}</p>
+                    </div>
+                    <span className="text-[10px] text-emerald-400">{event.spots}</span>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Book an Advisor */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.6, delay: 0.2, ease: [0.25, 0, 0.15, 1] }}
+            className="bg-card rounded-xl shadow-precision overflow-hidden"
+          >
+            <div className="p-6 lg:p-8">
+              <motion.div
+                initial={{ opacity: 0, x: -16 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="flex items-center gap-3 mb-4"
+              >
+                <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center">
+                  <UserCheck className="w-4 h-4 text-primary" />
+                </div>
+                <span className="text-xs text-muted-foreground font-mono">05</span>
+              </motion.div>
+              <motion.h3
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: 0.3 }}
+                className="text-xl font-semibold text-foreground mb-3"
+              >
+                Book a Meeting with an Advisor
+              </motion.h3>
+              <motion.p
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: 0.35 }}
+                className="text-sm text-muted-foreground leading-relaxed max-w-lg"
+              >
+                One-click booking with your university's career advisors. Get personalised guidance on your applications, interview prep, or career direction.
+              </motion.p>
+            </div>
+            <div className="px-6 lg:px-8 pb-6 lg:pb-8">
+              <div className="bg-secondary rounded-lg p-4">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
+                  {[
+                    { name: "Dr. Sarah Mitchell", role: "Career Strategy", availability: "Available tomorrow", slots: "3 slots open" },
+                    { name: "James Rodriguez", role: "Tech & Engineering", availability: "Available Thu", slots: "5 slots open" },
+                    { name: "Anna Kowalski", role: "Finance & Consulting", availability: "Available Fri", slots: "2 slots open" },
+                  ].map((advisor, i) => (
+                    <motion.div
+                      key={advisor.name}
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: 0.3 + i * 0.1 }}
+                      whileHover={{ y: -2, transition: { duration: 0.2 } }}
+                      className="bg-card rounded-md p-4 text-center"
+                    >
+                      <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-3">
+                        <UserCheck className="w-4 h-4 text-primary" />
+                      </div>
+                      <p className="text-xs font-medium text-foreground mb-0.5">{advisor.name}</p>
+                      <p className="text-[10px] text-muted-foreground mb-2">{advisor.role}</p>
+                      <p className="text-[10px] text-emerald-400 mb-1">{advisor.availability}</p>
+                      <p className="text-[10px] text-muted-foreground">{advisor.slots}</p>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
