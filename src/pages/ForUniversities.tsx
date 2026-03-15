@@ -23,7 +23,7 @@ const ForUniversities = () => {
       <Navbar />
 
       {/* Hero */}
-      <section className="pt-32 pb-20 px-6 lg:px-12">
+      <section className="pt-44 pb-20 px-6 lg:px-12">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div variants={containerVariants} initial="hidden" animate="visible">
             <motion.p variants={itemVariants} className="text-xs uppercase tracking-widest text-primary font-medium mb-3">For Universities</motion.p>
