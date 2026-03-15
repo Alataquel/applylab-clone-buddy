@@ -736,7 +736,7 @@ const ResumeBuilderContent = () => {
       </div>
 
       {/* Right sidebar - Settings */}
-      <div className="bg-[hsl(228,50%,20%)] rounded-r-lg p-2.5 space-y-2.5 text-white max-h-[560px] overflow-y-auto">
+      <div className="bg-[hsl(228,50%,20%)] rounded-r-lg p-2.5 space-y-2.5 text-white overflow-y-auto">
         <div>
           <p className="text-[7px] font-bold text-white/80 uppercase tracking-wider">Preview</p>
           <label className="flex items-center gap-1.5 mt-1">
