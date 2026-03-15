@@ -157,22 +157,25 @@ const OverviewContent = () => (
   </>
 );
 
+const appStages = ["Applied", "Technical Test", "Case Study", "1st Interview", "2nd Interview", "Offered", "Rejected"] as const;
+type AppStatus = typeof appStages[number];
+
 const studentsData = [
   { name: "Sarah Chen", email: "s.chen@uni.edu", degree: "BSc Business Admin", phone: "+44 7911 123456", status: "placed" as const, avatar: "SC",
     spider: { certifications: 4, languages: 3, projects: 5, skills: 4, experience: 3, gpa: 4 },
     applications: [
-      { company: "Deloitte", role: "Analyst", status: "Offered" },
-      { company: "McKinsey", role: "Associate", status: "Interview" },
-      { company: "Goldman Sachs", role: "Intern", status: "Applied" },
-      { company: "PwC", role: "Consultant", status: "Submitted" },
-      { company: "BCG", role: "Associate", status: "Rejected" },
+      { company: "Deloitte", role: "Analyst", status: "Offered" as AppStatus },
+      { company: "McKinsey", role: "Associate", status: "2nd Interview" as AppStatus },
+      { company: "Goldman Sachs", role: "Intern", status: "Technical Test" as AppStatus },
+      { company: "PwC", role: "Consultant", status: "Applied" as AppStatus },
+      { company: "BCG", role: "Associate", status: "Rejected" as AppStatus },
     ]},
   { name: "James Miller", email: "j.miller@uni.edu", degree: "MEng Computer Science", phone: "+44 7922 234567", status: "in_progress" as const, avatar: "JM",
     spider: { certifications: 2, languages: 4, projects: 3, skills: 5, experience: 2, gpa: 3 },
     applications: [
-      { company: "Google", role: "SWE Intern", status: "Interview" },
-      { company: "Meta", role: "Engineer", status: "Applied" },
-      { company: "Amazon", role: "SDE Intern", status: "Submitted" },
+      { company: "Google", role: "SWE Intern", status: "Case Study" as AppStatus },
+      { company: "Meta", role: "Engineer", status: "1st Interview" as AppStatus },
+      { company: "Amazon", role: "SDE Intern", status: "Applied" as AppStatus },
     ]},
   { name: "Priya Patel", email: "p.patel@uni.edu", degree: "BA Fine Arts", phone: "+44 7933 345678", status: "nothing" as const, avatar: "PP",
     spider: { certifications: 1, languages: 2, projects: 2, skills: 3, experience: 1, gpa: 3 },
@@ -180,29 +183,29 @@ const studentsData = [
   { name: "Lucas Wang", email: "l.wang@uni.edu", degree: "MSc Finance", phone: "+44 7944 456789", status: "placed" as const, avatar: "LW",
     spider: { certifications: 3, languages: 3, projects: 4, skills: 4, experience: 4, gpa: 5 },
     applications: [
-      { company: "JP Morgan", role: "Analyst", status: "Offered" },
-      { company: "HSBC", role: "Graduate", status: "Offered" },
-      { company: "Barclays", role: "Analyst", status: "Interview" },
-      { company: "Citi", role: "Associate", status: "Rejected" },
+      { company: "JP Morgan", role: "Analyst", status: "Offered" as AppStatus },
+      { company: "HSBC", role: "Graduate", status: "2nd Interview" as AppStatus },
+      { company: "Barclays", role: "Analyst", status: "1st Interview" as AppStatus },
+      { company: "Citi", role: "Associate", status: "Rejected" as AppStatus },
     ]},
   { name: "Emma Johnson", email: "e.johnson@uni.edu", degree: "Dual Bachelors in Business & Data Analytics", phone: "+44 7955 567890", status: "in_progress" as const, avatar: "EJ",
     spider: { certifications: 3, languages: 2, projects: 3, skills: 3, experience: 2, gpa: 4 },
     applications: [
-      { company: "PwC", role: "Consultant", status: "Interview" },
-      { company: "EY", role: "Analyst", status: "Applied" },
-      { company: "Accenture", role: "Analyst", status: "Submitted" },
+      { company: "PwC", role: "Consultant", status: "Case Study" as AppStatus },
+      { company: "EY", role: "Analyst", status: "Technical Test" as AppStatus },
+      { company: "Accenture", role: "Analyst", status: "Applied" as AppStatus },
     ]},
   { name: "Omar Hassan", email: "o.hassan@uni.edu", degree: "MEng Electrical Engineering", phone: "+44 7966 678901", status: "placed" as const, avatar: "OH",
     spider: { certifications: 4, languages: 5, projects: 4, skills: 5, experience: 3, gpa: 4 },
     applications: [
-      { company: "Siemens", role: "Engineer", status: "Offered" },
-      { company: "Tesla", role: "Hardware Eng", status: "Interview" },
+      { company: "Siemens", role: "Engineer", status: "Offered" as AppStatus },
+      { company: "Tesla", role: "Hardware Eng", status: "1st Interview" as AppStatus },
     ]},
   { name: "Mia Thompson", email: "m.thompson@uni.edu", degree: "BA Graphic Design", phone: "+44 7977 789012", status: "in_progress" as const, avatar: "MT",
     spider: { certifications: 2, languages: 2, projects: 5, skills: 4, experience: 2, gpa: 3 },
     applications: [
-      { company: "Pentagram", role: "Junior Designer", status: "Interview" },
-      { company: "IDEO", role: "Design Intern", status: "Applied" },
+      { company: "Pentagram", role: "Junior Designer", status: "2nd Interview" as AppStatus },
+      { company: "IDEO", role: "Design Intern", status: "Technical Test" as AppStatus },
     ]},
   { name: "Daniel Kim", email: "d.kim@uni.edu", degree: "BSc Economics", phone: "+44 7988 890123", status: "nothing" as const, avatar: "DK",
     spider: { certifications: 1, languages: 1, projects: 1, skills: 2, experience: 1, gpa: 2 },
@@ -210,9 +213,9 @@ const studentsData = [
   { name: "Aisha Begum", email: "a.begum@uni.edu", degree: "M.Sc. Data Science", phone: "+44 7999 901234", status: "placed" as const, avatar: "AB",
     spider: { certifications: 5, languages: 3, projects: 4, skills: 5, experience: 4, gpa: 5 },
     applications: [
-      { company: "Amazon", role: "Data Scientist", status: "Offered" },
-      { company: "Netflix", role: "ML Engineer", status: "Interview" },
-      { company: "Spotify", role: "Data Analyst", status: "Rejected" },
+      { company: "Amazon", role: "Data Scientist", status: "Offered" as AppStatus },
+      { company: "Netflix", role: "ML Engineer", status: "Case Study" as AppStatus },
+      { company: "Spotify", role: "Data Analyst", status: "Rejected" as AppStatus },
     ]},
 ];
 
