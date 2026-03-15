@@ -291,6 +291,7 @@ const ResumeContent = ({ subTab }: { subTab: "grader" | "builder" | "coverLetter
 const ResumeGraderContent = () => {
   const [graderState, setGraderState] = useState<"idle" | "uploading" | "grading" | "done">("idle");
   const [progress, setProgress] = useState(0);
+  const [showGradingInfo, setShowGradingInfo] = useState(false);
 
   const startGrading = () => {
     setGraderState("uploading");
@@ -363,8 +364,25 @@ const ResumeGraderContent = () => {
       <div className="max-h-[460px] overflow-y-auto pr-1">
         {/* Header */}
         <div className="flex items-center justify-between mb-3">
-          <div>
-            <h3 className="text-sm font-bold text-foreground">Resume Grading Results</h3>
+          <div className="relative">
+            <div className="flex items-center gap-1.5">
+              <h3 className="text-sm font-bold text-foreground">Resume Grading Results</h3>
+              <div
+                className="relative"
+                onMouseEnter={() => setShowGradingInfo(true)}
+                onMouseLeave={() => setShowGradingInfo(false)}
+              >
+                <div className="w-3.5 h-3.5 rounded-full bg-primary/15 border border-primary/30 flex items-center justify-center cursor-help">
+                  <span className="text-[7px] font-bold text-primary">i</span>
+                </div>
+                {showGradingInfo && (
+                  <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-1.5 w-48 bg-foreground text-background rounded-lg px-3 py-2 shadow-lg z-50">
+                    <div className="absolute left-1/2 -translate-x-1/2 top-full w-0 h-0 border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent border-t-[5px] border-t-foreground" />
+                    <p className="text-[7px] leading-relaxed font-medium">This grading is based on the weighting distributions set by your career advisor for your specific degree programme.</p>
+                  </div>
+                )}
+              </div>
+            </div>
             <p className="text-[7px] text-muted-foreground">Evaluated against the <span className="text-primary font-semibold">Dual Degree Business Administration and Data Analysis</span> template</p>
           </div>
           <div className="flex items-center gap-2">
