@@ -74,7 +74,7 @@ const About = () => {
           >
             <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
               <span className="w-2 h-2 rounded-full bg-emerald-500" />
-              Founded 2023 · Remote-first team
+              Founded 2024 · Remote-first team
             </div>
             <p className="text-xs uppercase tracking-widest text-primary font-medium mb-3">About ApplyLab</p>
             <h1 className="text-4xl lg:text-5xl font-bold text-foreground tracking-tight leading-[1.1] mb-6">
@@ -115,7 +115,7 @@ const About = () => {
       </section>
 
       {/* Team */}
-      <section className="py-32 px-6 lg:px-12">
+      <section className="py-32 px-6 lg:px-12 border-t border-border/30">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -125,9 +125,6 @@ const About = () => {
             className="mb-12"
           >
             <p className="text-xs uppercase tracking-widest text-primary font-medium mb-3">The team</p>
-            <h2 className="text-3xl lg:text-4xl font-bold text-foreground tracking-tight">
-              Small team. <span className="text-gradient italic">Big mission.</span>
-            </h2>
           </motion.div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {team.map((t, i) => (
