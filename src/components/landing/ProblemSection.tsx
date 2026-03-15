@@ -120,18 +120,18 @@ const ProblemSection = () => {
             </div>
           </motion.div>
 
-          {/* No way to intervene - bottom right (dark) */}
+          {/* No way to intervene - bottom right (white) */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="lg:col-span-3 bg-[hsl(220,25%,10%)] rounded-2xl p-7 hover:-translate-y-1 transition-transform duration-300"
+            className="lg:col-span-3 bg-white border border-gray-200 rounded-2xl p-7 hover:-translate-y-1 transition-transform duration-300"
           >
             <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center mb-5">
-              <TrendingUp className="w-5 h-5 text-emerald-400" />
+              <TrendingUp className="w-5 h-5 text-emerald-500" />
             </div>
-            <h3 className="text-xl font-bold text-white mb-2">No way to intervene</h3>
-            <p className="text-sm text-gray-400 leading-relaxed">
+            <h3 className="text-xl font-bold text-gray-900 mb-2">No way to intervene</h3>
+            <p className="text-sm text-gray-500 leading-relaxed">
               By the time you know a student is struggling, they've already disengaged. Proactive support is impossible.
             </p>
           </motion.div>
