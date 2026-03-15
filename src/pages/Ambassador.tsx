@@ -184,10 +184,10 @@ const Ambassador = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.06 }}
-                className="flex items-start gap-3 bg-white rounded-lg px-4 py-3.5 border border-gray-100"
+                className="flex items-start gap-3 bg-card rounded-lg px-4 py-3.5 border border-border/30"
               >
-                <CheckCircle2 className="w-4 h-4 text-emerald-500 mt-0.5 flex-shrink-0" />
-                <span className="text-sm text-gray-700">{item}</span>
+                <CheckCircle2 className="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" />
+                <span className="text-sm text-foreground">{item}</span>
               </motion.div>
             ))}
           </div>
