@@ -248,10 +248,10 @@ const Ambassador = () => {
             {/* Subtle glow */}
             <div className="absolute -top-20 -right-20 w-60 h-60 bg-primary/10 rounded-full blur-[80px] pointer-events-none" />
 
-            <h2 className="text-2xl lg:text-3xl font-bold text-foreground tracking-tight mb-4 relative">
+            <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 tracking-tight mb-4 relative">
               Ready to lead?
             </h2>
-            <p className="text-sm text-muted-foreground mb-8 max-w-md mx-auto relative">
+            <p className="text-sm text-gray-500 mb-8 max-w-md mx-auto relative">
               Applications are open on a rolling basis. Join the next cohort and help shape how students launch their careers.
             </p>
             <motion.a
