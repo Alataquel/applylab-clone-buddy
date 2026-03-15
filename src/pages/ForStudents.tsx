@@ -136,7 +136,7 @@ const ForStudents = () => {
                       <span className="text-lg font-bold text-white">94</span>
                     </div>
                     <div>
-                      <p className="text-sm font-medium text-white">ATS Score</p>
+                      <p className="text-sm font-medium text-white">Resume Score</p>
                       <p className="text-xs text-emerald-400">Top 5% · Ready to send</p>
                     </div>
                   </div>
