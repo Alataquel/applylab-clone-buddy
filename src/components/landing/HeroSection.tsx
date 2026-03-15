@@ -98,14 +98,16 @@ const HeroSection = () => {
           transition={{ duration: 0.7, delay: 0.3, ease: [0.2, 0, 0, 1] }}
           className="relative"
         >
-          <motion.div
-            key={activeDemo}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-          >
-            {activeDemo === "university" ? <DashboardMockup /> : <StudentDashboardMockup />}
-          </motion.div>
+          <div className="h-[640px] overflow-hidden rounded-xl">
+            <motion.div
+              key={activeDemo}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+            >
+              {activeDemo === "university" ? <DashboardMockup /> : <StudentDashboardMockup />}
+            </motion.div>
+          </div>
 
           {/* Demo note */}
           <motion.p
