@@ -56,7 +56,7 @@ const FeaturesSection = () => {
               activeTab === "students" ? "bg-card text-foreground shadow-precision" : "text-muted-foreground"
             }`}
           >
-            For Students
+            Student Experience
           </button>
           <button
             onClick={() => setActiveTab("teams")}
@@ -64,7 +64,7 @@ const FeaturesSection = () => {
               activeTab === "teams" ? "bg-card text-foreground shadow-precision" : "text-muted-foreground"
             }`}
           >
-            For Career Teams
+            Institutional Dashboard
           </button>
         </div>
 
