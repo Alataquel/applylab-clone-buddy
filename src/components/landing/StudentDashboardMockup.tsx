@@ -709,18 +709,19 @@ const StudentDashboardMockup = () => {
                   }}
                   className={`w-7 h-7 rounded-md flex items-center justify-center transition-colors ${
                     activeTab === i
-                      ? "bg-primary/10 text-primary border border-primary/30"
-                      : "text-muted-foreground hover:bg-secondary"
+                      ? "border border-[hsl(228,76%,35%)] bg-[hsl(228,76%,35%,0.1)]"
+                      : "hover:bg-[hsl(210,40%,96.1%)]"
                   }`}
+                  style={{ color: activeTab === i ? "hsl(228, 76%, 35%)" : "hsl(215, 16%, 47%)" }}
                   title={nav.label}
                 >
                   {isResume ? (
                     <span className="flex items-center gap-0">
-                      <IconComp className="w-3.5 h-3.5" strokeWidth={1.8} />
-                      <ChevronDown className="w-2 h-2" strokeWidth={2} />
+                      <IconComp className="w-4 h-4" strokeWidth={1.8} />
+                      <ChevronDown className="w-2.5 h-2.5" strokeWidth={2} />
                     </span>
                   ) : (
-                    <IconComp className="w-3.5 h-3.5" strokeWidth={1.8} />
+                    <IconComp className="w-4 h-4" strokeWidth={1.8} />
                   )}
                 </button>
                 {isResume && resumeDropdownOpen && (
