@@ -91,7 +91,7 @@ const ProblemSection = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="lg:col-span-3 bg-primary rounded-2xl p-7 flex flex-col justify-center items-center text-center hover:-translate-y-1 transition-transform duration-300 min-h-[200px]"
           >
-            <p className="text-6xl font-extrabold text-white mb-2">67%</p>
+            <p className="text-6xl font-extrabold text-white mb-2">50%</p>
             <p className="text-sm font-semibold text-white/90">of students</p>
             <p className="text-xs text-white/60 mt-1">never visit career services</p>
           </motion.div>
