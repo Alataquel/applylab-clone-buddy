@@ -1679,6 +1679,7 @@ const StudentDashboardMockup = () => {
         {renderContent()}
       </div>
     </div>
+    </div>
   );
 };
 
