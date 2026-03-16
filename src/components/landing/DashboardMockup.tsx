@@ -14,10 +14,10 @@ const OverviewContent = () => (
     {/* Top KPI Row */}
     <div className="grid grid-cols-4 gap-2 mb-3">
       {[
-        { label: "Total Students", value: "1,284", change: "+12%", up: true, icon: "👥" },
-        { label: "Placement Rate", value: "71%", change: "+4.2%", up: true, icon: "🎯" },
-        { label: "Active Applications", value: "4,821", change: "+18%", up: true, icon: "📄" },
-        { label: "Avg. Engagement", value: "83%", change: "-2.1%", up: false, icon: "📊" },
+        { label: "Total Students", value: "1,284", change: "+12%", up: true, Icon: Users },
+        { label: "Placement Rate", value: "71%", change: "+4.2%", up: true, Icon: Target },
+        { label: "Active Applications", value: "4,821", change: "+18%", up: true, Icon: FileText },
+        { label: "Avg. Engagement", value: "83%", change: "-2.1%", up: false, Icon: BarChart3 },
       ].map((m) => (
         <div key={m.label} className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5">
           <div className="flex items-center justify-between mb-1">
