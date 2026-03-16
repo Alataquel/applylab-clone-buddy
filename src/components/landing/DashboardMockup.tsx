@@ -247,12 +247,12 @@ const SpiderChart = ({ data }: { data: { certifications: number; languages: numb
       {gridLevels.map((level) => {
         const pts = Array.from({ length: 6 }, (_, i) => getPoint(i, level));
         const path = pts.map((p, i) => `${i === 0 ? "M" : "L"}${p.x},${p.y}`).join(" ") + "Z";
-        return <path key={level} d={path} fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="0.5" />;
+        return <path key={level} d={path} fill="none" stroke="rgba(0,0,0,0.08)" strokeWidth="0.5" />;
       })}
       {/* Axes */}
       {Array.from({ length: 6 }, (_, i) => {
         const end = getPoint(i, 5);
-        return <line key={i} x1={cx} y1={cy} x2={end.x} y2={end.y} stroke="rgba(255,255,255,0.08)" strokeWidth="0.5" />;
+        return <line key={i} x1={cx} y1={cy} x2={end.x} y2={end.y} stroke="rgba(0,0,0,0.08)" strokeWidth="0.5" />;
       })}
       {/* Data area */}
       <path d={dataPath} fill="hsl(217, 91%, 60%, 0.2)" stroke="hsl(217, 91%, 60%)" strokeWidth="1.5" />
@@ -1958,23 +1958,30 @@ const DashboardMockup = () => {
   };
 
   return (
-    <div className="rounded-xl overflow-hidden shadow-precision-lg bg-[hsl(230,40%,11%)] border border-white/5 relative" style={{ zoom: 1.5 }}>
+    <div
+      className="rounded-xl overflow-hidden shadow-precision-lg border border-gray-200 relative"
+      style={{
+        zoom: 1.5,
+        backgroundColor: "hsl(0, 0%, 100%)",
+        color: "hsl(222.2, 84%, 4.9%)",
+      }}
+    >
       {/* Browser chrome */}
-      <div className="flex items-center gap-2 px-4 py-2.5 bg-[hsl(230,38%,9%)] border-b border-white/5">
+      <div className="flex items-center gap-2 px-4 py-2.5 bg-[hsl(230,40%,11%)] border-b border-white/5">
         <div className="flex gap-1.5">
           <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
           <div className="w-2.5 h-2.5 rounded-full bg-[#febc2e]" />
           <div className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
         </div>
         <div className="flex-1 text-center">
-          <span className="text-[11px] text-gray-500 bg-white/5 px-4 py-1 rounded-md">applylab.software/careers-team</span>
+          <span className="text-[11px] text-gray-400 bg-white/5 px-4 py-1 rounded-md">applylab.software/careers-team</span>
         </div>
       </div>
 
       {/* App content */}
       <div className="flex h-[600px]">
-        {/* Sidebar */}
-        <div className="w-40 border-r border-white/5 p-3 hidden sm:block">
+        {/* Sidebar - stays dark */}
+        <div className="w-40 border-r border-white/5 p-3 hidden sm:block bg-[hsl(230,40%,11%)]">
           <p className="text-xs font-bold text-white mb-4">ApplyLab</p>
           <p className="text-[9px] uppercase tracking-wider text-gray-500 mb-2">Careers Team</p>
           <div className="space-y-0.5">
@@ -1994,10 +2001,37 @@ const DashboardMockup = () => {
           </div>
         </div>
 
-        {/* Main content */}
-        <div className="flex-1 p-5 overflow-y-auto">
+        {/* Main content - light theme */}
+        <div className="flex-1 p-5 overflow-y-auto bg-white light-dashboard-content">
           {renderContent()}
         </div>
+        <style>{`
+          .light-dashboard-content,
+          .light-dashboard-content * {
+            --tw-text-opacity: 1;
+          }
+          .light-dashboard-content .text-white { color: #111827 !important; }
+          .light-dashboard-content .text-gray-300 { color: #374151 !important; }
+          .light-dashboard-content .text-gray-400 { color: #6b7280 !important; }
+          .light-dashboard-content .text-gray-600 { color: #6b7280 !important; }
+          .light-dashboard-content .hover\\:text-white:hover { color: #111827 !important; }
+          .light-dashboard-content .hover\\:text-gray-300:hover { color: #374151 !important; }
+          .light-dashboard-content .bg-white\\/\\[0\\.03\\] { background-color: #f9fafb !important; }
+          .light-dashboard-content .bg-white\\/\\[0\\.02\\] { background-color: #f9fafb !important; }
+          .light-dashboard-content .bg-white\\/5 { background-color: #f3f4f6 !important; }
+          .light-dashboard-content .bg-white\\/10 { background-color: #f3f4f6 !important; }
+          .light-dashboard-content .border-white\\/5 { border-color: #e5e7eb !important; }
+          .light-dashboard-content .border-white\\/\\[0\\.03\\] { border-color: #f3f4f6 !important; }
+          .light-dashboard-content .border-white\\/10 { border-color: #e5e7eb !important; }
+          .light-dashboard-content .text-emerald-400 { color: #059669 !important; }
+          .light-dashboard-content .text-rose-400 { color: #e11d48 !important; }
+          .light-dashboard-content .text-amber-400 { color: #d97706 !important; }
+          .light-dashboard-content .text-blue-400 { color: #2563eb !important; }
+          .light-dashboard-content .text-cyan-400 { color: #0891b2 !important; }
+          .light-dashboard-content .text-orange-400 { color: #ea580c !important; }
+          .light-dashboard-content svg line[stroke*="rgba(255,255,255"] { stroke: rgba(0,0,0,0.08) !important; }
+          .light-dashboard-content svg path[stroke*="rgba(255,255,255"] { stroke: rgba(0,0,0,0.08) !important; }
+        `}</style>
       </div>
     </div>
   );
