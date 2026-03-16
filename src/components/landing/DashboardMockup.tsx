@@ -1311,7 +1311,7 @@ const QualificationInsightsContent = () => {
             onClick={() => setQualTab(t.key)}
             className={`text-[10px] px-3 py-2 font-medium transition-colors border-b-2 flex items-center gap-1 ${qualTab === t.key ? "border-primary text-white" : "border-transparent text-gray-500 hover:text-gray-300"}`}
           >
-            <span className="text-[9px]">{t.icon}</span>
+            <t.Icon className="w-3 h-3" strokeWidth={1.8} />
             {t.label}
           </button>
         ))}
