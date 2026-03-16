@@ -1324,12 +1324,12 @@ const QualificationInsightsContent = () => {
             <p className="text-[7px] text-gray-500 mb-3">Skills where employer demand significantly exceeds student readiness.</p>
             <div className="space-y-2.5">
               {[
-                { skill: "Cloud Computing (AWS/GCP)", gap: 44, students: 184, color: "bg-rose-500", icon: "💻" },
-                { skill: "Machine Learning / AI", gap: 35, students: 156, color: "bg-rose-500", icon: "🧠" },
-                { skill: "SQL & Databases", gap: 33, students: 142, color: "bg-amber-500", icon: "🗄" },
-                { skill: "Python Programming", gap: 23, students: 98, color: "bg-amber-500", icon: "🐍" },
-                { skill: "Cybersecurity Basics", gap: 28, students: 120, color: "bg-amber-500", icon: "🔒" },
-                { skill: "Communication Skills", gap: 16, students: 67, color: "bg-amber-400", icon: "🌐" },
+                { skill: "Cloud Computing (AWS/GCP)", gap: 44, students: 184, color: "bg-rose-500", Icon: Cloud },
+                { skill: "Machine Learning / AI", gap: 35, students: 156, color: "bg-rose-500", Icon: Brain },
+                { skill: "SQL & Databases", gap: 33, students: 142, color: "bg-amber-500", Icon: Database },
+                { skill: "Python Programming", gap: 23, students: 98, color: "bg-amber-500", Icon: Code },
+                { skill: "Cybersecurity Basics", gap: 28, students: 120, color: "bg-amber-500", Icon: Shield },
+                { skill: "Communication Skills", gap: 16, students: 67, color: "bg-amber-400", Icon: Globe },
               ].map((g) => (
                 <div key={g.skill} className="bg-white/[0.02] border border-white/5 rounded-lg px-3 py-2">
                   <div className="flex items-center justify-between mb-1">
