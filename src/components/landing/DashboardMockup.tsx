@@ -1963,7 +1963,7 @@ const DashboardMockup = () => {
     <div
       className="rounded-xl overflow-hidden shadow-precision-lg border border-gray-200 relative"
       style={{
-        zoom: 1.5,
+        zoom: 1.25,
         backgroundColor: "hsl(0, 0%, 100%)",
         color: "hsl(222.2, 84%, 4.9%)",
       }}
