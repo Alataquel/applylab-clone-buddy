@@ -1123,7 +1123,7 @@ const AnalyticsContent = () => {
             ].map((s) => (
               <div key={s.label} className="bg-white/[0.03] border border-white/5 rounded-lg px-2.5 py-2">
                 <div className="w-6 h-6 rounded-lg bg-white/[0.06] flex items-center justify-center mb-1.5">
-                  <span className="text-xs">{s.icon}</span>
+                  <s.Icon className="w-3.5 h-3.5 text-primary" strokeWidth={1.8} />
                 </div>
                 <p className="text-base font-bold text-white">{s.value}</p>
                 <p className="text-[8px] text-gray-400 mb-0.5">{s.label}</p>
