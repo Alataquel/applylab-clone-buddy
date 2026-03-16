@@ -1283,10 +1283,10 @@ const QualificationInsightsContent = () => {
       {/* KPI Cards */}
       <div className="grid grid-cols-4 gap-2 mb-3 mt-3">
         {[
-          { label: "Skills Tracked", value: "24", sub: "+3 new", subColor: "text-emerald-400", icon: "✦" },
-          { label: "Avg. Skill Coverage", value: "64%", sub: "+5% vs last year", subColor: "text-emerald-400", icon: "📈" },
-          { label: "Critical Gaps", value: "6", sub: "Action needed", subColor: "text-rose-400", icon: "⚠️" },
-          { label: "Students At Risk", value: "184", sub: "Missing key skills", subColor: "text-rose-400", icon: "👥" },
+          { label: "Skills Tracked", value: "24", sub: "+3 new", subColor: "text-emerald-400", Icon: Target },
+          { label: "Avg. Skill Coverage", value: "64%", sub: "+5% vs last year", subColor: "text-emerald-400", Icon: TrendingUp },
+          { label: "Critical Gaps", value: "6", sub: "Action needed", subColor: "text-rose-400", Icon: AlertTriangle },
+          { label: "Students At Risk", value: "184", sub: "Missing key skills", subColor: "text-rose-400", Icon: Users },
         ].map((s) => (
           <div key={s.label} className="bg-white/[0.03] border border-white/5 rounded-lg px-2.5 py-2">
             <div className="flex items-center justify-between mb-1.5">
