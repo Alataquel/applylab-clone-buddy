@@ -788,12 +788,12 @@ const AnalyticsContent = () => {
           {/* KPI Cards */}
           <div className="grid grid-cols-6 gap-2 mb-3">
             {[
-              { label: "Total Students", value: "1,284", change: "+5%", icon: "👥" },
-              { label: "Total Applications", value: "4,821", change: "+15%", icon: "📄" },
-              { label: "Placement Rate", value: "71%", change: "+4.2%", icon: "📈" },
-              { label: "Average Salary", value: "$78k", change: "+8%", icon: "💰" },
-              { label: "Avg Apps / Student", value: "3.8", change: "+20%", icon: "🎯" },
-              { label: "CVs Created", value: "2,156", change: "+32%", icon: "📋" },
+              { label: "Total Students", value: "1,284", change: "+5%", Icon: Users },
+              { label: "Total Applications", value: "4,821", change: "+15%", Icon: FileText },
+              { label: "Placement Rate", value: "71%", change: "+4.2%", Icon: TrendingUp },
+              { label: "Average Salary", value: "$78k", change: "+8%", Icon: DollarSign },
+              { label: "Avg Apps / Student", value: "3.8", change: "+20%", Icon: Target },
+              { label: "CVs Created", value: "2,156", change: "+32%", Icon: ClipboardList },
             ].map((s) => (
               <div key={s.label} className="bg-white/[0.03] border border-white/5 rounded-lg px-2.5 py-2">
                 <div className="flex items-center justify-between mb-1">
