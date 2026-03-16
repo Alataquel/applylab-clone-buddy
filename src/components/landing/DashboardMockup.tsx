@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import { Users, Target, FileText, BarChart3, PartyPopper, Briefcase, TrendingUp, DollarSign, ClipboardList, AlertTriangle, Flame, Cloud, Brain, Database, Code, Shield, Globe, Building2, type LucideIcon } from "lucide-react";
 
 const navItems = ["Overview", "Students", "Analytics", "Qualification Insights", "Resume Templates", "Job & Event Postings"];
 
@@ -13,15 +14,15 @@ const OverviewContent = () => (
     {/* Top KPI Row */}
     <div className="grid grid-cols-4 gap-2 mb-3">
       {[
-        { label: "Total Students", value: "1,284", change: "+12%", up: true, icon: "👥" },
-        { label: "Placement Rate", value: "71%", change: "+4.2%", up: true, icon: "🎯" },
-        { label: "Active Applications", value: "4,821", change: "+18%", up: true, icon: "📄" },
-        { label: "Avg. Engagement", value: "83%", change: "-2.1%", up: false, icon: "📊" },
+        { label: "Total Students", value: "1,284", change: "+12%", up: true, Icon: Users },
+        { label: "Placement Rate", value: "71%", change: "+4.2%", up: true, Icon: Target },
+        { label: "Active Applications", value: "4,821", change: "+18%", up: true, Icon: FileText },
+        { label: "Avg. Engagement", value: "83%", change: "-2.1%", up: false, Icon: BarChart3 },
       ].map((m) => (
         <div key={m.label} className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5">
           <div className="flex items-center justify-between mb-1">
             <p className="text-[9px] text-gray-500">{m.label}</p>
-            <span className="text-xs">{m.icon}</span>
+            <m.Icon className="w-3.5 h-3.5 text-primary" strokeWidth={1.8} />
           </div>
           <div className="flex items-baseline gap-1.5">
             <span className="text-base font-bold text-white">{m.value}</span>
@@ -147,14 +148,14 @@ const OverviewContent = () => (
     <p className="text-[9px] text-gray-500 font-semibold mb-1.5">Recent Activity</p>
     <div className="space-y-1">
       {[
-        { text: "Sarah Chen received an offer from Deloitte", time: "2h ago", icon: "🎉" },
-        { text: "3 new students joined Engineering 2026", time: "5h ago", icon: "👥" },
-        { text: "Resume Workshop event starts tomorrow", time: "1d ago", icon: "📄" },
-        { text: "Monthly placement report is ready", time: "1d ago", icon: "📊" },
-        { text: "New job posting: UX Designer at DesignCo", time: "2d ago", icon: "💼" },
+        { text: "Sarah Chen received an offer from Deloitte", time: "2h ago", Icon: PartyPopper },
+        { text: "3 new students joined Engineering 2026", time: "5h ago", Icon: Users },
+        { text: "Resume Workshop event starts tomorrow", time: "1d ago", Icon: FileText },
+        { text: "Monthly placement report is ready", time: "1d ago", Icon: BarChart3 },
+        { text: "New job posting: UX Designer at DesignCo", time: "2d ago", Icon: Briefcase },
       ].map((a) => (
         <div key={a.text} className="flex items-center gap-2 bg-white/[0.02] border border-white/[0.03] rounded-lg px-3 py-1.5">
-          <span className="text-[10px]">{a.icon}</span>
+          <a.Icon className="w-3 h-3 text-primary flex-shrink-0" strokeWidth={1.8} />
           <p className="text-[9px] text-gray-300 flex-1">{a.text}</p>
           <span className="text-[8px] text-gray-600">{a.time}</span>
         </div>
@@ -787,16 +788,16 @@ const AnalyticsContent = () => {
           {/* KPI Cards */}
           <div className="grid grid-cols-6 gap-2 mb-3">
             {[
-              { label: "Total Students", value: "1,284", change: "+5%", icon: "👥" },
-              { label: "Total Applications", value: "4,821", change: "+15%", icon: "📄" },
-              { label: "Placement Rate", value: "71%", change: "+4.2%", icon: "📈" },
-              { label: "Average Salary", value: "$78k", change: "+8%", icon: "💰" },
-              { label: "Avg Apps / Student", value: "3.8", change: "+20%", icon: "🎯" },
-              { label: "CVs Created", value: "2,156", change: "+32%", icon: "📋" },
+              { label: "Total Students", value: "1,284", change: "+5%", Icon: Users },
+              { label: "Total Applications", value: "4,821", change: "+15%", Icon: FileText },
+              { label: "Placement Rate", value: "71%", change: "+4.2%", Icon: TrendingUp },
+              { label: "Average Salary", value: "$78k", change: "+8%", Icon: DollarSign },
+              { label: "Avg Apps / Student", value: "3.8", change: "+20%", Icon: Target },
+              { label: "CVs Created", value: "2,156", change: "+32%", Icon: ClipboardList },
             ].map((s) => (
               <div key={s.label} className="bg-white/[0.03] border border-white/5 rounded-lg px-2.5 py-2">
                 <div className="flex items-center justify-between mb-1">
-                  <span className="text-[10px]">{s.icon}</span>
+                  <s.Icon className="w-3.5 h-3.5 text-primary" strokeWidth={1.8} />
                   <span className="text-[8px] text-emerald-400 font-medium">{s.change}</span>
                 </div>
                 <p className="text-base font-bold text-white">{s.value}</p>
@@ -1115,14 +1116,14 @@ const AnalyticsContent = () => {
           {/* Engagement KPIs */}
           <div className="grid grid-cols-4 gap-2 mb-3">
             {[
-              { label: "Weekly Active Students", value: "710", sub: "-5% vs last week", icon: "📊", subColor: "text-rose-400" },
-              { label: "At-Risk (Burnout)", value: "157", sub: "12% of cohort", icon: "🔥", subColor: "text-rose-400" },
-              { label: "Resume Issues", value: "512", sub: "40% of students", icon: "⚠️", subColor: "text-amber-400" },
-              { label: "CVs Created This Month", value: "490", sub: "+32% vs last month", icon: "📄", subColor: "text-emerald-400" },
+              { label: "Weekly Active Students", value: "710", sub: "-5% vs last week", Icon: BarChart3, subColor: "text-rose-400" },
+              { label: "At-Risk (Burnout)", value: "157", sub: "12% of cohort", Icon: Flame, subColor: "text-rose-400" },
+              { label: "Resume Issues", value: "512", sub: "40% of students", Icon: AlertTriangle, subColor: "text-amber-400" },
+              { label: "CVs Created This Month", value: "490", sub: "+32% vs last month", Icon: FileText, subColor: "text-emerald-400" },
             ].map((s) => (
               <div key={s.label} className="bg-white/[0.03] border border-white/5 rounded-lg px-2.5 py-2">
                 <div className="w-6 h-6 rounded-lg bg-white/[0.06] flex items-center justify-center mb-1.5">
-                  <span className="text-xs">{s.icon}</span>
+                  <s.Icon className="w-3.5 h-3.5 text-primary" strokeWidth={1.8} />
                 </div>
                 <p className="text-base font-bold text-white">{s.value}</p>
                 <p className="text-[8px] text-gray-400 mb-0.5">{s.label}</p>
@@ -1282,15 +1283,15 @@ const QualificationInsightsContent = () => {
       {/* KPI Cards */}
       <div className="grid grid-cols-4 gap-2 mb-3 mt-3">
         {[
-          { label: "Skills Tracked", value: "24", sub: "+3 new", subColor: "text-emerald-400", icon: "✦" },
-          { label: "Avg. Skill Coverage", value: "64%", sub: "+5% vs last year", subColor: "text-emerald-400", icon: "📈" },
-          { label: "Critical Gaps", value: "6", sub: "Action needed", subColor: "text-rose-400", icon: "⚠️" },
-          { label: "Students At Risk", value: "184", sub: "Missing key skills", subColor: "text-rose-400", icon: "👥" },
+          { label: "Skills Tracked", value: "24", sub: "+3 new", subColor: "text-emerald-400", Icon: Target },
+          { label: "Avg. Skill Coverage", value: "64%", sub: "+5% vs last year", subColor: "text-emerald-400", Icon: TrendingUp },
+          { label: "Critical Gaps", value: "6", sub: "Action needed", subColor: "text-rose-400", Icon: AlertTriangle },
+          { label: "Students At Risk", value: "184", sub: "Missing key skills", subColor: "text-rose-400", Icon: Users },
         ].map((s) => (
           <div key={s.label} className="bg-white/[0.03] border border-white/5 rounded-lg px-2.5 py-2">
             <div className="flex items-center justify-between mb-1.5">
               <span className="text-[8px] text-gray-500">{s.label}</span>
-              <span className="text-xs">{s.icon}</span>
+              <s.Icon className="w-3.5 h-3.5 text-primary" strokeWidth={1.8} />
             </div>
             <p className="text-lg font-bold text-white">{s.value}</p>
             <p className={`text-[8px] font-medium ${s.subColor}`}>{s.sub}</p>
@@ -1301,16 +1302,16 @@ const QualificationInsightsContent = () => {
       {/* Sub-tabs */}
       <div className="flex items-center gap-0 mb-4 border-b border-white/5">
         {[
-          { key: "gaps" as const, label: "Skill Gaps", icon: "⚠" },
-          { key: "demand" as const, label: "Industry Demand", icon: "🏢" },
-          { key: "overview" as const, label: "Skills Overview", icon: "📊" },
+          { key: "gaps" as const, label: "Skill Gaps", Icon: AlertTriangle },
+          { key: "demand" as const, label: "Industry Demand", Icon: Building2 },
+          { key: "overview" as const, label: "Skills Overview", Icon: BarChart3 },
         ].map((t) => (
           <button
             key={t.key}
             onClick={() => setQualTab(t.key)}
             className={`text-[10px] px-3 py-2 font-medium transition-colors border-b-2 flex items-center gap-1 ${qualTab === t.key ? "border-primary text-white" : "border-transparent text-gray-500 hover:text-gray-300"}`}
           >
-            <span className="text-[9px]">{t.icon}</span>
+            <t.Icon className="w-3 h-3" strokeWidth={1.8} />
             {t.label}
           </button>
         ))}
@@ -1323,17 +1324,17 @@ const QualificationInsightsContent = () => {
             <p className="text-[7px] text-gray-500 mb-3">Skills where employer demand significantly exceeds student readiness.</p>
             <div className="space-y-2.5">
               {[
-                { skill: "Cloud Computing (AWS/GCP)", gap: 44, students: 184, color: "bg-rose-500", icon: "💻" },
-                { skill: "Machine Learning / AI", gap: 35, students: 156, color: "bg-rose-500", icon: "🧠" },
-                { skill: "SQL & Databases", gap: 33, students: 142, color: "bg-amber-500", icon: "🗄" },
-                { skill: "Python Programming", gap: 23, students: 98, color: "bg-amber-500", icon: "🐍" },
-                { skill: "Cybersecurity Basics", gap: 28, students: 120, color: "bg-amber-500", icon: "🔒" },
-                { skill: "Communication Skills", gap: 16, students: 67, color: "bg-amber-400", icon: "🌐" },
+                { skill: "Cloud Computing (AWS/GCP)", gap: 44, students: 184, color: "bg-rose-500", Icon: Cloud },
+                { skill: "Machine Learning / AI", gap: 35, students: 156, color: "bg-rose-500", Icon: Brain },
+                { skill: "SQL & Databases", gap: 33, students: 142, color: "bg-amber-500", Icon: Database },
+                { skill: "Python Programming", gap: 23, students: 98, color: "bg-amber-500", Icon: Code },
+                { skill: "Cybersecurity Basics", gap: 28, students: 120, color: "bg-amber-500", Icon: Shield },
+                { skill: "Communication Skills", gap: 16, students: 67, color: "bg-amber-400", Icon: Globe },
               ].map((g) => (
                 <div key={g.skill} className="bg-white/[0.02] border border-white/5 rounded-lg px-3 py-2">
                   <div className="flex items-center justify-between mb-1">
                     <div className="flex items-center gap-2">
-                      <span className="text-[10px]">{g.icon}</span>
+                      <g.Icon className="w-3 h-3 text-primary" strokeWidth={1.8} />
                       <span className="text-[10px] text-white font-medium">{g.skill}</span>
                     </div>
                     <span className={`text-[8px] font-bold px-1.5 py-0.5 rounded ${g.gap > 30 ? "bg-rose-500/20 text-rose-400" : "bg-amber-500/20 text-amber-400"}`}>{g.gap}% gap</span>
