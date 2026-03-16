@@ -25,10 +25,6 @@ const HeroSection = () => {
       <div className="max-w-[110rem] w-full mx-auto">
         {/* Top: headline + CTA centered */}
         <motion.div variants={containerVariants} initial="hidden" animate="visible" className="text-center mb-16 space-y-7">
-          <motion.div variants={itemVariants} className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
-            <span className="w-2 h-2 rounded-full bg-emerald-500" />
-            Now in beta · Partnering with universities across Europe
-          </motion.div>
 
           <motion.h1 variants={itemVariants} className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight leading-[1.05] text-foreground">
             Career outcomes{" "}
