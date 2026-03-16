@@ -71,30 +71,7 @@ const HeroSection = () => {
           transition={{ duration: 0.7, delay: 0.3, ease: [0.2, 0, 0, 1] }}
           className="relative"
         >
-          <div className="h-[960px] overflow-hidden rounded-xl relative">
-            {/* Demo Toggle - floating over mockup */}
-            <div className="absolute top-4 left-[35%] -translate-x-1/2 z-10">
-              <div className="inline-flex items-center bg-background/80 backdrop-blur-md border border-border/50 rounded-full p-1 gap-1 shadow-lg">
-                <button
-                  onClick={() => setActiveDemo("university")}
-                  className={`flex items-center gap-2 px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                    activeDemo === "university" ? "bg-foreground text-background shadow-md" : "text-muted-foreground hover:text-foreground"
-                  }`}
-                >
-                  <Building2 className="w-4 h-4" />
-                  University Portal
-                </button>
-                <button
-                  onClick={() => setActiveDemo("student")}
-                  className={`flex items-center gap-2 px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                    activeDemo === "student" ? "bg-foreground text-background shadow-md" : "text-muted-foreground hover:text-foreground"
-                  }`}
-                >
-                  <GraduationCap className="w-4 h-4" />
-                  Student Portal
-                </button>
-              </div>
-            </div>
+          <div className="h-[960px] overflow-hidden rounded-xl">
             <motion.div
               key={activeDemo}
               initial={{ opacity: 0, y: 20 }}
@@ -105,15 +82,37 @@ const HeroSection = () => {
             </motion.div>
           </div>
 
-          {/* Demo note */}
-          <motion.p
+          {/* Demo toggle + note */}
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.2 }}
-            className="text-center text-base font-medium text-muted-foreground mt-6"
+            className="flex flex-col items-center gap-4 mt-6"
           >
-            ↑ This is a live demo — click around and explore the tabs
-          </motion.p>
+            <div className="inline-flex items-center bg-white/10 backdrop-blur-sm border border-white/10 rounded-full p-1 gap-1">
+              <button
+                onClick={() => setActiveDemo("university")}
+                className={`flex items-center gap-2 px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                  activeDemo === "university" ? "bg-foreground text-background shadow-md" : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                <Building2 className="w-4 h-4" />
+                University Portal
+              </button>
+              <button
+                onClick={() => setActiveDemo("student")}
+                className={`flex items-center gap-2 px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                  activeDemo === "student" ? "bg-foreground text-background shadow-md" : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                <GraduationCap className="w-4 h-4" />
+                Student Portal
+              </button>
+            </div>
+            <p className="text-base font-medium text-muted-foreground">
+              ↑ This is a live demo — click around and explore the tabs
+            </p>
+          </motion.div>
 
         </motion.div>
       </div>
