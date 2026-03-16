@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import { Users, Target, FileText, BarChart3, PartyPopper, Briefcase, TrendingUp, DollarSign, ClipboardList, AlertTriangle, Flame, Cloud, Brain, Database, Code, Shield, Globe, Building2, type LucideIcon } from "lucide-react";
 
 const navItems = ["Overview", "Students", "Analytics", "Qualification Insights", "Resume Templates", "Job & Event Postings"];
 
