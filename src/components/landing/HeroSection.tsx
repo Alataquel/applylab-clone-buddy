@@ -73,7 +73,7 @@ const HeroSection = () => {
         >
           <div className="h-[960px] overflow-hidden rounded-xl relative">
             {/* Demo Toggle - floating over mockup */}
-            <div className="absolute top-4 left-[45%] -translate-x-1/2 z-10">
+            <div className="absolute top-4 left-[35%] -translate-x-1/2 z-10">
               <div className="inline-flex items-center bg-background/80 backdrop-blur-md border border-border/50 rounded-full p-1 gap-1 shadow-lg">
                 <button
                   onClick={() => setActiveDemo("university")}
