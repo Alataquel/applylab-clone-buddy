@@ -1116,10 +1116,10 @@ const AnalyticsContent = () => {
           {/* Engagement KPIs */}
           <div className="grid grid-cols-4 gap-2 mb-3">
             {[
-              { label: "Weekly Active Students", value: "710", sub: "-5% vs last week", icon: "📊", subColor: "text-rose-400" },
-              { label: "At-Risk (Burnout)", value: "157", sub: "12% of cohort", icon: "🔥", subColor: "text-rose-400" },
-              { label: "Resume Issues", value: "512", sub: "40% of students", icon: "⚠️", subColor: "text-amber-400" },
-              { label: "CVs Created This Month", value: "490", sub: "+32% vs last month", icon: "📄", subColor: "text-emerald-400" },
+              { label: "Weekly Active Students", value: "710", sub: "-5% vs last week", Icon: BarChart3, subColor: "text-rose-400" },
+              { label: "At-Risk (Burnout)", value: "157", sub: "12% of cohort", Icon: Flame, subColor: "text-rose-400" },
+              { label: "Resume Issues", value: "512", sub: "40% of students", Icon: AlertTriangle, subColor: "text-amber-400" },
+              { label: "CVs Created This Month", value: "490", sub: "+32% vs last month", Icon: FileText, subColor: "text-emerald-400" },
             ].map((s) => (
               <div key={s.label} className="bg-white/[0.03] border border-white/5 rounded-lg px-2.5 py-2">
                 <div className="w-6 h-6 rounded-lg bg-white/[0.06] flex items-center justify-center mb-1.5">
