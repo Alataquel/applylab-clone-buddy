@@ -148,11 +148,11 @@ const OverviewContent = () => (
     <p className="text-[9px] text-gray-500 font-semibold mb-1.5">Recent Activity</p>
     <div className="space-y-1">
       {[
-        { text: "Sarah Chen received an offer from Deloitte", time: "2h ago", icon: "🎉" },
-        { text: "3 new students joined Engineering 2026", time: "5h ago", icon: "👥" },
-        { text: "Resume Workshop event starts tomorrow", time: "1d ago", icon: "📄" },
-        { text: "Monthly placement report is ready", time: "1d ago", icon: "📊" },
-        { text: "New job posting: UX Designer at DesignCo", time: "2d ago", icon: "💼" },
+        { text: "Sarah Chen received an offer from Deloitte", time: "2h ago", Icon: PartyPopper },
+        { text: "3 new students joined Engineering 2026", time: "5h ago", Icon: Users },
+        { text: "Resume Workshop event starts tomorrow", time: "1d ago", Icon: FileText },
+        { text: "Monthly placement report is ready", time: "1d ago", Icon: BarChart3 },
+        { text: "New job posting: UX Designer at DesignCo", time: "2d ago", Icon: Briefcase },
       ].map((a) => (
         <div key={a.text} className="flex items-center gap-2 bg-white/[0.02] border border-white/[0.03] rounded-lg px-3 py-1.5">
           <span className="text-[10px]">{a.icon}</span>
