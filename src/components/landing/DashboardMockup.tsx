@@ -1302,9 +1302,9 @@ const QualificationInsightsContent = () => {
       {/* Sub-tabs */}
       <div className="flex items-center gap-0 mb-4 border-b border-white/5">
         {[
-          { key: "gaps" as const, label: "Skill Gaps", icon: "⚠" },
-          { key: "demand" as const, label: "Industry Demand", icon: "🏢" },
-          { key: "overview" as const, label: "Skills Overview", icon: "📊" },
+          { key: "gaps" as const, label: "Skill Gaps", Icon: AlertTriangle },
+          { key: "demand" as const, label: "Industry Demand", Icon: Building2 },
+          { key: "overview" as const, label: "Skills Overview", Icon: BarChart3 },
         ].map((t) => (
           <button
             key={t.key}
