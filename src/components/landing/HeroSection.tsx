@@ -99,7 +99,7 @@ const HeroSection = () => {
             </div>
           </div>
 
-          <div className="h-[640px] overflow-hidden rounded-xl">
+          <div className="h-[960px] overflow-hidden rounded-xl">
             <motion.div
               key={activeDemo}
               initial={{ opacity: 0, y: 20 }}
