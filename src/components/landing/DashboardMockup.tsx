@@ -22,7 +22,7 @@ const OverviewContent = () => (
         <div key={m.label} className="bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5">
           <div className="flex items-center justify-between mb-1">
             <p className="text-[9px] text-gray-500">{m.label}</p>
-            <span className="text-xs">{m.icon}</span>
+            <m.Icon className="w-3.5 h-3.5 text-primary" strokeWidth={1.8} />
           </div>
           <div className="flex items-baseline gap-1.5">
             <span className="text-base font-bold text-white">{m.value}</span>
