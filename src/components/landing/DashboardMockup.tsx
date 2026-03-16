@@ -2002,29 +2002,36 @@ const DashboardMockup = () => {
         </div>
 
         {/* Main content - light theme */}
-        <div
-          className="flex-1 p-5 overflow-y-auto bg-white
-            [&_.text-white]:text-gray-900
-            [&_.text-gray-300]:text-gray-700
-            [&_.text-gray-400]:text-gray-500
-            [&_.text-gray-600]:text-gray-500
-            [&_.hover\\:text-white]:hover:text-gray-900
-            [&_.bg-white\\/\\[0\\.03\\]]:bg-gray-50
-            [&_.bg-white\\/\\[0\\.02\\]]:bg-gray-50
-            [&_.border-white\\/5]:border-gray-200
-            [&_.border-white\\/\\[0\\.03\\]]:border-gray-100
-            [&_.bg-white\\/5]:bg-gray-100
-            [&_.bg-white\\/10]:bg-gray-100
-            [&_.text-emerald-400]:text-emerald-600
-            [&_.text-rose-400]:text-rose-600
-            [&_.text-amber-400]:text-amber-600
-            [&_.text-blue-400]:text-blue-600
-            [&_.text-cyan-400]:text-cyan-600
-            [&_.text-orange-400]:text-orange-600
-          "
-        >
+        <div className="flex-1 p-5 overflow-y-auto bg-white light-dashboard-content">
           {renderContent()}
         </div>
+        <style>{`
+          .light-dashboard-content,
+          .light-dashboard-content * {
+            --tw-text-opacity: 1;
+          }
+          .light-dashboard-content .text-white { color: #111827 !important; }
+          .light-dashboard-content .text-gray-300 { color: #374151 !important; }
+          .light-dashboard-content .text-gray-400 { color: #6b7280 !important; }
+          .light-dashboard-content .text-gray-600 { color: #6b7280 !important; }
+          .light-dashboard-content .hover\\:text-white:hover { color: #111827 !important; }
+          .light-dashboard-content .hover\\:text-gray-300:hover { color: #374151 !important; }
+          .light-dashboard-content .bg-white\\/\\[0\\.03\\] { background-color: #f9fafb !important; }
+          .light-dashboard-content .bg-white\\/\\[0\\.02\\] { background-color: #f9fafb !important; }
+          .light-dashboard-content .bg-white\\/5 { background-color: #f3f4f6 !important; }
+          .light-dashboard-content .bg-white\\/10 { background-color: #f3f4f6 !important; }
+          .light-dashboard-content .border-white\\/5 { border-color: #e5e7eb !important; }
+          .light-dashboard-content .border-white\\/\\[0\\.03\\] { border-color: #f3f4f6 !important; }
+          .light-dashboard-content .border-white\\/10 { border-color: #e5e7eb !important; }
+          .light-dashboard-content .text-emerald-400 { color: #059669 !important; }
+          .light-dashboard-content .text-rose-400 { color: #e11d48 !important; }
+          .light-dashboard-content .text-amber-400 { color: #d97706 !important; }
+          .light-dashboard-content .text-blue-400 { color: #2563eb !important; }
+          .light-dashboard-content .text-cyan-400 { color: #0891b2 !important; }
+          .light-dashboard-content .text-orange-400 { color: #ea580c !important; }
+          .light-dashboard-content svg line[stroke*="rgba(255,255,255"] { stroke: rgba(0,0,0,0.08) !important; }
+          .light-dashboard-content svg path[stroke*="rgba(255,255,255"] { stroke: rgba(0,0,0,0.08) !important; }
+        `}</style>
       </div>
     </div>
   );
