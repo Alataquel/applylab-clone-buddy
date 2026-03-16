@@ -1958,23 +1958,30 @@ const DashboardMockup = () => {
   };
 
   return (
-    <div className="rounded-xl overflow-hidden shadow-precision-lg bg-[hsl(230,40%,11%)] border border-white/5 relative" style={{ zoom: 1.5 }}>
+    <div
+      className="rounded-xl overflow-hidden shadow-precision-lg border border-gray-200 relative"
+      style={{
+        zoom: 1.5,
+        backgroundColor: "hsl(0, 0%, 100%)",
+        color: "hsl(222.2, 84%, 4.9%)",
+      }}
+    >
       {/* Browser chrome */}
-      <div className="flex items-center gap-2 px-4 py-2.5 bg-[hsl(230,38%,9%)] border-b border-white/5">
+      <div className="flex items-center gap-2 px-4 py-2.5 bg-[hsl(230,40%,11%)] border-b border-white/5">
         <div className="flex gap-1.5">
           <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
           <div className="w-2.5 h-2.5 rounded-full bg-[#febc2e]" />
           <div className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
         </div>
         <div className="flex-1 text-center">
-          <span className="text-[11px] text-gray-500 bg-white/5 px-4 py-1 rounded-md">applylab.software/careers-team</span>
+          <span className="text-[11px] text-gray-400 bg-white/5 px-4 py-1 rounded-md">applylab.software/careers-team</span>
         </div>
       </div>
 
       {/* App content */}
       <div className="flex h-[600px]">
-        {/* Sidebar */}
-        <div className="w-40 border-r border-white/5 p-3 hidden sm:block">
+        {/* Sidebar - stays dark */}
+        <div className="w-40 border-r border-white/5 p-3 hidden sm:block bg-[hsl(230,40%,11%)]">
           <p className="text-xs font-bold text-white mb-4">ApplyLab</p>
           <p className="text-[9px] uppercase tracking-wider text-gray-500 mb-2">Careers Team</p>
           <div className="space-y-0.5">
@@ -1994,8 +2001,28 @@ const DashboardMockup = () => {
           </div>
         </div>
 
-        {/* Main content */}
-        <div className="flex-1 p-5 overflow-y-auto">
+        {/* Main content - light theme */}
+        <div
+          className="flex-1 p-5 overflow-y-auto bg-white
+            [&_.text-white]:text-gray-900
+            [&_.text-gray-300]:text-gray-700
+            [&_.text-gray-400]:text-gray-500
+            [&_.text-gray-600]:text-gray-500
+            [&_.hover\\:text-white]:hover:text-gray-900
+            [&_.bg-white\\/\\[0\\.03\\]]:bg-gray-50
+            [&_.bg-white\\/\\[0\\.02\\]]:bg-gray-50
+            [&_.border-white\\/5]:border-gray-200
+            [&_.border-white\\/\\[0\\.03\\]]:border-gray-100
+            [&_.bg-white\\/5]:bg-gray-100
+            [&_.bg-white\\/10]:bg-gray-100
+            [&_.text-emerald-400]:text-emerald-600
+            [&_.text-rose-400]:text-rose-600
+            [&_.text-amber-400]:text-amber-600
+            [&_.text-blue-400]:text-blue-600
+            [&_.text-cyan-400]:text-cyan-600
+            [&_.text-orange-400]:text-orange-600
+          "
+        >
           {renderContent()}
         </div>
       </div>
