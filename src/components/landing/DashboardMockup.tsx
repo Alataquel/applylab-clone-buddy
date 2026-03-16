@@ -247,12 +247,12 @@ const SpiderChart = ({ data }: { data: { certifications: number; languages: numb
       {gridLevels.map((level) => {
         const pts = Array.from({ length: 6 }, (_, i) => getPoint(i, level));
         const path = pts.map((p, i) => `${i === 0 ? "M" : "L"}${p.x},${p.y}`).join(" ") + "Z";
-        return <path key={level} d={path} fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="0.5" />;
+        return <path key={level} d={path} fill="none" stroke="rgba(0,0,0,0.08)" strokeWidth="0.5" />;
       })}
       {/* Axes */}
       {Array.from({ length: 6 }, (_, i) => {
         const end = getPoint(i, 5);
-        return <line key={i} x1={cx} y1={cy} x2={end.x} y2={end.y} stroke="rgba(255,255,255,0.08)" strokeWidth="0.5" />;
+        return <line key={i} x1={cx} y1={cy} x2={end.x} y2={end.y} stroke="rgba(0,0,0,0.08)" strokeWidth="0.5" />;
       })}
       {/* Data area */}
       <path d={dataPath} fill="hsl(217, 91%, 60%, 0.2)" stroke="hsl(217, 91%, 60%)" strokeWidth="1.5" />
