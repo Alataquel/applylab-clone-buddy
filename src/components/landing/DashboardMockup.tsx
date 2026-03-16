@@ -4,6 +4,12 @@ const navItems = ["Overview", "Students", "Analytics", "Qualification Insights",
 
 const OverviewContent = () => (
   <>
+    {/* Welcome banner */}
+    <div className="bg-gradient-to-br from-primary/20 via-primary/5 to-transparent rounded-xl px-6 py-6 mb-4 text-center">
+      <h2 className="text-lg font-bold text-white mb-1">Welcome, Careers Team 👋</h2>
+      <p className="text-[10px] text-gray-400">Here's your institutional overview — track student outcomes, engagement, and placements in real time.</p>
+    </div>
+
     {/* Top KPI Row */}
     <div className="grid grid-cols-4 gap-2 mb-3">
       {[
