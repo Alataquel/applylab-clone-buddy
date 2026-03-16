@@ -1958,7 +1958,7 @@ const DashboardMockup = () => {
   };
 
   return (
-    <div className="rounded-xl overflow-hidden shadow-precision-lg bg-[hsl(230,40%,11%)] border border-white/5 relative">
+    <div className="rounded-xl overflow-hidden shadow-precision-lg bg-[hsl(230,40%,11%)] border border-white/5 relative" style={{ zoom: 1.5 }}>
       {/* Browser chrome */}
       <div className="flex items-center gap-2 px-4 py-2.5 bg-[hsl(230,38%,9%)] border-b border-white/5">
         <div className="flex gap-1.5">
