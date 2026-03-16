@@ -155,7 +155,7 @@ const OverviewContent = () => (
         { text: "New job posting: UX Designer at DesignCo", time: "2d ago", Icon: Briefcase },
       ].map((a) => (
         <div key={a.text} className="flex items-center gap-2 bg-white/[0.02] border border-white/[0.03] rounded-lg px-3 py-1.5">
-          <span className="text-[10px]">{a.icon}</span>
+          <a.Icon className="w-3 h-3 text-primary flex-shrink-0" strokeWidth={1.8} />
           <p className="text-[9px] text-gray-300 flex-1">{a.text}</p>
           <span className="text-[8px] text-gray-600">{a.time}</span>
         </div>
