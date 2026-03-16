@@ -2019,7 +2019,8 @@ const DashboardMockup = () => {
           .light-dashboard-content .text-white { color: #111827 !important; }
           .light-dashboard-content .text-gray-300 { color: #374151 !important; }
           .light-dashboard-content .text-gray-400 { color: #6b7280 !important; }
-          .light-dashboard-content .text-gray-600 { color: #6b7280 !important; }
+          .light-dashboard-content .text-gray-500 { color: #6b7280 !important; }
+          .light-dashboard-content .text-gray-600 { color: #4b5563 !important; }
           .light-dashboard-content .hover\\:text-white:hover { color: #111827 !important; }
           .light-dashboard-content .hover\\:text-gray-300:hover { color: #374151 !important; }
           .light-dashboard-content .bg-white\\/\\[0\\.03\\] { background-color: #f9fafb !important; }
@@ -2035,6 +2036,8 @@ const DashboardMockup = () => {
           .light-dashboard-content .text-blue-400 { color: #2563eb !important; }
           .light-dashboard-content .text-cyan-400 { color: #0891b2 !important; }
           .light-dashboard-content .text-orange-400 { color: #ea580c !important; }
+          .light-dashboard-content svg { color: #4b5563 !important; }
+          .light-dashboard-content svg.text-primary { color: hsl(var(--primary)) !important; }
           .light-dashboard-content svg line[stroke*="rgba(255,255,255"] { stroke: rgba(0,0,0,0.08) !important; }
           .light-dashboard-content svg path[stroke*="rgba(255,255,255"] { stroke: rgba(0,0,0,0.08) !important; }
         `}</style>
