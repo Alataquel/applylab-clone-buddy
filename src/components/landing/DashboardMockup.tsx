@@ -1291,7 +1291,7 @@ const QualificationInsightsContent = () => {
           <div key={s.label} className="bg-white/[0.03] border border-white/5 rounded-lg px-2.5 py-2">
             <div className="flex items-center justify-between mb-1.5">
               <span className="text-[8px] text-gray-500">{s.label}</span>
-              <span className="text-xs">{s.icon}</span>
+              <s.Icon className="w-3.5 h-3.5 text-primary" strokeWidth={1.8} />
             </div>
             <p className="text-lg font-bold text-white">{s.value}</p>
             <p className={`text-[8px] font-medium ${s.subColor}`}>{s.sub}</p>
