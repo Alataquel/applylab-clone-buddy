@@ -115,38 +115,6 @@ const HeroSection = () => {
             ↑ This is a live demo — click around and explore the tabs
           </motion.p>
 
-          {/* Floating card - Placement rate */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.8 }}
-            className="absolute -top-4 -right-4 lg:right-0 bg-card rounded-xl p-4 shadow-precision-md"
-          >
-            <div className="flex items-center gap-2 text-sm font-medium text-foreground">
-              <TrendingUp className="w-4 h-4 text-primary" />
-              Placement rate up
-            </div>
-            <p className="text-2xl font-bold text-foreground mt-1">+12%</p>
-            <p className="text-[10px] text-muted-foreground">vs. last semester</p>
-          </motion.div>
-
-          {/* Floating card - Active students */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 1 }}
-            className="absolute -bottom-4 left-4 lg:left-8 bg-card rounded-xl p-4 shadow-precision-md"
-          >
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center">
-                <Users className="w-5 h-5 text-primary" />
-              </div>
-              <div>
-                <p className="text-sm font-medium text-foreground">716 active students</p>
-                <p className="text-xs text-muted-foreground">Across 3 cohorts</p>
-              </div>
-            </div>
-          </motion.div>
         </motion.div>
       </div>
     </section>
