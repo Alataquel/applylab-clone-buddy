@@ -40,7 +40,7 @@ const ForUniversities = () => {
                 whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: 0.97 }}
               >
-                Request a pilot <ArrowRight className="w-4 h-4" />
+                Book a demo <ArrowRight className="w-4 h-4" />
               </motion.a>
             </motion.div>
           </motion.div>
