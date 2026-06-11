@@ -18,7 +18,7 @@ const itemVariants = {
 };
 
 const HeroSection = () => {
-  const [activeDemo, setActiveDemo] = useState<"university" | "student">("university");
+  const [activeDemo, setActiveDemo] = useState<"university" | "student">("student");
 
   return (
     <section className="relative min-h-screen flex flex-col justify-center pt-48 lg:pt-56 pb-20 px-4 lg:px-8 overflow-hidden">
@@ -27,26 +27,26 @@ const HeroSection = () => {
         <motion.div variants={containerVariants} initial="hidden" animate="visible" className="text-center mb-16 space-y-7">
 
           <motion.h1 variants={itemVariants} className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight leading-[1.05] text-foreground">
-            Career outcomes{" "}
-            <span className="text-gradient italic font-bold">infrastructure.</span>
+            Land your next role,{" "}
+            <span className="text-gradient italic font-bold">faster.</span>
           </motion.h1>
 
           <motion.p variants={itemVariants} className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Real-time visibility into student career activity. Placement analytics your team can act on. The operating system for university career services.
+            The AI-powered career copilot that helps you find roles, tailor applications, prep for interviews, and track every step — all in one place.
           </motion.p>
 
           <motion.div variants={itemVariants} className="flex items-center justify-center gap-3 flex-wrap">
             <a
-              href="/request-pilot"
+              href="/signup"
               className="inline-flex items-center gap-2 bg-foreground text-background font-medium px-6 py-3 rounded-full text-sm hover:opacity-90 transition-opacity"
             >
-              Request a pilot <ArrowRight className="w-4 h-4" />
+              Start free <ArrowRight className="w-4 h-4" />
             </a>
             <a
-              href="/universities"
+              href="#pricing"
               className="inline-flex items-center gap-2 text-muted-foreground font-medium px-6 py-3 rounded-full text-sm border border-muted hover:text-foreground transition-colors"
             >
-              How it works
+              See pricing
             </a>
           </motion.div>
 
@@ -54,7 +54,7 @@ const HeroSection = () => {
             <span>As listed in</span>
             <span className="font-semibold text-foreground">Forbes Italy Future Leaders</span>
             <span>·</span>
-            <span>Used by</span>
+            <span>Trusted by students at</span>
             <span className="font-semibold text-foreground">Saint Louis University</span>
             <span>·</span>
             <span className="font-semibold text-foreground">German UDS</span>
