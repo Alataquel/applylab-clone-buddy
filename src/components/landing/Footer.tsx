@@ -6,7 +6,7 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
         <span className="text-sm font-bold text-foreground tracking-tight">applylab</span>
         <p className="text-xs text-muted-foreground">© {new Date().getFullYear()} ApplyLab. All rights reserved.</p>
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-6 flex-wrap justify-center">
           <a
             href="https://www.linkedin.com/company/applylabofficial/"
             target="_blank"
@@ -16,6 +16,9 @@ const Footer = () => {
             <Linkedin className="w-3.5 h-3.5" />
             LinkedIn
           </a>
+          <a href="/#pricing" className="text-xs text-muted-foreground hover:text-foreground transition-colors">Pricing</a>
+          <a href="/universities" className="text-xs text-muted-foreground hover:text-foreground transition-colors">For Universities</a>
+          <a href="/ambassador" className="text-xs text-muted-foreground hover:text-foreground transition-colors">Ambassadors</a>
           <a href="/privacy" className="text-xs text-muted-foreground hover:text-foreground transition-colors">Privacy</a>
           <a href="/terms" className="text-xs text-muted-foreground hover:text-foreground transition-colors">Terms</a>
           <a href="/request-pilot" className="text-xs text-muted-foreground hover:text-foreground transition-colors">Contact</a>

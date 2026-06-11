@@ -4,6 +4,7 @@ import Navbar from "@/components/landing/Navbar";
 import Footer from "@/components/landing/Footer";
 import DashboardMockup from "@/components/landing/DashboardMockup";
 import SolutionSection from "@/components/landing/SolutionSection";
+import InfrastructureSection from "@/components/landing/InfrastructureSection";
 import { ArrowRight, Users, BookOpen, Globe, AlertTriangle, TrendingUp, ArrowUpRight, Shield, ClipboardCheck, Calendar, Briefcase, Monitor } from "lucide-react";
 import RubricDonut from "@/components/landing/RubricDonut";
 
@@ -40,7 +41,7 @@ const ForUniversities = () => {
                 whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: 0.97 }}
               >
-                Request a pilot <ArrowRight className="w-4 h-4" />
+                Book a demo <ArrowRight className="w-4 h-4" />
               </motion.a>
             </motion.div>
           </motion.div>
@@ -601,6 +602,8 @@ const ForUniversities = () => {
           </motion.div>
         </div>
       </section>
+
+      <InfrastructureSection />
 
       <Footer />
     </GridBackground>

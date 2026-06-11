@@ -5,10 +5,9 @@ import CompanyMarquee from "@/components/landing/CompanyMarquee";
 import StatsSection from "@/components/landing/StatsSection";
 import ProblemSection from "@/components/landing/ProblemSection";
 import SolutionSection from "@/components/landing/SolutionSection";
-
-import InfrastructureSection from "@/components/landing/InfrastructureSection";
+import FeaturesSection from "@/components/landing/FeaturesSection";
+import PricingSection from "@/components/landing/PricingSection";
 import SocialProofSection from "@/components/landing/SocialProofSection";
-
 import FAQSection from "@/components/landing/FAQSection";
 import CTASection from "@/components/landing/CTASection";
 import Footer from "@/components/landing/Footer";
@@ -17,17 +16,20 @@ const Index = () => {
   return (
     <GridBackground>
       <Navbar />
-        <HeroSection />
-        <CompanyMarquee />
-        <StatsSection />
+      <HeroSection />
+      <CompanyMarquee />
+      <StatsSection />
+      <div id="how-it-works">
         <ProblemSection />
         <SolutionSection />
-        
-        <InfrastructureSection />
-        
-        <SocialProofSection />
-        <FAQSection />
-        <CTASection />
+      </div>
+      <div id="features">
+        <FeaturesSection />
+      </div>
+      <PricingSection />
+      <SocialProofSection />
+      <FAQSection />
+      <CTASection />
       <Footer />
     </GridBackground>
   );

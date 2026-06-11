@@ -19,10 +19,11 @@ const Navbar = () => {
         </a>
 
         <div className="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
-          <a href="/students" className="text-sm text-muted-foreground hover:text-foreground transition-colors">For Students</a>
+          <a href="/#how-it-works" className="text-sm text-muted-foreground hover:text-foreground transition-colors">How it works</a>
+          <a href="/#features" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Features</a>
+          <a href="/#pricing" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Pricing</a>
           <a href="/universities" className="text-sm text-muted-foreground hover:text-foreground transition-colors">For Universities</a>
-          <a href="/ambassador" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Ambassador</a>
-          <a href="/about" className="text-sm text-muted-foreground hover:text-foreground transition-colors">About</a>
+          <a href="/ambassador" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Ambassadors</a>
         </div>
 
         <div className="flex items-center gap-3">
@@ -31,12 +32,12 @@ const Navbar = () => {
             English
             <ChevronDown className="w-3 h-3" />
           </button>
-          <a href="/login" className="hidden md:inline text-sm text-muted-foreground hover:text-foreground transition-colors">Log In</a>
+          <a href="/login" className="hidden md:inline text-sm text-muted-foreground hover:text-foreground transition-colors">Log in</a>
           <a
-            href="/request-pilot"
+            href="/signup"
             className="hidden md:inline text-sm font-medium bg-foreground text-background px-4 py-2 rounded-full hover:opacity-90 transition-opacity"
           >
-            Request pilot
+            Start free
           </a>
 
           {/* Mobile: language + hamburger */}
@@ -70,11 +71,12 @@ const Navbar = () => {
           >
             <div className="px-6 py-4 space-y-0">
               {[
-                { label: "For Students", href: "/students" },
+                { label: "How it works", href: "/#how-it-works" },
+                { label: "Features", href: "/#features" },
+                { label: "Pricing", href: "/#pricing" },
                 { label: "For Universities", href: "/universities" },
-                { label: "Ambassador", href: "/ambassador" },
-                { label: "About", href: "/about" },
-                { label: "Log In", href: "/login" },
+                { label: "Ambassadors", href: "/ambassador" },
+                { label: "Log in", href: "/login" },
               ].map((link) => (
                 <a
                   key={link.label}
@@ -87,11 +89,11 @@ const Navbar = () => {
               ))}
               <div className="pt-4 pb-2">
                 <a
-                  href="/request-pilot"
+                  href="/signup"
                   onClick={() => setMobileOpen(false)}
                   className="block w-full text-center bg-primary text-primary-foreground font-medium py-3.5 rounded-lg text-sm hover:opacity-90 transition-opacity"
                 >
-                  Request pilot
+                  Start free
                 </a>
               </div>
             </div>
