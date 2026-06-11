@@ -1,62 +1,61 @@
-import { useState } from "react";
 import { motion } from "framer-motion";
 import { Check, ArrowRight } from "lucide-react";
 
-type Billing = "monthly" | "annual";
-
 const tiers = [
   {
-    name: "Free",
-    tagline: "Get started and explore the basics.",
-    priceMonthly: "$0",
-    priceAnnual: "$0",
-    cta: "Start free",
-    href: "/signup",
+    name: "Monthly",
+    tagline: "Try ApplyLab risk-free, cancel anytime.",
+    price: "€12.99",
+    period: "/month",
+    billedNote: "Billed monthly · 1 month commitment",
+    cta: "Start monthly",
+    href: "/signup?plan=monthly",
     highlight: false,
     features: [
-      "Personal job tracker",
-      "Basic application templates",
-      "Limited AI suggestions",
-      "Community access",
+      "Smart Job Matching",
+      "Resume Lab (AI feedback)",
+      "Interview & case prep",
+      "Application tracker",
+      "Email support",
     ],
   },
   {
-    name: "Pro",
-    tagline: "For serious job seekers who want an edge.",
-    priceMonthly: "$XX",
-    priceAnnual: "$XX",
-    cta: "Start Pro",
-    href: "/signup?plan=pro",
-    highlight: true,
+    name: "Quarterly",
+    tagline: "Most flexible — save 23% vs monthly.",
+    price: "€9.99",
+    period: "/month",
+    billedNote: "€29.97 billed every 3 months",
+    cta: "Start quarterly",
+    href: "/signup?plan=quarterly",
+    highlight: false,
     features: [
-      "Unlimited applications & tracking",
-      "Full AI coaching & feedback",
-      "CV + cover letter generator",
-      "Interview prep tools",
+      "Everything in Monthly",
+      "Unlimited AI mock interviews",
+      "Unlimited case practice",
       "Priority support",
     ],
   },
   {
-    name: "Premium",
-    tagline: "Everything in Pro, plus 1:1 support.",
-    priceMonthly: "$XX",
-    priceAnnual: "$XX",
-    cta: "Start Premium",
-    href: "/signup?plan=premium",
-    highlight: false,
+    name: "Annual",
+    tagline: "Best value — save 38% vs monthly.",
+    price: "€7.99",
+    period: "/month",
+    billedNote: "€95.88 billed yearly",
+    cta: "Start annual",
+    href: "/signup?plan=annual",
+    highlight: true,
+    badge: "Best value",
     features: [
-      "Everything in Pro",
-      "1:1 mentor sessions",
-      "Personal career strategist",
+      "Everything in Quarterly",
+      "Personal career roadmap",
       "Referral network access",
-      "Done-for-you applications",
+      "Early access to new tools",
+      "1:1 onboarding session",
     ],
   },
 ];
 
 const PricingSection = () => {
-  const [billing, setBilling] = useState<Billing>("monthly");
-
   return (
     <section id="pricing" className="py-24 px-6 lg:px-12">
       <div className="max-w-6xl mx-auto">
@@ -65,34 +64,15 @@ const PricingSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-12"
+          className="text-center mb-12 max-w-2xl mx-auto"
         >
           <p className="text-xs uppercase tracking-widest text-primary font-medium mb-3">Pricing</p>
-          <h2 className="text-3xl lg:text-5xl font-bold text-foreground tracking-tight mb-4">
-            Simple plans, <span className="text-gradient italic">real outcomes.</span>
+          <h2 className="text-3xl lg:text-5xl font-bold text-foreground tracking-tight mb-4 leading-[1.1]">
+            One plan, <span className="text-gradient italic">your pace.</span>
           </h2>
-          <p className="text-base text-muted-foreground max-w-xl mx-auto">
-            Start free. Upgrade when you're ready to take your job search to the next level.
+          <p className="text-base text-muted-foreground">
+            Full access to every feature. Pick the commitment that fits you — the longer you stay, the more you save.
           </p>
-
-          <div className="inline-flex items-center bg-white/10 backdrop-blur-sm border border-white/10 rounded-full p-1 gap-1 mt-8">
-            <button
-              onClick={() => setBilling("monthly")}
-              className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${
-                billing === "monthly" ? "bg-foreground text-background shadow-md" : "text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              Monthly
-            </button>
-            <button
-              onClick={() => setBilling("annual")}
-              className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${
-                billing === "annual" ? "bg-foreground text-background shadow-md" : "text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              Annual <span className="text-xs opacity-70 ml-1">−20%</span>
-            </button>
-          </div>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -105,25 +85,23 @@ const PricingSection = () => {
               transition={{ duration: 0.5, delay: i * 0.08 }}
               className={`relative rounded-2xl p-8 border flex flex-col ${
                 tier.highlight
-                  ? "bg-card border-primary/40 shadow-lg scale-[1.02]"
-                  : "bg-card/50 border-border/40"
+                  ? "bg-card border-primary/50 shadow-lg md:scale-[1.03]"
+                  : "bg-card/60 border-border/40"
               }`}
             >
-              {tier.highlight && (
+              {tier.highlight && tier.badge && (
                 <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-[10px] font-semibold uppercase tracking-wider px-3 py-1 rounded-full">
-                  Most popular
+                  {tier.badge}
                 </span>
               )}
               <h3 className="text-lg font-semibold text-foreground">{tier.name}</h3>
               <p className="text-sm text-muted-foreground mt-1 mb-6 min-h-[40px]">{tier.tagline}</p>
-              <div className="flex items-end gap-1 mb-6">
-                <span className="text-4xl font-bold text-foreground tracking-tight">
-                  {billing === "monthly" ? tier.priceMonthly : tier.priceAnnual}
-                </span>
-                <span className="text-sm text-muted-foreground mb-1.5">
-                  /{billing === "monthly" ? "mo" : "mo, billed yearly"}
-                </span>
+              <div className="flex items-end gap-1 mb-1">
+                <span className="text-4xl font-bold text-foreground tracking-tight">{tier.price}</span>
+                <span className="text-sm text-muted-foreground mb-1.5">{tier.period}</span>
               </div>
+              <p className="text-xs text-muted-foreground mb-6">{tier.billedNote}</p>
+
               <ul className="space-y-3 mb-8 flex-1">
                 {tier.features.map((f) => (
                   <li key={f} className="flex items-start gap-2.5 text-sm text-foreground/90">
@@ -145,6 +123,10 @@ const PricingSection = () => {
             </motion.div>
           ))}
         </div>
+
+        <p className="text-center text-xs text-muted-foreground mt-8">
+          All plans include a 7-day free trial. Cancel anytime, no questions asked.
+        </p>
       </div>
     </section>
   );
