@@ -21,7 +21,7 @@ const Index = () => {
       <StatsSection />
       <div id="how-it-works">
         <ProblemSection />
-        <SolutionSection />
+        <SolutionSection audience="b2c" />
       </div>
       <div id="features">
         <FeaturesSection />
