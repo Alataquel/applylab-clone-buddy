@@ -43,10 +43,10 @@ const HeroSection = () => {
               Start free <ArrowRight className="w-4 h-4" />
             </a>
             <a
-              href="#pricing"
+              href="#how-it-works"
               className="inline-flex items-center gap-2 text-muted-foreground font-medium px-6 py-3 rounded-full text-sm border border-muted hover:text-foreground transition-colors"
             >
-              See pricing
+              See how it works
             </a>
           </motion.div>
 

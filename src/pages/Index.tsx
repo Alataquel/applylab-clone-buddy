@@ -7,6 +7,7 @@ import ProblemSection from "@/components/landing/ProblemSection";
 import SolutionSection from "@/components/landing/SolutionSection";
 import FeaturesSection from "@/components/landing/FeaturesSection";
 import PricingSection from "@/components/landing/PricingSection";
+import UniversitiesTeaser from "@/components/landing/UniversitiesTeaser";
 import SocialProofSection from "@/components/landing/SocialProofSection";
 import FAQSection from "@/components/landing/FAQSection";
 import CTASection from "@/components/landing/CTASection";
@@ -27,6 +28,7 @@ const Index = () => {
         <FeaturesSection />
       </div>
       <PricingSection />
+      <UniversitiesTeaser />
       <SocialProofSection />
       <FAQSection />
       <CTASection />

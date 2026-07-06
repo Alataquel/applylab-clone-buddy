@@ -1,57 +1,64 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Briefcase, FileText, MessagesSquare, Lightbulb, Mail, ListChecks } from "lucide-react";
+import { FileText, Mail, Briefcase, Sparkles, ListChecks, MessagesSquare, Lightbulb } from "lucide-react";
 
 type Feature = {
   num: string;
   icon: typeof Briefcase;
   title: string;
   desc: string;
-  visual: "jobs" | "resume" | "interview" | "case" | "cover" | "tracker";
+  visual: "resume" | "cover" | "jobs" | "match" | "tracker" | "interview" | "case";
 };
 
 const features: Feature[] = [
   {
     num: "01",
-    icon: Briefcase,
-    title: "Smart Job Matching",
-    desc: "An intelligent feed that surfaces roles where you're genuinely competitive — based on your CV, skills, and goals. No more endless scrolling.",
-    visual: "jobs",
-  },
-  {
-    num: "02",
     icon: FileText,
-    title: "Resume Lab",
-    desc: "AI-powered, line-by-line CV feedback that strengthens impact statements, fixes formatting, and closes keyword gaps for every role you target.",
+    title: "Resume Builder",
+    desc: "Autofill from your profile, then get instant AI feedback and a live score. Every bullet sharpened, every keyword covered.",
     visual: "resume",
   },
   {
-    num: "03",
-    icon: MessagesSquare,
-    title: "Interview Prep",
-    desc: "Practice behavioral and technical interviews with realistic AI mock sessions. Get instant feedback on clarity, structure, and confidence.",
-    visual: "interview",
-  },
-  {
-    num: "04",
-    icon: Lightbulb,
-    title: "Case Study Prep",
-    desc: "Master consulting and product cases with guided frameworks, worked examples, and on-demand practice cases across industries.",
-    visual: "case",
-  },
-  {
-    num: "05",
+    num: "02",
     icon: Mail,
-    title: "Cover Letter AI",
-    desc: "Generate tailored, recruiter-ready cover letters in seconds. Personalised to the role, the company, and your actual experience.",
+    title: "AI Cover Letter Maker",
+    desc: "Tailored, recruiter-ready cover letters for every posting — generated in seconds, in your voice.",
     visual: "cover",
   },
   {
-    num: "06",
+    num: "03",
+    icon: Briefcase,
+    title: "Job & Internship Board",
+    desc: "A global feed of internships and graduate roles, curated for students and early careers. Fresh every day.",
+    visual: "jobs",
+  },
+  {
+    num: "04",
+    icon: Sparkles,
+    title: "Smart Matching",
+    desc: "AI matches you to the roles where you're genuinely competitive — based on your CV, skills, and goals.",
+    visual: "match",
+  },
+  {
+    num: "05",
     icon: ListChecks,
-    title: "Application Tracker",
-    desc: "A visual pipeline that auto-syncs every application — applied, interview, offer, accepted. One place for your entire search.",
+    title: "Automatic Application Tracker",
+    desc: "Every application, deadline, and follow-up tracked for you automatically. Zero spreadsheets, zero manual entry.",
     visual: "tracker",
+  },
+  {
+    num: "06",
+    icon: MessagesSquare,
+    title: "Interview Prep",
+    desc: "AI mock interviews and question banks tailored to your target roles — with instant feedback on clarity and structure.",
+    visual: "interview",
+  },
+  {
+    num: "07",
+    icon: Lightbulb,
+    title: "Case Study Prep",
+    desc: "Guided practice for consulting and business-style case interviews, with frameworks and worked examples.",
+    visual: "case",
   },
 ];
 
@@ -70,20 +77,20 @@ const FeaturesSection = () => {
         >
           <p className="text-xs uppercase tracking-widest text-primary font-medium mb-3">Features</p>
           <h2 className="text-3xl lg:text-5xl font-bold text-gray-900 tracking-tight leading-[1.1]">
-            Everything you need to land your next role.
+            Everything you need to land the role.
           </h2>
           <p className="text-base text-gray-500 mt-4 leading-relaxed">
-            One platform for finding jobs, sharpening your CV, prepping for any interview, and tracking every step.
+            Seven tools, one platform — from writing your CV to acing the final round.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {features.map((feature, i) => (
             <motion.div
               key={feature.num}
               initial={{ opacity: 0, y: 24 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
+              transition={{ duration: 0.5, delay: i * 0.06 }}
               whileHover={{ y: -4, transition: { duration: 0.2 } }}
               className="bg-[hsl(220,25%,10%)] rounded-2xl p-7 flex flex-col gap-5"
             >
@@ -109,11 +116,11 @@ const FeaturesSection = () => {
 };
 
 const FeatureVisual = ({ variant }: { variant: Feature["visual"] }) => {
-  if (variant === "jobs") {
+  if (variant === "jobs" || variant === "match") {
     return (
       <div className="bg-white/[0.03] border border-white/[0.06] rounded-xl p-3 space-y-2 mt-auto">
         {[
-          { letter: "L", color: "bg-blue-500", role: "Product Designer", company: "Linear", score: "98%" },
+          { letter: "L", color: "bg-blue-500", role: "Product Design Intern", company: "Linear", score: "98%" },
           { letter: "V", color: "bg-white", role: "Frontend Engineer", company: "Vercel", score: "95%" },
           { letter: "S", color: "bg-green-500", role: "Marketing Intern", company: "Spotify", score: "92%" },
         ].map((item) => (
@@ -125,7 +132,7 @@ const FeatureVisual = ({ variant }: { variant: Feature["visual"] }) => {
               <p className="text-xs font-medium text-white truncate">{item.role}</p>
               <p className="text-[11px] text-gray-500 truncate">{item.company}</p>
             </div>
-            <span className="text-[11px] text-emerald-400 font-medium">{item.score} Match</span>
+            <span className="text-[11px] text-emerald-400 font-medium">{item.score} {variant === "match" ? "Match" : ""}</span>
           </div>
         ))}
       </div>
@@ -224,6 +231,7 @@ const FeatureVisual = ({ variant }: { variant: Feature["visual"] }) => {
           </div>
         ))}
       </div>
+      <p className="text-[10px] text-gray-500 mt-3">Auto-synced from your inbox</p>
     </div>
   );
 };
