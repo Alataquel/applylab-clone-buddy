@@ -19,9 +19,9 @@ const useCountUp = (end: number, duration: number, start: boolean, prefix = "", 
 };
 
 const statConfig = [
-  { end: 85, prefix: "", suffix: "%", label: "Reduction in manual reporting" },
-  { end: 100, prefix: "", suffix: "x", label: "More visibility into career activity" },
-  { end: 1, prefix: "", suffix: " day", label: "Average onboarding time" },
+  { end: 3, prefix: "", suffix: "x", label: "More interviews per application" },
+  { end: 10, prefix: "", suffix: "k+", label: "Students using ApplyLab" },
+  { end: 7, prefix: "", suffix: " days", label: "Free trial, cancel anytime" },
 ];
 
 const CountUpStat = ({ config, isInView, delay }: { config: typeof statConfig[0]; isInView: boolean; delay: number }) => {

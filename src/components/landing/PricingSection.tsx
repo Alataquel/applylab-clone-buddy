@@ -1,57 +1,51 @@
 import { motion } from "framer-motion";
 import { Check, ArrowRight } from "lucide-react";
 
+const allFeatures = [
+  "Resume Builder + AI scoring",
+  "AI Cover Letter Maker",
+  "Job & Internship Board",
+  "Smart Matching",
+  "Automatic Application Tracker",
+  "Interview & Case Prep",
+];
+
 const tiers = [
   {
     name: "Monthly",
-    tagline: "Try ApplyLab risk-free, cancel anytime.",
+    tagline: "Try ApplyLab risk-free.",
     price: "€12.99",
     period: "/month",
-    billedNote: "Billed monthly · 1 month commitment",
-    cta: "Start monthly",
+    billedNote: "Billed monthly",
+    cta: "Start free",
     href: "/signup?plan=monthly",
     highlight: false,
-    features: [
-      "Smart Job Matching",
-      "Resume Lab (AI feedback)",
-      "Interview & case prep",
-      "Application tracker",
-      "Email support",
-    ],
+    badge: undefined as string | undefined,
+    features: allFeatures,
   },
   {
     name: "Quarterly",
-    tagline: "Most flexible — save 23% vs monthly.",
+    tagline: "Most flexible commitment.",
     price: "€9.99",
     period: "/month",
     billedNote: "€29.97 billed every 3 months",
-    cta: "Start quarterly",
+    cta: "Start free",
     href: "/signup?plan=quarterly",
     highlight: false,
-    features: [
-      "Everything in Monthly",
-      "Unlimited AI mock interviews",
-      "Unlimited case practice",
-      "Priority support",
-    ],
+    badge: "Save 23%",
+    features: allFeatures,
   },
   {
     name: "Annual",
-    tagline: "Best value — save 38% vs monthly.",
+    tagline: "Best value — save 38%.",
     price: "€7.99",
     period: "/month",
     billedNote: "€95.88 billed yearly",
-    cta: "Start annual",
+    cta: "Start free",
     href: "/signup?plan=annual",
     highlight: true,
     badge: "Best value",
-    features: [
-      "Everything in Quarterly",
-      "Personal career roadmap",
-      "Referral network access",
-      "Early access to new tools",
-      "1:1 onboarding session",
-    ],
+    features: allFeatures,
   },
 ];
 
@@ -125,7 +119,7 @@ const PricingSection = () => {
         </div>
 
         <p className="text-center text-xs text-muted-foreground mt-8">
-          All plans include a 7-day free trial. Cancel anytime, no questions asked.
+          Every plan includes all features and a 7-day free trial. Cancel anytime.
         </p>
       </div>
     </section>
