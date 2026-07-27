@@ -92,7 +92,7 @@ const FeaturesSection = () => {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: i * 0.06 }}
               whileHover={{ y: -4, transition: { duration: 0.2 } }}
-              className="bg-[hsl(220,25%,10%)] rounded-2xl p-7 flex flex-col gap-5"
+              className="bg-[hsl(220,70%,14%)] rounded-2xl p-7 flex flex-col gap-5"
             >
               <div className="flex items-start justify-between">
                 <div className="w-11 h-11 rounded-xl bg-sky-400/10 flex items-center justify-center">

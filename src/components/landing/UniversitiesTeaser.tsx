@@ -16,7 +16,7 @@ const bullets = [
   {
     icon: Zap,
     title: "Zero-lift deployment",
-    desc: "Launch in under two weeks. No IT integration required.",
+    desc: "Launch in a day. No IT integration required.",
   },
 ];
 
