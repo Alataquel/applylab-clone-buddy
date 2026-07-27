@@ -63,7 +63,7 @@ const ProblemSection = () => {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.1 + i * 0.08 }}
               whileHover={{ y: -4, transition: { duration: 0.2 } }}
-              className="bg-[hsl(220,25%,10%)] rounded-2xl p-7 flex flex-col gap-5 min-h-[280px]"
+              className="bg-[hsl(220,70%,14%)] rounded-2xl p-7 flex flex-col gap-5 min-h-[280px]"
             >
               <div className={`w-11 h-11 rounded-xl flex items-center justify-center ${p.accent}`}>
                 <p.icon className="w-5 h-5" />

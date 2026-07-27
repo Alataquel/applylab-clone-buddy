@@ -27,12 +27,12 @@ const HeroSection = () => {
         <motion.div variants={containerVariants} initial="hidden" animate="visible" className="text-center mb-16 space-y-7">
 
           <motion.h1 variants={itemVariants} className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight leading-[1.05] text-foreground">
-            Land your next role,{" "}
-            <span className="text-gradient italic font-bold">faster.</span>
+            Your whole job search,{" "}
+            <span className="text-gradient italic font-bold">in one place.</span>
           </motion.h1>
 
           <motion.p variants={itemVariants} className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            The AI-powered career copilot that helps you find roles, tailor applications, prep for interviews, and track every step — all in one place.
+            Find roles, tailor applications, prep for interviews and track every step — one AI-powered platform that puts you back in control.
           </motion.p>
 
           <motion.div variants={itemVariants} className="flex items-center justify-center gap-3 flex-wrap">
@@ -60,6 +60,8 @@ const HeroSection = () => {
             <span className="font-semibold text-foreground">German UDS</span>
             <span>·</span>
             <span className="font-semibold text-foreground">XU Exponential</span>
+            <span>·</span>
+            <span className="font-semibold text-foreground">IE University</span>
           </motion.div>
 
         </motion.div>
