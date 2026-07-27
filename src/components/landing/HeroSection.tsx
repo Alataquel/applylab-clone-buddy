@@ -60,6 +60,8 @@ const HeroSection = () => {
             <span className="font-semibold text-foreground">German UDS</span>
             <span>·</span>
             <span className="font-semibold text-foreground">XU Exponential</span>
+            <span>·</span>
+            <span className="font-semibold text-foreground">IE University</span>
           </motion.div>
 
         </motion.div>
