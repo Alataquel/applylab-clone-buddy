@@ -74,7 +74,7 @@ const SolutionSection = ({ variant = "dark", audience = "b2b" }: SolutionSection
     : "ApplyLab gives your career team the data to intervene early, report with confidence, and improve outcomes year over year.";
 
   return (
-    <section ref={ref} className={`py-24 px-6 lg:px-12 ${isLight ? "bg-white" : "bg-[hsl(220,25%,7%)]"}`}>
+    <section ref={ref} className={`py-24 px-6 lg:px-12 ${isLight ? "bg-[hsl(222,40%,96%)]" : "bg-[hsl(220,25%,7%)]"}`}>
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 16 }}

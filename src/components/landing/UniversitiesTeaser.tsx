@@ -25,7 +25,7 @@ const UniversitiesTeaser = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section ref={ref} id="for-universities" className="py-24 px-6 lg:px-12 bg-white">
+    <section ref={ref} id="for-universities" className="py-24 px-6 lg:px-12 bg-[hsl(222,40%,96%)]">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
