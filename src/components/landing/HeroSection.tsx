@@ -27,9 +27,10 @@ const HeroSection = () => {
         <motion.div variants={containerVariants} initial="hidden" animate="visible" className="text-center mb-16 space-y-7">
 
           <motion.h1 variants={itemVariants} className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight leading-[1.05] text-foreground">
-            Your whole job search,{" "}
+            Your whole internship &amp; job search,{" "}
             <span className="text-gradient italic font-bold">in one place.</span>
           </motion.h1>
+
 
           <motion.p variants={itemVariants} className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             Find roles, tailor applications, prep for interviews and track every step — one AI-powered platform that puts you back in control.

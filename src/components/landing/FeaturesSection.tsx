@@ -8,6 +8,8 @@ type Feature = {
   title: string;
   desc: string;
   visual: "resume" | "cover" | "jobs" | "match" | "tracker" | "interview" | "case";
+  accent: string;
+  accentBg: string;
 };
 
 const features: Feature[] = [
@@ -17,6 +19,8 @@ const features: Feature[] = [
     title: "Resume Builder",
     desc: "Autofill from your profile, then get instant AI feedback and a live score. Every bullet sharpened, every keyword covered.",
     visual: "resume",
+    accent: "text-sky-400",
+    accentBg: "bg-sky-400/10",
   },
   {
     num: "02",
@@ -24,6 +28,8 @@ const features: Feature[] = [
     title: "AI Cover Letter Maker",
     desc: "Tailored, recruiter-ready cover letters for every posting — generated in seconds, in your voice.",
     visual: "cover",
+    accent: "text-violet-400",
+    accentBg: "bg-violet-400/10",
   },
   {
     num: "03",
@@ -31,6 +37,8 @@ const features: Feature[] = [
     title: "Job & Internship Board",
     desc: "A global feed of internships and graduate roles, curated for students and early careers. Fresh every day.",
     visual: "jobs",
+    accent: "text-emerald-400",
+    accentBg: "bg-emerald-400/10",
   },
   {
     num: "04",
@@ -38,6 +46,8 @@ const features: Feature[] = [
     title: "Smart Matching",
     desc: "AI matches you to the roles where you're genuinely competitive — based on your CV, skills, and goals.",
     visual: "match",
+    accent: "text-amber-400",
+    accentBg: "bg-amber-400/10",
   },
   {
     num: "05",
@@ -45,6 +55,8 @@ const features: Feature[] = [
     title: "Automatic Application Tracker",
     desc: "Every application, deadline, and follow-up tracked for you automatically. Zero spreadsheets, zero manual entry.",
     visual: "tracker",
+    accent: "text-rose-400",
+    accentBg: "bg-rose-400/10",
   },
   {
     num: "06",
@@ -52,6 +64,8 @@ const features: Feature[] = [
     title: "Interview Prep",
     desc: "AI mock interviews and question banks tailored to your target roles — with instant feedback on clarity and structure.",
     visual: "interview",
+    accent: "text-cyan-400",
+    accentBg: "bg-cyan-400/10",
   },
   {
     num: "07",
@@ -59,6 +73,8 @@ const features: Feature[] = [
     title: "Case Study Prep",
     desc: "Guided practice for consulting and business-style case interviews, with frameworks and worked examples.",
     visual: "case",
+    accent: "text-lime-400",
+    accentBg: "bg-lime-400/10",
   },
 ];
 
@@ -95,8 +111,8 @@ const FeaturesSection = () => {
               className="bg-[hsl(220,70%,14%)] rounded-2xl p-7 flex flex-col gap-5"
             >
               <div className="flex items-start justify-between">
-                <div className="w-11 h-11 rounded-xl bg-sky-400/10 flex items-center justify-center">
-                  <feature.icon className="w-5 h-5 text-sky-400" />
+                <div className={`w-11 h-11 rounded-xl ${feature.accentBg} flex items-center justify-center`}>
+                  <feature.icon className={`w-5 h-5 ${feature.accent}`} />
                 </div>
                 <span className="text-xs text-gray-500 font-mono mt-1">{feature.num}</span>
               </div>
