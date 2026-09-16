@@ -39,7 +39,7 @@ const CTASection = () => {
             href="/signup"
             className="inline-flex items-center justify-center gap-2 bg-foreground text-background font-medium px-8 py-3.5 rounded-full text-sm hover:opacity-90 transition-opacity"
           >
-            Start free <ArrowRight className="w-4 h-4" />
+            Get your matches <ArrowRight className="w-4 h-4" />
           </a>
           <a
             href="#pricing"

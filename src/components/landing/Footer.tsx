@@ -16,6 +16,7 @@ const Footer = () => {
             <Linkedin className="w-3.5 h-3.5" />
             LinkedIn
           </a>
+          <a href="/demo" className="text-xs text-muted-foreground hover:text-foreground transition-colors">Demo</a>
           <a href="/#pricing" className="text-xs text-muted-foreground hover:text-foreground transition-colors">Pricing</a>
           <a href="/universities" className="text-xs text-muted-foreground hover:text-foreground transition-colors">For Universities</a>
           <a href="/ambassador" className="text-xs text-muted-foreground hover:text-foreground transition-colors">Ambassadors</a>
