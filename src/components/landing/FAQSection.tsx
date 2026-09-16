@@ -4,24 +4,24 @@ import { ChevronDown } from "lucide-react";
 
 const faqs = [
   {
-    q: "How does the pilot work?",
-    a: "We onboard your institution in under two weeks. Our partnerships team configures the platform for your programmes, handles student rollout, and provides ongoing support. No IT integration required.",
+    q: "How does matching work?",
+    a: "Upload your CV and tell us your degree and goals. We score your fit against real roles and career tracks, and show you exactly why you match — and what to improve to score higher.",
   },
   {
-    q: "What data do career teams see?",
-    a: "Your team gets a live dashboard with student analysis, qualifications insights, and market insights — all aggregated and anonymised. Individual student data is never shared without explicit student consent.",
+    q: "What exactly is a fit score?",
+    a: "A transparent percentage that measures how closely your CV matches a specific role or track. Every score comes with the reasoning behind it — no black-box rankings.",
   },
   {
-    q: "How do students access the platform?",
-    a: "Students receive access through your institution. They get an internship board, resume lab, and automatic application tracker — and every interaction feeds data back into your institutional dashboard.",
+    q: "What's included in my plan?",
+    a: "Every plan includes the full platform: smart matching, CV feedback, tailored cover letters, the job & internship board, automatic application tracking, and interview & case prep. The only difference is the commitment length.",
   },
   {
-    q: "Is student data safe?",
-    a: "Yes. We're GDPR-compliant and privacy-by-design. Students own their data. Universities see only aggregated analytics. No personal application details are shared with employers or third parties.",
+    q: "Can I cancel anytime?",
+    a: "Yes. Every plan starts with a 7-day free trial, and you can cancel in two clicks — no emails, no phone calls.",
   },
   {
-    q: "What does it cost?",
-    a: "Pricing depends on institution size and scope. We work with universities on a partnership basis — contact our team for a tailored proposal.",
+    q: "Is my data safe?",
+    a: "Yes. We're GDPR-compliant and privacy-by-design. Your CV and application data belong to you, and are never shared with employers or third parties.",
   },
 ];
 

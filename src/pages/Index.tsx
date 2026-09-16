@@ -2,10 +2,10 @@ import GridBackground from "@/components/landing/GridBackground";
 import Navbar from "@/components/landing/Navbar";
 import HeroSection from "@/components/landing/HeroSection";
 import CompanyMarquee from "@/components/landing/CompanyMarquee";
-import StatsSection from "@/components/landing/StatsSection";
 import ProblemSection from "@/components/landing/ProblemSection";
-import SolutionSection from "@/components/landing/SolutionSection";
-import FeaturesSection from "@/components/landing/FeaturesSection";
+import HowItWorksSection from "@/components/landing/HowItWorksSection";
+import ProofSection from "@/components/landing/ProofSection";
+import ToolsSection from "@/components/landing/ToolsSection";
 import PricingSection from "@/components/landing/PricingSection";
 import UniversitiesTeaser from "@/components/landing/UniversitiesTeaser";
 import SocialProofSection from "@/components/landing/SocialProofSection";
@@ -17,16 +17,17 @@ const Index = () => {
   return (
     <GridBackground>
       <Navbar />
+      {/* 1. Hero — match-first */}
       <HeroSection />
       <CompanyMarquee />
-      <StatsSection />
-      <div id="how-it-works">
-        <ProblemSection />
-        <SolutionSection audience="b2c" variant="light" />
-      </div>
-      <div id="features">
-        <FeaturesSection />
-      </div>
+      {/* 2. Why this isn't another CV tool */}
+      <ProblemSection />
+      {/* 3. How it works — 3 steps */}
+      <HowItWorksSection />
+      {/* 4. Proof / credibility */}
+      <ProofSection />
+      {/* 5. Gap-closing tools — subordinated */}
+      <ToolsSection />
       <PricingSection />
       <UniversitiesTeaser />
       <SocialProofSection />

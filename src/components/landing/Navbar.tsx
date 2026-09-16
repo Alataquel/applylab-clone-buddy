@@ -37,7 +37,7 @@ const Navbar = () => {
             href="/signup"
             className="hidden md:inline text-sm font-medium bg-foreground text-background px-4 py-2 rounded-full hover:opacity-90 transition-opacity"
           >
-            Start free
+            Get your matches
           </a>
 
           {/* Mobile: language + hamburger */}
