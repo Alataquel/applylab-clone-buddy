@@ -1,6 +1,10 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { ExternalLink, Quote } from "lucide-react";
+import sluLogo from "@/assets/universities/slu.png.asset.json";
+import ieLogo from "@/assets/universities/ie-university.jpg.asset.json";
+import germanUdsLogo from "@/assets/universities/german-uds.svg.asset.json";
+import xuLogo from "@/assets/universities/xu-university.png.asset.json";
 
 const degrees = ["Business", "Engineering", "Economics", "Law"] as const;
 type Degree = (typeof degrees)[number];
@@ -37,6 +41,13 @@ const pressLinks = [
   },
 ];
 
+const universityLogos = [
+  { name: "Saint Louis University", src: sluLogo.url, className: "h-14 sm:h-16" },
+  { name: "IE University", src: ieLogo.url, className: "h-16 sm:h-20" },
+  { name: "German UDS", src: germanUdsLogo.url, className: "h-10 sm:h-12" },
+  { name: "XU Exponential University", src: xuLogo.url, className: "h-12 sm:h-14" },
+];
+
 const ProofSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
@@ -51,10 +62,22 @@ const ProofSection = () => {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
         >
-          <p className="text-xs uppercase tracking-widest text-primary font-medium mb-3">Proof, not promises</p>
-          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 tracking-tight leading-[1.15] mb-5">
-            Already helping students at Saint Louis University, IE University, German UDS and XU Exponential get matched to roles they'd never have found on a job board.
+          <p className="text-xs uppercase tracking-widest text-primary font-medium mb-3">Trusted by students at</p>
+          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 tracking-tight leading-[1.15] mb-7">
+            Students are finding where they fit — then closing the gap.
           </h2>
+
+          <div className="grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-gray-200 bg-gray-200 mb-8" aria-label="Universities where students use ApplyLab">
+            {universityLogos.map((university) => (
+              <div key={university.name} className="flex min-h-28 items-center justify-center bg-white px-5 py-4">
+                <img
+                  src={university.src}
+                  alt={university.name}
+                  className={`${university.className} w-auto max-w-full object-contain`}
+                />
+              </div>
+            ))}
+          </div>
 
           <div className="border-l-2 border-primary/30 pl-5 py-1">
             <Quote className="w-5 h-5 text-primary/40 mb-2" />
