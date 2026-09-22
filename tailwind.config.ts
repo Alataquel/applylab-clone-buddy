@@ -52,6 +52,28 @@ export default {
           2: "hsl(var(--surface-2))",
           3: "hsl(var(--surface-3))",
         },
+        light: {
+          DEFAULT: "hsl(var(--light))",
+          foreground: "hsl(var(--light-foreground))",
+          muted: "hsl(var(--light-muted))",
+        },
+        soft: {
+          DEFAULT: "hsl(var(--soft))",
+          border: "hsl(var(--soft-border))",
+        },
+        "blue-card": "hsl(var(--blue-card))",
+        success: {
+          DEFAULT: "hsl(var(--success))",
+          foreground: "hsl(var(--success-foreground))",
+        },
+        warning: {
+          DEFAULT: "hsl(var(--warning))",
+          foreground: "hsl(var(--warning-foreground))",
+        },
+        insight: {
+          DEFAULT: "hsl(var(--insight))",
+          foreground: "hsl(var(--insight-foreground))",
+        },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",

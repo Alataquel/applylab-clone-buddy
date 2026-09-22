@@ -7,6 +7,7 @@ import HowItWorksSection from "@/components/landing/HowItWorksSection";
 import ProofSection from "@/components/landing/ProofSection";
 import ToolsSection from "@/components/landing/ToolsSection";
 import PricingSection from "@/components/landing/PricingSection";
+import SchoolsTeaser from "@/components/landing/SchoolsTeaser";
 import UniversitiesTeaser from "@/components/landing/UniversitiesTeaser";
 import SocialProofSection from "@/components/landing/SocialProofSection";
 import FAQSection from "@/components/landing/FAQSection";
@@ -29,6 +30,7 @@ const Index = () => {
       {/* 5. Gap-closing tools — subordinated */}
       <ToolsSection />
       <PricingSection />
+      <SchoolsTeaser />
       <UniversitiesTeaser />
       <SocialProofSection />
       <FAQSection />

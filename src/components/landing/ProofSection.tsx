@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { Quote } from "lucide-react";
+import { ExternalLink, Quote } from "lucide-react";
 
 const degrees = ["Business", "Engineering", "Economics", "Law"] as const;
 type Degree = (typeof degrees)[number];
@@ -23,6 +23,19 @@ const profiles: Record<Degree, { match: string; line: string }> = {
     line: "Argument-led CV with high-precision language — a strong signal for legal and advisory tracks.",
   },
 };
+
+const pressLinks = [
+  {
+    source: "Forbes Italy Next Leaders",
+    title: "Featured as student founders building ApplyLab",
+    href: "https://nextleaders.forbes.it/articoli/da-studenti-a-imprenditori",
+  },
+  {
+    source: "Saint Louis University Madrid",
+    title: "Founder talk on landing internships",
+    href: "https://www.slu.edu/madrid/news/2026/applylab-founder-speaks-at-slu-madrid-on-landing-internships.php",
+  },
+];
 
 const ProofSection = () => {
   const ref = useRef(null);
@@ -49,6 +62,24 @@ const ProofSection = () => {
               "I used to track applications in a spreadsheet. ApplyLab feels like having a career assistant. Landed my role in three weeks."
             </p>
             <p className="text-xs font-semibold text-gray-900">Sarah Chen · Student, pilot programme</p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 gap-3 mt-8">
+            {pressLinks.map((link) => (
+              <a
+                key={link.source}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group rounded-xl border border-gray-200 bg-[hsl(222,40%,97%)] p-4 hover:border-primary/40 transition-colors"
+              >
+                <div className="flex items-center justify-between gap-3 mb-2">
+                  <p className="text-[10px] uppercase tracking-widest text-primary font-semibold">{link.source}</p>
+                  <ExternalLink className="w-3.5 h-3.5 text-gray-400 group-hover:text-primary transition-colors" />
+                </div>
+                <p className="text-sm font-semibold text-gray-900 leading-snug">{link.title}</p>
+              </a>
+            ))}
           </div>
         </motion.div>
 
