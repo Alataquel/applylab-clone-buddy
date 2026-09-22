@@ -49,12 +49,12 @@ const HeroSection = () => {
         <motion.div variants={containerVariants} initial="hidden" animate="visible" className="text-center mb-14 space-y-7">
 
           <motion.h1 variants={itemVariants} className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight leading-[1.05] text-foreground">
-            Stop applying blind.{" "}
-            <span className="text-gradient italic font-bold">Get matched.</span>
+            Discover where you{" "}
+            <span className="text-gradient italic font-bold">truly fit.</span>
           </motion.h1>
 
           <motion.p variants={itemVariants} className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Upload your CV, get a fit score against real roles, and see exactly why you match.
+            ApplyLab helps you understand where you belong — then gives you the tools to close the gap and get there.
           </motion.p>
 
           <motion.div variants={itemVariants} className="flex items-center justify-center gap-3 flex-wrap">
@@ -62,7 +62,7 @@ const HeroSection = () => {
               href="/signup"
               className="inline-flex items-center gap-2 bg-foreground text-background font-medium px-6 py-3 rounded-full text-sm hover:opacity-90 transition-opacity"
             >
-              Get your matches <ArrowRight className="w-4 h-4" />
+              Discover your fit <ArrowRight className="w-4 h-4" />
             </a>
             <a
               href="#how-it-works"
