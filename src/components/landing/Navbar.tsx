@@ -18,30 +18,31 @@ const Navbar = () => {
           <span className="text-foreground font-bold text-xl tracking-tight">applylab</span>
         </a>
 
-        <div className="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
+        <div className="hidden xl:flex items-center gap-6 ml-10">
           <a href="/#how-it-works" className="text-sm text-muted-foreground hover:text-foreground transition-colors">How it works</a>
           <a href="/#features" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Features</a>
           <a href="/#pricing" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Pricing</a>
+          <a href="/schools" className="text-sm text-muted-foreground hover:text-foreground transition-colors">For Schools</a>
           <a href="/universities" className="text-sm text-muted-foreground hover:text-foreground transition-colors">For Universities</a>
           <a href="/ambassador" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Ambassadors</a>
         </div>
 
-        <div className="flex items-center gap-3">
-          <button className="hidden md:flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors px-3 py-1.5 rounded-lg">
+        <div className="flex items-center gap-3 ml-auto">
+          <button className="hidden xl:flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors px-3 py-1.5 rounded-lg">
             <Globe className="w-4 h-4" />
             English
             <ChevronDown className="w-3 h-3" />
           </button>
-          <a href="/login" className="hidden md:inline text-sm text-muted-foreground hover:text-foreground transition-colors">Log in</a>
+          <a href="/login" className="hidden xl:inline text-sm text-muted-foreground hover:text-foreground transition-colors">Log in</a>
           <a
             href="/signup"
-            className="hidden md:inline text-sm font-medium bg-foreground text-background px-4 py-2 rounded-full hover:opacity-90 transition-opacity"
+            className="hidden xl:inline text-sm font-medium bg-foreground text-background px-4 py-2 rounded-full hover:opacity-90 transition-opacity"
           >
             Get your matches
           </a>
 
           {/* Mobile: language + hamburger */}
-          <div className="flex md:hidden items-center gap-2">
+          <div className="flex xl:hidden items-center gap-2">
             <button className="flex items-center gap-1.5 text-sm text-muted-foreground px-2 py-1.5 rounded-lg">
               <Globe className="w-4 h-4" />
               English
@@ -74,6 +75,7 @@ const Navbar = () => {
                 { label: "How it works", href: "/#how-it-works" },
                 { label: "Features", href: "/#features" },
                 { label: "Pricing", href: "/#pricing" },
+                { label: "For Schools", href: "/schools" },
                 { label: "For Universities", href: "/universities" },
                 { label: "Ambassadors", href: "/ambassador" },
                 { label: "Log in", href: "/login" },
@@ -93,7 +95,7 @@ const Navbar = () => {
                   onClick={() => setMobileOpen(false)}
                   className="block w-full text-center bg-primary text-primary-foreground font-medium py-3.5 rounded-lg text-sm hover:opacity-90 transition-opacity"
                 >
-                  Start free
+                  Get your matches
                 </a>
               </div>
             </div>
