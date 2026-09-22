@@ -110,7 +110,7 @@ const ForSchools = () => {
               One profile, built at school, carried forward. ApplyLab helps high school students find the degrees where they fit, gives counselors a lightweight CRM, and keeps the profile alive when students move into internships.
             </motion.p>
             <motion.div variants={itemVariants} className="flex flex-wrap gap-3">
-              <Button asChild size="lg" className="rounded-full bg-foreground text-background hover:bg-foreground/90">
+              <Button asChild variant="inverse" size="lg" className="rounded-full">
                 <a href="/request-pilot">
                   Request a pilot <ArrowRight className="w-4 h-4" />
                 </a>
@@ -309,7 +309,7 @@ const ForSchools = () => {
             <p className="text-base text-muted-foreground leading-relaxed max-w-2xl mx-auto mb-9">
               The same fit profile that helps students choose a degree becomes the foundation for undergraduate career matching, internship applications and interview prep.
             </p>
-            <Button asChild size="lg" className="rounded-full bg-foreground text-background hover:bg-foreground/90">
+            <Button asChild variant="inverse" size="lg" className="rounded-full">
               <a href="/request-pilot">
                 Request a pilot <ArrowRight className="w-4 h-4" />
               </a>

@@ -18,7 +18,7 @@ const Navbar = () => {
           <span className="text-foreground font-bold text-xl tracking-tight">applylab</span>
         </a>
 
-        <div className="hidden lg:flex items-center gap-7 absolute left-1/2 -translate-x-1/2">
+        <div className="hidden xl:flex items-center gap-6 ml-10">
           <a href="/#how-it-works" className="text-sm text-muted-foreground hover:text-foreground transition-colors">How it works</a>
           <a href="/#features" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Features</a>
           <a href="/#pricing" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Pricing</a>
@@ -27,22 +27,22 @@ const Navbar = () => {
           <a href="/ambassador" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Ambassadors</a>
         </div>
 
-        <div className="flex items-center gap-3">
-          <button className="hidden lg:flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors px-3 py-1.5 rounded-lg">
+        <div className="flex items-center gap-3 ml-auto">
+          <button className="hidden xl:flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors px-3 py-1.5 rounded-lg">
             <Globe className="w-4 h-4" />
             English
             <ChevronDown className="w-3 h-3" />
           </button>
-          <a href="/login" className="hidden lg:inline text-sm text-muted-foreground hover:text-foreground transition-colors">Log in</a>
+          <a href="/login" className="hidden xl:inline text-sm text-muted-foreground hover:text-foreground transition-colors">Log in</a>
           <a
             href="/signup"
-            className="hidden lg:inline text-sm font-medium bg-foreground text-background px-4 py-2 rounded-full hover:opacity-90 transition-opacity"
+            className="hidden xl:inline text-sm font-medium bg-foreground text-background px-4 py-2 rounded-full hover:opacity-90 transition-opacity"
           >
             Get your matches
           </a>
 
           {/* Mobile: language + hamburger */}
-          <div className="flex lg:hidden items-center gap-2">
+          <div className="flex xl:hidden items-center gap-2">
             <button className="flex items-center gap-1.5 text-sm text-muted-foreground px-2 py-1.5 rounded-lg">
               <Globe className="w-4 h-4" />
               English
