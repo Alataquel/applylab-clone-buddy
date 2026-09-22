@@ -1,18 +1,15 @@
 import { motion } from "framer-motion";
 import {
   ArrowRight,
-  BarChart3,
   CalendarDays,
   CheckCircle2,
   ClipboardList,
   DatabaseZap,
   FileText,
   GraduationCap,
-  LockKeyhole,
   MapPinned,
   Rows3,
   ShieldCheck,
-  Sparkles,
   UserRoundCheck,
 } from "lucide-react";
 import GridBackground from "@/components/landing/GridBackground";
