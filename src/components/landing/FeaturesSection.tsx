@@ -1,254 +1,191 @@
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
-import { FileText, Mail, Briefcase, Sparkles, ListChecks, MessagesSquare, Lightbulb } from "lucide-react";
+import { useRef, useState } from "react";
 
-type Feature = {
-  num: string;
-  icon: typeof Briefcase;
-  title: string;
-  desc: string;
-  visual: "resume" | "cover" | "jobs" | "match" | "tracker" | "interview" | "case";
-  accent: string;
-  accentBg: string;
-};
-
-const features: Feature[] = [
+const studentFeatures = [
   {
     num: "01",
-    icon: FileText,
-    title: "Resume Builder",
-    desc: "Autofill from your profile, then get instant AI feedback and a live score. Every bullet sharpened, every keyword covered.",
-    visual: "resume",
-    accent: "text-sky-400",
-    accentBg: "bg-sky-400/10",
+    title: "Internship Board",
+    desc: "Intelligent matching surfaces roles where students are genuinely competitive — improving application quality and reducing wasted effort across your cohort.",
+    items: [
+      { letter: "L", color: "bg-blue-500", role: "Product Designer", company: "Linear", score: "98% Match" },
+      { letter: "V", color: "bg-foreground", role: "Frontend Engineer", company: "Vercel", score: "95% Match" },
+      { letter: "S", color: "bg-green-500", role: "Marketing Intern", company: "Spotify", score: "92% Match" },
+    ],
   },
   {
     num: "02",
-    icon: Mail,
-    title: "AI Cover Letter Maker",
-    desc: "Tailored, recruiter-ready cover letters for every posting — generated in seconds, in your voice.",
-    visual: "cover",
-    accent: "text-violet-400",
-    accentBg: "bg-violet-400/10",
+    title: "Resume Lab",
+    desc: "AI-powered, line-by-line CV feedback that strengthens impact statements, improves formatting, and closes keyword gaps — at scale.",
+    resumeScore: 92,
+    suggestions: [
+      "Suggestion: Add metrics to your 2nd bullet point.",
+      "Skills section optimized for Tech roles.",
+    ],
   },
   {
     num: "03",
-    icon: Briefcase,
-    title: "Job & Internship Board",
-    desc: "A global feed of internships and graduate roles, curated for students and early careers. Fresh every day.",
-    visual: "jobs",
-    accent: "text-emerald-400",
-    accentBg: "bg-emerald-400/10",
-  },
-  {
-    num: "04",
-    icon: Sparkles,
-    title: "Smart Matching",
-    desc: "AI matches you to the roles where you're genuinely competitive — based on your CV, skills, and goals.",
-    visual: "match",
-    accent: "text-amber-400",
-    accentBg: "bg-amber-400/10",
-  },
-  {
-    num: "05",
-    icon: ListChecks,
-    title: "Automatic Application Tracker",
-    desc: "Every application, deadline, and follow-up tracked for you automatically. Zero spreadsheets, zero manual entry.",
-    visual: "tracker",
-    accent: "text-rose-400",
-    accentBg: "bg-rose-400/10",
-  },
-  {
-    num: "06",
-    icon: MessagesSquare,
-    title: "Interview Prep",
-    desc: "AI mock interviews and question banks tailored to your target roles — with instant feedback on clarity and structure.",
-    visual: "interview",
-    accent: "text-cyan-400",
-    accentBg: "bg-cyan-400/10",
-  },
-  {
-    num: "07",
-    icon: Lightbulb,
-    title: "Case Study Prep",
-    desc: "Guided practice for consulting and business-style case interviews, with frameworks and worked examples.",
-    visual: "case",
-    accent: "text-lime-400",
-    accentBg: "bg-lime-400/10",
+    title: "Automatic Tracker",
+    desc: "A visual pipeline that automatically tracks every student's application status — giving career teams and students a shared, real-time view.",
+    pipeline: ["Applied", "Interview", "Offer", "Accepted!"],
   },
 ];
 
 const FeaturesSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [activeTab, setActiveTab] = useState<"students" | "teams">("students");
 
   return (
-    <section ref={ref} className="py-24 px-6 lg:px-12 bg-white">
+    <section ref={ref} id="universities" className="py-24 px-6 lg:px-12">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
-          className="mb-14 max-w-3xl"
+          className="mb-12"
         >
           <p className="text-xs uppercase tracking-widest text-primary font-medium mb-3">Features</p>
-          <h2 className="text-3xl lg:text-5xl font-bold text-gray-900 tracking-tight leading-[1.1]">
-            Everything you need to land the role.
-          </h2>
-          <p className="text-base text-gray-500 mt-4 leading-relaxed">
-            Seven tools, one platform — from writing your CV to acing the final round.
-          </p>
+          <h2 className="text-3xl lg:text-4xl font-bold text-foreground tracking-tight">The infrastructure behind better career outcomes.</h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {features.map((feature, i) => (
-            <motion.div
-              key={feature.num}
-              initial={{ opacity: 0, y: 24 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: i * 0.06 }}
-              whileHover={{ y: -4, transition: { duration: 0.2 } }}
-              className="bg-[hsl(220,70%,14%)] rounded-2xl p-7 flex flex-col gap-5"
-            >
-              <div className="flex items-start justify-between">
-                <div className={`w-11 h-11 rounded-xl ${feature.accentBg} flex items-center justify-center`}>
-                  <feature.icon className={`w-5 h-5 ${feature.accent}`} />
-                </div>
-                <span className="text-xs text-gray-500 font-mono mt-1">{feature.num}</span>
-              </div>
-
-              <div>
-                <h3 className="text-lg font-semibold text-white mb-2">{feature.title}</h3>
-                <p className="text-sm text-gray-400 leading-relaxed">{feature.desc}</p>
-              </div>
-
-              <FeatureVisual variant={feature.visual} />
-            </motion.div>
-          ))}
+        {/* Tabs */}
+        <div className="flex gap-1 mb-12 bg-secondary rounded-lg p-1 w-fit">
+          <button
+            onClick={() => setActiveTab("students")}
+            className={`px-5 py-2.5 rounded-md text-sm font-medium transition-colors ${
+              activeTab === "students" ? "bg-card text-foreground shadow-precision" : "text-muted-foreground"
+            }`}
+          >
+            Student Experience
+          </button>
+          <button
+            onClick={() => setActiveTab("teams")}
+            className={`px-5 py-2.5 rounded-md text-sm font-medium transition-colors ${
+              activeTab === "teams" ? "bg-card text-foreground shadow-precision" : "text-muted-foreground"
+            }`}
+          >
+            Institutional Dashboard
+          </button>
         </div>
+
+        {activeTab === "students" ? (
+          <div className="space-y-8">
+            {studentFeatures.map((feature, i) => (
+              <motion.div
+                key={feature.num}
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="grid lg:grid-cols-2 gap-8 items-center bg-card rounded-xl p-8 shadow-precision"
+              >
+                <div>
+                  <span className="text-xs text-muted-foreground font-mono">{feature.num}</span>
+                  <h3 className="text-xl font-semibold text-foreground mt-1 mb-3">{feature.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{feature.desc}</p>
+                </div>
+
+                <div className="bg-secondary rounded-lg p-4">
+                  {feature.items && (
+                    <div className="space-y-3">
+                      {feature.items.map((item) => (
+                        <div key={item.role} className="flex items-center gap-3 bg-card rounded-lg p-3">
+                          <div className={`w-8 h-8 rounded-md ${item.color} flex items-center justify-center text-xs font-bold text-foreground`}>
+                            {item.letter}
+                          </div>
+                          <div className="flex-1">
+                            <p className="text-sm font-medium text-foreground">{item.role}</p>
+                            <p className="text-xs text-muted-foreground">{item.company}</p>
+                          </div>
+                          <span className="text-xs text-emerald-400 font-medium">{item.score}</span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {feature.resumeScore && (
+                    <div className="space-y-3">
+                      <div className="flex items-baseline gap-2">
+                        <span className="text-xs text-muted-foreground">Resume Score</span>
+                        <span className="text-2xl font-bold text-foreground">{feature.resumeScore}/100</span>
+                      </div>
+                      <div className="flex gap-2">
+                        {["Impact", "Keywords", "Format"].map((l) => (
+                          <span key={l} className="text-[10px] px-2 py-1 rounded bg-card text-muted-foreground">{l}</span>
+                        ))}
+                      </div>
+                      {feature.suggestions?.map((s, j) => (
+                        <p key={j} className="text-xs text-muted-foreground bg-card rounded p-2">
+                          {s}
+                        </p>
+                      ))}
+                    </div>
+                  )}
+
+                  {feature.pipeline && (
+                    <div className="flex items-center gap-2">
+                      {feature.pipeline.map((stage, j) => (
+                        <div key={stage} className="flex items-center gap-2">
+                          <div className={`px-3 py-2 rounded-lg text-xs font-medium ${
+                            j === feature.pipeline!.length - 1
+                              ? "bg-emerald-500/20 text-emerald-400"
+                              : "bg-card text-muted-foreground"
+                          }`}>
+                            {stage}
+                          </div>
+                          {j < feature.pipeline!.length - 1 && (
+                            <div className="w-4 h-px bg-muted" />
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        ) : (
+          <div className="space-y-8">
+            {[
+              {
+                num: "01",
+                title: "Student Analysis",
+                desc: "Deep, individual-level insights into every student's career journey — application activity, engagement patterns, and progress over time. Identify at-risk students before they disengage.",
+                detail: "Track application volumes, response rates, and conversion metrics per student and across cohorts.",
+              },
+              {
+                num: "02",
+                title: "Qualifications Insights",
+                desc: "Understand how your programmes translate into employability. See which qualifications, modules, and skill sets correlate with stronger career outcomes.",
+                detail: "Compare placement rates across degrees, identify curriculum gaps, and benchmark against peer institutions.",
+              },
+              {
+                num: "03",
+                title: "Market Insights",
+                desc: "Real-time labour market intelligence tailored to your student population. See which industries are hiring, what skills are in demand, and where your graduates are most competitive.",
+                detail: "Regional and sector-level trends, employer demand signals, and salary benchmarking — updated continuously.",
+              },
+            ].map((feature, i) => (
+              <motion.div
+                key={feature.num}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="grid lg:grid-cols-2 gap-8 items-center bg-card rounded-xl p-8 shadow-precision"
+              >
+                <div>
+                  <span className="text-xs text-muted-foreground font-mono">{feature.num}</span>
+                  <h3 className="text-xl font-semibold text-foreground mt-1 mb-3">{feature.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{feature.desc}</p>
+                </div>
+                <div className="bg-secondary rounded-lg p-6">
+                  <p className="text-sm text-muted-foreground leading-relaxed">{feature.detail}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        )}
       </div>
     </section>
-  );
-};
-
-const FeatureVisual = ({ variant }: { variant: Feature["visual"] }) => {
-  if (variant === "jobs" || variant === "match") {
-    return (
-      <div className="bg-white/[0.03] border border-white/[0.06] rounded-xl p-3 space-y-2 mt-auto">
-        {[
-          { letter: "L", color: "bg-blue-500", role: "Product Design Intern", company: "Linear", score: "98%" },
-          { letter: "V", color: "bg-white", role: "Frontend Engineer", company: "Vercel", score: "95%" },
-          { letter: "S", color: "bg-green-500", role: "Marketing Intern", company: "Spotify", score: "92%" },
-        ].map((item) => (
-          <div key={item.role} className="flex items-center gap-3 bg-white/[0.04] rounded-lg p-2.5">
-            <div className={`w-7 h-7 rounded-md ${item.color} flex items-center justify-center text-[11px] font-bold ${item.color === "bg-white" ? "text-gray-900" : "text-white"}`}>
-              {item.letter}
-            </div>
-            <div className="flex-1 min-w-0">
-              <p className="text-xs font-medium text-white truncate">{item.role}</p>
-              <p className="text-[11px] text-gray-500 truncate">{item.company}</p>
-            </div>
-            <span className="text-[11px] text-emerald-400 font-medium">{item.score} {variant === "match" ? "Match" : ""}</span>
-          </div>
-        ))}
-      </div>
-    );
-  }
-
-  if (variant === "resume") {
-    return (
-      <div className="bg-white/[0.03] border border-white/[0.06] rounded-xl p-4 space-y-3 mt-auto">
-        <div className="flex items-baseline gap-2">
-          <span className="text-xs text-gray-500">Resume Score</span>
-          <span className="text-2xl font-bold text-white">92/100</span>
-        </div>
-        <div className="flex gap-2">
-          {["Impact", "Keywords", "Format"].map((l) => (
-            <span key={l} className="text-[10px] px-2 py-1 rounded bg-white/[0.04] text-gray-400 border border-white/[0.06]">{l}</span>
-          ))}
-        </div>
-        <p className="text-[11px] text-gray-400 bg-white/[0.04] rounded p-2 border border-white/[0.06]">
-          Suggestion: Add metrics to your 2nd bullet point.
-        </p>
-      </div>
-    );
-  }
-
-  if (variant === "interview") {
-    return (
-      <div className="bg-white/[0.03] border border-white/[0.06] rounded-xl p-3 space-y-2 mt-auto">
-        <div className="flex gap-2 items-start">
-          <div className="w-6 h-6 rounded-full bg-sky-400/20 flex-shrink-0 mt-0.5" />
-          <div className="bg-white/[0.04] rounded-lg p-2.5 text-[11px] text-gray-400 flex-1 border border-white/[0.06]">
-            Tell me about a time you led under pressure.
-          </div>
-        </div>
-        <div className="flex gap-2 items-start justify-end">
-          <div className="bg-primary/15 text-white rounded-lg p-2.5 text-[11px] flex-1 border border-primary/30">
-            At my last role, I led a 6-person launch with a 2-week deadline…
-          </div>
-          <div className="w-6 h-6 rounded-full bg-emerald-500/20 flex-shrink-0 mt-0.5" />
-        </div>
-        <p className="text-[10px] text-emerald-400">+12 clarity · +8 structure</p>
-      </div>
-    );
-  }
-
-  if (variant === "case") {
-    return (
-      <div className="bg-white/[0.03] border border-white/[0.06] rounded-xl p-3 space-y-2 mt-auto">
-        <p className="text-[10px] uppercase tracking-wider text-gray-500">Case framework</p>
-        <div className="grid grid-cols-4 gap-1.5">
-          {["Clarify", "Structure", "Analyze", "Recommend"].map((s, idx) => (
-            <div key={s} className={`rounded-md p-2 text-center text-[10px] font-medium border ${
-              idx === 1 ? "bg-primary/15 text-white border-primary/40" : "bg-white/[0.04] text-gray-400 border-white/[0.06]"
-            }`}>
-              {s}
-            </div>
-          ))}
-        </div>
-        <p className="text-[11px] text-gray-400 bg-white/[0.04] rounded p-2 border border-white/[0.06]">
-          Profitability case · Airline industry
-        </p>
-      </div>
-    );
-  }
-
-  if (variant === "cover") {
-    return (
-      <div className="bg-white/[0.03] border border-white/[0.06] rounded-xl p-3 space-y-2 mt-auto">
-        <div className="flex items-center gap-2 text-[10px] text-gray-500">
-          <span className="px-2 py-0.5 rounded bg-white/[0.04] border border-white/[0.06]">To</span>
-          <span className="text-gray-400">Hiring Team · Linear</span>
-        </div>
-        <div className="bg-white/[0.04] rounded-lg p-3 border border-white/[0.06] text-[11px] text-gray-300 leading-relaxed">
-          Dear Linear team,<br />
-          Your work on issue tracking is exactly where I want to push my craft as a Product Designer…
-        </div>
-        <p className="text-[10px] text-emerald-400">Tailored to Product Designer · Linear</p>
-      </div>
-    );
-  }
-
-  // tracker
-  return (
-    <div className="bg-white/[0.03] border border-white/[0.06] rounded-xl p-4 mt-auto">
-      <div className="flex items-center gap-2 flex-wrap">
-        {["Applied", "Interview", "Offer", "Accepted!"].map((stage, j, arr) => (
-          <div key={stage} className="flex items-center gap-2">
-            <div className={`px-3 py-1.5 rounded-lg text-[11px] font-medium border ${
-              j === arr.length - 1
-                ? "bg-emerald-500/20 text-emerald-400 border-emerald-500/30"
-                : "bg-white/[0.04] text-gray-400 border-white/[0.06]"
-            }`}>
-              {stage}
-            </div>
-            {j < arr.length - 1 && <div className="w-3 h-px bg-white/10" />}
-          </div>
-        ))}
-      </div>
-      <p className="text-[10px] text-gray-500 mt-3">Auto-synced from your inbox</p>
-    </div>
   );
 };
 

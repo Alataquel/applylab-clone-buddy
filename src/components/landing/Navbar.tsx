@@ -18,31 +18,29 @@ const Navbar = () => {
           <span className="text-foreground font-bold text-xl tracking-tight">applylab</span>
         </a>
 
-        <div className="hidden xl:flex items-center gap-6 ml-10">
-          <a href="/#how-it-works" className="text-sm text-muted-foreground hover:text-foreground transition-colors">How it works</a>
-          <a href="/#features" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Features</a>
-          <a href="/#pricing" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Pricing</a>
-          <a href="/schools" className="text-sm text-muted-foreground hover:text-foreground transition-colors">For Schools</a>
+        <div className="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
+          <a href="/students" className="text-sm text-muted-foreground hover:text-foreground transition-colors">For Students</a>
           <a href="/universities" className="text-sm text-muted-foreground hover:text-foreground transition-colors">For Universities</a>
-          <a href="/ambassador" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Ambassadors</a>
+          <a href="/ambassador" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Ambassador</a>
+          <a href="/about" className="text-sm text-muted-foreground hover:text-foreground transition-colors">About</a>
         </div>
 
-        <div className="flex items-center gap-3 ml-auto">
-          <button className="hidden xl:flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors px-3 py-1.5 rounded-lg">
+        <div className="flex items-center gap-3">
+          <button className="hidden md:flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors px-3 py-1.5 rounded-lg">
             <Globe className="w-4 h-4" />
             English
             <ChevronDown className="w-3 h-3" />
           </button>
-          <a href="/login" className="hidden xl:inline text-sm text-muted-foreground hover:text-foreground transition-colors">Log in</a>
+          <a href="/login" className="hidden md:inline text-sm text-muted-foreground hover:text-foreground transition-colors">Log In</a>
           <a
-            href="/signup"
-            className="hidden xl:inline text-sm font-medium bg-foreground text-background px-4 py-2 rounded-full hover:opacity-90 transition-opacity"
+            href="/request-pilot"
+            className="hidden md:inline text-sm font-medium bg-foreground text-background px-4 py-2 rounded-full hover:opacity-90 transition-opacity"
           >
-            Get your matches
+            Request pilot
           </a>
 
           {/* Mobile: language + hamburger */}
-          <div className="flex xl:hidden items-center gap-2">
+          <div className="flex md:hidden items-center gap-2">
             <button className="flex items-center gap-1.5 text-sm text-muted-foreground px-2 py-1.5 rounded-lg">
               <Globe className="w-4 h-4" />
               English
@@ -72,13 +70,11 @@ const Navbar = () => {
           >
             <div className="px-6 py-4 space-y-0">
               {[
-                { label: "How it works", href: "/#how-it-works" },
-                { label: "Features", href: "/#features" },
-                { label: "Pricing", href: "/#pricing" },
-                { label: "For Schools", href: "/schools" },
+                { label: "For Students", href: "/students" },
                 { label: "For Universities", href: "/universities" },
-                { label: "Ambassadors", href: "/ambassador" },
-                { label: "Log in", href: "/login" },
+                { label: "Ambassador", href: "/ambassador" },
+                { label: "About", href: "/about" },
+                { label: "Log In", href: "/login" },
               ].map((link) => (
                 <a
                   key={link.label}
@@ -91,11 +87,11 @@ const Navbar = () => {
               ))}
               <div className="pt-4 pb-2">
                 <a
-                  href="/signup"
+                  href="/request-pilot"
                   onClick={() => setMobileOpen(false)}
                   className="block w-full text-center bg-primary text-primary-foreground font-medium py-3.5 rounded-lg text-sm hover:opacity-90 transition-opacity"
                 >
-                  Get your matches
+                  Request pilot
                 </a>
               </div>
             </div>

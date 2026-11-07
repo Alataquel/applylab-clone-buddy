@@ -4,11 +4,9 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Index from "./pages/Index.tsx";
-import Demo from "./pages/Demo.tsx";
 import About from "./pages/About.tsx";
 import ForStudents from "./pages/ForStudents.tsx";
 import ForUniversities from "./pages/ForUniversities.tsx";
-import ForSchools from "./pages/ForSchools.tsx";
 import Ambassador from "./pages/Ambassador.tsx";
 import RequestPilot from "./pages/RequestPilot.tsx";
 import Terms from "./pages/Terms.tsx";
@@ -26,11 +24,9 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route path="/demo" element={<Demo />} />
           <Route path="/about" element={<About />} />
           <Route path="/students" element={<ForStudents />} />
           <Route path="/universities" element={<ForUniversities />} />
-          <Route path="/schools" element={<ForSchools />} />
           <Route path="/ambassador" element={<Ambassador />} />
           <Route path="/request-pilot" element={<RequestPilot />} />
           <Route path="/terms" element={<Terms />} />
